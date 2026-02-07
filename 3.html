@@ -41,55 +41,23 @@
             min-height: 75px; 
             z-index: 100;
         }
-        
-        /* HEADER CORNER LOGOS */
-        .header-corner {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 38px;
-            opacity: 0.8;
-            pointer-events: none;
-            z-index: 15;
-        }
-        .header-corner-right {
-            position: absolute;
-            top: 0;
-            right: 0;
-            height: 38px;
-            opacity: 0.8;
-            transform: scaleX(-1); /* Right side logo inversion */
-            pointer-events: none;
-            z-index: 15;
-        }
-
+        .header-corner { position: absolute; top: 0; left: 0; height: 38px; opacity: 0.8; pointer-events: none; z-index: 15; }
+        .header-corner-right { position: absolute; top: 0; right: 0; height: 38px; opacity: 0.8; transform: scaleX(-1); pointer-events: none; z-index: 15; }
         .header-scroll-bg { 
-            position: absolute; 
-            top: 0; left: 0; 
-            width: 400%; height: 100%; 
+            position: absolute; top: 0; left: 0; width: 400%; height: 100%; 
             background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 5%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1) 15%, transparent 20%); 
-            z-index: 1; 
-            animation: scrollGlow 25s linear infinite; 
-            opacity: 0.9; 
+            z-index: 1; animation: scrollGlow 25s linear infinite; opacity: 0.9; 
         }
         @keyframes scrollGlow { 0% { transform: translateX(-100%); } 100% { transform: translateX(25%); } }
-        
         header .header-left, header .header-right { z-index: 10; }
         header .header-left { display: flex; align-items: center; gap: 15px; }
         header .logo { height: 46px; width: 46px; border-radius: 50%; border: 2px solid #ffffff; background: white; flex-shrink: 0; }
         header .main-title { font-size: clamp(14px, 3vw, 20px); font-weight: 900; line-height: 1.1; }
         header .sub-title { font-size: clamp(9px, 2vw, 13px); font-weight: 600; color: var(--accent-yellow); margin-top: 3px; }
-        
         header .header-right { display: flex; gap: clamp(10px, 2.5vw, 25px); align-items: center; }
         .menu-item a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; transition: transform 0.2s; position: relative; }
-        
-        header .icon { 
-            font-size: clamp(14px, 2.5vw, 18px); 
-            color: var(--accent-orange); 
-            opacity: 0.9;
-        }
+        header .icon { font-size: clamp(14px, 2.5vw, 18px); color: var(--accent-orange); opacity: 0.9; }
         .icon-label { font-size: 7.5px; margin-top: 5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.85; }
-        
         .menu-item a.active-nav .icon { color: var(--accent-yellow); opacity: 1; transform: scale(1.1); }
         .menu-item a.active-nav .icon-label { color: var(--accent-yellow); opacity: 1; font-weight: 900; }
         .menu-item a.active-nav::after { content: ''; position: absolute; bottom: -8px; width: 5px; height: 5px; background-color: var(--accent-yellow); border-radius: 50%; }
@@ -97,73 +65,33 @@
         /* LOGIN OVERLAY */
         #login-overlay { 
             flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; 
-            background: #eef2f6; 
-            padding: 40px 20px; 
-            gap: 20px;
-            margin-bottom: 50px; 
+            background: #eef2f6; padding: 40px 20px; gap: 20px; margin-bottom: 50px; 
         }
-        
-        /* LOGIN CARD WITH LIVE COLOR ANIMATION */
         .login-card { 
-            background: white; padding: 40px; border-radius: 20px; 
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1); 
-            width: 100%; max-width: 400px; text-align: center; position: relative; 
-            border: 1px solid #dae1e7;
+            background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); 
+            width: 100%; max-width: 400px; text-align: center; position: relative; border: 1px solid #dae1e7;
             transition: all 0.3s ease;
-            
-            /* Live Color Move Animation - More Visible */
             background: linear-gradient(120deg, #ffffff, #e0f2fe, #ffe4e6, #ffffff);
-            background-size: 400% 400%;
-            animation: gradientMove 6s ease infinite;
+            background-size: 400% 400%; animation: gradientMove 6s ease infinite;
         }
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
+        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         .login-logo { width: 80px; margin-bottom: 20px; }
         .login-card h2 { color: var(--primary-blue); margin-bottom: 25px; font-weight: 900; font-size: 20px; }
-        
-        /* INPUT WITH ICONS */
         .input-group { margin-bottom: 15px; text-align: left; position: relative; }
         .input-group label { display: block; font-size: 11px; font-weight: 800; color: #64748b; margin-bottom: 6px; text-transform: uppercase; }
         .input-wrapper { position: relative; }
         .input-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--primary-blue); font-size: 14px; z-index: 2; }
         .input-group input { width: 100%; padding: 12px 15px 12px 38px; border: 1.5px solid var(--border-color); border-radius: 10px; font-size: 14px; outline: none; transition: 0.2s; background: var(--input-bg); font-weight: 700; color: var(--primary-blue); }
         .input-group input:focus { border-color: var(--accent-orange); box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.1); }
-        
         .pass-toggle { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; cursor: pointer; transition: 0.2s; z-index: 5; }
-
-        /* LOGIN BUTTON STYLE */
         .btn-login-submit { 
-            width: auto; 
-            min-width: 140px;
-            padding: 10px 30px; 
-            background: var(--primary-blue); 
-            color: white; border: none; 
-            border-radius: 8px; 
-            font-weight: 900; 
-            cursor: pointer; 
-            font-size: 14px; 
-            margin-top: 15px; 
-            transition: 0.3s; 
-            box-shadow: 0 4px 0 #000044;
-            display: inline-block;
+            width: auto; min-width: 140px; padding: 10px 30px; background: var(--primary-blue); color: white; border: none; 
+            border-radius: 8px; font-weight: 900; cursor: pointer; font-size: 14px; margin-top: 15px; 
+            transition: 0.3s; box-shadow: 0 4px 0 #000044; display: inline-block;
         }
         .btn-login-submit:active { transform: translateY(2px); box-shadow: 0 2px 0 #000044; }
-
-        /* EXTERNAL LOADING SEQUENCE - REMOVED BOX STYLE, JUST TEXT */
-        #external-loader { 
-            display: none; 
-            width: 100%; max-width: 400px;
-            /* Removed background, border, shadow for cleaner look */
-            background: transparent;
-            border: none;
-            box-shadow: none;
-            padding: 10px;
-            margin-top: 5px;
-        }
+        
+        #external-loader { display: none; width: 100%; max-width: 400px; background: transparent; border: none; box-shadow: none; padding: 10px; margin-top: 5px; }
         .loader-header { font-size: 12px; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; text-align: center; border-bottom: none; }
         .load-step { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 13px; font-weight: 700; color: #64748b; margin-bottom: 8px; opacity: 0; transition: 0.3s; }
         .load-step.active { opacity: 1; color: var(--primary-blue); }
@@ -174,17 +102,15 @@
         /* DASHBOARD CONTENT */
         #dashboard-main { display: none; flex-direction: column; flex: 1; }
         main { flex: 1; width: 100%; margin: 0 auto; max-width: 1400px; padding: 0; display: flex; flex-direction: column; }
-
+        
+        /* Updated Section Styling with Flexbox for Row Alignment */
         section, .welcome-section, .stats-container, .srm-banner, .achievements-premium, .status-panel, .fame-box, .cert-section, .parents-corner { width: 100%; padding: clamp(10px, 2vw, 15px) clamp(15px, 5vw, 40px); margin: 0; border-bottom: 1px solid var(--border-color); background: white; box-sizing: border-box; }
 
-        /* WELCOME */
         .welcome-section { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,139,0.1); padding-top: 6px !important; padding-bottom: 6px !important; }
         .welcome-text h1 { margin: 0; font-size: clamp(10px, 2.5vw, 14px); font-weight: 900; color: #1e293b; }
         .student-name { color: var(--primary-blue); font-weight: 900; }
         .logout-pill { display: flex; align-items: center; gap: 4px; font-size: 8.5px; font-weight: 900; color: white; background: var(--danger-red); padding: 3px 12px; border-radius: 50px; border: none; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
-        .logout-pill:hover { background: #b00000; transform: scale(1.05); }
-
-        /* STATS */
+        
         .stats-container { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; padding-top: 5px !important; padding-bottom: 5px !important; }
         .stat-box { display: flex; flex-direction: column; align-items: center; text-align: center; }
         .stat-box i { font-size: 9px; color: var(--primary-blue); margin-bottom: 1px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
@@ -192,7 +118,6 @@
         .stat-value { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 900; color: var(--text-dark); }
         .stat-box.highlight i, .stat-box.highlight .stat-value { color: var(--accent-orange); }
 
-        /* SRM - NO CHANGE */
         .srm-banner { display: flex; align-items: center; justify-content: space-between; gap: 20px; background: linear-gradient(to right, #fff, #f9fbff); flex-wrap: wrap; }
         .srm-main-container { display: flex; flex: 1; align-items: center; gap: 15px; flex-wrap: wrap; justify-content: space-between; }
         .srm-content { flex: 2; min-width: 200px; }
@@ -203,48 +128,44 @@
         .srm-contact-hd-text .label { color: #1e293b; font-size: 9px; text-transform: uppercase; font-weight: 800; }
         .srm-contact-hd-text .value { color: black; font-weight: 900; font-size: 15px; margin-left: 10px; }
 
-        /* 3D MASTERY BADGES - 5 BADGES STRICT */
         .achievements-premium { background: linear-gradient(135deg, #000428 0%, #004e92 100%); color: white; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .achiever-header h3 { margin: 0; font-size: 16px; font-weight: 900; color: var(--accent-yellow); text-transform: uppercase; letter-spacing: 0.5px; }
         .badge-row { display: flex; gap: 15px; }
         .badge-unit { display: flex; flex-direction: column; align-items: center; gap: 5px; perspective: 1000px; }
         .badge-lbl { font-size: 8px; font-weight: 900; text-transform: uppercase; opacity: 0.9; }
-        .badge-glow { 
-            width: 42px; height: 42px; border-radius: 50%; 
-            background: rgba(255,255,255,0.05); 
-            display: flex; align-items: center; justify-content: center; font-size: 18px; 
-            border: 1px solid rgba(255,255,255,0.1); 
-            transition: 0.5s;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
-        .badge-unit.active .badge-glow { 
-            background: radial-gradient(circle at 30% 30%, #fceabb, #f8b500 50%, #f7941d 100%); 
-            color: var(--primary-blue); 
-            border-color: #fff; 
-            box-shadow: 0 8px 15px rgba(248, 181, 0, 0.4), inset -2px -2px 6px rgba(0,0,0,0.2), inset 2px 2px 6px rgba(255,255,255,0.5); 
-            transform: translateZ(10px) rotateY(10deg);
-        }
+        .badge-glow { width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 18px; border: 1px solid rgba(255,255,255,0.1); transition: 0.5s; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+        .badge-unit.active .badge-glow { background: radial-gradient(circle at 30% 30%, #fceabb, #f8b500 50%, #f7941d 100%); color: var(--primary-blue); border-color: #fff; box-shadow: 0 8px 15px rgba(248, 181, 0, 0.4), inset -2px -2px 6px rgba(0,0,0,0.2), inset 2px 2px 6px rgba(255,255,255,0.5); transform: translateZ(10px) rotateY(10deg); }
 
-        /* EXAM PORTAL CONTENT */
+        /* BOX ITEMS LAYOUT UPDATE */
         .subject-pane { padding: 15px 0; border-bottom: 2px solid #f1f5f9; margin-bottom: 10px; }
         .sub-head-row h3 { font-size: 20px; font-weight: 800; color: var(--primary-blue); text-transform: uppercase; margin: 0; }
         .inspiration-msg { font-size: 12px; color: #64748b; font-weight: 600; margin-bottom: 20px; display: block; line-height: 1.8; border-left: 4px solid var(--accent-orange); padding-left: 15px; background-color: #fcfcfc; padding: 15px; border-radius: 0 8px 8px 0; text-align: justify; }
+        
         .item-row { display: flex; flex-direction: column; background: white; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .item-top { display: flex; align-items: center; justify-content: space-between; padding: 10px 15px; background: #fafafa; border-bottom: 1px solid #f1f5f9; }
-        .item-month { font-size: 11px; font-weight: 900; color: var(--danger-red); width: 80px; }
-        .item-meta { display: flex; gap: 12px; align-items: center; }
-        .item-meta div { display: flex; align-items: center; gap: 4px; font-size: 9px; font-weight: 800; color: var(--primary-blue); opacity: 0.8; }
-        .item-scores { display: flex; align-items: center; gap: 10px; }
-        .score-lbl { font-size: 9px; font-weight: 900; color: #64748b; text-transform: uppercase; }
+        
+        /* Updated Top Row for Desktop Alignment */
+        .item-top { 
+            display: flex; align-items: center; justify-content: space-between; 
+            padding: 10px 15px; background: #fafafa; border-bottom: 1px solid #f1f5f9; 
+            gap: 15px;
+        }
+        .item-month { font-size: 11px; font-weight: 900; color: var(--danger-red); width: 80px; flex-shrink: 0; }
+        .item-meta { display: flex; gap: 12px; align-items: center; flex-grow: 1; justify-content: center; }
+        .item-meta div { display: flex; align-items: center; gap: 4px; font-size: 9px; font-weight: 800; color: var(--primary-blue); opacity: 0.8; white-space: nowrap; }
+        
+        /* Result Boxes now at the end of the line */
+        .item-scores { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+        .score-lbl { font-size: 9px; font-weight: 900; color: #64748b; text-transform: uppercase; margin-right: 5px; }
         .box-grid { display: flex; gap: 4px; }
         .box-unit { width: 30px; height: 22px; border: 1px solid var(--border-color); border-radius: 4px; font-size: 10px; font-weight: 900; display: flex; align-items: center; justify-content: center; background: white; color: var(--primary-blue); }
+        
         .item-bottom { padding: 8px 15px; display: flex; justify-content: space-between; align-items: center; background: #f0f9ff; }
         .item-topic-wrap { display: flex; align-items: center; gap: 5px; }
         .topic-lbl { color: #d97706; font-size: 14px; font-weight: 900; text-transform: uppercase; }
         .item-topic-name { font-size: 14px; font-weight: 800; color: #1e293b; }
-        .btn-take { background: var(--primary-blue); color: white; border: none; padding: 6px 20px; border-radius: 6px; font-weight: 900; cursor: pointer; font-size: 11px; text-transform: uppercase; }
+        .btn-take { background: var(--primary-blue); color: white; border: none; padding: 6px 20px; border-radius: 6px; font-weight: 900; cursor: pointer; font-size: 11px; text-transform: uppercase; transition: 0.3s; }
+        .btn-take:disabled { background: #cbd5e1; cursor: not-allowed; opacity: 0.7; }
 
-        /* ACADEMY PROGRESS */
         .status-panel { background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%) !important; }
         .status-header h2 { font-size: 18px; color: var(--primary-blue); margin: 0; text-transform: uppercase; }
         .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-top: 15px; }
@@ -252,25 +173,16 @@
         .bar-container { width: 100%; height: 6px; background: #e2e8f0; border-radius: 8px; overflow: hidden; margin-top: 5px; }
         .bar-fill { height: 100%; background: linear-gradient(to right, var(--primary-blue), #3b82f6); transition: width 1s ease-in-out; }
 
-        /* PERFORMANCE ANALYSIS */
-        .performance-analysis { 
-            display: grid; 
-            grid-template-columns: 1fr 1.5fr; 
-            gap: 20px; 
-            background: #fff0f5 !important; 
-            min-height: 400px; 
-        }
+        .performance-analysis { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; background: #fff0f5 !important; min-height: 400px; }
         .rank-card { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
         .rank-text-box { background: linear-gradient(135deg, var(--primary-blue), #000050); padding: 15px 30px; border-radius: 15px; color: white; box-shadow: 0 10px 20px rgba(0,0,0,0.15); border: 2px solid var(--accent-orange); }
         .rank-label { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-yellow); }
         .rank-number { font-size: 42px; font-weight: 900; color: white; font-family: 'Bebas Neue', cursive; line-height: 1; margin-top: 5px; }
         
-        /* RECENT ACTIVITY */
         .recent-activity { display: flex; flex-direction: column; justify-content: center; }
         .activity-header { font-size: 14px; font-weight: 900; color: var(--primary-blue); margin-bottom: 15px; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
         .activity-item { background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; border: 1px solid #e2e8f0; font-size: 12px; font-weight: 800; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
 
-        /* CERTIFICATE SECTION */
         .cert-section { display: flex; justify-content: space-between; align-items: center; background: #fffbeb !important; border-left: 5px solid var(--accent-yellow); }
         .cert-title { font-size: 18px; font-weight: 900; color: #92400e; margin-bottom: 10px; text-transform: uppercase; }
         .cert-points { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
@@ -278,81 +190,27 @@
         .cert-points li i { color: #d97706; margin-top: 2px; }
         .btn-download { background: #d97706; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 900; font-size: 12px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 0 #92400e; transition: 0.2s; flex-shrink: 0; }
 
-        /* PARENT PORTAL */
         .parents-corner { background: #fef2f2 !important; border-top: 2px solid #fecaca; }
         .parents-header { font-size: 14px; font-weight: 900; color: #b91c1c; text-transform: uppercase; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
         .parents-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
-        .p-stat { 
-            background: linear-gradient(to bottom right, #fff, #ffe4e6); 
-            padding: 15px; border-radius: 12px; border: 1px solid #fda4af; 
-            box-shadow: 0 4px 10px rgba(190, 18, 60, 0.1); 
-            transition: transform 0.3s;
-        }
+        .p-stat { background: linear-gradient(to bottom right, #fff, #ffe4e6); padding: 15px; border-radius: 12px; border: 1px solid #fda4af; box-shadow: 0 4px 10px rgba(190, 18, 60, 0.1); transition: transform 0.3s; }
         .p-stat:hover { transform: translateY(-3px); }
         .p-lbl { font-size: 9px; font-weight: 800; color: #9f1239; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 5px; }
         .p-val { font-size: 24px; font-weight: 900; color: #881337; }
 
-        /* STATE LEVEL TOPPERS */
         .fame-box { overflow: hidden; position: relative; }
-        .fame-scroll-container {
-            width: 100%;
-            overflow-x: auto;
-            white-space: nowrap;
-            padding-bottom: 10px;
-        }
+        .fame-scroll-container { width: 100%; overflow-x: auto; white-space: nowrap; padding-bottom: 10px; }
         .fame-scroll-container::-webkit-scrollbar { height: 6px; }
         .fame-scroll-container::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-
-        .fame-track { 
-            display: inline-flex; 
-            gap: 20px; 
-            padding: 15px 0; 
-            animation: liveScroll 60s linear infinite; 
-        }
-        
-        .fame-track:hover, .fame-track:active, .fame-track:focus {
-            animation-play-state: paused;
-        }
-
+        .fame-track { display: inline-flex; gap: 20px; padding: 15px 0; animation: liveScroll 60s linear infinite; }
+        .fame-track:hover, .fame-track:active, .fame-track:focus { animation-play-state: paused; }
         @keyframes liveScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        .topper-unit { 
-            background: white; 
-            border: 1px solid #bae6fd; 
-            width: 230px; 
-            border-radius: 15px; 
-            text-align: center; 
-            padding: 40px 15px 15px; 
-            flex-shrink: 0; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
-            position: relative;
-            background-image: linear-gradient(135deg, #fff 0%, #f0f9ff 100%);
-            overflow: hidden;
-            display: inline-block; 
-            white-space: normal;
-        }
-        .topper-unit::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--accent-orange); z-index: 5;
-        }
-
-        .firework-particles {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 0.5;
-        }
-        .particle {
-            position: absolute; bottom: 0; width: 4px; height: 4px; border-radius: 50%;
-            animation: riseAndPop 2s infinite ease-out;
-        }
-        .p1 { left: 20%; background: #ff0000; animation-delay: 0s; }
-        .p2 { left: 50%; background: #ffd700; animation-delay: 0.5s; }
-        .p3 { left: 80%; background: #00ff00; animation-delay: 1s; }
-        .p4 { left: 35%; background: #0000ff; animation-delay: 1.5s; }
-        
-        @keyframes riseAndPop {
-            0% { bottom: 0; opacity: 1; transform: scale(1); }
-            80% { bottom: 80%; opacity: 1; transform: scale(1); }
-            100% { bottom: 90%; opacity: 0; transform: scale(3); }
-        }
-
+        .topper-unit { background: white; border: 1px solid #bae6fd; width: 230px; border-radius: 15px; text-align: center; padding: 40px 15px 15px; flex-shrink: 0; box-shadow: 0 10px 20px rgba(0,0,0,0.05); position: relative; background-image: linear-gradient(135deg, #fff 0%, #f0f9ff 100%); overflow: hidden; display: inline-block; white-space: normal; }
+        .topper-unit::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--accent-orange); z-index: 5; }
+        .firework-particles { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 0.5; }
+        .particle { position: absolute; bottom: 0; width: 4px; height: 4px; border-radius: 50%; animation: riseAndPop 2s infinite ease-out; }
+        .p1 { left: 20%; background: #ff0000; animation-delay: 0s; } .p2 { left: 50%; background: #ffd700; animation-delay: 0.5s; } .p3 { left: 80%; background: #00ff00; animation-delay: 1s; } .p4 { left: 35%; background: #0000ff; animation-delay: 1.5s; }
+        @keyframes riseAndPop { 0% { bottom: 0; opacity: 1; transform: scale(1); } 80% { bottom: 80%; opacity: 1; transform: scale(1); } 100% { bottom: 90%; opacity: 0; transform: scale(3); } }
         .t-rank-badge { position: absolute; top: 10px; left: 10px; background: var(--primary-blue); color: white; padding: 2px 8px; border-radius: 4px; font-size: 8px; font-weight: 900; text-transform: uppercase; z-index: 5; }
         .t-congrats { position: absolute; top: 10px; right: 10px; font-family: 'Bebas Neue'; color: var(--danger-red); font-size: 14px; letter-spacing: 1px; z-index: 5; }
         .t-logo { position: relative; z-index: 5; width: 55px; height: 55px; margin-bottom: 10px; border: 2px solid white; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
@@ -360,13 +218,9 @@
         .t-uid { position: relative; z-index: 5; font-size: 9px; font-weight: 800; color: var(--accent-orange); text-transform: uppercase; margin-bottom: 5px; }
         .t-school { position: relative; z-index: 5; font-size: 10px; font-weight: 700; color: #64748b; line-height: 1.3; height: 26px; overflow: hidden; margin-bottom: 10px; }
         .t-score-box { position: relative; z-index: 5; background: #f0fdf4; border: 1.5px solid var(--success-green); color: var(--success-green); padding: 5px; border-radius: 8px; font-weight: 900; font-size: 13px; box-shadow: 0 2px 4px rgba(22, 163, 74, 0.1); }
-
-        .success-passage {
-            margin-top: 20px; padding: 15px; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; text-align: center;
-        }
+        .success-passage { margin-top: 20px; padding: 15px; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; text-align: center; }
         .success-passage p { font-size: 13px; color: #475569; font-weight: 600; font-style: italic; margin: 0; line-height: 1.6; }
 
-        /* FOOTER - NO CHANGES */
         footer { background: var(--primary-blue); color: white; padding: 15px 20px; border-top: 3px solid var(--accent-orange); margin-top: auto; width: 100%; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; width: 100%; padding: 0 clamp(12px, 4vw, 30px); text-align: left; }
         .footer-column { display: flex; flex-direction: column; }
@@ -382,7 +236,96 @@
             .performance-analysis { grid-template-columns: 1fr; }
             .cert-section { flex-direction: column; text-align: center; gap: 20px; }
             .badge-row { justify-content: center; flex-wrap: wrap; }
+            /* Mobile Stack for Exam Item Row */
+            .item-top { flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+            .item-meta { flex-wrap: wrap; }
         }
+
+        /* --- EXAM PORTAL STYLES --- */
+        #exam-portal-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        .exam-window {
+            width: 95%; max-width: 800px; height: 90vh; background: white; border-radius: 15px;
+            display: flex; flex-direction: column; overflow: hidden; position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .exam-header {
+            background: var(--primary-blue); color: white; padding: 15px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 3px solid var(--accent-orange);
+        }
+        .exam-title-row { font-size: 16px; font-weight: 900; text-transform: uppercase; }
+        .exam-timer { 
+            background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 50px; 
+            font-family: 'Roboto Slab'; font-size: 18px; font-weight: 900; color: var(--accent-yellow); 
+            display: flex; align-items: center; gap: 8px;
+        }
+        .exam-body { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; background: #f8fafc; }
+        .q-loader { text-align: center; margin-top: 50px; font-size: 14px; font-weight: 700; color: #64748b; }
+        
+        /* CARD VIEW STYLES */
+        .question-card { background: white; padding: 25px; border-radius: 15px; margin-bottom: 20px; border: 1px solid #e2e8f0; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+        .q-text { font-size: 18px; font-weight: 700; color: #1e293b; margin-bottom: 20px; line-height: 1.5; display: flex; align-items: center; }
+        /* Using Q-ID as badge */
+        .q-id-box { 
+            background: #fef9c3; padding: 5px 15px; border-radius: 50px; 
+            margin-right: 15px; border: 2px solid #eab308; 
+            font-weight: 900; color: #854d0e; font-size: 14px;
+        }
+        
+        .options-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+        .option-item { 
+            border: 2px solid #f1f5f9; border-radius: 10px; padding: 15px 20px; cursor: pointer; transition: 0.2s;
+            font-size: 15px; font-weight: 600; color: #475569; background: white;
+        }
+        .option-item:hover { background: #f0f7ff; border-color: var(--primary-blue); }
+        .option-item.selected { border-color: var(--primary-blue); background: var(--primary-blue); color: white; }
+        
+        /* REVIEW STYLES - HD & Clear */
+        .review-box { margin-top: 20px; padding: 15px; background: #fefce8; border: 2px dashed #eab308; border-radius: 8px; }
+        .review-row { margin-bottom: 8px; font-size: 14px; color: #475569; }
+        .review-label { font-weight: 800; color: #1e293b; text-transform: uppercase; font-size: 11px; display: inline-block; width: 120px; }
+        .review-val { font-weight: 700; }
+        .val-correct { color: #16a34a; }
+        .val-wrong { color: #d00000; }
+        .review-expl { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.1); font-size: 13px; line-height: 1.6; color: #854d0e; }
+
+        /* RESULT SUMMARY */
+        .result-summary-card { text-align: center; padding: 40px 20px; }
+        .result-score-big { font-size: 80px; font-weight: 900; color: var(--primary-blue); line-height: 1; margin-bottom: 10px; }
+        .result-stats-row { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; }
+        .result-stat { background: white; padding: 15px 30px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .rs-val { display: block; font-size: 24px; font-weight: 900; }
+        .rs-lbl { font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-top: 5px; }
+        .rs-correct { color: #16a34a; } .rs-wrong { color: #d00000; }
+        
+        .exam-footer { 
+            padding: 15px 20px; background: #fff; border-top: 1px solid #e2e8f0; 
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+        }
+        .exam-nav-btn { padding: 12px 25px; border-radius: 8px; font-weight: 900; font-size: 13px; cursor: pointer; text-transform: uppercase; border: none; transition: 0.2s; }
+        .btn-prev { background: #cbd5e1; color: #475569; }
+        .btn-next { background: var(--primary-blue); color: white; }
+        .btn-submit-exam { background: var(--success-green); color: white; padding: 12px 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        .btn-review { background: var(--accent-orange); color: white; box-shadow: 0 4px 10px rgba(255, 165, 0, 0.3); }
+        .btn-close { background: var(--primary-blue); color: white; }
+        .btn-exit { background: #ef4444; color: white; }
+        
+        .close-exam { position: absolute; top: 10px; right: 10px; color: white; cursor: pointer; font-size: 20px; }
+        
+        /* CONFIRMATION OVERLAY */
+        #confirm-overlay {
+            display: none; justify-content: center; align-items: center; gap: 15px; 
+            background: #fff; padding: 15px; border-radius: 10px; border: 2px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); width: 80%; z-index: 10;
+        }
+        .confirm-msg { font-weight: 800; color: #1e293b; font-size: 14px; }
+        .btn-yes { background: #16a34a; color: white; padding: 8px 25px; border-radius: 6px; border:none; font-weight: 900; cursor:pointer;}
+        .btn-no { background: #ef4444; color: white; padding: 8px 25px; border-radius: 6px; border:none; font-weight: 900; cursor:pointer;}
     </style>
 </head>
 <body>
@@ -408,7 +351,6 @@
     </div>
 </header>
 
-<!-- LOGIN SECTION -->
 <div id="login-overlay">
     <div class="login-card" id="login-card-inner">
         <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" class="login-logo">
@@ -417,7 +359,6 @@
             <label>User ID</label>
             <div class="input-wrapper">
                 <i class="fa-solid fa-user input-icon"></i>
-                <!-- Added Input Event Listener for UPPERCASE & NO SPACE -->
                 <input type="text" id="username_input" placeholder="Enter User ID">
             </div>
         </div>
@@ -433,7 +374,6 @@
         <div id="login_err_msg" class="login-error" style="display:none; color: red; font-size: 12px; font-weight: 800; margin-top: 10px;">Invalid details!</div>
     </div>
 
-    <!-- EXTERNAL LOADING SEQUENCE (Just Text Lines below box) -->
     <div id="external-loader">
         <div class="load-step" id="step-1"><i class="fa-solid fa-circle-notch"></i> <span>Verifying User Identity...</span></div>
         <div class="load-step" id="step-2"><i class="fa-solid fa-circle-notch"></i> <span>Checking Device Security...</span></div>
@@ -442,7 +382,6 @@
     </div>
 </div>
 
-<!-- DASHBOARD CONTENT -->
 <div id="dashboard-main">
     <main>
         <div class="welcome-section">
@@ -473,7 +412,7 @@
         </div>
 
         <div class="achievements-premium">
-            <div class="achiever-header"><h3><i class="fa-solid fa-medal"></i> Academic Mastery Badges</h3><p style="margin: 5px 0 0; font-size: 11px; opacity: 0.8;">Master competitive tracks to unlock elite 3D badges.</p></div>
+            <div class="achiever-header"><h3><i class="fa-solid fa-medal"></i> Academic Mastery Badges</h3><p style="margin: 5px 0 0; font-size: 11px; opacity: 0.8; font-weight: 700; color: #e2e8f0;">Consistent practice is the bridge between goals and accomplishments. Keep pushing your limits!</p></div>
             <div class="badge-row" id="ui_badges_row">
                 <div class="badge-unit"><div class="badge-glow"><i class="fa-solid fa-hashtag"></i></div><span class="badge-lbl">Number Pro</span></div>
                 <div class="badge-unit"><div class="badge-glow"><i class="fa-solid fa-brain"></i></div><span class="badge-lbl">Logic Wiz</span></div>
@@ -483,7 +422,6 @@
             </div>
         </div>
 
-        <!-- 100 EXAM BOXES -->
         <div id="portal-exam-container" style="padding: 15px; background: white;"></div>
 
         <div class="status-panel">
@@ -561,10 +499,64 @@
     </div>
 </footer>
 
-<script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbxw5BNd_sgbfNghk2zFuEMX6YTGIt5ae8gyRPiRpd9PGk92J5Iz4LtgBTZTCQEcgpCQ/exec";
+<!-- EXAM MODAL UI -->
+<div id="exam-portal-modal">
+    <div class="exam-window">
+        <div class="exam-header">
+            <div class="exam-title-row">TEST: <span id="ex-topic-name">...</span></div>
+            <div class="exam-timer"><i class="fa-regular fa-clock"></i> <span id="ex-timer-val">45:00</span></div>
+            <i class="fa-solid fa-xmark close-exam" onclick="closeExam()"></i>
+        </div>
+        <div class="exam-body" id="ex-body">
+            <div class="q-loader"><i class="fa-solid fa-spinner fa-spin"></i> Loading Questions... Please wait</div>
+            <div id="ex-question-area" style="display:none;">
+                <!-- DYNAMIC CONTENT -->
+            </div>
+        </div>
+        
+        <!-- CONFIRMATION OVERLAY -->
+        <div id="confirm-overlay">
+            <span class="confirm-msg">Submit Test?</span>
+            <button class="btn-yes" onclick="finalizeSubmit()">YES</button>
+            <button class="btn-no" onclick="cancelSubmit()">NO</button>
+        </div>
 
-    // ENFORCE UPPERCASE & NO SPACE ON USERNAME INPUT
+        <div class="exam-footer" id="exam-footer-actions">
+            <!-- DYNAMIC BUTTONS -->
+        </div>
+    </div>
+</div>
+
+<script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbyAQnaRXaLTmwT6003WjudjS5U1SqoteGbn4tqO1PlebwAXYmfPoPZQr9rnqXhx4HYn/exec";
+    
+    // GLOBAL VARIABLES
+    const subjects = [
+        {n: "Number Systems", m: "Mastering Number Systems is not just about counting; it is the fundamental language of the universe and the bedrock of all mathematical logic. A strong command over place values, rounding off, and Roman numerals builds the mental discipline required to tackle complex algebraic problems in the future. For competitive exams like Sainik and Navodaya, this section forms the highest weightage, testing your precision and speed. Completing these topics ensures you never falter in basic calculations, giving you a competitive edge over thousands of peers. It transforms your brain into a calculator, allowing you to visualize solutions instantly. Without this foundation, advanced mathematics will seem like a foreign language. Conquer numbers, and you conquer the first step towards academic greatness."},
+        {n: "Mental Ability", m: "Mental Ability is the true test of your raw intelligence and cognitive speed. It forces your brain to recognize hidden patterns, visualize shapes in space, and think outside the box. Every puzzle you solve in this section sharpens your decision-making skills, which are crucial not just for exams but for life's challenges. In competitive exams, this section is often the tie-breaker; students who master visual reasoning score significantly higher than those who rely solely on rote learning. By practicing figure matching and series completion, you are training your brain to process information faster than average. This skill is invaluable for future careers in engineering, architecture, and strategy. Do not skip this; it is your brain's gym session."},
+        {n: "Applied Arithmetic", m: "Applied Arithmetic connects the abstract world of numbers to real-life situations. Understanding profit and loss, interest, and measurements turns you into a smart decision-maker in the real world. This section is not just about passing an exam; it is about financial literacy and logical problem solving. When you master unitary methods and percentages, you gain the ability to analyze data quickly and accurately. These are high-scoring topics in entrance exams because they follow predictable patterns. Mastery here guarantees solid marks that can push your rank into the top tier. It teaches you the value of precision and the logic behind everyday transactions. Every problem solved here is a step closer to becoming a practical genius."},
+        {n: "Verbal Logic", m: "Verbal Logic is where language meets mathematics. It tests your ability to decode information, understand relationships, and follow complex instructions. Mastering coding-decoding and blood relations enhances your critical thinking capabilities. This section is designed to measure your analytical prowess—how well can you connect the dots? In competitive scenarios, the ability to read between the lines and deduce the correct answer quickly is a superpower. These topics train your mind to be structured and organized in its thought process. It is essential for developing a high IQ and is a favorite section for examiners to test a student's sharpness. Excellence here proves you have a superior logical mind."},
+        {n: "English Grammar", m: "English is the global language of opportunity, and Grammar is its backbone. A strong grasp of tenses, prepositions, and sentence structure ensures that you can communicate your brilliant ideas clearly and effectively. In entrance exams, the English section is often where students lose the most marks due to silly errors. Mastering these topics ensures you are not one of them. Good grammar reflects discipline and attention to detail—traits that every top school looks for in a student. Beyond exams, this skill will define your confidence in interviews and public speaking. Writing correct English is a sign of an educated mind. Build this foundation now, and it will serve you for a lifetime of success."},
+        {n: "Reading Comprehension", m: "Reading Comprehension is the ultimate skill for academic success in higher classes. It is not just about reading stories; it is about extracting core information, understanding context, and analyzing the author's intent under time pressure. Competitive exams use this to test your focus and retention power. By practicing these passages, you increase your reading speed and accuracy, which saves you precious time during the actual test. It trains you to filter out noise and focus on facts. This skill is directly transferable to learning History, Science, and even word problems in Math. Master the art of reading, and you unlock the door to self-learning any subject in the world."},
+        {n: "General Science", m: "General Science fuels curiosity and helps you understand how the world around you works. From the human body to the solar system, these topics build a scientific temper that questions 'Why' and 'How'. In entrance exams, science questions are direct and factual, offering a chance to score full marks quickly. Knowing these basics is essential for anyone aspiring to be a doctor, engineer, or scientist. It connects you to nature and technology, making you a more informed student. The concepts you learn here—like photosynthesis, force, and matter—are the building blocks of the universe. Ignorance here is not an option; scientific literacy is the key to the future."},
+        {n: "Static GK", m: "General Knowledge is the mark of a well-rounded personality. It broadens your horizons beyond textbooks and connects you to the history, culture, and achievements of our great nation and the world. In interviews and group discussions, your knowledge of famous personalities, national symbols, and awards sets you apart as a leader. For exams, GK is the quickest section to attempt, saving time for tough math problems. It builds confidence; when you know the facts, you feel powerful. This section transforms you from a student who just studies books into a scholar who knows the world. Stay curious, stay updated, and lead the conversation."},
+        {n: "Social Studies", m: "Social Studies is the story of human civilization and our duty as citizens. Learning about freedom fighters, earth's structure, and our government instills a sense of pride and responsibility. It teaches you how society functions and your role within it. For competitive exams, questions from geography and history test your memory and awareness. This subject is crucial for developing empathy and a global perspective. Understanding maps and climates helps you navigate the physical world, while history teaches you lessons from the past. A student strong in social studies is not just exam-ready but is also preparing to be a responsible future leader of the country."},
+        {n: "Data Handling", m: "We live in the age of information, and Data Handling is the skill of the future. The ability to read bar graphs, pie charts, and tally marks allows you to interpret vast amounts of information in seconds. This skill is critical not just for math exams, but for science, economics, and computer programming. Competitive exams love data questions because they test your ability to analyze rather than just memorize. Mastering this section means you can look at a confusing set of numbers and see a clear story. It builds logical precision and prevents you from being misled by false statistics. Master data, and you master the ability to make evidence-based decisions."}
+    ];
+
+    const topicsList = [
+        ["Place Value Mastery", "Number Types & Logic", "Roman Numerals", "Rounding Off Rules", "Successor & Predecessor", "Expanded Form Mastery", "Number Comparison", "Digit Formation Puzzles", "Fundamental Arithmetic Rules", "Divisibility Tests"],
+        ["Odd-Man Out Logic", "Figure Matching", "Pattern Completion", "Figure Series Analysis", "Analogy Puzzles", "Mirror Imaging", "Paper Folding Logic", "Embedded Figures", "Space Visualization", "Geometrical Completion"],
+        ["Unitary Method", "Profit & Loss Logic", "Simple Interest Mastery", "Time & Work Dynamics", "Speed & Distance", "Percentage Basics", "Average Calculation", "Area & Perimeter", "Volume Basics", "Decimal Operations"],
+        ["Coding-Decoding", "Direction Sense", "Blood Relations", "Ranking Tests", "Alphabet Series", "Number Ranking Logic", "Venn Diagrams", "Syllogism Basics", "Clock & Calendar", "Dictionary Order"],
+        ["Parts Identification", "Adjective Degrees", "Tense Mastery", "Article Usage", "Preposition Logic", "Conjunction Mastery", "Subject-Verb Agreement", "Punctuation Rules", "Sentence Types", "Pronoun Reference"],
+        ["Main Idea Extraction", "Direct Retrieval", "Inference Skills", "Vocabulary Context", "Synonym Search", "Antonym Search", "Title Selection", "Sequence of Events", "Character Analysis", "Fact vs. Opinion"],
+        ["Plant Life Cycles", "Animal Kingdom", "Human Anatomy", "Nutrition Science", "The Water Cycle", "Simple Machines", "States of Matter", "Space Science", "Health & Hygiene", "Forces & Motion"],
+        ["National Symbols", "Famous Personalities", "Important Days", "Indian States & Maps", "First in India", "Awards & Honors", "World Wonders", "Books & Authors", "Sports Awareness", "Religious Sites"],
+        ["Earth Structure", "Freedom Struggle", "Civic Duties", "Landforms & Terrain", "Climate Zones", "Transport History", "Communication Modes", "Ancient Civilizations", "Local Government", "Maps & Globes"],
+        ["Pictograph Reading", "Bar Graphs Mastery", "Tally Marks Logic", "Table Interpretation", "Circle Graphs (Pie)", "Mean/Average Logic", "Range Discovery", "Pattern Analysis", "Recording Data", "Probability Basics"]
+    ];
+
     document.getElementById('username_input').addEventListener('input', function() {
         this.value = this.value.toUpperCase().replace(/\s/g, '');
     });
@@ -594,10 +586,8 @@
             return;
         }
 
-        // SHOW LOADER TEXT BELOW THE CARD (DO NOT HIDE CARD)
         loader.style.display = 'block';
         err.style.display = 'none';
-        
         btn.textContent = "Processing...";
         btn.disabled = true;
 
@@ -617,16 +607,12 @@
                     const stepEl = document.getElementById(steps[i].id);
                     stepEl.classList.add('active');
                     stepEl.querySelector('i').className = "fa-solid fa-circle-notch fa-spin"; 
-                    
                     await new Promise(r => setTimeout(r, 800)); 
-                    
                     stepEl.querySelector('i').className = "fa-solid fa-check";
                     stepEl.style.color = "var(--success-green)";
                     stepEl.style.fontWeight = "900";
-                    
                     await new Promise(r => setTimeout(r, 200));
                 }
-
                 setTimeout(() => {
                     renderAllDetails(data);
                     document.getElementById('login-overlay').style.display = 'none';
@@ -656,12 +642,9 @@
         document.getElementById('ui_tests_done').textContent = data.tests_completed;
         document.getElementById('ui_tc_score').textContent = data.tc_score; 
         document.getElementById('ui_rank').textContent = `#${data.current_rank}`;
-        
         document.getElementById('ui_prog_accuracy').textContent = `(Average Marks Accuracy: ${data.average_accuracy})`;
-        
         document.getElementById('ui_srm_name').textContent = data.srm_name || "Sri Veda TC";
         document.getElementById('ui_srm_contact').textContent = data.srm_contact || "8985170500";
-
         document.getElementById('ui_p_weekly_time').textContent = data.weekly_time;
         document.getElementById('ui_p_accuracy').textContent = data.average_accuracy; 
         document.getElementById('ui_p_tests').textContent = data.tests_completed; 
@@ -670,62 +653,6 @@
         const bCount = parseInt(data.mastery_badges) || 0;
         const bRow = document.querySelectorAll('#ui_badges_row .badge-unit');
         bRow.forEach((u, i) => { if(i < bCount) u.classList.add('active'); });
-
-        const subjects = [
-            {
-                n: "Number Systems", 
-                m: "Mastering Number Systems is not just about counting; it is the fundamental language of the universe and the bedrock of all mathematical logic. A strong command over place values, rounding off, and Roman numerals builds the mental discipline required to tackle complex algebraic problems in the future. For competitive exams like Sainik and Navodaya, this section forms the highest weightage, testing your precision and speed. Completing these topics ensures you never falter in basic calculations, giving you a competitive edge over thousands of peers. It transforms your brain into a calculator, allowing you to visualize solutions instantly. Without this foundation, advanced mathematics will seem like a foreign language. Conquer numbers, and you conquer the first step towards academic greatness."
-            },
-            {
-                n: "Mental Ability", 
-                m: "Mental Ability is the true test of your raw intelligence and cognitive speed. It forces your brain to recognize hidden patterns, visualize shapes in space, and think outside the box. Every puzzle you solve in this section sharpens your decision-making skills, which are crucial not just for exams but for life's challenges. In competitive exams, this section is often the tie-breaker; students who master visual reasoning score significantly higher than those who rely solely on rote learning. By practicing figure matching and series completion, you are training your brain to process information faster than average. This skill is invaluable for future careers in engineering, architecture, and strategy. Do not skip this; it is your brain's gym session."
-            },
-            {
-                n: "Applied Arithmetic", 
-                m: "Applied Arithmetic connects the abstract world of numbers to real-life situations. Understanding profit and loss, interest, and measurements turns you into a smart decision-maker in the real world. This section is not just about passing an exam; it is about financial literacy and logical problem solving. When you master unitary methods and percentages, you gain the ability to analyze data quickly and accurately. These are high-scoring topics in entrance exams because they follow predictable patterns. Mastery here guarantees solid marks that can push your rank into the top tier. It teaches you the value of precision and the logic behind everyday transactions. Every problem solved here is a step closer to becoming a practical genius."
-            },
-            {
-                n: "Verbal Logic", 
-                m: "Verbal Logic is where language meets mathematics. It tests your ability to decode information, understand relationships, and follow complex instructions. Mastering coding-decoding and blood relations enhances your critical thinking capabilities. This section is designed to measure your analytical prowess—how well can you connect the dots? In competitive scenarios, the ability to read between the lines and deduce the correct answer quickly is a superpower. These topics train your mind to be structured and organized in its thought process. It is essential for developing a high IQ and is a favorite section for examiners to test a student's sharpness. Excellence here proves you have a superior logical mind."
-            },
-            {
-                n: "English Grammar", 
-                m: "English is the global language of opportunity, and Grammar is its backbone. A strong grasp of tenses, prepositions, and sentence structure ensures that you can communicate your brilliant ideas clearly and effectively. In entrance exams, the English section is often where students lose the most marks due to silly errors. Mastering these topics ensures you are not one of them. Good grammar reflects discipline and attention to detail—traits that every top school looks for in a student. Beyond exams, this skill will define your confidence in interviews and public speaking. Writing correct English is a sign of an educated mind. Build this foundation now, and it will serve you for a lifetime of success."
-            },
-            {
-                n: "Reading Comprehension", 
-                m: "Reading Comprehension is the ultimate skill for academic success in higher classes. It is not just about reading stories; it is about extracting core information, understanding context, and analyzing the author's intent under time pressure. Competitive exams use this to test your focus and retention power. By practicing these passages, you increase your reading speed and accuracy, which saves you precious time during the actual test. It trains you to filter out noise and focus on facts. This skill is directly transferable to learning History, Science, and even word problems in Math. Master the art of reading, and you unlock the door to self-learning any subject in the world."
-            },
-            {
-                n: "General Science", 
-                m: "General Science fuels curiosity and helps you understand how the world around you works. From the human body to the solar system, these topics build a scientific temper that questions 'Why' and 'How'. In entrance exams, science questions are direct and factual, offering a chance to score full marks quickly. Knowing these basics is essential for anyone aspiring to be a doctor, engineer, or scientist. It connects you to nature and technology, making you a more informed student. The concepts you learn here—like photosynthesis, force, and matter—are the building blocks of the universe. Ignorance here is not an option; scientific literacy is the key to the future."
-            },
-            {
-                n: "Static GK", 
-                m: "General Knowledge is the mark of a well-rounded personality. It broadens your horizons beyond textbooks and connects you to the history, culture, and achievements of our great nation and the world. In interviews and group discussions, your knowledge of famous personalities, national symbols, and awards sets you apart as a leader. For exams, GK is the quickest section to attempt, saving time for tough math problems. It builds confidence; when you know the facts, you feel powerful. This section transforms you from a student who just studies books into a scholar who knows the world. Stay curious, stay updated, and lead the conversation."
-            },
-            {
-                n: "Social Studies", 
-                m: "Social Studies is the story of human civilization and our duty as citizens. Learning about freedom fighters, earth's structure, and our government instills a sense of pride and responsibility. It teaches you how society functions and your role within it. For competitive exams, questions from geography and history test your memory and awareness. This subject is crucial for developing empathy and a global perspective. Understanding maps and climates helps you navigate the physical world, while history teaches you lessons from the past. A student strong in social studies is not just exam-ready but is also preparing to be a responsible future leader of the country."
-            },
-            {
-                n: "Data Handling", 
-                m: "We live in the age of information, and Data Handling is the skill of the future. The ability to read bar graphs, pie charts, and tally marks allows you to interpret vast amounts of information in seconds. This skill is critical not just for math exams, but for science, economics, and computer programming. Competitive exams love data questions because they test your ability to analyze rather than just memorize. Mastering this section means you can look at a confusing set of numbers and see a clear story. It builds logical precision and prevents you from being misled by false statistics. Master data, and you master the ability to make evidence-based decisions."
-            }
-        ];
-
-        const topicsList = [
-            ["Place Value Mastery", "Number Types & Logic", "Roman Numerals", "Rounding Off Rules", "Successor & Predecessor", "Expanded Form Mastery", "Number Comparison", "Digit Formation Puzzles", "Fundamental Arithmetic Rules", "Divisibility Tests"],
-            ["Odd-Man Out Logic", "Figure Matching", "Pattern Completion", "Figure Series Analysis", "Analogy Puzzles", "Mirror Imaging", "Paper Folding Logic", "Embedded Figures", "Space Visualization", "Geometrical Completion"],
-            ["Unitary Method", "Profit & Loss Logic", "Simple Interest Mastery", "Time & Work Dynamics", "Speed & Distance", "Percentage Basics", "Average Calculation", "Area & Perimeter", "Volume Basics", "Decimal Operations"],
-            ["Coding-Decoding", "Direction Sense", "Blood Relations", "Ranking Tests", "Alphabet Series", "Number Ranking Logic", "Venn Diagrams", "Syllogism Basics", "Clock & Calendar", "Dictionary Order"],
-            ["Parts Identification", "Adjective Degrees", "Tense Mastery", "Article Usage", "Preposition Logic", "Conjunction Mastery", "Subject-Verb Agreement", "Punctuation Rules", "Sentence Types", "Pronoun Reference"],
-            ["Main Idea Extraction", "Direct Retrieval", "Inference Skills", "Vocabulary Context", "Synonym Search", "Antonym Search", "Title Selection", "Sequence of Events", "Character Analysis", "Fact vs. Opinion"],
-            ["Plant Life Cycles", "Animal Kingdom", "Human Anatomy", "Nutrition Science", "The Water Cycle", "Simple Machines", "States of Matter", "Space Science", "Health & Hygiene", "Forces & Motion"],
-            ["National Symbols", "Famous Personalities", "Important Days", "Indian States & Maps", "First in India", "Awards & Honors", "World Wonders", "Books & Authors", "Sports Awareness", "Religious Sites"],
-            ["Earth Structure", "Freedom Struggle", "Civic Duties", "Landforms & Terrain", "Climate Zones", "Transport History", "Communication Modes", "Ancient Civilizations", "Local Government", "Maps & Globes"],
-            ["Pictograph Reading", "Bar Graphs Mastery", "Tally Marks Logic", "Table Interpretation", "Circle Graphs (Pie)", "Mean/Average Logic", "Range Discovery", "Pattern Analysis", "Recording Data", "Probability Basics"]
-        ];
 
         const cont = document.getElementById('portal-exam-container');
         let globalTopicIdx = 0;
@@ -746,20 +673,28 @@
                         data.exam_data_array[scoreBase+2] || "--"
                     ] : ["--", "--", "--"];
                     
-                    if (scores[0] !== "--" && scores[0] !== "") {
+                    let attemptsDone = 0;
+                    if (scores[0] !== "--") attemptsDone++;
+                    if (scores[1] !== "--") attemptsDone++;
+                    if (scores[2] !== "--") attemptsDone++;
+                    
+                    if (scores[0] !== "--") {
                         sectionCompletedCount++;
                         completedTopics.push(topic);
                     }
                     
+                    let thisTopicIdx = globalTopicIdx + 1; 
                     globalTopicIdx++;
+                    
+                    const isLocked = attemptsDone >= 3;
+                    
                     return `
                     <div class="item-row">
                         <div class="item-top">
                             <span class="item-month">JUNE</span>
                             <div class="item-meta">
                                 <div><i class="fa-solid fa-clock"></i> 45 MINS</div>
-                                <div><i class="fa-solid fa-stopwatch"></i> 30 SEC</div>
-                                <div><i class="fa-solid fa-circle-question"></i> 30 Q</div>
+                                <div><i class="fa-solid fa-circle-question"></i> 30 QNS</div>
                                 <div><i class="fa-solid fa-check-double"></i> 30 MARKS</div>
                                 <div><i class="fa-solid fa-rotate-right"></i> 3 ATT</div>
                             </div>
@@ -777,7 +712,7 @@
                                 <span class="topic-lbl">Topic:</span>
                                 <div class="item-topic-name">${topic}</div>
                             </div>
-                            <button class="btn-take">EXAM</button>
+                            <button class="btn-take" ${isLocked ? 'disabled' : ''} onclick="initiateExam(${thisTopicIdx}, '${topic.replace(/'/g, "\\'")}')">${isLocked ? 'LOCKED (3/3)' : 'EXAM'}</button>
                         </div>
                     </div>`;
                 }).join('')}
@@ -797,9 +732,15 @@
                 </div>
             </div>`).join('');
 
-        const recentList = completedTopics.slice(0, 5);
-        document.getElementById('ui_recent_activity').innerHTML = recentList.length > 0 ? recentList.map(t => `
-            <div class="activity-item"><span>${t}</span><span style="color:var(--success-green);">COMPLETED</span></div>`).join('') : '<p style="font-size:11px; padding:10px;">No tests completed yet.</p>';
+        // Recent Activity List Logic
+        const recentList = completedTopics.slice(0, 5); // Take first 5 completed
+        const activityContainer = document.getElementById('ui_recent_activity');
+        if (recentList.length > 0) {
+            activityContainer.innerHTML = recentList.map(t => `
+                <div class="activity-item"><span>${t}</span><span style="color:var(--success-green); font-weight:900;"><i class="fa-solid fa-check-circle"></i> COMPLETED</span></div>`).join('');
+        } else {
+            activityContainer.innerHTML = '<p style="font-size:11px; padding:10px; color:#64748b; font-weight:600;">No exams completed yet. Start your journey!</p>';
+        }
 
         const topStars = [
             { name: "Rohan Sharma", uid: "SVTC_03_001", school: "Holy Cross High School", score: "99/100" },
@@ -813,18 +754,10 @@
             const logo = "https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png";
             return `
             <div class="topper-unit">
-                <div class="firework-particles">
-                    <div class="particle p1"></div>
-                    <div class="particle p2"></div>
-                    <div class="particle p3"></div>
-                    <div class="particle p4"></div>
-                </div>
-                <div class="t-rank-badge">1st Rank</div>
-                <div class="t-congrats">Congrats!</div>
+                <div class="firework-particles"><div class="particle p1"></div><div class="particle p2"></div><div class="particle p3"></div><div class="particle p4"></div></div>
+                <div class="t-rank-badge">1st Rank</div><div class="t-congrats">Congrats!</div>
                 <img src="${logo}" class="t-logo">
-                <div class="t-name">${p.name}</div>
-                <div class="t-uid">${p.uid}</div>
-                <div class="t-school">${p.school}</div>
+                <div class="t-name">${p.name}</div><div class="t-uid">${p.uid}</div><div class="t-school">${p.school}</div>
                 <div class="t-score-box">TC Score: ${p.score}</div>
             </div>`;
         }
@@ -836,6 +769,252 @@
     function logout() { location.reload(); }
 
     let secCount = 45; function startSessionTimer() { setInterval(() => { secCount++; const h=Math.floor(secCount/3600).toString().padStart(2,'0'), m=Math.floor((secCount%3600)/60).toString().padStart(2,'0'), s=(secCount%60).toString().padStart(2,'0'); document.getElementById('session_timer').textContent=`${h}:${m}:${s}`; }, 1000); }
+
+    /* --- EXAM LOGIC: SINGLE QUESTION & REVIEW --- */
+    let currentQuestions = [];
+    let userAnswers = {};
+    let examTimerInterval;
+    let currentTestNum = 0;
+    let isReviewMode = false;
+    let currentQIndex = 0;
+
+    async function initiateExam(testNum, topicName) {
+        currentTestNum = testNum;
+        isReviewMode = false;
+        currentQIndex = 0;
+        userAnswers = {};
+        
+        document.getElementById('exam-portal-modal').style.display = 'flex';
+        document.getElementById('ex-topic-name').textContent = topicName;
+        
+        document.getElementById('ex-question-area').style.display = 'none';
+        document.getElementById('exam-footer-actions').innerHTML = ''; 
+        document.querySelector('.q-loader').style.display = 'block';
+        document.querySelector('.q-loader').innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Loading Questions... Please wait';
+        
+        try {
+            const res = await fetch(`${API_URL}?action=getQuestions&sheetName=${testNum}`);
+            const data = await res.json();
+            
+            if (data.error) {
+                showError(data.error);
+                return;
+            }
+            
+            currentQuestions = data;
+            if (currentQuestions.length === 0) {
+                showError("No Questions Found");
+                return;
+            }
+
+            renderCurrentQuestion();
+            startExamTimer();
+            
+            document.querySelector('.q-loader').style.display = 'none';
+            document.getElementById('ex-question-area').style.display = 'block';
+
+        } catch (e) {
+            showError("Network Error. Check connection.");
+        }
+    }
+
+    function renderCurrentQuestion() {
+        if(currentQIndex < 0 || currentQIndex >= currentQuestions.length) return;
+        const q = currentQuestions[currentQIndex];
+        
+        // --- 1. RENDER QUESTION CARD ---
+        let optionsHtml = (q.options || []).map((opt, oi) => {
+            if(!opt) return '';
+            let className = 'option-item';
+            let onclickAttr = `onclick="selectOption(${oi})"`;
+            
+            if(isReviewMode) {
+                onclickAttr = '';
+                const isSelected = userAnswers[currentQIndex] === oi;
+                const isCorrect = q.correctAnswer && String(opt).trim() === String(q.correctAnswer).trim();
+                
+                if(isCorrect) className += ' correct';
+                if(isSelected && !isCorrect) className += ' wrong';
+                if(!isSelected && !isCorrect) className += ' disabled'; // Dim others
+            } else {
+                if(userAnswers[currentQIndex] === oi) className += ' selected';
+            }
+            return `<div class="${className}" id="opt-${oi}" ${onclickAttr}>${opt}</div>`;
+        }).join('');
+
+        let explanationHtml = '';
+        if(isReviewMode) {
+            explanationHtml = `
+            <div class="explanation-box">
+                <strong><i class="fa-solid fa-lightbulb"></i> Correct Answer:</strong> ${q.correctAnswer}<br>
+                <strong>Explanation:</strong> ${q.explanation}
+            </div>`;
+        }
+
+        const html = `
+            <div class="question-card">
+                <div class="q-text">
+                    <span class="q-id-box">${q.id}</span> 
+                    ${q.question}
+                </div>
+                <div class="options-list">${optionsHtml}</div>
+                ${explanationHtml}
+            </div>
+        `;
+        document.getElementById('ex-question-area').innerHTML = html;
+
+        // --- 2. RENDER FOOTER BUTTONS ---
+        renderFooterButtons();
+    }
+
+    function renderFooterButtons() {
+        const footer = document.getElementById('exam-footer-actions');
+        let btns = '';
+        
+        // Left Side Buttons (Previous, Exit)
+        btns += `
+        <div style="display:flex; gap:10px;">
+            <button class="btn-action-exam btn-exit" onclick="closeExam()">EXIT</button>
+            ${currentQIndex > 0 ? `<button class="exam-nav-btn btn-prev" onclick="navQuestion(-1)">PREVIOUS</button>` : ''}
+        </div>
+        `;
+
+        // Right Side Buttons (Next, Submit)
+        btns += `<div style="display:flex; gap:10px;">`;
+        if(currentQIndex < currentQuestions.length - 1) {
+            btns += `<button class="exam-nav-btn btn-next" onclick="navQuestion(1)">NEXT</button>`;
+        } else {
+            if(isReviewMode) {
+                btns += `<button class="btn-action-exam btn-close" onclick="closeExam()">CLOSE TEST</button>`;
+            } else {
+                btns += `<button class="btn-submit-exam" onclick="askConfirmation()">SUBMIT TEST</button>`;
+            }
+        }
+        btns += `</div>`;
+        
+        footer.innerHTML = btns;
+    }
+
+    function navQuestion(dir) {
+        currentQIndex += dir;
+        renderCurrentQuestion();
+    }
+
+    function selectOption(optIdx) {
+        if(isReviewMode) return;
+        userAnswers[currentQIndex] = optIdx;
+        
+        // UI Update directly
+        const options = document.querySelectorAll(`[id^='opt-']`);
+        options.forEach(opt => opt.classList.remove('selected'));
+        document.getElementById(`opt-${optIdx}`).classList.add('selected');
+    }
+
+    function startExamTimer() {
+        let timeLeft = 45 * 60;
+        clearInterval(examTimerInterval);
+        examTimerInterval = setInterval(() => {
+            timeLeft--;
+            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const s = (timeLeft % 60).toString().padStart(2, '0');
+            document.getElementById('ex-timer-val').textContent = `${m}:${s}`;
+            if (timeLeft <= 0) {
+                clearInterval(examTimerInterval);
+                finalizeSubmit();
+            }
+        }, 1000);
+    }
+
+    // --- REPLACED ALERT/CONFIRM WITH CUSTOM OVERLAY ---
+    function askConfirmation() {
+        document.getElementById('confirm-overlay').style.display = 'flex';
+    }
+
+    function cancelSubmit() {
+        document.getElementById('confirm-overlay').style.display = 'none';
+    }
+
+    async function finalizeSubmit() {
+        document.getElementById('confirm-overlay').style.display = 'none';
+        clearInterval(examTimerInterval);
+        
+        // Show submitting state locally
+        document.getElementById('ex-question-area').innerHTML = `
+            <div style="text-align:center; padding:50px;">
+                <i class="fa-solid fa-spinner fa-spin" style="font-size:40px; color:var(--primary-blue);"></i>
+                <p style="margin-top:15px; font-weight:700;">Submitting & Calculating Score...</p>
+            </div>
+        `;
+        document.getElementById('exam-footer-actions').innerHTML = ''; 
+
+        // CALCULATE SCORE LOCALLY
+        let score = 0;
+        currentQuestions.forEach((q, idx) => {
+            if (userAnswers[idx] !== undefined) {
+                const selectedText = q.options[userAnswers[idx]];
+                if (selectedText && q.correctAnswer && String(selectedText).trim() === String(q.correctAnswer).trim()) {
+                    score++;
+                }
+            }
+        });
+
+        // Show result IMMEDIATELY
+        showResultSummary(score);
+
+        // SYNC TO BACKEND
+        const u = document.getElementById('username_input').value.trim();
+        try {
+            await fetch(`${API_URL}?action=submitScore&username=${encodeURIComponent(u)}&testNumber=${currentTestNum}&score=${score}`);
+            startLoginProcess(); // Silent Refresh
+        } catch (e) {
+            console.log("Background sync failed, but result shown to user.");
+        }
+    }
+
+    function showResultSummary(score) {
+        const total = currentQuestions.length;
+        const wrong = total - score;
+        
+        const html = `
+            <div class="result-summary-card">
+                <div class="result-score-big">${score}/${total}</div>
+                <div class="result-stats-row">
+                    <div class="result-stat"><span class="rs-val rs-correct">${score}</span><span class="rs-lbl">Correct</span></div>
+                    <div class="result-stat"><span class="rs-val rs-wrong">${wrong}</span><span class="rs-lbl">Wrong</span></div>
+                </div>
+                <div style="display:flex; justify-content:center; gap:15px;">
+                    <button class="btn-action-exam btn-review" onclick="enableReviewMode()">Review Test</button>
+                    <button class="btn-action-exam btn-close" onclick="closeExam()">Close Test</button>
+                </div>
+            </div>
+        `;
+        
+        document.getElementById('ex-question-area').innerHTML = html;
+        document.getElementById('exam-footer-actions').innerHTML = '';
+    }
+
+    function enableReviewMode() {
+        isReviewMode = true;
+        currentQIndex = 0; 
+        renderCurrentQuestion();
+    }
+
+    function showError(msg) {
+        document.querySelector('.q-loader').style.display = 'none';
+        document.getElementById('ex-question-area').innerHTML = `
+            <div style="text-align:center; padding:30px; color:#d00000;">
+                <i class="fa-solid fa-circle-exclamation" style="font-size:40px; margin-bottom:15px;"></i>
+                <p style="font-weight:900; font-size:18px;">${msg}</p>
+                <button class="btn-action-exam btn-close" onclick="closeExam()" style="margin-top:20px;">Close</button>
+            </div>
+        `;
+        document.getElementById('ex-question-area').style.display = 'block';
+    }
+
+    function closeExam() {
+        document.getElementById('exam-portal-modal').style.display = 'none';
+        clearInterval(examTimerInterval);
+    }
 </script>
 </body>
 </html>
