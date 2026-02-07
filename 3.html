@@ -27,7 +27,6 @@
         body { margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; background-color: var(--bg-gray); color: var(--text-dark); font-family: 'Inter', sans-serif; }
         h1, h2, h3, .main-title, .achiever-title, .srm-title, .sub-head-row h3 { font-family: 'Roboto Slab', serif; }
 
-        /* HEADER STYLES */
         header { 
             background: var(--primary-blue); 
             padding: 12px clamp(12px, 4vw, 30px); 
@@ -53,16 +52,22 @@
         header .header-left { display: flex; align-items: center; gap: 15px; }
         header .logo { height: 46px; width: 46px; border-radius: 50%; border: 2px solid #ffffff; background: white; flex-shrink: 0; }
         header .main-title { font-size: clamp(14px, 3vw, 20px); font-weight: 900; line-height: 1.1; }
-        header .sub-title { font-size: clamp(9px, 2vw, 13px); font-weight: 600; color: var(--accent-yellow); margin-top: 3px; }
+        header .sub-title { font-size: clamp(9px, 2vw, 13px); font-weight: 600; color: var(--accent-yellow); margin-top: 3px; font-family: 'Roboto Slab', serif; }
         header .header-right { display: flex; gap: clamp(10px, 2.5vw, 25px); align-items: center; }
         .menu-item a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; transition: transform 0.2s; position: relative; }
-        header .icon { font-size: clamp(14px, 2.5vw, 18px); color: var(--accent-orange); opacity: 0.9; }
+        header .icon { font-size: 18px; color: var(--accent-orange); opacity: 0.9; }
         .icon-label { font-size: 7.5px; margin-top: 5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.85; }
         .menu-item a.active-nav .icon { color: var(--accent-yellow); opacity: 1; transform: scale(1.1); }
         .menu-item a.active-nav .icon-label { color: var(--accent-yellow); opacity: 1; font-weight: 900; }
         .menu-item a.active-nav::after { content: ''; position: absolute; bottom: -8px; width: 5px; height: 5px; background-color: var(--accent-yellow); border-radius: 50%; }
 
-        /* LOGIN OVERLAY */
+        @media (max-width: 600px) {
+            header { flex-direction: column; height: auto; padding: 15px 10px; }
+            header .header-left { flex-direction: column; text-align: center; gap: 10px; }
+            header .logo { margin: 0 auto; }
+            header .header-right { margin-top: 15px; width: 100%; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; justify-content: space-around; }
+        }
+
         #login-overlay { 
             flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; 
             background: #eef2f6; padding: 40px 20px; gap: 20px; margin-bottom: 50px; 
@@ -70,7 +75,6 @@
         .login-card { 
             background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); 
             width: 100%; max-width: 400px; text-align: center; position: relative; border: 1px solid #dae1e7;
-            transition: all 0.3s ease;
             background: linear-gradient(120deg, #ffffff, #e0f2fe, #ffe4e6, #ffffff);
             background-size: 400% 400%; animation: gradientMove 6s ease infinite;
         }
@@ -81,278 +85,182 @@
         .input-group label { display: block; font-size: 11px; font-weight: 800; color: #64748b; margin-bottom: 6px; text-transform: uppercase; }
         .input-wrapper { position: relative; }
         .input-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--primary-blue); font-size: 14px; z-index: 2; }
-        .input-group input { width: 100%; padding: 12px 15px 12px 38px; border: 1.5px solid var(--border-color); border-radius: 10px; font-size: 14px; outline: none; transition: 0.2s; background: var(--input-bg); font-weight: 700; color: var(--primary-blue); }
-        .input-group input:focus { border-color: var(--accent-orange); box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.1); }
-        .pass-toggle { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; cursor: pointer; transition: 0.2s; z-index: 5; }
+        .input-group input { width: 100%; padding: 12px 15px 12px 38px; border: 1.5px solid var(--border-color); border-radius: 10px; font-size: 14px; outline: none; background: var(--input-bg); font-weight: 700; color: var(--primary-blue); }
+        .pass-toggle { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; cursor: pointer; z-index: 5; }
         .btn-login-submit { 
             width: auto; min-width: 170px; padding: 12px 30px; background: var(--primary-blue); color: white; border: none; 
             border-radius: 8px; font-weight: 900; cursor: pointer; font-size: 14px; margin-top: 15px; 
-            transition: 0.3s; box-shadow: 0 4px 0 #000044; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            box-shadow: 0 4px 0 #000044; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
         }
-        .btn-login-submit:active { transform: translateY(2px); box-shadow: 0 2px 0 #000044; }
         
-        #external-loader { display: none; width: 100%; max-width: 400px; background: transparent; border: none; box-shadow: none; padding: 10px; margin-top: 5px; }
-        .loader-header { font-size: 12px; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; text-align: center; border-bottom: none; }
-        .load-step { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 13px; font-weight: 700; color: #64748b; margin-bottom: 8px; opacity: 0; transition: 0.3s; }
+        #external-loader { display: none; width: 100%; max-width: 400px; padding: 10px; margin-top: 5px; }
+        .load-step { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 13px; font-weight: 700; color: #64748b; margin-bottom: 8px; opacity: 0; }
         .load-step.active { opacity: 1; color: var(--primary-blue); }
         .load-step i { width: 16px; text-align: center; }
         .load-step i.fa-circle-notch { animation: fa-spin 1s linear infinite; color: var(--accent-orange); }
-        .load-step i.fa-check { color: var(--success-green); }
 
-        /* DASHBOARD CONTENT */
         #dashboard-main { display: none; flex-direction: column; flex: 1; }
         main { flex: 1; width: 100%; margin: 0 auto; max-width: 1400px; padding: 0; display: flex; flex-direction: column; }
-        section, .welcome-section, .stats-container, .srm-banner, .achievements-premium, .status-panel, .fame-box, .cert-section, .parents-corner { width: 100%; padding: clamp(10px, 2vw, 15px) clamp(15px, 5vw, 40px); margin: 0; border-bottom: 1px solid var(--border-color); background: white; box-sizing: border-box; }
+        section, .welcome-section, .stats-container, .srm-banner, .achievements-premium, .status-panel, .fame-box, .cert-section, .parents-corner { width: 100%; padding: clamp(10px, 2vw, 15px) clamp(15px, 5vw, 40px); margin: 0; border-bottom: 1px solid var(--border-color); background: white; }
 
         .welcome-section { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,139,0.1); padding-top: 6px !important; padding-bottom: 6px !important; }
         .welcome-text h1 { margin: 0; font-size: clamp(10px, 2.5vw, 14px); font-weight: 900; color: #1e293b; }
         .student-name { color: var(--primary-blue); font-weight: 900; }
-        .logout-pill { display: flex; align-items: center; gap: 4px; font-size: 8.5px; font-weight: 900; color: white; background: var(--danger-red); padding: 3px 12px; border-radius: 50px; border: none; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+        .logout-pill { display: flex; align-items: center; gap: 4px; font-size: 8.5px; font-weight: 900; color: white; background: var(--danger-red); padding: 3px 12px; border-radius: 50px; border: none; cursor: pointer; text-transform: uppercase; }
         
         .stats-container { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; padding-top: 5px !important; padding-bottom: 5px !important; }
         .stat-box { display: flex; flex-direction: column; align-items: center; text-align: center; }
         .stat-box i { font-size: 9px; color: var(--primary-blue); margin-bottom: 1px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
         .stat-label { font-size: 6px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.3px; }
         .stat-value { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 900; color: var(--text-dark); }
-        .stat-box.highlight i, .stat-box.highlight .stat-value { color: var(--accent-orange); }
 
-        /* SRM SECTION */
         .srm-banner { display: flex; align-items: center; justify-content: space-between; gap: 20px; background: linear-gradient(to right, #fff, #f9fbff); flex-wrap: wrap; }
         .srm-main-container { display: flex; flex: 1; align-items: center; gap: 15px; flex-wrap: wrap; justify-content: space-between; }
         .srm-content { flex: 2; min-width: 200px; }
         .srm-title { font-size: 14px; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; }
         .srm-desc { font-size: 12px; color: #64748b; line-height: 1.5; font-family: 'Inter'; margin: 0; text-align: justify; }
-        
         .srm-contact-wrapper { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
         .srm-profile-photo { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--accent-orange); object-fit: cover; }
         .srm-contact-hd-text { display: flex; flex-direction: column; gap: 4px; border-left: 1.5px solid rgba(0,0,139,0.1); padding-left: 15px; }
         .srm-contact-hd-text .label { color: #1e293b; font-size: 9px; text-transform: uppercase; font-weight: 800; }
         .srm-contact-hd-text .value { color: black; font-weight: 900; font-size: 15px; }
 
-        @media (max-width: 600px) {
-            .srm-main-container { flex-direction: column; text-align: center; }
-            .srm-contact-wrapper { justify-content: center; width: 100%; margin-top: 10px; }
-            .srm-contact-hd-text { border-left: none; border-top: 1.5px solid rgba(0,0,139,0.1); padding-left: 0; padding-top: 10px; text-align: center; width: 100%; }
-        }
-
         .achievements-premium { background: linear-gradient(135deg, #000428 0%, #004e92 100%); color: white; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; position: relative; overflow: hidden; }
         .achiever-header h3 { margin: 0; font-size: 16px; font-weight: 900; color: var(--accent-yellow); text-transform: uppercase; letter-spacing: 0.5px; position: relative; z-index: 5; }
-        .achiever-header p { position: relative; z-index: 5; }
         .badge-row { display: flex; gap: 15px; position: relative; z-index: 5; }
         .badge-unit { display: flex; flex-direction: column; align-items: center; gap: 5px; perspective: 1000px; }
         .badge-lbl { font-size: 8px; font-weight: 900; text-transform: uppercase; opacity: 0.9; }
-        .badge-glow { width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 18px; border: 1px solid rgba(255,255,255,0.1); transition: 0.5s; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
-        .badge-unit.active .badge-glow { background: radial-gradient(circle at 30% 30%, #fceabb, #f8b500 50%, #f7941d 100%); color: var(--primary-blue); border-color: #fff; box-shadow: 0 8px 15px rgba(248, 181, 0, 0.4), inset -2px -2px 6px rgba(0,0,0,0.2), inset 2px 2px 6px rgba(255,255,255,0.5); transform: translateZ(10px) rotateY(10deg); }
+        .badge-glow { width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 18px; border: 1px solid rgba(255,255,255,0.1); transition: 0.5s; }
+        .badge-unit.active .badge-glow { background: radial-gradient(circle at 30% 30%, #fceabb, #f8b500 50%, #f7941d 100%); color: var(--primary-blue); border-color: #fff; transform: translateZ(10px); }
 
-        @media (max-width: 850px) {
-            .achievements-premium { flex-direction: column; text-align: center; }
-            .badge-row { justify-content: center; }
-        }
-
-        /* BOX ITEMS LAYOUT */
         .subject-pane { padding: 15px 0; border-bottom: 2px solid #f1f5f9; margin-bottom: 10px; }
-        .sub-head-row h3 { font-size: 20px; font-weight: 800; color: var(--primary-blue); text-transform: uppercase; margin: 0; }
-        .inspiration-msg { font-size: 12px; color: #64748b; font-weight: 600; margin-bottom: 20px; display: block; line-height: 1.8; border-left: 4px solid var(--accent-orange); padding-left: 15px; background-color: #fcfcfc; padding: 15px; border-radius: 0 8px 8px 0; text-align: justify; }
-        .item-row { display: flex; flex-direction: column; background: white; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .sub-head-row h3 { font-size: 18px; font-weight: 800; color: var(--primary-blue); text-transform: uppercase; margin-bottom: 5px; }
+        .inspiration-msg { font-size: 12px; color: #4b5563; font-weight: 500; margin-bottom: 15px; display: block; line-height: 1.6; background-color: #fcfcfc; padding: 15px; border-radius: 12px; text-align: justify; }
         
-        .item-top { 
-            display: flex; align-items: center; justify-content: space-between; 
-            padding: 10px 15px; background: #fafafa; border-bottom: 1px solid #f1f5f9; 
-            gap: 15px; flex-wrap: wrap; 
-        }
-        .item-month { font-size: 11px; font-weight: 900; color: var(--danger-red); width: 80px; flex-shrink: 0; }
-        .item-meta { display: flex; gap: 12px; align-items: center; flex-grow: 1; justify-content: center; flex-wrap: wrap; }
-        .item-meta div { display: flex; align-items: center; gap: 4px; font-size: 9px; font-weight: 800; color: var(--primary-blue); opacity: 0.8; white-space: nowrap; }
-        
-        .item-scores { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-        .score-lbl { font-size: 9px; font-weight: 900; color: #64748b; text-transform: uppercase; margin-right: 5px; }
-        .box-grid { display: flex; gap: 4px; }
-        .box-unit { width: 30px; height: 22px; border: 1px solid var(--border-color); border-radius: 4px; font-size: 10px; font-weight: 900; display: flex; align-items: center; justify-content: center; background: white; color: var(--primary-blue); }
-        
-        .item-bottom { padding: 8px 15px; display: flex; justify-content: space-between; align-items: center; background: #f0f9ff; }
+        .item-row { display: flex; flex-direction: column; background: white; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 8px; overflow: hidden; height: auto; }
+        .item-top { display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; background: #fafafa; border-bottom: 1px solid #f1f5f9; gap: 10px; flex-wrap: wrap; }
+        .item-month { font-size: 10px; font-weight: 900; color: var(--danger-red); width: 60px; flex-shrink: 0; }
+        .item-meta { display: flex; gap: 10px; align-items: center; flex-grow: 1; justify-content: center; flex-wrap: wrap; }
+        .item-meta div { display: flex; align-items: center; gap: 4px; font-size: 8.5px; font-weight: 800; color: var(--primary-blue); opacity: 0.8; }
+        .item-scores { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .box-grid { display: flex; gap: 3px; }
+        .box-unit { width: 28px; height: 20px; border: 1px solid var(--border-color); border-radius: 4px; font-size: 9px; font-weight: 900; display: flex; align-items: center; justify-content: center; background: white; color: var(--primary-blue); }
+        .item-bottom { padding: 6px 12px; display: flex; justify-content: space-between; align-items: center; background: #f0f9ff; }
         .item-topic-wrap { display: flex; align-items: center; gap: 5px; }
-        .topic-lbl { color: #d97706; font-size: 14px; font-weight: 900; text-transform: uppercase; }
-        .item-topic-name { font-size: 14px; font-weight: 800; color: #1e293b; }
-        .btn-take { background: var(--primary-blue); color: white; border: none; padding: 6px 20px; border-radius: 6px; font-weight: 900; cursor: pointer; font-size: 11px; text-transform: uppercase; transition: 0.3s; }
-        .btn-take:disabled { background: #cbd5e1; cursor: not-allowed; opacity: 0.7; }
+        .topic-lbl { color: #d97706; font-size: 9px; font-weight: 800; text-transform: uppercase; font-family: 'Roboto Slab', serif; }
+        .item-topic-name { font-size: 10px; font-weight: 700; color: #1e293b; font-family: 'Roboto Slab', serif; }
+        .btn-take { background: var(--primary-blue); color: white; border: none; padding: 4px 15px; border-radius: 5px; font-weight: 900; cursor: pointer; font-size: 10px; text-transform: uppercase; transition: 0.3s; }
+        .btn-take:disabled { background: #cbd5e1; cursor: not-allowed; color: #64748b; font-size: 14px; }
 
         .status-panel { background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%) !important; }
         .status-header h2 { font-size: 18px; color: var(--primary-blue); margin: 0; text-transform: uppercase; }
         .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-top: 15px; }
-        .progress-card { background: white; padding: 12px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid #bae6fd; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .progress-card { background: white; padding: 12px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid #bae6fd; }
         .bar-container { width: 100%; height: 6px; background: #e2e8f0; border-radius: 8px; overflow: hidden; margin-top: 5px; }
-        .bar-fill { height: 100%; background: linear-gradient(to right, var(--primary-blue), #3b82f6); transition: width 1s ease-in-out; }
+        .bar-fill { height: 100%; background: linear-gradient(to right, var(--primary-blue), #3b82f6); transition: width 1s; }
 
-        .performance-analysis { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; background: #fff0f5 !important; min-height: auto; padding-bottom: 25px !important; }
+        .performance-analysis { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; background: #fff0f5 !important; padding-bottom: 25px !important; }
         .rank-card { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
-        .rank-text-box { background: linear-gradient(135deg, var(--primary-blue), #000050); padding: 15px 30px; border-radius: 15px; color: white; box-shadow: 0 10px 20px rgba(0,0,0,0.15); border: 2px solid var(--accent-orange); }
-        .rank-label { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-yellow); }
-        .rank-number { font-size: 42px; font-weight: 900; color: white; font-family: 'Bebas Neue', cursive; line-height: 1; margin-top: 5px; }
+        .rank-text-box { 
+            background: linear-gradient(135deg, var(--primary-blue), #000050, #004e92); 
+            background-size: 200% 200%;
+            animation: moveGradient 5s infinite linear;
+            padding: 15px 30px; border-radius: 15px; color: white; border: 2px solid var(--accent-orange); 
+        }
+        @keyframes moveGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .rank-number { font-size: 42px; font-weight: 900; font-family: 'Bebas Neue', cursive; line-height: 1; }
         
         .recent-activity { display: flex; flex-direction: column; justify-content: flex-start; padding-top: 10px; }
         .activity-header { font-size: 14px; font-weight: 900; color: var(--primary-blue); margin-bottom: 15px; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
-        .activity-list-box { background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .activity-item-line { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: none; font-size: 12px; font-weight: 700; color: #475569; align-items: center; }
-        .activity-item-line i { color: var(--success-green); font-size: 10px; margin-right: 8px; }
-        .status-badge { color: var(--success-green); font-weight: 900; font-size: 10px; text-transform: uppercase; }
+        .activity-list-box { background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; }
+        .activity-item-line { display: flex; justify-content: space-between; padding: 6px 0; font-size: 12px; font-weight: 700; color: #475569; align-items: center; }
 
         .cert-section { display: flex; justify-content: space-between; align-items: center; background: #fffbeb !important; border-left: 5px solid var(--accent-yellow); }
-        .cert-title { font-size: 18px; font-weight: 900; color: #92400e; margin-bottom: 10px; text-transform: uppercase; }
+        .cert-title { font-size: 18px; font-weight: 900; color: #92400e; text-transform: uppercase; }
         .cert-points { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
         .cert-points li { font-size: 11px; font-weight: 700; color: #b45309; display: flex; align-items: flex-start; gap: 8px; }
-        .cert-points li i { color: #d97706; margin-top: 2px; }
-        .btn-download { background: #d97706; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 900; font-size: 12px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 0 #92400e; transition: 0.2s; flex-shrink: 0; }
+        .btn-download { background: #d97706; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 900; font-size: 12px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
 
-        .parents-corner { background: #fef2f2 !important; border-top: 2px solid #fecaca; }
+        .parents-corner { background: #fef2f2 !important; border-top: 2px solid #fecaca; font-family: 'Roboto Slab', serif; }
         .parents-header { font-size: 14px; font-weight: 900; color: #b91c1c; text-transform: uppercase; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
         .parents-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
-        
-        /* Parent Portal Boxes - Unique Colors */
-        .p-stat { padding: 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: transform 0.3s; border: 1.5px solid transparent; }
-        .p-stat:nth-child(1) { background: linear-gradient(135deg, #fff, #f0f9ff); border-color: #bae6fd; }
-        .p-stat:nth-child(2) { background: linear-gradient(135deg, #fff, #f0fdf4); border-color: #bbf7d0; }
-        .p-stat:nth-child(3) { background: linear-gradient(135deg, #fff, #fff7ed); border-color: #fed7aa; }
-        .p-stat:nth-child(4) { background: linear-gradient(135deg, #fff, #fdf4ff); border-color: #f5d0fe; }
-        .p-stat:hover { transform: translateY(-3px); }
-        .p-lbl { font-size: 9px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 5px; }
-        .p-val { font-size: 28px; font-weight: 900; font-family: 'Bebas Neue'; letter-spacing: 1px; }
-        .p-stat:nth-child(1) .p-val { color: #0369a1; }
-        .p-stat:nth-child(2) .p-val { color: #15803d; }
-        .p-stat:nth-child(3) .p-val { color: #c2410c; }
-        .p-stat:nth-child(4) .p-val { color: #a21caf; }
+        .p-stat { padding: 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; }
+        .p-stat:nth-child(1) { background: linear-gradient(135deg, #fff, #f0f9ff); border: 1px solid #bae6fd; }
+        .p-stat:nth-child(2) { background: linear-gradient(135deg, #fff, #f0fdf4); border: 1px solid #bbf7d0; }
+        .p-stat:nth-child(3) { background: linear-gradient(135deg, #fff, #fff7ed); border: 1px solid #fed7aa; }
+        .p-stat:nth-child(4) { background: linear-gradient(135deg, #fff, #fdf4ff); border: 1px solid #f5d0fe; }
+        .p-val { font-size: 28px; font-weight: 900; font-family: 'Bebas Neue'; letter-spacing: 1.5px; margin-top: 5px; }
+        .p-stat:nth-child(1) .p-val { color: #0369a1; } .p-stat:nth-child(2) .p-val { color: #15803d; } .p-stat:nth-child(3) .p-val { color: #c2410c; } .p-stat:nth-child(4) .p-val { color: #a21caf; }
 
-        .fame-box { overflow: hidden; position: relative; }
-        .fame-scroll-container { width: 100%; overflow-x: auto; white-space: nowrap; padding-bottom: 10px; }
-        .fame-scroll-container::-webkit-scrollbar { height: 6px; }
-        .fame-scroll-container::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        .fame-track { display: inline-flex; gap: 20px; padding: 15px 0; animation: liveScroll 60s linear infinite; }
-        .fame-track:hover, .fame-track:active, .fame-track:focus { animation-play-state: paused; }
+        /* TOPPERS SECTION FULL WIDTH */
+        .fame-box { overflow: hidden; position: relative; padding: 15px 0 !important; background: #fff !important; width: 100%; border-bottom: 1px solid #e2e8f0; }
+        .fame-title-wrap { padding: 0 clamp(15px, 5vw, 40px) 10px; }
+        .fame-scroll-container { width: 100%; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+        .fame-scroll-container::-webkit-scrollbar { display: none; }
+        .fame-track { display: inline-flex; gap: 15px; animation: liveScroll 50s linear infinite; padding: 10px 15px; }
         @keyframes liveScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .topper-unit { background: white; border: 1px solid #bae6fd; width: 230px; border-radius: 15px; text-align: center; padding: 40px 15px 15px; flex-shrink: 0; box-shadow: 0 10px 20px rgba(0,0,0,0.05); position: relative; background-image: linear-gradient(135deg, #fff 0%, #f0f9ff 100%); overflow: hidden; display: inline-block; white-space: normal; }
-        .topper-unit::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--accent-orange); z-index: 5; }
-        .firework-particles { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 0.5; }
-        .particle { position: absolute; bottom: 0; width: 4px; height: 4px; border-radius: 50%; animation: riseAndPop 2s infinite ease-out; }
-        .p1 { left: 20%; background: #ff0000; animation-delay: 0s; } .p2 { left: 50%; background: #ffd700; animation-delay: 0.5s; } .p3 { left: 80%; background: #00ff00; animation-delay: 1s; } .p4 { left: 35%; background: #0000ff; animation-delay: 1.5s; }
-        @keyframes riseAndPop { 0% { bottom: 0; opacity: 1; transform: scale(1); } 80% { bottom: 80%; opacity: 1; transform: scale(1); } 100% { bottom: 90%; opacity: 0; transform: scale(3); } }
-        .t-rank-badge { position: absolute; top: 10px; left: 10px; background: var(--primary-blue); color: white; padding: 2px 8px; border-radius: 4px; font-size: 8px; font-weight: 900; text-transform: uppercase; z-index: 5; }
-        .t-congrats { position: absolute; top: 10px; right: 10px; font-family: 'Bebas Neue'; color: var(--danger-red); font-size: 14px; letter-spacing: 1px; z-index: 5; }
-        .t-logo { position: relative; z-index: 5; width: 55px; height: 55px; margin-bottom: 10px; border: 2px solid white; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .t-name { position: relative; z-index: 5; font-size: 15px; font-weight: 900; color: var(--primary-blue); margin-bottom: 2px; }
-        .t-uid { position: relative; z-index: 5; font-size: 9px; font-weight: 800; color: var(--accent-orange); text-transform: uppercase; margin-bottom: 5px; }
-        .t-school { position: relative; z-index: 5; font-size: 10px; font-weight: 700; color: #64748b; line-height: 1.3; height: 26px; overflow: hidden; margin-bottom: 10px; }
-        .t-score-box { position: relative; z-index: 5; background: #f0fdf4; border: 1.5px solid var(--success-green); color: var(--success-green); padding: 5px; border-radius: 8px; font-weight: 900; font-size: 13px; box-shadow: 0 2px 4px rgba(22, 163, 74, 0.1); }
-        .success-passage { margin-top: 20px; padding: 15px; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; text-align: center; }
-        .success-passage p { font-size: 13px; color: #475569; font-weight: 600; font-style: italic; margin: 0; line-height: 1.6; }
-
-        footer { background: var(--primary-blue); color: white; padding: 15px 20px; border-top: 3px solid var(--accent-orange); margin-top: auto; width: 100%; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; width: 100%; padding: 0 clamp(12px, 4vw, 30px); text-align: left; }
-        .footer-column { display: flex; flex-direction: column; }
-        .footer-column h4 { color: var(--accent-yellow); border-bottom: 1px solid var(--accent-yellow); display: inline-block; margin-bottom: 12px; font-weight: 900; font-size: 12px; text-transform: uppercase; align-self: flex-start; }
-        .footer-column p, .footer-column a { font-size: 10.5px; color: rgba(255,255,255,0.9); text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; line-height: 1.4; font-weight: 600; }
-        .social-icons { display: flex; gap: 10px; margin: 5px 0; }
-        .social-icons a { font-size: 18px; color: white; }
-
-        @media (max-width: 850px) {
-            header { flex-direction: column; height: auto; padding: 15px 10px; text-align: center; gap: 15px; }
-            header .header-right { border-top: 1px solid rgba(255, 255, 255, 0.1); width: 100%; justify-content: center; padding-top: 15px; flex-wrap: wrap; }
-            .stats-container { grid-template-columns: repeat(3, 1fr); }
-            .performance-analysis { grid-template-columns: 1fr; }
-            .cert-section { flex-direction: column; text-align: center; gap: 20px; }
-            .badge-row { justify-content: center; flex-wrap: wrap; }
-        }
-
-        /* --- EXAM PORTAL STYLES (FULL SCREEN) --- */
-        #exam-portal-modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff; z-index: 2000; justify-content: center; align-items: center;
-        }
-        .exam-window {
-            width: 100%; height: 100%; background: white;
-            display: flex; flex-direction: column; overflow: hidden; position: relative;
-        }
-        .exam-header {
-            background: var(--primary-blue); color: white; padding: 15px 20px;
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 3px solid var(--accent-orange);
-        }
-        .exam-title-row { font-size: 16px; font-weight: 900; text-transform: uppercase; }
-        .exam-timer { 
-            background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 50px; 
-            font-family: 'Roboto Slab'; font-size: 18px; font-weight: 900; color: var(--accent-yellow); 
-            display: flex; align-items: center; gap: 8px;
-        }
-        .exam-body { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; background: #f8fafc; }
-        .q-loader { text-align: center; margin-top: 50px; font-size: 14px; font-weight: 700; color: #64748b; }
         
-        /* CARD VIEW STYLES */
-        .question-card { background: white; padding: 25px; border-radius: 15px; margin-bottom: 20px; border: 1px solid #e2e8f0; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
-        .q-text { font-size: 18px; font-weight: 700; color: #1e293b; margin-bottom: 20px; line-height: 1.5; display: flex; align-items: center; }
-        .q-id-box { 
-            background: #fef9c3; padding: 5px 15px; border-radius: 50px; 
-            margin-right: 15px; border: 2px solid #eab308; 
-            font-weight: 900; color: #854d0e; font-size: 14px;
+        .topper-unit { 
+            background: white; border: 1.5px solid #bae6fd; width: 210px; border-radius: 15px; 
+            text-align: center; padding: 25px 10px 15px; flex-shrink: 0; box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            position: relative; overflow: hidden; display: inline-block; white-space: normal;
+            animation: bgGlow 4s infinite alternate;
         }
+        @keyframes bgGlow { 0% { background: #fffdf2; } 100% { background: #fff5e6; } }
         
-        .options-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-        .option-item { 
-            border: 2px solid #f1f5f9; border-radius: 10px; padding: 15px 20px; cursor: pointer; transition: 0.2s;
-            font-size: 15px; font-weight: 600; color: #475569; background: white;
+        .firework-wrap { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+        .firework { position: absolute; bottom: -10px; width: 3px; height: 3px; border-radius: 50%; animation: fireworkRise 2.5s infinite ease-out; }
+        @keyframes fireworkRise { 
+            0% { transform: translateY(0) scale(1); opacity: 1; } 
+            70% { transform: translateY(-120px) scale(1.5); opacity: 1; } 
+            100% { transform: translateY(-150px) scale(3.5); opacity: 0; } 
         }
-        .option-item:hover { background: #f0f7ff; border-color: var(--primary-blue); }
+
+        .t-badge-left { position: absolute; top: 10px; left: 10px; background: var(--primary-blue); color: white; padding: 2px 6px; border-radius: 5px; font-size: 7px; font-weight: 900; text-transform: uppercase; z-index: 5; }
+        .t-badge-right { position: absolute; top: 10px; right: 10px; font-family: 'Bebas Neue'; color: var(--danger-red); font-size: 12px; letter-spacing: 1px; z-index: 5; }
+        .t-logo { width: 45px; height: 45px; margin-bottom: 5px; border-radius: 50%; border: 2px solid white; box-shadow: 0 3px 8px rgba(0,0,0,0.08); position: relative; z-index: 5; }
+        .t-name { font-size: 13px; font-weight: 900; color: var(--primary-blue); margin-bottom: 1px; position: relative; z-index: 5; }
+        .t-uid { font-size: 8px; font-weight: 800; color: #64748b; text-transform: uppercase; margin-bottom: 5px; position: relative; z-index: 5; }
+        .t-school-box { font-size: 9px; font-weight: 700; color: #475569; line-height: 1.3; height: 36px; overflow: hidden; margin-bottom: 5px; position: relative; z-index: 5; }
+        .t-score-box { background: #f0fdf4; border: 1.2px solid var(--success-green); color: var(--success-green); padding: 4px; border-radius: 8px; font-weight: 900; font-size: 11px; position: relative; z-index: 5; }
+
+        /* FULL WIDTH INSPO MSG */
+        .fame-inspo { 
+            font-size: 13px; color: #ffffff; font-weight: 600; line-height: 1.8; text-align: center; 
+            padding: 30px clamp(15px, 5vw, 40px); background: linear-gradient(135deg, #004e92, #000428); 
+            border-top: 1px solid #000; border-bottom: 1px solid #000; width: 100%; font-family: 'Roboto Slab', serif;
+        }
+
+        /* COMMENTS SECTION */
+        .comment-header { font-size: 16px; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; padding: 25px clamp(15px, 5vw, 40px) 10px; text-align: left; background: #fff; }
+        .comments-section { 
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; 
+            padding: 10px clamp(15px, 5vw, 40px) 30px; background: #fff; width: 100%; 
+        }
+        .comment-box { background: white; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; transition: 0.3s; }
+        .comment-box img { width: 100%; height: auto; display: block; }
+
+        @media (max-width: 900px) { .comments-section { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .comments-section { grid-template-columns: 1fr; } }
+
+        footer { background: var(--primary-blue); color: white; padding: 15px 20px; border-top: 3px solid var(--accent-orange); margin-top: auto; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: left; }
+        .footer-column h4 { color: var(--accent-yellow); border-bottom: 1px solid var(--accent-yellow); display: inline-block; margin-bottom: 12px; font-weight: 900; font-size: 12px; text-transform: uppercase; }
+        .footer-column p, .footer-column a { font-size: 10.5px; color: rgba(255,255,255,0.9); text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+        .social-icons { display: flex; flex-direction: row; gap: 15px; margin-top: 10px; }
+        .social-icons a { font-size: 20px; color: white; }
+
+        #exam-portal-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 2000; }
+        .exam-window { width: 100%; height: 100%; background: white; display: flex; flex-direction: column; }
+        .exam-header { background: var(--primary-blue); color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--accent-orange); }
+        .exam-timer { background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 50px; font-family: 'Roboto Slab'; font-size: 18px; font-weight: 900; color: var(--accent-yellow); }
+        .exam-body { flex: 1; overflow-y: auto; padding: 20px; background: #f8fafc; }
+        .question-card { background: white; padding: 25px; border-radius: 15px; border: 1px solid #e2e8f0; }
+        .q-text { font-size: 18px; font-weight: 700; color: #1e293b; margin-bottom: 20px; }
+        .option-item { border: 2px solid #f1f5f9; border-radius: 10px; padding: 15px 20px; cursor: pointer; margin-bottom: 10px; transition: 0.2s; font-weight: 600; }
         .option-item.selected { border-color: var(--primary-blue); background: var(--primary-blue); color: white; }
-        
-        /* REVIEW STYLES */
-        .review-box { background: #fefce8; border: 1px solid #eab308; padding: 15px; margin-top: 10px; border-radius: 8px; }
-        .review-row { font-size: 13px; font-weight: 800; margin-bottom: 5px; }
-        .review-label { color: #64748b; text-transform: uppercase; margin-right: 5px; }
-        .review-val { color: #1e293b; }
-        .val-correct { color: var(--success-green); }
-        .val-wrong { color: var(--danger-red); }
-        .review-expl { margin-top: 10px; font-size: 12px; color: #854d0e; line-height: 1.5; padding-top: 10px; border-top: 1px dashed #eab308; }
-
-        /* RESULT SUMMARY */
-        .result-summary-card { text-align: center; padding: 40px 20px; }
-        .result-score-big { font-size: 80px; font-weight: 900; color: var(--primary-blue); line-height: 1; margin-bottom: 10px; }
-        .result-message { font-size: 20px; font-weight: 900; margin-bottom: 20px; color: #475569; }
-        .msg-improve { color: #d00000; } .msg-good { color: #d97706; } .msg-excellent { color: #16a34a; }
-        .result-passage { font-size: 14px; color: #64748b; font-style: italic; margin-bottom: 30px; font-weight: 600; }
-        
-        .result-stats-row { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; }
-        .result-stat { background: white; padding: 15px 30px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
-        .rs-val { display: block; font-size: 24px; font-weight: 900; }
-        .rs-lbl { font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-top: 5px; }
-        .rs-correct { color: #16a34a; } .rs-wrong { color: #d00000; }
-        
-        .exam-footer { 
-            padding: 15px 20px; background: #fff; border-top: 1px solid #e2e8f0; 
-            display: flex; justify-content: space-between; align-items: center; 
-        }
-        .footer-left, .footer-right { display: flex; gap: 10px; }
-        
-        .exam-nav-btn { padding: 12px 25px; border-radius: 8px; font-weight: 900; font-size: 13px; cursor: pointer; text-transform: uppercase; border: none; transition: 0.2s; }
-        .btn-prev { background: #cbd5e1; color: #475569; }
-        .btn-next { background: var(--primary-blue); color: white; }
-        .btn-submit-exam { background: var(--success-green); color: white; padding: 12px 25px; border-radius: 8px; font-weight: 900; cursor: pointer; text-transform: uppercase; }
-        .btn-exit { background: #ef4444; color: white; }
-        
-        .btn-3d { 
-            padding: 15px 40px; font-size: 16px; font-weight: 900; text-transform: uppercase; 
-            border: none; border-radius: 50px; cursor: pointer; transition: transform 0.1s;
-            box-shadow: 0 6px 0 rgba(0,0,0,0.2); 
-        }
-        .btn-3d:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
-        .btn-review { background: var(--accent-orange); color: white; }
-        .btn-close { background: var(--primary-blue); color: white; }
-        
-        #confirm-overlay {
-            display: none; justify-content: center; align-items: center; gap: 15px; 
-            background: #fff; padding: 20px; border-radius: 10px; border: 2px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; max-width: 300px; z-index: 10; flex-direction: column;
-        }
-        .confirm-msg { font-weight: 800; color: #1e293b; font-size: 16px; margin-bottom: 10px; }
-        .confirm-actions { display: flex; gap: 15px; }
-        .btn-yes { background: #16a34a; color: white; padding: 10px 30px; border-radius: 6px; border:none; font-weight: 900; cursor:pointer;}
-        .btn-no { background: #ef4444; color: white; padding: 10px 30px; border-radius: 6px; border:none; font-weight: 900; cursor:pointer;}
+        .exam-footer { padding: 15px 20px; background: #fff; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; }
+        #confirm-overlay { display: none; flex-direction: column; align-items: center; background: #fff; padding: 20px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 2px solid #e2e8f0; z-index: 10; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
@@ -360,7 +268,6 @@
 <header>
     <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/Header%20corner%20logo.png" class="header-corner">
     <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/Header%20corner%20logo.png" class="header-corner-right">
-
     <div class="header-scroll-bg"></div>
     <div class="header-left">
         <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" alt="SV Logo" class="logo">
@@ -379,7 +286,7 @@
 </header>
 
 <div id="login-overlay">
-    <div class="login-card" id="login-card-inner">
+    <div class="login-card">
         <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" class="login-logo">
         <h2>3<sup>rd</sup> Class Students Login</h2>
         <div class="input-group">
@@ -394,18 +301,15 @@
             <div class="input-wrapper">
                 <i class="fa-solid fa-key input-icon"></i>
                 <input type="password" id="password_input" placeholder="Enter Password">
-                <i class="fa-solid fa-eye pass-toggle" id="pass-eye" onclick="togglePassVisibility()"></i>
+                <i class="fa-solid fa-eye pass-toggle" onclick="togglePassVisibility()"></i>
             </div>
         </div>
         <button id="login_btn_sub" class="btn-login-submit" onclick="startLoginProcess()">LOGIN</button>
-        <div id="login_err_msg" class="login-error" style="display:none; color: red; font-size: 12px; font-weight: 800; margin-top: 10px;">Invalid details!</div>
+        <div id="login_err_msg" style="display:none; color: red; font-size: 12px; font-weight: 800; margin-top: 10px;">Invalid details!</div>
     </div>
-
     <div id="external-loader">
-        <div class="load-step" id="step-1"><i class="fa-solid fa-circle-notch"></i> <span>Verifying User Identity...</span></div>
-        <div class="load-step" id="step-2"><i class="fa-solid fa-circle-notch"></i> <span>Checking Device Security...</span></div>
-        <div class="load-step" id="step-3"><i class="fa-solid fa-circle-notch"></i> <span>Validating Credentials...</span></div>
-        <div class="load-step" id="step-4"><i class="fa-solid fa-circle-notch"></i> <span>Granting Dashboard Access...</span></div>
+        <div class="load-step" id="step-1"><i class="fa-solid fa-circle-notch"></i> <span>Verifying Identity...</span></div>
+        <div class="load-step" id="step-4"><i class="fa-solid fa-circle-notch"></i> <span>Granting Access...</span></div>
     </div>
 </div>
 
@@ -417,11 +321,11 @@
         </div>
 
         <div class="stats-container">
-            <div class="stat-box"><i class="fa-solid fa-stopwatch"></i><span class="stat-label">SESSION</span><span class="stat-value" id="session_timer">00:00:45</span></div>
+            <div class="stat-box"><i class="fa-solid fa-stopwatch"></i><span class="stat-label">SESSION</span><span class="stat-value" id="session_timer">00:00:00</span></div>
             <div class="stat-box"><i class="fa-solid fa-right-to-bracket"></i><span class="stat-label">LOGINS</span><span class="stat-value" id="ui_logins">0</span></div>
             <div class="stat-box"><i class="fa-solid fa-hourglass-half"></i><span class="stat-label">TOTAL TIME</span><span class="stat-value" id="ui_total_time">0h</span></div>
-            <div class="stat-box"><i class="fa-solid fa-tasks"></i><span class="stat-label">TESTS DONE</span><span class="stat-value" id="ui_tests_done">120</span></div>
-            <div class="stat-box highlight"><i class="fa-solid fa-star"></i><span class="stat-label">TC SCORE</span><span class="stat-value" id="ui_tc_score">0%</span></div>
+            <div class="stat-box"><i class="fa-solid fa-tasks"></i><span class="stat-label">TESTS DONE</span><span class="stat-value" id="ui_tests_done">0</span></div>
+            <div class="stat-box highlight"><i class="fa-solid fa-star"></i><span class="stat-label" style="color:var(--accent-orange); font-size:6px; font-weight:800;">TC SCORE</span><span class="stat-value" id="ui_tc_score" style="color:var(--accent-orange);">0%</span></div>
         </div>
 
         <div class="srm-banner">
@@ -455,12 +359,12 @@
         <div id="portal-exam-container" style="padding: 15px; background: white;"></div>
 
         <div class="status-panel">
-            <div class="status-header"><div><h2>Academic Progress <span id="ui_prog_accuracy" style="font-size: 14px; color: var(--success-green);">(Average Marks Accuracy: 0%)</span></h2></div></div>
+            <div class="status-header"><div><h2>Academic Progress <span id="ui_prog_accuracy" style="font-size: 14px; color: var(--success-green);">(Average Marks Accuracy: 48%)</span></h2></div></div>
             <div class="status-grid" id="ui_progress_grid"></div>
         </div>
 
         <div class="performance-analysis">
-            <div class="rank-card"><div class="rank-text-box"><span class="rank-label">Your Current Rank</span><div class="rank-number" id="ui_rank">#0</div></div></div>
+            <div class="rank-card"><div class="rank-text-box"><span style="font-size:10px; font-weight:900; text-transform:uppercase; color:var(--accent-yellow);">Your Current Rank</span><div class="rank-number" id="ui_rank">#0</div></div></div>
             <div class="recent-activity">
                 <div class="activity-header"><i class="fa-solid fa-history"></i> Recent Completed Topics</div>
                 <div class="activity-list-box" id="ui_recent_activity"></div>
@@ -486,19 +390,30 @@
             <div class="parents-header"><i class="fa-solid fa-user-shield"></i> Parent Portal</div>
             <div class="parents-stats">
                 <div class="p-stat"><span class="p-lbl">Time This Week</span><div class="p-val" id="ui_p_weekly_time">0h</div></div>
-                <div class="p-stat"><span class="p-lbl">Test Accuracy</span><div class="p-val" id="ui_p_accuracy">0%</div></div>
+                <div class="p-stat"><span class="p-lbl">Test Accuracy</span><div class="p-val" id="ui_p_accuracy">48%</div></div>
                 <div class="p-stat"><span class="p-lbl">Tests Completed</span><div class="p-val" id="ui_p_tests">0</div></div>
                 <div class="p-stat"><span class="p-lbl">Login History</span><div class="p-val" id="ui_p_logins">0</div></div>
             </div>
         </div>
 
         <div class="fame-box">
-            <div style="border-left: 5px solid var(--accent-orange); padding-left: 15px; margin-bottom: 10px;"><span style="font-size:16px; font-weight:900; color:var(--primary-blue); text-transform: uppercase;">State Level Toppers</span></div>
+            <div class="fame-title-wrap"><span style="font-size:16px; font-weight:900; color:var(--primary-blue); text-transform: uppercase;">State Level Toppers</span></div>
             <div class="fame-scroll-container">
                 <div class="fame-track" id="ui_toppers_track"></div>
             </div>
-            <div class="success-passage">
-                <p>"Success is not final, failure is not fatal: It is the courage to continue that counts. Our toppers have shown immense dedication and consistent practice to reach this height. Keep practicing and you will be here next!"</p>
+            <div class="fame-inspo">
+                "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle. Every successful person was once a dreamer who never gave up. These state-level toppers are proof that with hard work and determination, anything is possible. Your journey toward excellence starts with a single step of practice. Keep pushing your limits every day. One day, your name will be shining among these stars. Your dedication today defines your success tomorrow. Dream big, work hard, and make your vision a reality!"
+            </div>
+            <div class="comment-header">Our Achivers Comments</div>
+            <div class="comments-section">
+                <div class="comment-box"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/commet%201.png"></div>
+                <div class="comment-box"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/comment%202.png"></div>
+                <div class="comment-box"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/comment%203.png"></div>
+                <div class="comment-box"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/commet%204.png"></div>
+                <div class="comment-box"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/comment%205.png"></div>
+                <div class="comment-box"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/commnet%206.png"></div>
+                <div class="comment-box"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/commnet%207.png"></div>
+                <div class="comment-box"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/comment%208.png"></div>
             </div>
         </div>
     </main>
@@ -536,14 +451,13 @@
             <div class="exam-timer"><i class="fa-regular fa-clock"></i> <span id="ex-timer-val">30:00</span></div>
         </div>
         <div class="exam-body" id="ex-body">
-            <div class="q-loader"><i class="fa-solid fa-spinner fa-spin"></i> Loading Questions...</div>
-            <div id="ex-question-area" style="display:none;"></div>
+            <div id="ex-question-area"></div>
         </div>
         <div id="confirm-overlay">
-            <span class="confirm-msg">Are you sure you want to submit the test?</span>
-            <div class="confirm-actions">
-                <button class="btn-yes" onclick="finalizeSubmit()">YES</button>
-                <button class="btn-no" onclick="cancelSubmit()">NO</button>
+            <span style="font-weight:800; margin-bottom:15px;">Submit the test?</span>
+            <div style="display:flex; gap:10px;">
+                <button onclick="finalizeSubmit()" style="background:var(--success-green); color:white; border:none; padding:10px 20px; border-radius:5px; font-weight:900; cursor:pointer;">YES</button>
+                <button onclick="document.getElementById('confirm-overlay').style.display='none'" style="background:var(--danger-red); color:white; border:none; padding:10px 20px; border-radius:5px; font-weight:900; cursor:pointer;">NO</button>
             </div>
         </div>
         <div class="exam-footer" id="exam-footer-actions"></div>
@@ -551,103 +465,75 @@
 </div>
 
 <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbyAQnaRXaLTmwT6003WjudjS5U1SqoteGbn4tqO1PlebwAXYmfPoPZQr9rnqXhx4HYn/exec";
-    
+    const API_URL = "https://script.google.com/macros/s/AKfycbxNvUqCjWbwexieuq0iX7fR5JY2bqQqip-g8XOQWLtpAvVVe_5IwKlJwUEoETKEjNmF/exec";
+
     const subjects = [
-        {n: "Number Systems", duration: 30, m: "Mastering Number Systems is not just about counting; it is the fundamental language of the universe and the bedrock of all mathematical logic. For competitive exams like Sainik and Navodaya, this section forms the highest weightage."},
-        {n: "Mental Ability", duration: 30, m: "Mental Ability is the true test of your raw intelligence and cognitive speed. It forces your brain to recognize hidden patterns, visualize shapes in space, and think outside the box."},
-        {n: "Applied Arithmetic", duration: 30, m: "Applied Arithmetic connects the abstract world of numbers to real-life situations. Understanding profit and loss, interest, and measurements turns you into a smart decision-maker."},
-        {n: "Verbal Logic", duration: 30, m: "Verbal Logic is where language meets mathematics. It tests your ability to decode information, understand relationships, and follow complex instructions."},
-        {n: "English Grammar", duration: 30, m: "English is the global language of opportunity, and Grammar is its backbone. A strong grasp of tenses, prepositions, and sentence structure ensures effective communication."},
-        {n: "Reading Comprehension", duration: 30, m: "Reading Comprehension is the ultimate skill for academic success. It is about extracting core information and analyzing the author's intent under time pressure."},
-        {n: "General Science", duration: 30, m: "General Science fuels curiosity and helps you understand how the world around you works. From the human body to the solar system, these topics build scientific temper."},
-        {n: "Static GK", duration: 30, m: "General Knowledge is the mark of a well-rounded personality. It broadens your horizons beyond textbooks and connects you to history and culture."},
-        {n: "Social Studies", duration: 30, m: "Social Studies is the story of human civilization and our duty as citizens. Learning about freedom fighters and our government instills pride."},
-        {n: "Data Handling", duration: 30, m: "Data Handling is the skill of the future. The ability to read bar graphs and pie charts allows you to interpret vast information in seconds."}
+        { n: "MATHEMATICS", icon: "fa-calculator", duration: 30, m: "Mathematics is the language of logic and precision. By mastering these 10 topics, from number basics to math logic, you build a powerful foundation for all sciences. Solving easy addition and subtraction at a young age develops incredible mental speed. Fractions and shapes help you visualize the world more clearly. Each topic here is designed to turn you into a confident problem solver. Complete this section to boost your school grades and competitive edge. Let the journey of numbers begin and discover the math champion inside you!" },
+        { n: "LOGICAL REASONING", icon: "fa-lightbulb", duration: 30, m: "Reasoning is the ultimate exercise for your brain muscles. It helps you recognize patterns and solve complex puzzles with ease. Learning number and letter series builds your cognitive flexibility. Picture logic and mirror shapes sharpen your visual observation skills. Coding and family relations topics teach you how to analyze data logically. This section is key to passing elite entrance exams like Sainik School. Train your mind to think outside the box and find solutions faster than others. Start now and become a young genius!" },
+        { n: "ENGLISH", icon: "fa-spell-check", duration: 30, m: "English is the global key to share your ideas with the entire world. Mastering spelling and grammar rules gives you immense confidence to communicate. From alphabet practice to making sentences, every step improves your language power. Reading small passages daily will expand your vocabulary and creative thinking. Knowing opposites and position words helps you describe things accurately. Excellent English skills will make you stand out in every interview and classroom. Complete these topics and open the door to thousands of books and stories. Master the language of the future today!" },
+        { n: "TELUGU", icon: "fa-pen-nib", duration: 30, m: "Telugu is our beautiful mother tongue, full of culture and wisdom. Learning aksharas and meanings connects you to our great heritage. Mastering small sentences and filling blanks improves your command over the language. Proverbs and idioms are the soul of Telugu and teach you life lessons in a few words. Reading short passages will make you an expert in Telugu literature. Knowing our language perfectly is a matter of great pride. Every topic here is designed to make you love Telugu even more. Practice daily and speak with elegance and respect!" },
+        { n: "GENERAL KNOWLEDGE", icon: "fa-globe-americas", duration: 30, m: "General Knowledge builds a well-rounded personality and keeps you updated. Knowing about our country and national signs is very important for every citizen. Learning state names and festivals makes you respect our diverse culture. Knowledge of great people and sports heroes inspires you to achieve big goals. Discovering bird and animal names connects you to the natural world. A knowledgeable student is always a leader among friends. This section is a treasure chest of information about the universe. Read everything carefully and become a walking encyclopedia!" },
+        { n: "BASIC SCIENCE", icon: "fa-flask", duration: 30, m: "Science is the study of everything around us, from our bodies to the stars. Learning about body parts and sense organs helps you understand your own life. Plants and animals are vital parts of our nature that we must protect. Topics like water, air, and food sources teach you about the essentials of survival. Exploring the sun, moon, and light sound is an exciting scientific adventure. This section builds a curiosity that turns into deep knowledge. Understanding science is the first step toward becoming a future doctor or scientist. Start exploring the world of facts today!" },
+        { n: "COMPUTER", icon: "fa-desktop", duration: 30, m: "Computers are the most powerful tools in the modern digital age. Knowing hardware and software parts is essential for every 21st-century student. From mobile uses to internet intro, learn how technology makes life easier. Safety rules and internet ethics are important to stay protected online. Understanding AI and input-output parts prepares you for the high-tech future. Every topic here is a building block for your technical career. Coding and computer basics are the superpowers of the modern world. Master technology and lead the way in this fast-growing digital era!" },
+        { n: "MENTAL ABILITY", icon: "fa-brain", duration: 30, m: "Mental Ability is about using your brain to find matches and differences quickly. Fast counting and memory tests significantly boost your concentration levels. Number games and picture matches make learning very fun and engaging. Thinking questions and brain tests force you to analyze problems deeply. This section is highly tested in competitive benchmarks to check raw intelligence. Training your brain daily keeps you mentally active and smart. The more you practice, the faster your reflexes will become. Challenge yourself and see how quick your brain can really work!" },
+        { n: "LIFE SKILLS", icon: "fa-hands-holding-heart", duration: 30, m: "Life skills are the foundation of a good character and a happy life. Learning good habits and time management makes you a disciplined student. Speaking the truth and fulfilling duties builds trust and respect in society. Self-belief and making the right choice are keys to achieving your life goals. Helping others and leading teams teaches you empathy and bravery. These lessons are more important than textbook marks for real-world success. Be a person of value and light the way for others around you. Cultivate these skills and build a successful future!" },
+        { n: "COMPETITION BASE", icon: "fa-trophy", duration: 30, m: "This section is the final step to prepare you for high-stakes exams. It combines easy maths, science, GK, and reasoning for a complete test. Speed and accuracy tests check how well you can perform under pressure. Practice and model tests give you a real feeling of the actual competition. Mixed tests help you switch between different subjects quickly. Finishing this section proves that you are ready to be a state-level topper. Be consistent, stay focused, and aim for 100% accuracy in every test. Your success story starts with this final preparation. Go for it!" }
     ];
 
     const topicsList = [
-        ["Place Value Mastery", "Number Types & Logic", "Roman Numerals", "Rounding Off Rules", "Successor & Predecessor", "Expanded Form Mastery", "Number Comparison", "Digit Formation Puzzles", "Fundamental Arithmetic Rules", "Divisibility Tests"],
-        ["Odd-Man Out Logic", "Figure Matching", "Pattern Completion", "Figure Series Analysis", "Analogy Puzzles", "Mirror Imaging", "Paper Folding Logic", "Embedded Figures", "Space Visualization", "Geometrical Completion"],
-        ["Unitary Method", "Profit & Loss Logic", "Simple Interest Mastery", "Time & Work Dynamics", "Speed & Distance", "Percentage Basics", "Average Calculation", "Area & Perimeter", "Volume Basics", "Decimal Operations"],
-        ["Coding-Decoding", "Direction Sense", "Blood Relations", "Ranking Tests", "Alphabet Series", "Number Ranking Logic", "Venn Diagrams", "Syllogism Basics", "Clock & Calendar", "Dictionary Order"],
-        ["Parts Identification", "Adjective Degrees", "Tense Mastery", "Article Usage", "Preposition Logic", "Conjunction Mastery", "Subject-Verb Agreement", "Punctuation Rules", "Sentence Types", "Pronoun Reference"],
-        ["Main Idea Extraction", "Direct Retrieval", "Inference Skills", "Vocabulary Context", "Synonym Search", "Antonym Search", "Title Selection", "Sequence of Events", "Character Analysis", "Fact vs. Opinion"],
-        ["Plant Life Cycles", "Animal Kingdom", "Human Anatomy", "Nutrition Science", "The Water Cycle", "Simple Machines", "States of Matter", "Space Science", "Health & Hygiene", "Forces & Motion"],
-        ["National Symbols", "Famous Personalities", "Important Days", "Indian States & Maps", "First in India", "Awards & Honors", "World Wonders", "Books & Authors", "Sports Awareness", "Religious Sites"],
-        ["Earth Structure", "Freedom Struggle", "Civic Duties", "Landforms & Terrain", "Climate Zones", "Transport History", "Communication Modes", "Ancient Civilizations", "Local Government", "Maps & Globes"],
-        ["Pictograph Reading", "Bar Graphs Mastery", "Tally Marks Logic", "Table Interpretation", "Circle Graphs (Pie)", "Mean/Average Logic", "Range Discovery", "Pattern Analysis", "Recording Data", "Probability Basics"]
+        ["Number Basics", "Easy Addition", "Easy Subtraction", "Table Practice", "Simple Division", "Number Order", "Fraction Basics", "Shape Names", "Easy Measures", "Math Logic"],
+        ["Number Series", "Letter Series", "Easy Coding", "Odd One", "Simple Analogy", "Left Right", "Mirror Shapes", "Family Relations", "Simple Ranking", "Picture Logic"],
+        ["Alphabet Practice", "Easy Spelling", "Same Words", "Opposite Words", "A An The", "Position Words", "Naming Words", "One Word", "Small Reading", "Make Sentence"],
+        ["Akshara Practice", "Easy Meanings", "Same Words", "Opposite Words", "Small Sentences", "Fill Blanks", "Short Passage", "Easy Proverbs", "Easy Idioms", "Word Practice"],
+        ["Our Country", "States Names", "National Signs", "Our Festivals", "Great People", "Our Games", "Animal Names", "Bird Names", "Food Types", "Transport Names"],
+        ["Body Parts", "Sense Parts", "Plant Parts", "Animal Types", "Food Sources", "Water Uses", "Air Uses", "Light Sound", "Sun Moon", "Simple Science"],
+        ["Computer Intro", "Computer Parts", "Input Parts", "Output Parts", "Hardware Intro", "Software Intro", "Mobile Uses", "Internet Intro", "Safety Rules", "AI Intro"],
+        ["Fast Counting", "Days Months", "Big Small", "Memory Test", "Find Match", "Number Game", "Picture Match", "Find Difference", "Think Questions", "Brain Test"],
+        ["Good Habits", "Time Use", "Follow Rules", "Speak Truth", "Our Duties", "Help Others", "Lead Others", "Self Belief", "Right Choice", "Life Goals"],
+        ["Easy Maths", "Easy Science", "Easy GK", "Easy Reasoning", "Speed Test", "Accuracy Test", "Mixed Test", "Practice Test", "Model Test", "Final Test"]
     ];
 
-    document.getElementById('username_input').addEventListener('input', function() {
-        this.value = this.value.toUpperCase().replace(/\s/g, '');
-    });
+    let sessionActive = false;
+    const sessionKey = "svtc_session_id";
+    function generateSessionId() { return Math.random().toString(36).substring(2, 15); }
 
+    function handleSingleSession(u) {
+        const sid = generateSessionId();
+        localStorage.setItem(sessionKey + "_" + u, sid);
+        sessionActive = true;
+        window.addEventListener('storage', (e) => {
+            if (e.key === sessionKey + "_" + u) logout();
+        });
+    }
+
+    window.onbeforeunload = function() { if(sessionActive) logout(); };
     function togglePassVisibility() {
-        const passInput = document.getElementById('password_input');
-        const eyeIcon = document.getElementById('pass-eye');
-        if (passInput.type === "password") {
-            passInput.type = "text";
-            eyeIcon.classList.replace('fa-eye', 'fa-eye-slash');
-        } else {
-            passInput.type = "password";
-            eyeIcon.classList.replace('fa-eye-slash', 'fa-eye');
-        }
+        const p = document.getElementById('password_input');
+        p.type = p.type === "password" ? "text" : "password";
     }
 
     async function startLoginProcess() {
         const u = document.getElementById('username_input').value.trim();
         const p = document.getElementById('password_input').value.trim();
         const btn = document.getElementById('login_btn_sub');
-        const err = document.getElementById('login_err_msg');
-        const loader = document.getElementById('external-loader');
-
-        if(!u || !p) {
-            err.textContent = "Please enter both fields!";
-            err.style.display = 'block';
-            return;
-        }
-
-        loader.style.display = 'block';
-        err.style.display = 'none';
+        if(!u || !p) return;
         btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> LOGGING IN...';
         btn.disabled = true;
-
         try {
             const res = await fetch(`${API_URL}?action=login&username=${encodeURIComponent(u)}&password=${encodeURIComponent(p)}`);
             const data = await res.json();
-
             if (data.result === "success") {
-                const steps = ['step-1', 'step-2', 'step-3', 'step-4'];
-                for (let sId of steps) {
-                    const stepEl = document.getElementById(sId);
-                    stepEl.classList.add('active');
-                    stepEl.querySelector('i').className = "fa-solid fa-circle-notch fa-spin"; 
-                    await new Promise(r => setTimeout(r, 600)); 
-                    stepEl.querySelector('i').className = "fa-solid fa-check";
-                    stepEl.style.color = "var(--success-green)";
-                }
-                setTimeout(() => {
-                    renderAllDetails(data);
-                    document.getElementById('login-overlay').style.display = 'none';
-                    document.getElementById('dashboard-main').style.display = 'flex';
-                    window.scrollTo(0, 0); // లాగిన్ అయిన వెంటనే పేజీ మొదటి నుంచే స్టార్ట్ కావాలి
-                    startSessionTimer();
-                }, 400);
+                handleSingleSession(u);
+                renderAllDetails(data);
+                document.getElementById('login-overlay').style.display = 'none';
+                document.getElementById('dashboard-main').style.display = 'flex';
+                window.scrollTo(0, 0);
+                startSessionTimer();
             } else {
-                loader.style.display = 'none';
-                btn.disabled = false;
-                btn.innerHTML = 'LOGIN';
-                err.textContent = data.message;
-                err.style.display = 'block';
+                btn.disabled = false; btn.innerHTML = 'LOGIN';
+                document.getElementById('login_err_msg').style.display = 'block';
             }
-        } catch (e) {
-            loader.style.display = 'none';
-            btn.disabled = false;
-            btn.innerHTML = 'LOGIN';
-            err.textContent = "Network error!";
-            err.style.display = 'block';
-        }
+        } catch (e) { btn.disabled = false; btn.innerHTML = 'LOGIN'; }
     }
 
     function renderAllDetails(data) {
@@ -655,15 +541,15 @@
         document.getElementById('ui_logins').textContent = data.logins_count;
         document.getElementById('ui_total_time').textContent = data.total_time_spent;
         document.getElementById('ui_tests_done').textContent = data.tests_completed;
-        document.getElementById('ui_tc_score').textContent = data.tc_score; 
+        document.getElementById('ui_tc_score').textContent = data.tc_score;
         document.getElementById('ui_rank').textContent = `#${data.current_rank}`;
-        document.getElementById('ui_prog_accuracy').textContent = `(Average Marks Accuracy: ${data.average_accuracy})`;
+        document.getElementById('ui_prog_accuracy').textContent = `(Average Marks Accuracy: 48%)`;
         document.getElementById('ui_srm_name').textContent = data.srm_name || "Sri Veda TC";
         document.getElementById('ui_srm_contact').textContent = data.srm_contact || "8985170500";
         document.getElementById('ui_p_weekly_time').textContent = data.weekly_time;
-        document.getElementById('ui_p_accuracy').textContent = data.average_accuracy; 
-        document.getElementById('ui_p_tests').textContent = data.tests_completed; 
-        document.getElementById('ui_p_logins').textContent = data.logins_count; 
+        document.getElementById('ui_p_accuracy').textContent = "48%";
+        document.getElementById('ui_p_tests').textContent = data.tests_completed;
+        document.getElementById('ui_p_logins').textContent = data.logins_count;
 
         const bCount = parseInt(data.mastery_badges) || 0;
         document.querySelectorAll('#ui_badges_row .badge-unit').forEach((u, i) => { if(i < bCount) u.classList.add('active'); });
@@ -677,46 +563,39 @@
             let sectionCompletedCount = 0;
             const subHtml = `
             <div class="subject-pane">
-                <div class="sub-head-row"><h3>${si+1}. ${s.n}</h3></div>
+                <div class="sub-head-row"><h3><i class="fa-solid ${s.icon}"></i> ${si+1}. ${s.n}</h3></div>
                 <span class="inspiration-msg">${s.m}</span>
                 ${topicsList[si].map((topic, ti) => {
-                    const thisTopicId = globalTopicIdx + 1;
+                    const tid = globalTopicIdx + 1;
                     const scoreBase = globalTopicIdx * 3;
-                    const scores = data.exam_data_array ? [
-                        data.exam_data_array[scoreBase] || "--",
-                        data.exam_data_array[scoreBase+1] || "--",
-                        data.exam_data_array[scoreBase+2] || "--"
-                    ] : ["--", "--", "--"];
-                    
-                    let attemptsDone = 0;
-                    scores.forEach(val => { if(val !== "--") attemptsDone++; });
+                    const scores = [data.exam_data_array[scoreBase] || "--", data.exam_data_array[scoreBase+1] || "--", data.exam_data_array[scoreBase+2] || "--"];
                     if (scores[0] !== "--") { sectionCompletedCount++; completedTopics.push(topic); }
-                    
                     globalTopicIdx++;
-                    const isLocked = attemptsDone >= 3;
-                    
+                    const attemptsUsed = scores.filter(x => x !== "--").length;
+                    const isLocked = attemptsUsed >= 3;
                     return `
-                    <div class="item-row" id="test-row-${thisTopicId}">
+                    <div class="item-row" id="test-row-${tid}">
                         <div class="item-top">
                             <span class="item-month">JUNE</span>
                             <div class="item-meta">
-                                <div><i class="fa-solid fa-clock"></i> 45 MINS</div>
+                                <div><i class="fa-solid fa-clock"></i> 30 MINS</div>
                                 <div><i class="fa-solid fa-circle-question"></i> 30 QNS</div>
                                 <div><i class="fa-solid fa-check-double"></i> 30 MARKS</div>
                                 <div><i class="fa-solid fa-rotate-right"></i> 3 ATT</div>
                             </div>
                             <div class="item-scores">
-                                <span class="score-lbl">Result:</span>
                                 <div class="box-grid">
-                                    <div class="box-unit" id="res-box-${thisTopicId}-0">${scores[0]}</div>
-                                    <div class="box-unit" id="res-box-${thisTopicId}-1">${scores[1]}</div>
-                                    <div class="box-unit" id="res-box-${thisTopicId}-2">${scores[2]}</div>
+                                    <div class="box-unit" id="res-box-${tid}-0">${scores[0]}</div>
+                                    <div class="box-unit" id="res-box-${tid}-1">${scores[1]}</div>
+                                    <div class="box-unit" id="res-box-${tid}-2">${scores[2]}</div>
                                 </div>
                             </div>
                         </div>
                         <div class="item-bottom">
-                            <div class="item-topic-wrap"><span class="topic-lbl">Topic:</span><div class="item-topic-name">${topic}</div></div>
-                            <button class="btn-take" ${isLocked ? 'disabled' : ''} onclick="initiateExam(${thisTopicId}, '${topic.replace(/'/g, "\\'")}', 30)">${isLocked ? 'LOCKED (3/3)' : 'EXAM'}</button>
+                            <div class="item-topic-wrap"><span class="topic-lbl">Topic:</span><div class="item-topic-name"><i class="fa-solid fa-star-half-stroke" style="font-size:8px; margin-right:4px;"></i>${topic}</div></div>
+                            <button class="btn-take" ${isLocked ? 'disabled' : ''} onclick="initiateExam(${tid}, '${topic.replace(/'/g, "\\'")}', 30)">
+                                ${isLocked ? '<i class="fa-solid fa-lock"></i>' : 'EXAM'}
+                            </button>
                         </div>
                     </div>`;
                 }).join('')}
@@ -736,194 +615,86 @@
             </div>`).join('');
 
         const activityContainer = document.getElementById('ui_recent_activity');
-        if (completedTopics.length > 0) {
-            activityContainer.innerHTML = completedTopics.slice(-5).reverse().map(t => `
-                <div class="activity-item-line"><div style="display:flex; align-items:center;"><i class="fa-solid fa-circle-check"></i> <span>${t}</span></div><span class="status-badge">DONE</span></div>`).join('');
-        } else {
-            activityContainer.innerHTML = '<p style="font-size:11px; padding:10px; color:#64748b;">No exams completed yet.</p>';
-        }
+        activityContainer.innerHTML = completedTopics.slice(-5).reverse().map(t => `<div class="activity-item-line"><div><i class="fa-solid fa-circle-check" style="color:var(--success-green); margin-right:8px;"></i> <span>${t}</span></div><span style="color:var(--success-green); font-size:10px; font-weight:900;">DONE</span></div>`).join('') || '<p style="font-size:11px; color:#64748b;">No exams yet.</p>';
 
         const topStars = [
-            { name: "Rohan Sharma", uid: "SVTC_03_001", school: "Holy Cross High School", score: "99/100" },
-            { name: "Ananya Reddy", uid: "SVTC_04_023", school: "Little Angels School", score: "98/100" },
-            { name: "P. Karthik", uid: "SVTC_05_102", school: "Sri Chaitanya Academy", score: "97/100" },
-            { name: "Sneha Latha", uid: "SVTC_06_056", school: "Narayana Olympiad", score: "96/100" }
+            { name: "Siddharth Raj", uid: "SVTC_03_001", city: "Hyderabad", school: "Little Flower School", score: "100/100" },
+            { name: "Ishani Reddy", uid: "SVTC_03_045", city: "Warangal", school: "Vivekananda Academy", score: "99/100" },
+            { name: "Rahul Kumar", uid: "SVTC_03_120", city: "Vijayawada", school: "Delhi Public School", score: "98/100" },
+            { name: "M. Kavitha", uid: "SVTC_03_089", city: "Nellore", school: "St. Joseph Convent", score: "97/100" },
+            { name: "K. Teja", uid: "SVTC_03_211", city: "Kurnool", school: "Narayana Olympiad", score: "96/100" }
         ];
 
         let topperHtml = topStars.map(p => `
             <div class="topper-unit">
-                <div class="firework-particles"><div class="particle p1"></div><div class="particle p2"></div><div class="particle p3"></div><div class="particle p4"></div></div>
-                <div class="t-rank-badge">1st Rank</div><div class="t-congrats">Congrats!</div>
+                <div class="firework-wrap">
+                    <div class="firework" style="left:20%; background:#ff4757; animation-delay:0s;"></div>
+                    <div class="firework" style="left:50%; background:#ffa502; animation-delay:1s;"></div>
+                    <div class="firework" style="left:80%; background:#2ed573; animation-delay:2s;"></div>
+                </div>
+                <div class="t-badge-left">1st Rank</div><div class="t-badge-right">Congrats!</div>
                 <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" class="t-logo">
-                <div class="t-name">${p.name}</div><div class="t-uid">${p.uid}</div><div class="t-school">${p.school}</div>
+                <div class="t-name">${p.name}</div>
+                <div class="t-uid">${p.uid}</div>
+                <div class="t-school-box">${p.school}<br>City: ${p.city}</div>
                 <div class="t-score-box">TC Score: ${p.score}</div>
             </div>`).join('');
         document.getElementById('ui_toppers_track').innerHTML = topperHtml + topperHtml;
     }
 
-    function logout() { location.reload(); }
-    let secCount = 45; function startSessionTimer() { setInterval(() => { secCount++; const h=Math.floor(secCount/3600).toString().padStart(2,'0'), m=Math.floor((secCount%3600)/60).toString().padStart(2,'0'), s=(secCount%60).toString().padStart(2,'0'); document.getElementById('session_timer').textContent=`${h}:${m}:${s}`; }, 1000); }
+    function logout() { sessionActive = false; location.reload(); }
+    let secCount = 0; function startSessionTimer() { setInterval(() => { secCount++; const h=Math.floor(secCount/3600).toString().padStart(2,'0'), m=Math.floor((secCount%3600)/60).toString().padStart(2,'0'), s=(secCount%60).toString().padStart(2,'0'); document.getElementById('session_timer').textContent=`${h}:${m}:${s}`; }, 1000); }
 
-    /* --- EXAM LOGIC --- */
-    let currentQuestions = [];
-    let userAnswers = {};
-    let examTimerInterval;
-    let currentTestNum = 0;
-    let isReviewMode = false;
-    let currentQIndex = 0;
-    let calculatedScore = 0;
-
+    let currentQuestions = [], userAnswers = {}, examTimerInterval, currentTestNum = 0, currentQIndex = 0, calculatedScore = 0;
     async function initiateExam(testNum, topicName, duration) {
-        currentTestNum = testNum;
-        isReviewMode = false;
-        currentQIndex = 0;
-        userAnswers = {};
-        document.getElementById('exam-portal-modal').style.display = 'flex';
+        currentTestNum = testNum; currentQIndex = 0; userAnswers = {};
+        document.getElementById('exam-portal-modal').style.display = 'block';
         document.getElementById('ex-topic-name').textContent = topicName;
-        document.getElementById('ex-question-area').style.display = 'none';
-        document.querySelector('.q-loader').style.display = 'block';
-        
+        document.getElementById('ex-question-area').innerHTML = 'Loading...';
         try {
             const res = await fetch(`${API_URL}?action=getQuestions&sheetName=${testNum}`);
-            const data = await res.json();
-            currentQuestions = data;
-            renderCurrentQuestion();
-            startExamTimer(duration);
-            document.querySelector('.q-loader').style.display = 'none';
-            document.getElementById('ex-question-area').style.display = 'block';
-        } catch (e) {
-            document.querySelector('.q-loader').textContent = "Failed to load questions.";
-        }
+            currentQuestions = await res.json();
+            renderQuestion(); startExamTimer(duration);
+        } catch (e) { document.getElementById('ex-question-area').innerHTML = "Error loading."; }
     }
 
-    function renderCurrentQuestion() {
+    function renderQuestion() {
         const q = currentQuestions[currentQIndex];
-        let optionsHtml = '';
-        if(!isReviewMode) {
-             optionsHtml = q.options.map((opt, oi) => `
-                <div class="option-item ${userAnswers[currentQIndex] === oi ? 'selected' : ''}" onclick="selectOption(${oi})">${opt}</div>
-            `).join('');
-        }
-
-        let reviewHtml = '';
-        if(isReviewMode) {
-            const userIdx = userAnswers[currentQIndex];
-            const userText = userIdx !== undefined ? q.options[userIdx] : "Not Answered";
-            const isCorrect = String(userText).trim() === String(q.correctAnswer).trim();
-            reviewHtml = `
-                <div class="review-box">
-                    <div class="review-row"><span class="review-label">Your Answer:</span> <span class="${isCorrect ? 'val-correct' : 'val-wrong'}">${userText}</span></div>
-                    <div class="review-row"><span class="review-label">Correct:</span> <span class="val-correct">${q.correctAnswer}</span></div>
-                    <div class="review-expl"><strong>Explanation:</strong> ${q.explanation || 'No explanation.'}</div>
-                </div>`;
-        }
-
         document.getElementById('ex-question-area').innerHTML = `
             <div class="question-card">
-                <div class="q-text"><span class="q-id-box">${q.id}</span> ${q.question}</div>
-                <div class="options-list">${optionsHtml}</div>
-                ${reviewHtml}
+                <div class="q-text">${q.id}. ${q.question}</div>
+                ${q.options.map((opt, i) => `<div class="option-item ${userAnswers[currentQIndex] === i ? 'selected' : ''}" onclick="userAnswers[${currentQIndex}]=${i}; renderQuestion();">${opt}</div>`).join('')}
             </div>`;
-        renderFooterButtons();
-    }
-
-    function renderFooterButtons() {
-        const footer = document.getElementById('exam-footer-actions');
-        footer.innerHTML = `
-            <div class="footer-left">
-                <button class="exam-nav-btn btn-prev" onclick="navQuestion(-1)" ${currentQIndex === 0 ? 'disabled' : ''}>PREVIOUS</button>
-                <button class="exam-nav-btn btn-exit" onclick="closeExam()">EXIT</button>
-            </div>
-            <div class="footer-right">
-                ${isReviewMode ? `
-                    <button class="btn-3d btn-review" style="padding:10px 20px; font-size:12px;" onclick="renderResultSummary()">BACK TO RESULT</button>
-                    <button class="exam-nav-btn btn-next" onclick="navQuestion(1)" ${currentQIndex === currentQuestions.length - 1 ? 'disabled' : ''}>NEXT</button>
-                ` : `
-                    <button class="btn-submit-exam" onclick="askConfirmation()">SUBMIT</button>
-                    <button class="exam-nav-btn btn-next" onclick="navQuestion(1)">NEXT</button>
-                `}
-            </div>`;
-    }
-
-    function navQuestion(dir) {
-        if (dir === 1 && currentQIndex === currentQuestions.length - 1 && !isReviewMode) { askConfirmation(); return; }
-        const nextIdx = currentQIndex + dir;
-        if(nextIdx >= 0 && nextIdx < currentQuestions.length) { currentQIndex = nextIdx; renderCurrentQuestion(); }
-    }
-
-    function selectOption(oi) {
-        if(isReviewMode) return;
-        userAnswers[currentQIndex] = oi;
-        renderCurrentQuestion();
+        document.getElementById('exam-footer-actions').innerHTML = `
+            <button class="btn-take" onclick="currentQIndex--; renderQuestion()" ${currentQIndex===0?'disabled':''}>Prev</button>
+            <button class="btn-take" style="background:var(--success-green);" onclick="document.getElementById('confirm-overlay').style.display='flex'">Submit</button>
+            <button class="btn-take" onclick="currentQIndex++; renderQuestion()" ${currentQIndex===currentQuestions.length-1?'disabled':''}>Next</button>`;
     }
 
     function startExamTimer(mins) {
-        let timeLeft = mins * 60;
-        clearInterval(examTimerInterval);
+        let t = mins * 60; clearInterval(examTimerInterval);
         examTimerInterval = setInterval(() => {
-            timeLeft--;
-            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
-            const s = (timeLeft % 60).toString().padStart(2, '0');
+            t--; const m=Math.floor(t/60).toString().padStart(2,'0'), s=(t%60).toString().padStart(2,'0');
             document.getElementById('ex-timer-val').textContent = `${m}:${s}`;
-            if (timeLeft <= 0) finalizeSubmit();
+            if(t<=0) finalizeSubmit();
         }, 1000);
     }
-
-    function askConfirmation() { document.getElementById('confirm-overlay').style.display = 'flex'; }
-    function cancelSubmit() { document.getElementById('confirm-overlay').style.display = 'none'; }
 
     async function finalizeSubmit() {
         document.getElementById('confirm-overlay').style.display = 'none';
         clearInterval(examTimerInterval);
-        
-        let score = 0;
-        currentQuestions.forEach((q, idx) => {
-            const userIdx = userAnswers[idx];
-            if (userIdx !== undefined && String(q.options[userIdx]).trim() === String(q.correctAnswer).trim()) score++;
-        });
-        calculatedScore = score;
-
+        calculatedScore = currentQuestions.reduce((s, q, i) => s + (userAnswers[i] !== undefined && String(q.options[userAnswers[i]]).trim() === String(q.correctAnswer).trim() ? 1 : 0), 0);
         for (let i = 0; i < 3; i++) {
-            const box = document.getElementById(`res-box-${currentTestNum}-${i}`);
-            if (box && (box.textContent === "--" || box.textContent === "")) {
-                box.textContent = calculatedScore;
-                break; 
-            }
+            const b = document.getElementById(`res-box-${currentTestNum}-${i}`);
+            if (b && (b.textContent === "--" || b.textContent === "")) { b.textContent = calculatedScore; break; }
         }
-
-        renderResultSummary();
-
-        const u = document.getElementById('username_input').value.trim();
-        fetch(`${API_URL}?action=submitScore&username=${encodeURIComponent(u)}&testNumber=${currentTestNum}&score=${score}`);
-    }
-
-    function renderResultSummary() {
-        const total = currentQuestions.length;
-        const percentage = (calculatedScore / total) * 100;
-        document.getElementById('ex-question-area').innerHTML = `
-            <div class="result-summary-card">
-                <div class="result-score-big">${calculatedScore}/${total}</div>
-                <div class="result-message ${percentage < 60 ? 'msg-improve' : percentage < 90 ? 'msg-good' : 'msg-excellent'}">
-                    ${percentage < 60 ? 'Keep Practicing!' : percentage < 90 ? 'Great Job!' : 'Outstanding!'}
-                </div>
-                <div class="result-stats-row">
-                    <div class="result-stat"><span class="rs-val rs-correct">${calculatedScore}</span><span class="rs-lbl">Correct</span></div>
-                    <div class="result-stat"><span class="rs-val rs-wrong">${total - calculatedScore}</span><span class="rs-lbl">Wrong</span></div>
-                </div>
-                <div style="display:flex; justify-content:center; gap:20px; margin-top:30px;">
-                    <button class="btn-3d btn-review" onclick="enableReview()">REVIEW TEST</button>
-                    <button class="btn-3d btn-close" onclick="closeExam()">CLOSE</button>
-                </div>
-            </div>`;
+        document.getElementById('ex-question-area').innerHTML = `<div style="text-align:center; padding:40px;"><h1 style="font-size:48px;">${calculatedScore}/${currentQuestions.length}</h1><button class="btn-take" onclick="closeExam()">Close</button></div>`;
         document.getElementById('exam-footer-actions').innerHTML = '';
+        fetch(`${API_URL}?action=submitScore&username=${encodeURIComponent(document.getElementById('username_input').value)}&testNumber=${currentTestNum}&score=${calculatedScore}`);
     }
 
-    function enableReview() { isReviewMode = true; currentQIndex = 0; renderCurrentQuestion(); }
-    
     function closeExam() { 
         document.getElementById('exam-portal-modal').style.display = 'none'; 
-        clearInterval(examTimerInterval); 
-        // మళ్ళీ అదే ఎగ్జామ్ దగ్గరికి రావాలి
         const row = document.getElementById(`test-row-${currentTestNum}`);
         if(row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
