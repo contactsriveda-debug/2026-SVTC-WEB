@@ -65,33 +65,23 @@
             header { flex-direction: column; height: auto; padding: 15px 10px; }
             header .header-left { flex-direction: column; text-align: center; gap: 10px; }
             header .logo { margin: 0 auto; }
-            header .header-right { margin-top: 15px; width: 100%; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; justify-content: space-around; }
+            header .header-right { margin-top: 15px; width: 100%; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; justify-content: center; gap: 15px; }
         }
 
-        #login-overlay { 
-            flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; 
-            background: #eef2f6; padding: 40px 20px; gap: 20px; margin-bottom: 50px; 
-        }
-        .login-card { 
-            background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); 
-            width: 100%; max-width: 400px; text-align: center; position: relative; border: 1px solid #dae1e7;
-            background: linear-gradient(120deg, #ffffff, #e0f2fe, #ffe4e6, #ffffff);
-            background-size: 400% 400%; animation: gradientMove 6s ease infinite;
-        }
-        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .login-logo { width: 80px; margin-bottom: 20px; }
-        .login-card h2 { color: var(--primary-blue); margin-bottom: 25px; font-weight: 900; font-size: 20px; }
-        .input-group { margin-bottom: 15px; text-align: left; position: relative; }
-        .input-group label { display: block; font-size: 11px; font-weight: 800; color: #64748b; margin-bottom: 6px; text-transform: uppercase; }
+        #login-overlay { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #f8fafc; padding: 40px 20px; gap: 20px; margin-bottom: 0; }
+        .login-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); width: 100%; max-width: 340px; text-align: center; position: relative; border: 1px solid #dae1e7; overflow: hidden; }
+        .login-card::after { content: ''; position: absolute; top: 0; left: -150%; width: 150%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05), transparent); transform: skewX(-20deg); animation: loginGoldScroll 6s infinite linear; pointer-events: none; z-index: 1; }
+        @keyframes loginGoldScroll { 0% { left: -150%; } 100% { left: 150%; } }
+
+        .login-logo { width: 70px; margin-bottom: 15px; position: relative; z-index: 5; }
+        .login-card h2 { color: var(--primary-blue); margin-bottom: 20px; font-weight: 900; font-size: 18px; position: relative; z-index: 5; }
+        .input-group { margin-bottom: 12px; text-align: left; position: relative; z-index: 5; }
+        .input-group label { display: block; font-size: 10px; font-weight: 800; color: #64748b; margin-bottom: 5px; text-transform: uppercase; }
         .input-wrapper { position: relative; }
-        .input-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--primary-blue); font-size: 14px; z-index: 2; }
-        .input-group input { width: 100%; padding: 12px 15px 12px 38px; border: 1.5px solid var(--border-color); border-radius: 10px; font-size: 14px; outline: none; background: var(--input-bg); font-weight: 700; color: var(--primary-blue); }
+        .input-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--primary-blue); font-size: 13px; z-index: 2; }
+        .input-group input { width: 100%; padding: 10px 15px 10px 35px; border: 1.5px solid var(--border-color); border-radius: 10px; font-size: 13px; outline: none; background: var(--input-bg); font-weight: 700; color: var(--primary-blue); }
         .pass-toggle { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; cursor: pointer; z-index: 5; }
-        .btn-login-submit { 
-            width: auto; min-width: 170px; padding: 12px 30px; background: var(--primary-blue); color: white; border: none; 
-            border-radius: 8px; font-weight: 900; cursor: pointer; font-size: 14px; margin-top: 15px; 
-            box-shadow: 0 4px 0 #000044; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-        }
+        .btn-login-submit { width: 100%; padding: 12px; background: var(--primary-blue); color: white; border: none; border-radius: 8px; font-weight: 900; cursor: pointer; font-size: 14px; margin-top: 10px; box-shadow: 0 4px 0 #000044; display: inline-flex; align-items: center; justify-content: center; gap: 10px; position: relative; z-index: 5; }
         
         #external-loader { display: none; width: 100%; max-width: 400px; padding: 10px; margin-top: 5px; }
         .load-step { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 13px; font-weight: 700; color: #64748b; margin-bottom: 8px; opacity: 0; }
@@ -101,29 +91,61 @@
 
         #dashboard-main { display: none; flex-direction: column; flex: 1; }
         main { flex: 1; width: 100%; margin: 0 auto; max-width: 1400px; padding: 0; display: flex; flex-direction: column; }
-        section, .welcome-section, .stats-container, .srm-banner, .achievements-premium, .status-panel, .fame-box, .cert-section, .parents-corner { width: 100%; padding: clamp(10px, 2vw, 15px) clamp(15px, 5vw, 40px); margin: 0; border-bottom: 1px solid var(--border-color); background: white; }
+        section, .welcome-section, .stats-container, .srm-banner, .achievements-premium, .status-panel, .fame-box, .cert-section, .parents-corner, .student-details-section, .premium-status-section { width: 100%; padding: clamp(10px, 2vw, 15px) clamp(15px, 5vw, 40px); margin: 0; border-bottom: 1px solid var(--border-color); background: white; }
 
         .welcome-section { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,139,0.1); padding-top: 6px !important; padding-bottom: 6px !important; }
         .welcome-text h1 { margin: 0; font-size: clamp(10px, 2.5vw, 14px); font-weight: 900; color: #1e293b; }
         .student-name { color: var(--primary-blue); font-weight: 900; }
         .logout-pill { display: flex; align-items: center; gap: 4px; font-size: 8.5px; font-weight: 900; color: white; background: var(--danger-red); padding: 3px 12px; border-radius: 50px; border: none; cursor: pointer; text-transform: uppercase; }
         
-        .stats-container { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; padding-top: 5px !important; padding-bottom: 5px !important; }
-        .stat-box { display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .stat-box i { font-size: 9px; color: var(--primary-blue); margin-bottom: 1px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
-        .stat-label { font-size: 6px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.3px; }
-        .stat-value { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 900; color: var(--text-dark); }
+        .stats-container { display: flex; flex-wrap: wrap; gap: 10px; padding: 15px clamp(10px, 5vw, 40px) !important; background: #fff; justify-content: center; }
+        .stat-box { flex: 1 1 70px; min-width: 70px; max-width: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 5px; background: white; border-radius: 12px; border: 1.5px solid #f1f5f9; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: transform 0.3s; }
+        .stat-box:hover { transform: translateY(-5px); }
+        .stat-box i { font-size: clamp(12px, 2.5vw, 15px); margin-bottom: 8px; }
+        .stat-box:nth-child(1) i { color: #3b82f6; }
+        .stat-box:nth-child(2) i { color: #8b5cf6; }
+        .stat-box:nth-child(3) i { color: #ec4899; }
+        .stat-box:nth-child(4) i { color: #10b981; }
+        .stat-box:nth-child(5) i { color: #f59e0b; }
+        .stat-label { font-size: 6.5px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .stat-value { font-family: 'Roboto Slab', serif; font-size: clamp(9px, 1.8vw, 13px); font-weight: 900; color: var(--text-dark); letter-spacing: 0.5px; }
 
-        .srm-banner { display: flex; align-items: center; justify-content: space-between; gap: 20px; background: linear-gradient(to right, #fff, #f9fbff); flex-wrap: wrap; }
+        .quote-header-box { background: #fdfdfd; padding: 25px clamp(15px, 5vw, 40px); border-bottom: 1.5px dashed var(--border-color); text-align: center; position: relative; overflow: hidden; }
+        .quote-header-box::before { content: ''; position: absolute; top: 0; left: -150%; width: 150%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.25), rgba(255, 215, 0, 0.1), transparent); transform: skewX(-20deg); animation: quoteGoldScroll 10s infinite linear; pointer-events: none; z-index: 1; }
+        @keyframes quoteGoldScroll { 0% { left: -150%; } 100% { left: 150%; } }
+
+        .quote-text { font-family: 'Roboto Slab', serif; font-size: 16px; font-weight: 700; color: var(--primary-blue); font-style: italic; line-height: 1.6; position: relative; z-index: 2; }
+        .quote-text i { color: var(--accent-orange); margin: 0 10px; opacity: 0.6; }
+
+        .srm-banner { display: flex; align-items: center; justify-content: space-between; gap: 20px; background: #fff8f0 !important; border-top: 1px solid #fed7aa; border-bottom: 1px solid #fed7aa; flex-wrap: wrap; }
         .srm-main-container { display: flex; flex: 1; align-items: center; gap: 15px; flex-wrap: wrap; justify-content: space-between; }
         .srm-content { flex: 2; min-width: 200px; }
         .srm-title { font-size: 14px; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; }
         .srm-desc { font-size: 12px; color: #64748b; line-height: 1.5; font-family: 'Inter'; margin: 0; text-align: justify; }
         .srm-contact-wrapper { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        @media (max-width: 600px) { .srm-contact-wrapper { flex-direction: column; text-align: center; margin: 0 auto; width: 100%; } }
         .srm-profile-photo { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--accent-orange); object-fit: cover; }
         .srm-contact-hd-text { display: flex; flex-direction: column; gap: 4px; border-left: 1.5px solid rgba(0,0,139,0.1); padding-left: 15px; }
+        @media (max-width: 600px) { .srm-contact-hd-text { border-left: none; padding-left: 0; align-items: center; } }
         .srm-contact-hd-text .label { color: #1e293b; font-size: 9px; text-transform: uppercase; font-weight: 800; }
-        .srm-contact-hd-text .value { color: black; font-weight: 900; font-size: 15px; }
+        .srm-contact-hd-text .value { color: black; font-weight: 900; font-size: 15px; font-family: 'Roboto Slab', serif; }
+
+        .premium-status-section { background: #f8fafc; padding-top: 25px !important; padding-bottom: 25px !important; }
+        .stamps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px 15px; }
+        .stamp-unit { display: flex; align-items: center; position: relative; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05)); }
+        .stamp-circle { width: 38px; height: 38px; border-radius: 50%; background: var(--success-green); display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; border: 4px solid #ffd700; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 10; flex-shrink: 0; position: relative; }
+        .stamp-box { background: linear-gradient(90deg, #ffffff, #f0fdf4); padding: 8px 15px 8px 25px; border-radius: 4px 0 0 4px; margin-left: -18px; flex-grow: 1; transition: 0.3s; clip-path: polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%); border-left: 5px solid var(--success-green); display: flex; align-items: center; min-height: 45px; }
+        .stamp-text { font-size: 10px; font-weight: 900; color: #1e293b; font-family: 'Roboto Slab', serif; line-height: 1.2; }
+        .stamp-unit:hover .stamp-box { transform: translateX(5px); background: #ffffff; }
+
+        @media (max-width: 900px) { .stamps-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .stamps-grid { grid-template-columns: 1fr; } }
+
+        .section-divider { position: relative; text-align: center; margin: 5px 0; }
+        .section-divider::before { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 2px; background: var(--border-color); z-index: 1; }
+        .divider-box { position: relative; display: inline-block; background: var(--primary-blue); color: white; padding: 4px 15px; border-radius: 6px; font-weight: 900; font-size: 11px; text-transform: uppercase; z-index: 2; border: 2px solid white; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .premium-glow { font-family: 'Roboto Slab', serif; overflow: hidden; background: var(--primary-blue); position: relative; }
+        .premium-glow::after { content: ''; position: absolute; top: 0; left: -150%; width: 150%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), rgba(255, 215, 0, 0.2), transparent); transform: skewX(-20deg); animation: loginGoldScroll 4s infinite linear; pointer-events: none; }
 
         .achievements-premium { background: linear-gradient(135deg, #000428 0%, #004e92 100%); color: white; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; position: relative; overflow: hidden; }
         .achiever-header h3 { margin: 0; font-size: 16px; font-weight: 900; color: var(--accent-yellow); text-transform: uppercase; letter-spacing: 0.5px; position: relative; z-index: 5; }
@@ -139,11 +161,14 @@
         
         .item-row { display: flex; flex-direction: column; background: white; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 8px; overflow: hidden; height: auto; }
         .item-top { display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; background: #fafafa; border-bottom: 1px solid #f1f5f9; gap: 10px; flex-wrap: wrap; }
+        @media (max-width: 600px) { .item-top { flex-direction: column; align-items: center; gap: 8px; } }
         .item-month { font-size: 10px; font-weight: 900; color: var(--danger-red); width: 60px; flex-shrink: 0; }
+        @media (max-width: 600px) { .item-month { width: auto; text-align: center; } }
         .item-meta { display: flex; gap: 10px; align-items: center; flex-grow: 1; justify-content: center; flex-wrap: wrap; }
         .item-meta div { display: flex; align-items: center; gap: 4px; font-size: 8.5px; font-weight: 800; color: var(--primary-blue); opacity: 0.8; }
         .item-scores { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
         .box-grid { display: flex; gap: 3px; }
+        @media (max-width: 600px) { .box-grid { justify-content: center; } }
         .box-unit { width: 28px; height: 20px; border: 1px solid var(--border-color); border-radius: 4px; font-size: 9px; font-weight: 900; display: flex; align-items: center; justify-content: center; background: white; color: var(--primary-blue); }
         .item-bottom { padding: 6px 12px; display: flex; justify-content: space-between; align-items: center; background: #f0f9ff; }
         .item-topic-wrap { display: flex; align-items: center; gap: 5px; }
@@ -161,19 +186,22 @@
 
         .performance-analysis { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; background: #fff0f5 !important; padding-bottom: 25px !important; }
         .rank-card { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
-        .rank-text-box { 
-            background: linear-gradient(135deg, var(--primary-blue), #000050, #004e92); 
-            background-size: 200% 200%;
-            animation: moveGradient 5s infinite linear;
-            padding: 15px 30px; border-radius: 15px; color: white; border: 2px solid var(--accent-orange); 
-        }
-        @keyframes moveGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .rank-text-box { background: linear-gradient(135deg, var(--primary-blue), #000050, #004e92); padding: 15px 30px; border-radius: 15px; color: white; border: 2px solid var(--accent-orange); }
         .rank-number { font-size: 42px; font-weight: 900; font-family: 'Bebas Neue', cursive; line-height: 1; }
         
         .recent-activity { display: flex; flex-direction: column; justify-content: flex-start; padding-top: 10px; }
         .activity-header { font-size: 14px; font-weight: 900; color: var(--primary-blue); margin-bottom: 15px; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
         .activity-list-box { background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; }
         .activity-item-line { display: flex; justify-content: space-between; padding: 6px 0; font-size: 12px; font-weight: 700; color: #475569; align-items: center; }
+
+        .student-details-section { background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%) !important; border-top: 3px solid var(--success-green); }
+        .details-header { font-size: 16px; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+        .detail-card { background: white; padding: 15px; border-radius: 12px; border: 1px solid #dcfce7; display: flex; align-items: center; gap: 15px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .detail-card i { font-size: 18px; color: var(--success-green); background: #f0fdf4; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
+        .detail-info { display: flex; flex-direction: column; }
+        .detail-label { font-size: 9px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+        .detail-value { font-size: 13px; font-weight: 900; color: #1e293b; }
 
         .cert-section { display: flex; justify-content: space-between; align-items: center; background: #fffbeb !important; border-left: 5px solid var(--accent-yellow); }
         .cert-title { font-size: 18px; font-weight: 900; color: #92400e; text-transform: uppercase; }
@@ -192,30 +220,13 @@
         .p-val { font-size: 28px; font-weight: 900; font-family: 'Bebas Neue'; letter-spacing: 1.5px; margin-top: 5px; }
         .p-stat:nth-child(1) .p-val { color: #0369a1; } .p-stat:nth-child(2) .p-val { color: #15803d; } .p-stat:nth-child(3) .p-val { color: #c2410c; } .p-stat:nth-child(4) .p-val { color: #a21caf; }
 
-        /* TOPPERS SECTION FULL WIDTH */
         .fame-box { overflow: hidden; position: relative; padding: 15px 0 !important; background: #fff !important; width: 100%; border-bottom: 1px solid #e2e8f0; }
         .fame-title-wrap { padding: 0 clamp(15px, 5vw, 40px) 10px; }
         .fame-scroll-container { width: 100%; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
-        .fame-scroll-container::-webkit-scrollbar { display: none; }
         .fame-track { display: inline-flex; gap: 15px; animation: liveScroll 50s linear infinite; padding: 10px 15px; }
         @keyframes liveScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         
-        .topper-unit { 
-            background: white; border: 1.5px solid #bae6fd; width: 210px; border-radius: 15px; 
-            text-align: center; padding: 25px 10px 15px; flex-shrink: 0; box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-            position: relative; overflow: hidden; display: inline-block; white-space: normal;
-            animation: bgGlow 4s infinite alternate;
-        }
-        @keyframes bgGlow { 0% { background: #fffdf2; } 100% { background: #fff5e6; } }
-        
-        .firework-wrap { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-        .firework { position: absolute; bottom: -10px; width: 3px; height: 3px; border-radius: 50%; animation: fireworkRise 2.5s infinite ease-out; }
-        @keyframes fireworkRise { 
-            0% { transform: translateY(0) scale(1); opacity: 1; } 
-            70% { transform: translateY(-120px) scale(1.5); opacity: 1; } 
-            100% { transform: translateY(-150px) scale(3.5); opacity: 0; } 
-        }
-
+        .topper-unit { background: white; border: 1.5px solid #bae6fd; width: 210px; border-radius: 15px; text-align: center; padding: 25px 10px 15px; flex-shrink: 0; box-shadow: 0 5px 15px rgba(0,0,0,0.05); position: relative; overflow: hidden; display: inline-block; white-space: normal; }
         .t-badge-left { position: absolute; top: 10px; left: 10px; background: var(--primary-blue); color: white; padding: 2px 6px; border-radius: 5px; font-size: 7px; font-weight: 900; text-transform: uppercase; z-index: 5; }
         .t-badge-right { position: absolute; top: 10px; right: 10px; font-family: 'Bebas Neue'; color: var(--danger-red); font-size: 12px; letter-spacing: 1px; z-index: 5; }
         .t-logo { width: 45px; height: 45px; margin-bottom: 5px; border-radius: 50%; border: 2px solid white; box-shadow: 0 3px 8px rgba(0,0,0,0.08); position: relative; z-index: 5; }
@@ -224,19 +235,10 @@
         .t-school-box { font-size: 9px; font-weight: 700; color: #475569; line-height: 1.3; height: 36px; overflow: hidden; margin-bottom: 5px; position: relative; z-index: 5; }
         .t-score-box { background: #f0fdf4; border: 1.2px solid var(--success-green); color: var(--success-green); padding: 4px; border-radius: 8px; font-weight: 900; font-size: 11px; position: relative; z-index: 5; }
 
-        /* FULL WIDTH INSPO MSG */
-        .fame-inspo { 
-            font-size: 13px; color: #ffffff; font-weight: 600; line-height: 1.8; text-align: center; 
-            padding: 30px clamp(15px, 5vw, 40px); background: linear-gradient(135deg, #004e92, #000428); 
-            border-top: 1px solid #000; border-bottom: 1px solid #000; width: 100%; font-family: 'Roboto Slab', serif;
-        }
+        .fame-inspo { font-size: 13px; color: #ffffff; font-weight: 600; line-height: 1.8; text-align: center; padding: 30px clamp(15px, 5vw, 40px); background: linear-gradient(135deg, #004e92, #000428); border-top: 1px solid #000; border-bottom: 1px solid #000; width: 100%; font-family: 'Roboto Slab', serif; }
 
-        /* COMMENTS SECTION */
         .comment-header { font-size: 16px; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; padding: 25px clamp(15px, 5vw, 40px) 10px; text-align: left; background: #fff; }
-        .comments-section { 
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; 
-            padding: 10px clamp(15px, 5vw, 40px) 30px; background: #fff; width: 100%; 
-        }
+        .comments-section { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 10px clamp(15px, 5vw, 40px) 30px; background: #fff; width: 100%; }
         .comment-box { background: white; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; transition: 0.3s; }
         .comment-box img { width: 100%; height: auto; display: block; }
 
@@ -305,7 +307,7 @@
             </div>
         </div>
         <button id="login_btn_sub" class="btn-login-submit" onclick="startLoginProcess()">LOGIN</button>
-        <div id="login_err_msg" style="display:none; color: red; font-size: 12px; font-weight: 800; margin-top: 10px;">Invalid details!</div>
+        <div id="login_err_msg" style="display:none; color: red; font-size: 11px; font-weight: 800; margin-top: 10px;">Invalid details!</div>
     </div>
     <div id="external-loader">
         <div class="load-step" id="step-1"><i class="fa-solid fa-circle-notch"></i> <span>Verifying Identity...</span></div>
@@ -321,11 +323,39 @@
         </div>
 
         <div class="stats-container">
-            <div class="stat-box"><i class="fa-solid fa-stopwatch"></i><span class="stat-label">SESSION</span><span class="stat-value" id="session_timer">00:00:00</span></div>
-            <div class="stat-box"><i class="fa-solid fa-right-to-bracket"></i><span class="stat-label">LOGINS</span><span class="stat-value" id="ui_logins">0</span></div>
-            <div class="stat-box"><i class="fa-solid fa-hourglass-half"></i><span class="stat-label">TOTAL TIME</span><span class="stat-value" id="ui_total_time">0h</span></div>
-            <div class="stat-box"><i class="fa-solid fa-tasks"></i><span class="stat-label">TESTS DONE</span><span class="stat-value" id="ui_tests_done">0</span></div>
-            <div class="stat-box highlight"><i class="fa-solid fa-star"></i><span class="stat-label" style="color:var(--accent-orange); font-size:6px; font-weight:800;">TC SCORE</span><span class="stat-value" id="ui_tc_score" style="color:var(--accent-orange);">0%</span></div>
+            <div class="stat-box">
+                <i class="fa-solid fa-stopwatch"></i>
+                <span class="stat-label">SESSION</span>
+                <span class="stat-value" id="session_timer">00:00:00</span>
+            </div>
+            <div class="stat-box">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span class="stat-label">LOGINS</span>
+                <span class="stat-value" id="ui_logins">0</span>
+            </div>
+            <div class="stat-box">
+                <i class="fa-solid fa-hourglass-half"></i>
+                <span class="stat-label">TOTAL TIME</span>
+                <span class="stat-value" id="ui_total_time">0h</span>
+            </div>
+            <div class="stat-box">
+                <i class="fa-solid fa-tasks"></i>
+                <span class="stat-label">TESTS DONE</span>
+                <span class="stat-value" id="ui_tests_done">0</span>
+            </div>
+            <div class="stat-box">
+                <i class="fa-solid fa-star"></i>
+                <span class="stat-label">TC SCORE</span>
+                <span class="stat-value" id="ui_tc_score">0%</span>
+            </div>
+        </div>
+
+        <div class="quote-header-box">
+            <div class="quote-text">
+                <i class="fa-solid fa-quote-left"></i>
+                "Success is the sum of small efforts, repeated day in and day out. Every test you complete brings you one step closer to your dreams. Keep pushing forward with courage and determination!"
+                <i class="fa-solid fa-quote-right"></i>
+            </div>
         </div>
 
         <div class="srm-banner">
@@ -344,6 +374,46 @@
             </div>
         </div>
 
+        <div class="premium-status-section">
+            <div class="stamps-grid">
+                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">PREMIUM MEMBER</span></div></div>
+                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">TEACHER ASSIGNED</span></div></div>
+                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">ELIGIBLE FOR CERTIFICATE</span></div></div>
+                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">KEEP 80% SCORE ABOVE MAINTAIN</span></div></div>
+                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">COMPLETE ALL SUBJECTS AT LEAST FIRST ATTEMPT</span></div></div>
+                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">100+ EXAMS GETTING HIGH MARKS</span></div></div>
+            </div>
+        </div>
+
+        <div class="status-panel">
+            <div class="status-header"><div><h2>Academic Progress <span id="ui_prog_accuracy" style="font-size: 14px; color: var(--success-green);">(Average Marks Accuracy: 48%)</span></h2></div></div>
+            <div class="status-grid" id="ui_progress_grid"></div>
+        </div>
+
+        <div id="portal-exam-container" style="padding: 15px; background: white;"></div>
+
+        <div class="student-details-section">
+            <div class="details-header"><i class="fa-solid fa-id-card"></i> Registered Details Student Personal Details</div>
+            <div class="details-grid">
+                <div class="detail-card"><i class="fa-solid fa-user-tie"></i><div class="detail-info"><span class="detail-label">Father Name</span><span class="detail-value" id="ui_father_name">--</span></div></div>
+                <div class="detail-card"><i class="fa-solid fa-phone"></i><div class="detail-info"><span class="detail-label">Phone Number</span><span class="detail-value" id="ui_phone_number">--</span></div></div>
+                <div class="detail-card"><i class="fa-solid fa-school"></i><div class="detail-info"><span class="detail-label">School Name</span><span class="detail-value" id="ui_school_name">--</span></div></div>
+                <div class="detail-card"><i class="fa-solid fa-file-contract"></i><div class="detail-info"><span class="detail-label">Agreement</span><span class="detail-value" id="ui_agreement">Verified & Accepted</span></div></div>
+                <div class="detail-card"><i class="fa-solid fa-box-open"></i><div class="detail-info"><span class="detail-label">Taken Plan</span><span class="detail-value" id="ui_taken_plan">Premium Annual Plan</span></div></div>
+                <div class="detail-card"><i class="fa-solid fa-calendar-check"></i><div class="detail-info"><span class="detail-label">Start Date</span><span class="detail-value" id="ui_start_date">01-June-2025</span></div></div>
+                <div class="detail-card"><i class="fa-solid fa-calendar-times"></i><div class="detail-info"><span class="detail-label">End Date</span><span class="detail-value" id="ui_end_date">31-May-2026</span></div></div>
+                <div class="detail-card"><i class="fa-solid fa-hourglass-start"></i><div class="detail-info"><span class="detail-label">Days Left</span><span class="detail-value" id="ui_days_left" style="color:var(--danger-red);">-- Days</span></div></div>
+            </div>
+        </div>
+
+        <div class="performance-analysis">
+            <div class="rank-card"><div class="rank-text-box"><span style="font-size:10px; font-weight:900; text-transform:uppercase; color:var(--accent-yellow);">Your Current Rank</span><div class="rank-number" id="ui_rank">#0</div></div></div>
+            <div class="recent-activity">
+                <div class="activity-header"><i class="fa-solid fa-history"></i> Recent Completed Topics</div>
+                <div class="activity-list-box" id="ui_recent_activity"></div>
+            </div>
+        </div>
+
         <div class="achievements-premium">
             <div class="header-scroll-bg"></div>
             <div class="achiever-header"><h3><i class="fa-solid fa-medal"></i> Academic Mastery Badges</h3><p style="margin: 5px 0 0; font-size: 11px; opacity: 0.8; font-weight: 700; color: #e2e8f0;">Consistent practice is the bridge between goals and accomplishments. Keep pushing your limits!</p></div>
@@ -353,21 +423,6 @@
                 <div class="badge-unit"><div class="badge-glow"><i class="fa-solid fa-landmark"></i></div><span class="badge-lbl">History</span></div>
                 <div class="badge-unit"><div class="badge-glow"><i class="fa-solid fa-dna"></i></div><span class="badge-lbl">Science</span></div>
                 <div class="badge-unit"><div class="badge-glow"><i class="fa-solid fa-language"></i></div><span class="badge-lbl">English</span></div>
-            </div>
-        </div>
-
-        <div id="portal-exam-container" style="padding: 15px; background: white;"></div>
-
-        <div class="status-panel">
-            <div class="status-header"><div><h2>Academic Progress <span id="ui_prog_accuracy" style="font-size: 14px; color: var(--success-green);">(Average Marks Accuracy: 48%)</span></h2></div></div>
-            <div class="status-grid" id="ui_progress_grid"></div>
-        </div>
-
-        <div class="performance-analysis">
-            <div class="rank-card"><div class="rank-text-box"><span style="font-size:10px; font-weight:900; text-transform:uppercase; color:var(--accent-yellow);">Your Current Rank</span><div class="rank-number" id="ui_rank">#0</div></div></div>
-            <div class="recent-activity">
-                <div class="activity-header"><i class="fa-solid fa-history"></i> Recent Completed Topics</div>
-                <div class="activity-list-box" id="ui_recent_activity"></div>
             </div>
         </div>
 
@@ -425,11 +480,13 @@
             <h4><i class="fa-solid fa-headset"></i> Support</h4>
             <p><i class="fa-solid fa-phone"></i> +91 9346119924</p>
             <p><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</p>
+            <p><i class="fa-solid fa-envelope"></i> About Us</p>
         </div>
         <div class="footer-column">
             <h4><i class="fa-solid fa-link"></i> Quick Links</h4>
-            <a href="#"><i class="fa-solid fa-circle-info"></i> About Us</a>
-            <a href="#"><i class="fa-solid fa-shield-halved"></i> Terms & Conditions</a>
+            <a href="#"><i class="fa-solid fa-circle-info"></i> Doners</a>
+            <a href="#"><i class="fa-solid fa-shield-halved"></i> Management</a>
+            <a href="#"><i class="fa-solid fa-shield-halved"></i> Terms & Condition</a>
         </div>
         <div class="footer-column">
             <h4><i class="fa-solid fa-share-nodes"></i> Follow Us</h4>
@@ -456,8 +513,8 @@
         <div id="confirm-overlay">
             <span style="font-weight:800; margin-bottom:15px;">Submit the test?</span>
             <div style="display:flex; gap:10px;">
-                <button onclick="finalizeSubmit()" style="background:var(--success-green); color:white; border:none; padding:10px 20px; border-radius:5px; font-weight:900; cursor:pointer;">YES</button>
-                <button onclick="document.getElementById('confirm-overlay').style.display='none'" style="background:var(--danger-red); color:white; border:none; padding:10px 20px; border-radius:5px; font-weight:900; cursor:pointer;">NO</button>
+                <button onclick="finalizeSubmit()" style="background:var(--success-green); color:white; border:none; padding:10px 20px; border-radius:50px; font-weight:900; cursor:pointer;">YES</button>
+                <button onclick="document.getElementById('confirm-overlay').style.display='none'" style="background:var(--danger-red); color:white; border:none; padding:10px 20px; border-radius:50px; font-weight:900; cursor:pointer;">NO</button>
             </div>
         </div>
         <div class="exam-footer" id="exam-footer-actions"></div>
@@ -473,8 +530,8 @@
         { n: "ENGLISH", icon: "fa-spell-check", duration: 30, m: "English is the global key to share your ideas with the entire world. Mastering spelling and grammar rules gives you immense confidence to communicate. From alphabet practice to making sentences, every step improves your language power. Reading small passages daily will expand your vocabulary and creative thinking. Knowing opposites and position words helps you describe things accurately. Excellent English skills will make you stand out in every interview and classroom. Complete these topics and open the door to thousands of books and stories. Master the language of the future today!" },
         { n: "TELUGU", icon: "fa-pen-nib", duration: 30, m: "Telugu is our beautiful mother tongue, full of culture and wisdom. Learning aksharas and meanings connects you to our great heritage. Mastering small sentences and filling blanks improves your command over the language. Proverbs and idioms are the soul of Telugu and teach you life lessons in a few words. Reading short passages will make you an expert in Telugu literature. Knowing our language perfectly is a matter of great pride. Every topic here is designed to make you love Telugu even more. Practice daily and speak with elegance and respect!" },
         { n: "GENERAL KNOWLEDGE", icon: "fa-globe-americas", duration: 30, m: "General Knowledge builds a well-rounded personality and keeps you updated. Knowing about our country and national signs is very important for every citizen. Learning state names and festivals makes you respect our diverse culture. Knowledge of great people and sports heroes inspires you to achieve big goals. Discovering bird and animal names connects you to the natural world. A knowledgeable student is always a leader among friends. This section is a treasure chest of information about the universe. Read everything carefully and become a walking encyclopedia!" },
-        { n: "BASIC SCIENCE", icon: "fa-flask", duration: 30, m: "Science is the study of everything around us, from our bodies to the stars. Learning about body parts and sense organs helps you understand your own life. Plants and animals are vital parts of our nature that we must protect. Topics like water, air, and food sources teach you about the essentials of survival. Exploring the sun, moon, and light sound is an exciting scientific adventure. This section builds a curiosity that turns into deep knowledge. Understanding science is the first step toward becoming a future doctor or scientist. Start exploring the world of facts today!" },
-        { n: "COMPUTER", icon: "fa-desktop", duration: 30, m: "Computers are the most powerful tools in the modern digital age. Knowing hardware and software parts is essential for every 21st-century student. From mobile uses to internet intro, learn how technology makes life easier. Safety rules and internet ethics are important to stay protected online. Understanding AI and input-output parts prepares you for the high-tech future. Every topic here is a building block for your technical career. Coding and computer basics are the superpowers of the modern world. Master technology and lead the way in this fast-growing digital era!" },
+        { n: "BASIC SCIENCE", icon: "fa-flask", duration: 30, m: "Science is the study of everything around us, from our bodies to the stars. Learning about body parts and sense parts helps you understand your own life. Plants and animals are vital parts of our nature that we must protect. Topics like water, air, and food sources teach you about the essentials of survival. Exploring the sun, moon, and light sound is an exciting scientific adventure. This section builds a curiosity that turns into deep knowledge. Understanding science is the first step toward becoming a future doctor or scientist. Start exploring the world of facts today!" },
+        { n: "COMPUTER", icon: "fa-desktop", duration: 30, m: "Computers are the most powerful tools in the modern digital age. Knowing hardware and software parts is essential for every 21st-century student. From mobile uses to internet intro, learn how technology makes life easier. Safety rules and internet ethics are important to stay protected online. Understanding AI and input-output parts prepares you for the high-tech future. Every topic here is a building block for your technical career. Coding and computer basics are the superpowers of the world. Master technology and lead the way in this fast-growing digital era!" },
         { n: "MENTAL ABILITY", icon: "fa-brain", duration: 30, m: "Mental Ability is about using your brain to find matches and differences quickly. Fast counting and memory tests significantly boost your concentration levels. Number games and picture matches make learning very fun and engaging. Thinking questions and brain tests force you to analyze problems deeply. This section is highly tested in competitive benchmarks to check raw intelligence. Training your brain daily keeps you mentally active and smart. The more you practice, the faster your reflexes will become. Challenge yourself and see how quick your brain can really work!" },
         { n: "LIFE SKILLS", icon: "fa-hands-holding-heart", duration: 30, m: "Life skills are the foundation of a good character and a happy life. Learning good habits and time management makes you a disciplined student. Speaking the truth and fulfilling duties builds trust and respect in society. Self-belief and making the right choice are keys to achieving your life goals. Helping others and leading teams teaches you empathy and bravery. These lessons are more important than textbook marks for real-world success. Be a person of value and light the way for others around you. Cultivate these skills and build a successful future!" },
         { n: "COMPETITION BASE", icon: "fa-trophy", duration: 30, m: "This section is the final step to prepare you for high-stakes exams. It combines easy maths, science, GK, and reasoning for a complete test. Speed and accuracy tests check how well you can perform under pressure. Practice and model tests give you a real feeling of the actual competition. Mixed tests help you switch between different subjects quickly. Finishing this section proves that you are ready to be a state-level topper. Be consistent, stay focused, and aim for 100% accuracy in every test. Your success story starts with this final preparation. Go for it!" }
@@ -543,13 +600,17 @@
         document.getElementById('ui_tests_done').textContent = data.tests_completed;
         document.getElementById('ui_tc_score').textContent = data.tc_score;
         document.getElementById('ui_rank').textContent = `#${data.current_rank}`;
-        document.getElementById('ui_prog_accuracy').textContent = `(Average Marks Accuracy: 48%)`;
         document.getElementById('ui_srm_name').textContent = data.srm_name || "Sri Veda TC";
         document.getElementById('ui_srm_contact').textContent = data.srm_contact || "8985170500";
         document.getElementById('ui_p_weekly_time').textContent = data.weekly_time;
         document.getElementById('ui_p_accuracy').textContent = "48%";
         document.getElementById('ui_p_tests').textContent = data.tests_completed;
         document.getElementById('ui_p_logins').textContent = data.logins_count;
+
+        document.getElementById('ui_father_name').textContent = data.father_name || "Venkatesh Rao";
+        document.getElementById('ui_phone_number').textContent = data.phone_number || "9346119924";
+        document.getElementById('ui_school_name').textContent = data.school_name || "Little Flower School";
+        document.getElementById('ui_days_left').textContent = (data.days_left || "95") + " Days";
 
         const bCount = parseInt(data.mastery_badges) || 0;
         document.querySelectorAll('#ui_badges_row .badge-unit').forEach((u, i) => { if(i < bCount) u.classList.add('active'); });
@@ -559,7 +620,9 @@
         let sectionProgressData = [];
         let completedTopics = [];
 
-        cont.innerHTML = subjects.map((s, si) => {
+        let examsHtml = `<div class="section-divider"><div class="divider-box premium-glow">Premium Exam Section</div></div>`;
+
+        examsHtml += subjects.map((s, si) => {
             let sectionCompletedCount = 0;
             const subHtml = `
             <div class="subject-pane">
@@ -604,6 +667,9 @@
             return subHtml;
         }).join('');
 
+        examsHtml += `<div class="section-divider"><div class="divider-box">Exams Closed</div></div>`;
+        cont.innerHTML = examsHtml;
+
         document.getElementById('ui_progress_grid').innerHTML = sectionProgressData.map(sec => `
             <div class="progress-card">
                 <div style="flex:1">
@@ -615,7 +681,9 @@
             </div>`).join('');
 
         const activityContainer = document.getElementById('ui_recent_activity');
-        activityContainer.innerHTML = completedTopics.slice(-5).reverse().map(t => `<div class="activity-item-line"><div><i class="fa-solid fa-circle-check" style="color:var(--success-green); margin-right:8px;"></i> <span>${t}</span></div><span style="color:var(--success-green); font-size:10px; font-weight:900;">DONE</span></div>`).join('') || '<p style="font-size:11px; color:#64748b;">No exams yet.</p>';
+        let actToDisplay = completedTopics.slice(-5).reverse();
+        if (actToDisplay.length === 0) { actToDisplay = ["Number Basics", "Easy Addition", "Easy Subtraction", "Table Practice", "Simple Division"]; }
+        activityContainer.innerHTML = actToDisplay.map(t => `<div class="activity-item-line"><div><i class="fa-solid fa-circle-check" style="color:var(--success-green); margin-right:8px;"></i> <span>${t}</span></div><span style="color:var(--success-green); font-size:10px; font-weight:900;">DONE</span></div>`).join('');
 
         const topStars = [
             { name: "Siddharth Raj", uid: "SVTC_03_001", city: "Hyderabad", school: "Little Flower School", score: "100/100" },
@@ -627,11 +695,6 @@
 
         let topperHtml = topStars.map(p => `
             <div class="topper-unit">
-                <div class="firework-wrap">
-                    <div class="firework" style="left:20%; background:#ff4757; animation-delay:0s;"></div>
-                    <div class="firework" style="left:50%; background:#ffa502; animation-delay:1s;"></div>
-                    <div class="firework" style="left:80%; background:#2ed573; animation-delay:2s;"></div>
-                </div>
                 <div class="t-badge-left">1st Rank</div><div class="t-badge-right">Congrats!</div>
                 <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" class="t-logo">
                 <div class="t-name">${p.name}</div>
