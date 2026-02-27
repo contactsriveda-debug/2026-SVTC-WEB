@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Sri Veda Talent Competition - Support Education</title>
+    <style>
+        :root {
+            --primary-blue: #00008B;
+            --accent-yellow: #ffeb3b;
+            --accent-orange: #ffa500;
+            --bg-gray: #f4f7fa;
+            --text-dark: #0f172a;
+            --white: #ffffff;
+            --credit-green: #059669;
+            --debit-red: #dc2626;
+        }
+
+        * { font-family: 'Inter', sans-serif; box-sizing: border-box; outline: none; }
+        h1, h2, h3, .main-title { font-family: 'Roboto Slab', serif; }
+        html, body { margin: 0; padding: 0; width: 100%; min-height: 100vh; overflow-x: hidden; }
+        body { background-color: var(--bg-gray); color: var(--text-dark); display: flex; flex-direction: column; }
+
+        /* HEADER STYLES - UNCHANGED */
+        header { 
+            background: var(--primary-blue); 
+            padding: 12px clamp(12px, 4vw, 30px); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            color: white; 
+            width: 100%; 
+            position: relative; 
+            overflow: hidden; 
+            min-height: 75px; 
+            z-index: 100;
+        }
+        .header-scroll-bg { 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 400%; height: 100%; 
+            background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 5%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1) 15%, transparent 20%); 
+            z-index: 1; 
+            animation: scrollGlow 25s linear infinite; 
+            opacity: 0.9; 
+        }
+        @keyframes scrollGlow { 0% { transform: translateX(-100%); } 100% { transform: translateX(25%); } }
+        header .header-left, header .header-right, .header-corner, .header-corner-right { z-index: 10; }
+        header .header-left { display: flex; align-items: center; gap: 15px; }
+        header .logo { height: 46px; width: 46px; border-radius: 50%; border: 2px solid #ffffff; background: white; flex-shrink: 0; }
+        header .main-title { font-size: clamp(14px, 3vw, 20px); font-weight: 900; line-height: 1.1; }
+        header .sub-title { font-size: clamp(9px, 2vw, 13px); font-weight: 600; color: var(--accent-yellow); margin-top: 3px; }
+        header .header-right { display: flex; gap: clamp(10px, 2.5vw, 25px); align-items: center; }
+        .menu-item a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; position: relative; }
+        header .icon { font-size: clamp(14px, 2.5vw, 18px); color: var(--accent-orange); opacity: 0.9; }
+        .icon-label { font-size: 7.5px; margin-top: 5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.85; }
+        .header-corner { position: absolute; top: 0; left: 0; height: 45px; opacity: 0.8; pointer-events: none; }
+        .header-corner-right { position: absolute; top: 0; right: 0; height: 45px; opacity: 0.8; transform: scaleX(-1); pointer-events: none; }
+
+        /* LIVE GRADIENT ANIMATION */
+        @keyframes liveGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* MAIN CONTENT */
+        main { flex-grow: 1; display: flex; flex-direction: column; gap: 15px; width: 100%; }
+
+        /* PUBLIC VIEW LAYOUT */
+        .public-view { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        /* DONATION SECTION (TOP) */
+        .donation-section {
+            background: linear-gradient(-45deg, #ff9800, #f44336, #ffc107, #ff5722);
+            background-size: 400% 400%;
+            animation: liveGradient 10s ease infinite;
+            border-radius: 20px;
+            padding: 40px 20px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 87, 34, 0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .donation-section h1 { font-size: 32px; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .donation-section p { max-width: 800px; margin: 0 auto 30px; line-height: 1.6; font-weight: 500; font-size: 16px; opacity: 0.95; }
+        
+        .qr-container {
+            background: white;
+            display: inline-block;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            margin-bottom: 15px;
+        }
+        .qr-img { width: 200px; height: 200px; border-radius: 8px; }
+        .scan-msg { font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; }
+
+        /* LOGIN SECTION (BELOW DONATION) */
+        .login-section-container {
+            background: linear-gradient(-45deg, #1a237e, #0d47a1, #01579b, #006064);
+            background-size: 400% 400%;
+            animation: liveGradient 12s ease infinite;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 139, 0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            text-align: center;
+        }
+        .login-section-container h3 { font-size: 24px; margin-bottom: 10px; font-weight: 900; }
+        .login-section-container p { font-size: 14px; margin-bottom: 25px; opacity: 0.8; font-weight: 500; }
+        
+        .login-form { max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+        .input-group { text-align: left; }
+        .input-group label { display: block; font-size: 11px; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; color: var(--accent-yellow); }
+        .input-group input { 
+            width: 100%; padding: 12px 15px; border-radius: 10px; border: none; 
+            background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2);
+            font-weight: 600;
+        }
+        .input-group input::placeholder { color: rgba(255,255,255,0.4); }
+        .input-group input:focus { background: rgba(255,255,255,0.2); border-color: white; }
+        .submit-btn { 
+            background: var(--accent-orange); color: white; border: none; padding: 14px; 
+            border-radius: 10px; font-weight: 900; text-transform: uppercase; cursor: pointer;
+            transition: 0.3s; margin-top: 10px;
+        }
+        .submit-btn:hover { background: #e65100; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+        /* AUTHENTICATED FINANCIALS */
+        #authenticatedView { display: none; opacity: 0; padding: 20px; max-width: 1400px; margin: 0 auto; width: 100%; transition: 0.5s; }
+        .dashboard-row { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 10px; margin-bottom: 10px; }
+        .micro-section { background: white; border-radius: 8px; padding: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid #eef2f6; }
+        .micro-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px; }
+        .micro-header h2 { font-size: 11px; text-transform: uppercase; font-weight: 800; color: var(--primary-blue); margin: 0; letter-spacing: 0.5px; }
+        .margin-strip { display: flex; flex-direction: column; gap: 6px; }
+        .margin-item { display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 6px 10px; border-radius: 6px; border-left: 3px solid transparent; }
+        .margin-item .label { font-size: 10px; font-weight: 700; color: #64748b; }
+        .margin-item .value { font-size: 13px; font-weight: 900; }
+        .m-credit { border-left-color: var(--credit-green); }
+        .m-debit { border-left-color: var(--debit-red); }
+        .m-net { background: var(--primary-blue); color: white; border-left-color: var(--accent-yellow); }
+        .expense-chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+        .expense-chip { background: white; border: 1px solid #f1f5f9; padding: 6px 8px; border-radius: 6px; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
+        .expense-chip i { font-size: 12px; color: var(--accent-orange); opacity: 0.7; }
+        .expense-chip .txt h4 { margin: 0; font-size: 8px; color: #94a3b8; text-transform: uppercase; line-height: 1; }
+        .expense-chip .txt p { margin: 2px 0 0 0; font-size: 12px; font-weight: 800; color: var(--primary-blue); line-height: 1; }
+        .donors-micro-box { background: white; border-radius: 8px; padding: 10px; border: 1px solid #eef2f6; }
+        .donors-top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .donors-top-bar h2 { font-size: 11px; text-transform: uppercase; font-weight: 800; color: var(--primary-blue); margin: 0; }
+        .micro-select { font-size: 10px; padding: 4px 8px; border-radius: 4px; border: 1px solid #e2e8f0; outline: none; background: #f8fafc; font-weight: 600; }
+        .micro-donor-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 5px; }
+        .micro-donor-pill { background: #f8fafc; border: 1px solid #f1f5f9; padding: 5px 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+        .micro-donor-pill .n { font-size: 10.5px; font-weight: 700; color: var(--text-dark); }
+        .micro-donor-pill .v { font-size: 8px; font-weight: 700; color: #94a3b8; text-transform: uppercase; }
+        .micro-donor-pill .a { font-size: 11px; font-weight: 900; color: var(--credit-green); }
+
+        @media (max-width: 900px) {
+            .dashboard-row { grid-template-columns: 1fr; }
+            .expense-chips { grid-template-columns: repeat(2, 1fr); }
+            .donation-section h1 { font-size: 24px; }
+        }
+
+        /* FOOTER - UNCHANGED */
+        footer { background: var(--primary-blue); color: white; padding: 15px 20px; border-top: 3px solid var(--accent-orange); margin-top: auto; width: 100%; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; width: 100%; padding: 0 clamp(12px, 4vw, 30px); }
+        .footer-column { display: flex; flex-direction: column; }
+        .footer-column h4 { color: var(--accent-yellow); border-bottom: 1px solid var(--accent-yellow); margin-bottom: 12px; font-weight: 900; font-size: 12px; text-transform: uppercase; align-self: flex-start; }
+        .footer-column p, .footer-column a { font-size: 10.5px; color: rgba(255,255,255,0.9); text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-weight: 600; }
+        .social-icons { display: flex; gap: 10px; margin: 5px 0; }
+        .social-icons a { font-size: 18px; color: white; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-scroll-bg"></div>
+    <img src="https://studentvisiontc.github.io/SVTC-Images/hh%20logo.png" class="header-corner">
+    <img src="https://studentvisiontc.github.io/SVTC-Images/hh%20logo.png" class="header-corner-right">
+    <div class="header-left">
+        <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" alt="SV Logo" class="logo">
+        <div>
+            <div class="main-title">Sri Veda Talent Competition</div>
+            <div class="sub-title">“See Your Success”</div>
+        </div>
+    </div>
+    <div class="header-right">
+        <div class="menu-item"><a href="#"><i class="fa-solid fa-house icon"></i><span class="icon-label">Home</span></a></div>
+        <div class="menu-item"><a href="#"><i class="fa-solid fa-user-plus icon"></i><span class="icon-label">Register</span></a></div>
+        <div class="menu-item"><a href="#"><i class="fa-solid fa-right-to-bracket icon"></i><span class="icon-label">Login</span></a></div>
+        <div class="menu-item"><a href="#"><i class="fa-solid fa-user-tie icon"></i><span class="icon-label">Admin</span></a></div>
+        <div class="menu-item"><a href="#"><i class="fa-solid fa-tags icon"></i><span class="icon-label">Pricing</span></a></div>
+    </div>
+</header>
+
+<main>
+    <!-- Public Content -->
+    <div class="public-view" id="publicView">
+        
+        <!-- TOP: Donation Section with Orange Live Gradient -->
+        <section class="donation-section">
+            <h1>Support Academic Excellence</h1>
+            <p>
+                We empower students from <strong>3rd to 10th Grade</strong> by conducting talent competitions and competitive exams. 
+                Your donation helps us provide prizes, clear student doubts, and encourage young minds to reach their full potential.
+            </p>
+            <div class="qr-container">
+                <!-- High-quality representative QR for display -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="Donation QR Code" class="qr-img">
+            </div>
+            <div class="scan-msg"><i class="fa-solid fa-camera"></i> Scan to Donate Now</div>
+        </section>
+
+        <!-- BELOW: Login Section with Different Live Gradient -->
+        <section class="login-section-container">
+            <h3>Authorized Access Only</h3>
+            <p>Authorized persons can login here to view company donors list and expense analytics.</p>
+            
+            <form class="login-form" id="loginForm">
+                <div class="input-group">
+                    <label>Username / ID</label>
+                    <input type="text" placeholder="Enter ID" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="submit-btn">Login to View Financials</button>
+            </form>
+        </section>
+
+    </div>
+
+    <!-- Authenticated View (Financial Dashboard) -->
+    <div id="authenticatedView">
+        <div class="dashboard-row">
+            <!-- MARGINS -->
+            <div class="micro-section">
+                <div class="micro-header">
+                    <i class="fa-solid fa-chart-line" style="font-size: 10px; color: var(--accent-orange);"></i>
+                    <h2>Financial Margins</h2>
+                </div>
+                <div class="margin-strip">
+                    <div class="margin-item m-credit">
+                        <span class="label">Total Credit</span>
+                        <span class="value" style="color: var(--credit-green);">₹ 1,50,000</span>
+                    </div>
+                    <div class="margin-item m-debit">
+                        <span class="label">Total Debit</span>
+                        <span class="value" style="color: var(--debit-red);">₹ 1,20,800</span>
+                    </div>
+                    <div class="margin-item m-net">
+                        <span class="label">Net Margin</span>
+                        <span class="value">₹ 29,200</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPENSES -->
+            <div class="micro-section">
+                <div class="micro-header">
+                    <i class="fa-solid fa-wallet" style="font-size: 10px; color: var(--accent-orange);"></i>
+                    <h2>Expense Overview</h2>
+                </div>
+                <div class="expense-chips">
+                    <div class="expense-chip"><i class="fa-solid fa-user"></i><div class="txt"><h4>Salaries</h4><p>₹ 45k</p></div></div>
+                    <div class="expense-chip"><i class="fa-solid fa-gear"></i><div class="txt"><h4>Mgmt</h4><p>₹ 28.5k</p></div></div>
+                    <div class="expense-chip"><i class="fa-solid fa-scissors"></i><div class="txt"><h4>Cut-off</h4><p>₹ 12.3k</p></div></div>
+                    <div class="expense-chip"><i class="fa-solid fa-award"></i><div class="txt"><h4>Rewards</h4><p>₹ 35k</p></div></div>
+                    <div class="expense-chip"><i class="fa-solid fa-truck"></i><div class="txt"><h4>Trans</h4><p>₹ 5k</p></div></div>
+                    <div class="expense-chip"><i class="fa-solid fa-bullhorn"></i><div class="txt"><h4>Market</h4><p>₹ 8k</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DONORS -->
+        <div class="donors-micro-box">
+            <div class="donors-top-bar">
+                <h2>Donor Contributions (30 Members)</h2>
+                <select class="micro-select" id="mFilter" onchange="runMicroFilter()">
+                    <option value="all">All Regions</option>
+                    <option value="hyd">Hyd</option><option value="wrg">Wrg</option><option value="vzg">Vzg</option><option value="vjw">Vjw</option><option value="knr">Knr</option><option value="gtr">Gtr</option><option value="khm">Khm</option>
+                </select>
+            </div>
+            <div class="micro-donor-grid" id="mList">
+                <script>
+                    const regions = [{id:'hyd',n:'Hyd'},{id:'wrg',n:'Wrg'},{id:'vzg',n:'Vzg'},{id:'vjw',n:'Vjw'},{id:'knr',n:'Knr'},{id:'gtr',n:'Gtr'},{id:'khm',n:'Khm'}];
+                    const donorNames = ["K. Rama Rao","B. Satish","M. Srinivas","G. Anitha","V. Ravi","T. Laxmi","P. Rajesh","S. Madhu","R. Suresh","A. Vinay","D. Kavitha","J. Bhaskar","L. Naresh","C. Swapna","H. Naveen","K. Pradeep","M. Ramesh","P. Sravani","U. Mahesh","Y. Anil","Q. Farooq","W. Sandeep","E. Divya","R. Mohan","T. Sai","O. Venkatesh","I. Arjun","S. Preeti","A. Karthik","N. Sneha"];
+                    let microHtml = "";
+                    for(let i=0; i<30; i++) {
+                        const reg = regions[i % regions.length];
+                        const val = (i % 2 === 0) ? 500 : 200;
+                        microHtml += `<div class="micro-donor-pill" data-loc="${reg.id}"><div class="d-info"><span class="n">${donorNames[i]}</span><span class="v"> - ${reg.n}</span></div><span class="a">₹${val}</span></div>`;
+                    }
+                    document.write(microHtml);
+                </script>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-headset"></i> Support</h4>
+            <p><i class="fa-solid fa-phone"></i> +91 9346119924</p>
+            <p><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</p>
+        </div>
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-link"></i> Quick Links</h4>
+            <a href="#"><i class="fa-solid fa-circle-info"></i> About Us</a>
+            <a href="#"><i class="fa-solid fa-shield-halved"></i> Terms & Conditions</a>
+        </div>
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-share-nodes"></i> Follow Us</h4>
+            <div class="social-icons">
+                <a href="http://wa.me/919346119924"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+            </div>
+            <p style="opacity: 0.7; font-size: 10px;">&copy; 2025 Student Vision TC. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Authentication Logic
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const publicView = document.getElementById('publicView');
+        const authView = document.getElementById('authenticatedView');
+
+        // Animation transition
+        publicView.style.opacity = "0";
+        setTimeout(() => {
+            publicView.style.display = "none";
+            authView.style.display = "block";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(() => {
+                authView.style.opacity = "1";
+            }, 50);
+        }, 500);
+    });
+
+    function runMicroFilter() {
+        const val = document.getElementById('mFilter').value;
+        const items = document.querySelectorAll('.micro-donor-pill');
+        items.forEach(item => {
+            if(val === 'all') {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = (item.getAttribute('data-loc') === val) ? 'flex' : 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

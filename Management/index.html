@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Student Vision - Managing Directors</title>
+    <style>
+        :root {
+            --primary-blue: #00008B;
+            --accent-yellow: #ffeb3b;
+            --accent-orange: #ffa500;
+            --bg-gray: #f8fafc;
+            --text-dark: #1e293b;
+            --border-color: #e2e8f0;
+            --white: #ffffff;
+        }
+
+        * { font-family: 'Inter', sans-serif; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        h1, h2, h3, .main-title { font-family: 'Roboto Slab', serif; }
+        html, body { margin: 0; padding: 0; width: 100%; min-height: 100vh; overflow-x: hidden; }
+        body { background-color: var(--bg-gray); color: var(--text-dark); display: flex; flex-direction: column; }
+
+        /* HEADER STYLES - UNCHANGED */
+        header { 
+            background: var(--primary-blue); 
+            padding: 12px clamp(12px, 4vw, 30px); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            color: white; 
+            width: 100%; 
+            position: relative; 
+            overflow: hidden; 
+            min-height: 75px; 
+            z-index: 100;
+        }
+        .header-scroll-bg { 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 400%; height: 100%; 
+            background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 5%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1) 15%, transparent 20%); 
+            z-index: 1; 
+            animation: scrollGlow 25s linear infinite; 
+            opacity: 0.9; 
+        }
+        @keyframes scrollGlow { 0% { transform: translateX(-100%); } 100% { transform: translateX(25%); } }
+        header .header-left, header .header-right, .header-corner, .header-corner-right { z-index: 10; }
+        header .header-left { display: flex; align-items: center; gap: 15px; }
+        header .logo { height: 46px; width: 46px; border-radius: 50%; border: 2px solid #ffffff; background: white; flex-shrink: 0; }
+        header .main-title { font-size: clamp(14px, 3vw, 20px); font-weight: 900; line-height: 1.1; }
+        header .sub-title { font-size: clamp(9px, 2vw, 13px); font-weight: 600; color: var(--accent-yellow); margin-top: 3px; }
+        header .header-right { display: flex; gap: clamp(10px, 2.5vw, 25px); align-items: center; }
+        .menu-item a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; position: relative; }
+        header .icon { font-size: clamp(14px, 2.5vw, 18px); color: var(--accent-orange); opacity: 0.9; }
+        .icon-label { font-size: 7.5px; margin-top: 5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.85; }
+        .header-corner { position: absolute; top: 0; left: 0; height: 45px; opacity: 0.8; pointer-events: none; }
+        .header-corner-right { position: absolute; top: 0; right: 0; height: 45px; opacity: 0.8; transform: scaleX(-1); pointer-events: none; }
+
+        /* MAIN SECTION */
+        main { flex-grow: 1; padding: 50px 20px; max-width: 1100px; margin: 0 auto; width: 100%; }
+        
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header .title-box {
+            display: inline-block;
+            background: var(--primary-blue);
+            padding: 15px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 139, 0.2);
+            border-bottom: 4px solid var(--accent-orange);
+            margin-bottom: 20px;
+        }
+        .section-header h1 { 
+            font-family: 'Roboto Slab', serif;
+            font-size: 32px; 
+            color: var(--white); 
+            font-weight: 900; 
+            margin: 0;
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+        }
+        .section-header p { font-size: 16px; color: #64748b; font-weight: 600; margin-top: 10px; }
+
+        /* 3D BOX WITH LIVE SCROLLING GRADIENT */
+        .management-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .director-card {
+            background: linear-gradient(-45deg, #f0f9ff, #e0f2fe, #dbeafe, #f1f5f9);
+            background-size: 400% 400%;
+            animation: liveGradient 10s ease infinite;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.06), -4px -4px 10px rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @keyframes liveGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .director-card:hover {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .director-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid white;
+            background: white;
+            flex-shrink: 0;
+        }
+
+        .director-info { display: flex; flex-direction: column; }
+        .director-name { font-size: 15px; font-weight: 800; color: var(--primary-blue); margin-bottom: 1px; }
+        .director-role { font-size: 11px; font-weight: 700; color: var(--accent-orange); margin-bottom: 3px; text-transform: uppercase; }
+        .director-email { font-size: 10px; color: #475569; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+
+        /* SIMPLE MESSAGE PASSAGE */
+        .contact-passage {
+            margin-top: 60px;
+            text-align: center;
+            padding: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .inspiration-quote {
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        .contact-text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #475569;
+            font-weight: 500;
+        }
+        .contact-email-link {
+            color: var(--primary-blue);
+            font-weight: 800;
+            text-decoration: none;
+            border-bottom: 2px solid var(--accent-orange);
+        }
+
+        @media (max-width: 800px) {
+            .management-grid { grid-template-columns: 1fr; }
+            header { flex-direction: column; height: auto; text-align: center; padding: 20px 10px; }
+            header .header-right { margin-top: 15px; gap: 15px; }
+            .section-header h1 { font-size: 24px; }
+            .section-header .title-box { padding: 10px 25px; }
+        }
+
+        /* FOOTER - UNCHANGED */
+        footer { background: var(--primary-blue); color: white; padding: 15px 20px; border-top: 3px solid var(--accent-orange); margin-top: auto; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; width: 100%; padding: 0 clamp(12px, 4vw, 30px); }
+        .footer-column { display: flex; flex-direction: column; }
+        .footer-column h4 { color: var(--accent-yellow); border-bottom: 1px solid var(--accent-yellow); margin-bottom: 12px; font-weight: 900; font-size: 12px; text-transform: uppercase; align-self: flex-start; }
+        .footer-column p, .footer-column a { font-size: 10.5px; color: rgba(255,255,255,0.9); text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-weight: 600; }
+        .social-icons { display: flex; gap: 10px; margin: 5px 0; }
+        .social-icons a { font-size: 18px; color: white; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-scroll-bg"></div>
+    <img src="https://studentvisiontc.github.io/SVTC-Images/hh%20logo.png" class="header-corner">
+    <img src="https://studentvisiontc.github.io/SVTC-Images/hh%20logo.png" class="header-corner-right">
+    <div class="header-left">
+        <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" alt="SV Logo" class="logo">
+        <div>
+            <div class="main-title">Sri Veda Talent Competition</div>
+            <div class="sub-title">“See Your Success”</div>
+        </div>
+    </div>
+    <div class="header-right">
+        <div class="menu-item"><a href="#"><i class="fa-solid fa-house icon"></i><span class="icon-label">Home</span></a></div>
+        <div class="menu-item"><a href="#"><i class="fa-solid fa-user-plus icon"></i><span class="icon-label">Register</span></a></div>
+        <div class="menu-item"><a href="#"><i class="fa-solid fa-right-to-bracket icon"></i><span class="icon-label">Login</span></a></div>
+        <div class="menu-item"><a href="#"><i class="fa-solid fa-user-tie icon"></i><span class="icon-label">Admin</span></a></div>
+        <div class="menu-item"><a href="#"><i class="fa-solid fa-tags icon"></i><span class="icon-label">Pricing</span></a></div>
+    </div>
+</header>
+
+<main>
+    <div class="section-header">
+        <div class="title-box">
+            <h1>Managing Directors</h1>
+        </div>
+        <p>Sri Veda Talent Competition Management Board</p>
+    </div>
+
+    <div class="management-grid">
+        <!-- 1. Honorable Chief Chairman -->
+        <div class="director-card">
+            <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="director-photo" alt="Logo">
+            <div class="director-info">
+                <div class="director-name">Honorable K. Narasimha Reddy Garu</div>
+                <div class="director-role">Chairman & Founder</div>
+                <div class="director-email"><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</div>
+            </div>
+        </div>
+
+        <!-- 2. Honorable Vice Chairman -->
+        <div class="director-card">
+            <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="director-photo" alt="Logo">
+            <div class="director-info">
+                <div class="director-name">Honorable B. Satyanarayana Garu</div>
+                <div class="director-role">Vice Chairman & Co-Founder</div>
+                <div class="director-email"><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</div>
+            </div>
+        </div>
+
+        <!-- 3. Distinguished Sales Manager -->
+        <div class="director-card">
+            <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="director-photo" alt="Logo">
+            <div class="director-info">
+                <div class="director-name">Distinguished Y. Swapna Garu</div>
+                <div class="director-role">Sales Manager</div>
+                <div class="director-email"><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</div>
+            </div>
+        </div>
+
+        <!-- 4. Respected Member -->
+        <div class="director-card">
+            <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="director-photo" alt="Logo">
+            <div class="director-info">
+                <div class="director-name">Respected V. Ramesh B Garu</div>
+                <div class="director-role">Management</div>
+                <div class="director-email"><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</div>
+            </div>
+        </div>
+
+        <!-- 5. Respected Member -->
+        <div class="director-card">
+            <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="director-photo" alt="Logo">
+            <div class="director-info">
+                <div class="director-name">Respected K. Lakshmi Narasimha Reddy Garu</div>
+                <div class="director-role">Management</div>
+                <div class="director-email"><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</div>
+            </div>
+        </div>
+
+        <!-- 6. Respected Member -->
+        <div class="director-card">
+            <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="director-photo" alt="Logo">
+            <div class="director-info">
+                <div class="director-name">Respected R. Srinivas Garu</div>
+                <div class="director-role">Management</div>
+                <div class="director-email"><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</div>
+            </div>
+        </div>
+
+        <!-- 7. Respected Member -->
+        <div class="director-card">
+            <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="director-photo" alt="Logo">
+            <div class="director-info">
+                <div class="director-name">Respected G. Ravindra Garu</div>
+                <div class="director-role">Management</div>
+                <div class="director-email"><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</div>
+            </div>
+        </div>
+
+        <!-- 8. Respected Member -->
+        <div class="director-card">
+            <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="director-photo" alt="Logo">
+            <div class="director-info">
+                <div class="director-name">Respected M. Rajesh Garu</div>
+                <div class="director-role">Management</div>
+                <div class="director-email"><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</div>
+            </div>
+        </div>
+
+        <!-- 9. Respected Member -->
+        <div class="director-card">
+            <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="director-photo" alt="Logo">
+            <div class="director-info">
+                <div class="director-name">Respected P. Anitha Garu</div>
+                <div class="director-role">Management</div>
+                <div class="director-email"><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</div>
+            </div>
+        </div>
+
+        <!-- 10. Respected Member -->
+        <div class="director-card">
+            <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="director-photo" alt="Logo">
+            <div class="director-info">
+                <div class="director-name">Respected S. Kavitha Garu</div>
+                <div class="director-role">Management</div>
+                <div class="director-email"><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</div>
+            </div>
+        </div>
+
+        <!-- 11. Respected Member -->
+        <div class="director-card">
+            <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="director-photo" alt="Logo">
+            <div class="director-info">
+                <div class="director-name">Respected V. Suresh Garu</div>
+                <div class="director-role">Management</div>
+                <div class="director-email"><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</div>
+            </div>
+        </div>
+
+        <!-- 12. Respected Member -->
+        <div class="director-card">
+            <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="director-photo" alt="Logo">
+            <div class="director-info">
+                <div class="director-name">Respected T. Priyanka Garu</div>
+                <div class="director-role">Management</div>
+                <div class="director-email"><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIMPLE PASSAGE MESSAGE -->
+    <div class="contact-passage">
+        <div class="inspiration-quote">"Dedicated to excellence, we strive to empower talent worldwide."</div>
+        <p class="contact-text">
+            If you wish to discuss anything regarding the company or our directors, please feel free to reach out. 
+            We work 24/7 with a vision to provide the best service and support. For any emergency queries or 
+            further information, you can contact us via email at: 
+            <a href="mailto:contact.sriveda@gmail.com" class="contact-email-link">contact.sriveda@gmail.com</a>.
+        </p>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-headset"></i> Support</h4>
+            <p><i class="fa-solid fa-phone"></i> +91 9346119924</p>
+            <p><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</p>
+        </div>
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-link"></i> Quick Links</h4>
+            <a href="#"><i class="fa-solid fa-circle-info"></i> About Us</a>
+            <a href="#"><i class="fa-solid fa-shield-halved"></i> Terms & Conditions</a>
+        </div>
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-share-nodes"></i> Follow Us</h4>
+            <div class="social-icons">
+                <a href="http://wa.me/919346119924"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+            </div>
+            <p style="opacity: 0.7; font-size: 10px;">&copy; 2025 Student Vision TC. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
