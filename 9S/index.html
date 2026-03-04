@@ -291,7 +291,7 @@
         <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" alt="SV Logo" class="logo">
         <div>
             <div class="main-title">Sri Veda Talent Competition</div>
-            <div class="sub-title">9<sup>th</sup> Class Students</div>
+            <div class="sub-title">10<sup>th</sup> Class Students</div>
         </div>
     </div>
     <div class="header-right">
@@ -307,7 +307,7 @@
     <div class="login-card">
         <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" class="login-logo">
         <h2>Student Login</h2>
-        <div class="login-class-label">(9<sup>th</sup> Class)</div>
+        <div class="login-class-label">(10<sup>th</sup> Class)</div>
         <div class="input-group">
             <label>User ID</label>
             <div class="input-wrapper">
@@ -609,8 +609,8 @@
         setLink('social_facebook', GLOBAL_LINKS.SOCIAL_FACEBOOK);
     });
 
-    const STUDENT_CLASS_LEVEL = "9th Class"; 
-    const STUDENT_CLASS_SUBTITLE = "9<sup>th</sup> Class Students";
+    const STUDENT_CLASS_LEVEL = "10th Class"; 
+    const STUDENT_CLASS_SUBTITLE = "10<sup>th</sup> Class Students";
 
     const universalSectionMessage = `"Dear Students, we are excited to conduct a special exam with 10 fun sections covering 10 different topics just for you! This exam focuses on Maths, Science, and English, which are the building blocks that help you understand the world and communicate better every day. The syllabus is designed based on All India Entrance Exams, giving you a wonderful chance to practice and compete at a national level from a young age. Each section will help you think faster, solve problems easily, and build great confidence in your subjects. By taking this challenge, you are preparing yourself to stay ahead and succeed in big exams in the future. It is a fantastic way to discover your hidden talents while having fun with learning. Believe in yourself and give it your best shot—Good Luck!"`;
 
@@ -725,9 +725,9 @@
                 const serverClassLower = rawServerClass.toLowerCase();
                 
                 const isValidThirdClass = (
-                    serverClassLower === "9th class" || 
-                    serverClassLower === "9th" || 
-                    serverClassLower === "9" || 
+                    serverClassLower === "10th class" || 
+                    serverClassLower === "10th" || 
+                    serverClassLower === "10" || 
                     serverClassLower.includes("ఆరవ") || 
                     serverClassLower.includes("SEVENTH")
                 );
@@ -736,7 +736,7 @@
                     btn.disabled = false;
                     btn.innerHTML = 'LOGIN';
                     const displayClass = rawServerClass || "Data Not Found";
-                    errorDisplay.innerHTML = `ACCESS DENIED: You are in <b>${displayClass}</b>. <br>This portal is specifically for <b>9th Class</b> students only.`;
+                    errorDisplay.innerHTML = `ACCESS DENIED: You are in <b>${displayClass}</b>. <br>This portal is specifically for <b>10th Class</b> students only.`;
                     errorDisplay.style.display = 'block';
                     
                     ['check-user', 'check-pass', 'check-class', 'check-success'].forEach(id => updateItem(id, 'reset'));
