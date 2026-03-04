@@ -312,7 +312,6 @@
             <label>User ID</label>
             <div class="input-wrapper">
                 <div class="input-icon"><i class="fa-solid fa-user"></i></div>
-                <!-- ఆటోమేటిక్ క్యాపిటల్ మరియు సింబల్స్ నియంత్రణ ఇక్కడ ఉంది -->
                 <input type="text" id="username_input" oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase()">
             </div>
         </div>
@@ -320,7 +319,6 @@
             <label>Password</label>
             <div class="input-wrapper">
                 <div class="input-icon"><i class="fa-solid fa-lock"></i></div>
-                <!-- ఆటోమేటిక్ క్యాపిటల్ మరియు సింబల్స్ నియంత్రణ ఇక్కడ ఉంది -->
                 <input type="password" id="password_input" oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase()">
                 <i class="fa-solid fa-eye pass-toggle" onclick="togglePassVisibility()"></i>
             </div>
@@ -573,7 +571,8 @@
     // CENTRALIZED LINKS AND ENDPOINTS
     // ------------------------------------------------------------------------------------------------
     const GLOBAL_LINKS = {
-        API_ENDPOINT: "https://script.google.com/macros/s/AKfycbzTgrwRfoJQq4HKVEGOkZ-SmxRgCC5PPswll2XWP_LIFdpWu2N9YHsUX7W-lhdLfDEE/exec",
+        // --- Updated API Endpoint ---
+        API_ENDPOINT: "https://script.google.com/macros/s/AKfycbwGgTzLBZlkL9-YRc_9xf51FMOnCJbXUycVV8JyNyh12GkrFpCpG7lqmtBdyXlUHOIn/exec",
         LOGO_CIRCLE: "https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png",
         HEADER_CORNER: "https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/Header%20corner%20logo.png",
         SAMPLE_CERT: "https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SAMPLE_CERTIFICATE.pdf",
@@ -613,7 +612,7 @@
     const STUDENT_CLASS_LEVEL = "3rd Class"; 
     const STUDENT_CLASS_SUBTITLE = "3<sup>rd</sup> Class Students";
 
-    const universalSectionMessage = `The 10 sections offered by the Sri Veda Talent Competition (SVTC) are fundamental to a student's intellectual development. By mastering subjects such as Mathematics, Logical Reasoning, Language Skills, and General Knowledge, students prepare not only for their class exams but also for prestigious entrance exams like Navodaya and Sainik School. Each section is designed with a systematic plan to enhance concentration, speed, and accuracy. Completing these tests helps students identify their strengths and weaknesses, allowing them to achieve top results through continuous practice and potentially emerge as a State Level Topper.`;
+    const universalSectionMessage = `The 10 sections offered by the SVTC are fundamental to a student's intellectual development. By mastering subjects such as Mathematics, Logical Reasoning, Language Skills, and General Knowledge, students prepare not only for their class exams but also for prestigious entrance exams like Navodaya and Sainik School. Each section is designed with a systematic plan to enhance concentration, speed, and accuracy. Completing these tests helps students identify their strengths and weaknesses, allowing them to achieve top results through continuous practice and potentially emerge as a State Level Topper.`;
 
     const subjects = [
         { n: "MATHEMATICS", icon: "fa-calculator", duration: 30, m: universalSectionMessage },
@@ -657,7 +656,6 @@
     let totalFirstAttemptDoneCounter = 0;
     let currentSessionUniqueId = Date.now().toString();
 
-    // Session Management for Single Login enforcement
     function enforceSingleSession() {
         if (studentVisionGlobalAuthenticatedUsername) {
             const lastSessionId = localStorage.getItem('sv_session_' + studentVisionGlobalAuthenticatedUsername);
@@ -721,12 +719,39 @@
             const data = await res.json();
             
             if (data.result === "success") {
+                // --- ROBUST CLASS VERIFICATION LOGIC ---
+                const rawClassVal = data.student_class || data.class || data.grade || data.level || "";
+                const rawServerClass = rawClassVal.toString().trim();
+                const serverClassLower = rawServerClass.toLowerCase();
+                
+                const isValidThirdClass = (
+                    serverClassLower === "3rd class" || 
+                    serverClassLower === "3rd" || 
+                    serverClassLower === "3" || 
+                    serverClassLower.includes("మూడవ") || 
+                    serverClassLower.includes("third")
+                );
+                
+                if (!isValidThirdClass) {
+                    btn.disabled = false;
+                    btn.innerHTML = 'LOGIN';
+                    const displayClass = rawServerClass || "Data Not Found";
+                    errorDisplay.innerHTML = `ACCESS DENIED: You are in <b>${displayClass}</b>. <br>This portal is specifically for <b>3rd Class</b> students only.`;
+                    errorDisplay.style.display = 'block';
+                    
+                    ['check-user', 'check-pass', 'check-class', 'check-success'].forEach(id => updateItem(id, 'reset'));
+                    const classCheck = document.getElementById('check-class');
+                    classCheck.style.color = 'var(--danger-red)';
+                    classCheck.querySelector('i').className = 'fa-solid fa-circle-xmark';
+                    return;
+                }
+
                 localStorage.setItem('sv_session_' + u, currentSessionUniqueId);
                 
                 studentAttemptData = data.attempt_records || {};
                 setTimeout(() => { updateItem('check-user', 'done'); updateItem('check-pass', 'active'); }, 400);
                 setTimeout(() => { updateItem('check-pass', 'done'); updateItem('check-class', 'active'); }, 800);
-                setTimeout(() => { updateItem('check-class', 'done'); updateItem('check-success', 'active'); }, 1200);
+                setTimeout(() => { updateItem('check-pass', 'done'); updateItem('check-class', 'done'); updateItem('check-success', 'active'); }, 1200);
                 setTimeout(() => { updateItem('check-success', 'done'); }, 1500);
 
                 setTimeout(() => {
@@ -818,7 +843,7 @@
                         </div>
                     </div>
                     <div class="item-bottom">
-                        <div class="item-topic-wrap"><div class="item-topic-name">${topic}</div></div>
+                        <div class="item-topic-wrap"><div class="item-topic-name">Topic ${si + 1}.${ti + 1} ${topic}</div></div>
                         ${actionHtml}
                     </div>
                 </div>`;
