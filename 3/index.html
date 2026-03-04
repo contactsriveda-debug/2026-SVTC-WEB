@@ -609,8 +609,8 @@
         setLink('social_facebook', GLOBAL_LINKS.SOCIAL_FACEBOOK);
     });
 
-    const STUDENT_CLASS_LEVEL = "4th Class"; 
-    const STUDENT_CLASS_SUBTITLE = "4<sup>th</sup> Class Students";
+    const STUDENT_CLASS_LEVEL = "3rd Class"; 
+    const STUDENT_CLASS_SUBTITLE = "3<sup>rd</sup> Class Students";
 
     const universalSectionMessage = `The 10 sections offered by the Sri Veda Talent Competition (SVTC) are fundamental to a student's intellectual development. By mastering subjects such as Mathematics, Logical Reasoning, Language Skills, and General Knowledge, students prepare not only for their class exams but also for prestigious entrance exams like Navodaya and Sainik School. Each section is designed with a systematic plan to enhance concentration, speed, and accuracy. Completing these tests helps students identify their strengths and weaknesses, allowing them to achieve top results through continuous practice and potentially emerge as a State Level Topper.`;
 
@@ -725,11 +725,11 @@
                 const serverClassLower = rawServerClass.toLowerCase();
                 
                 const isValidThirdClass = (
-                    serverClassLower === "4th class" || 
-                    serverClassLower === "4th" || 
-                    serverClassLower === "4" || 
-                    serverClassLower.includes("నాల్గవ") || 
-                    serverClassLower.includes("fourth")
+                    serverClassLower === "3rd class" || 
+                    serverClassLower === "3rd" || 
+                    serverClassLower === "3" || 
+                    serverClassLower.includes("మూడవ") || 
+                    serverClassLower.includes("third")
                 );
                 
                 if (!isValidThirdClass) {
