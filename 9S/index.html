@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Dashboard - Student Vision</title>
+    <title>Dashboard - Sri Veda</title>
     <style>
         :root {
             --primary-blue: #00008B;
@@ -30,6 +30,14 @@
         h1, h2, h3, .main-title, .achiever-title, .srm-title, .sub-head-row h3 { font-family: 'Roboto Slab', serif; }
 
         header { background: var(--primary-blue); padding: 12px clamp(12px, 4vw, 30px); display: flex; justify-content: space-between; align-items: center; color: white; width: 100%; position: relative; overflow: hidden; min-height: 75px; z-index: 100; }
+        
+        @media (max-width: 768px) {
+            header { flex-direction: column; text-align: center; padding: 20px 10px; gap: 15px; }
+            header .header-left { flex-direction: column; gap: 10px; }
+            header .logo { margin-bottom: 5px; }
+            header .header-right { width: 100%; justify-content: center; gap: 20px; }
+        }
+
         .header-corner { position: absolute; top: 0; left: 0; height: 38px; opacity: 0.8; pointer-events: none; z-index: 15; }
         .header-corner-right { position: absolute; top: 0; right: 0; height: 38px; opacity: 0.8; transform: scaleX(-1); pointer-events: none; z-index: 15; }
         .header-scroll-bg { position: absolute; top: 0; left: 0; width: 400%; height: 100%; background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 5%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1) 15%, transparent 20%); z-index: 1; animation: scrollGlow 25s linear infinite; opacity: 0.9; pointer-events: none; }
@@ -46,27 +54,27 @@
         .menu-item a.active-nav .icon { color: var(--accent-yellow); opacity: 1; transform: scale(1.1); }
         .menu-item a.active-nav::after { content: ''; position: absolute; bottom: -8px; width: 5px; height: 5px; background-color: var(--accent-yellow); border-radius: 50%; }
 
-        #login-overlay { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #f8fafc; padding: 20px; gap: 15px; margin-bottom: 0; }
-        .login-card { background: white; padding: 25px 30px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,139,0.08); width: 100%; max-width: 340px; text-align: center; position: relative; border: 1px solid #dae1e7; overflow: hidden; }
-        .login-card::after { content: ''; position: absolute; top: 0; left: -150%; width: 150%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent); transform: skewX(-20deg); animation: loginGoldScroll 6s infinite linear; pointer-events: none; z-index: 1; }
+        #login-overlay { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #f8fafc; padding: 15px; gap: 10px; margin-bottom: 0; }
+        .login-card { background: white; padding: 20px 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,139,0.1); width: 100%; max-width: 300px; text-align: center; position: relative; border: 1px solid #dae1e7; overflow: hidden; }
+        .login-card::after { content: ''; position: absolute; top: 0; left: -150%; width: 150%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.05), transparent); transform: skewX(-20deg); animation: loginGoldScroll 6s infinite linear; pointer-events: none; z-index: 1; }
         @keyframes loginGoldScroll { 0% { left: -150%; } 100% { left: 150%; } }
-        .login-logo { width: 65px; margin-bottom: 10px; position: relative; z-index: 5; }
-        .login-card h2 { color: var(--primary-blue); margin-bottom: 0; font-weight: 900; font-size: 18px; position: relative; z-index: 5; text-transform: uppercase; }
-        .login-class-label { font-size: 13px; font-weight: 800; color: var(--primary-blue); margin-bottom: 20px; position: relative; z-index: 5; }
+        .login-logo { width: 55px; margin-bottom: 5px; position: relative; z-index: 5; }
+        .login-card h2 { color: var(--primary-blue); margin-bottom: 0; font-weight: 900; font-size: 17px; position: relative; z-index: 5; text-transform: uppercase; }
+        .login-class-label { font-size: 12px; font-weight: 800; color: var(--primary-blue); margin-bottom: 15px; position: relative; z-index: 5; }
         
-        .input-group { margin-bottom: 15px; text-align: left; position: relative; z-index: 5; }
-        .input-group label { display: block; font-size: 9px; font-weight: 900; color: #64748b; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; padding-left: 5px; }
-        .input-wrapper { position: relative; border-radius: 10px; overflow: hidden; border: 1.5px solid #e2e8f0; background: var(--input-bg); transition: 0.3s; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
-        .input-wrapper:focus-within { border-color: var(--primary-blue); box-shadow: 0 0 0 4px rgba(0,0,139,0.05); }
-        .input-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--primary-blue); font-size: 13px; z-index: 2; opacity: 0.7; }
-        .input-group input { width: 100%; padding: 12px 12px 12px 38px; border: none; font-size: 14px; outline: none; background: transparent; font-weight: 800; color: var(--primary-blue); font-family: 'Roboto Slab', serif; }
-        .pass-toggle { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--primary-blue); cursor: pointer; z-index: 5; opacity: 0.7; }
+        .input-group { margin-bottom: 12px; text-align: left; position: relative; z-index: 5; }
+        .input-group label { display: block; font-size: 8px; font-weight: 900; color: #64748b; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; padding-left: 5px; }
+        .input-wrapper { position: relative; border-radius: 8px; overflow: hidden; border: 1px solid #cbd5e1; background: var(--input-bg); transition: 0.3s; box-shadow: 2px 2px 0px #cbd5e1, inset 1px 1px 3px rgba(0,0,0,0.05); }
+        .input-wrapper:focus-within { border-color: var(--primary-blue); box-shadow: 3px 3px 0px var(--primary-blue), inset 0px 0px 5px rgba(0,0,0,0.05); transform: translateY(-1px); }
+        .input-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--primary-blue); font-size: 12px; z-index: 2; opacity: 0.7; }
+        .input-group input { width: 100%; padding: 10px 10px 10px 35px; border: none; font-size: 13px; outline: none; background: transparent; font-weight: 800; color: var(--primary-blue); font-family: 'Roboto Slab', serif; letter-spacing: 1px; }
+        .pass-toggle { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: var(--primary-blue); cursor: pointer; z-index: 5; opacity: 0.7; }
         
-        .btn-login-submit { width: 100%; padding: 12px; background: var(--primary-blue); color: white; border: none; border-radius: 10px; font-weight: 900; cursor: pointer; font-size: 14px; margin-top: 5px; box-shadow: 0 5px 0 #000044; display: inline-flex; align-items: center; justify-content: center; gap: 8px; position: relative; z-index: 5; transition: 0.2s; }
-        .btn-login-submit:active { transform: translateY(3px); box-shadow: 0 2px 0 #000044; }
+        .btn-login-submit { width: 100%; padding: 10px; background: var(--primary-blue); color: white; border: none; border-radius: 8px; font-weight: 900; cursor: pointer; font-size: 13px; margin-top: 5px; box-shadow: 0 4px 0 #000044; display: inline-flex; align-items: center; justify-content: center; gap: 8px; position: relative; z-index: 5; transition: 0.2s; }
+        .btn-login-submit:active { transform: translateY(2px); box-shadow: 0 2px 0 #000044; }
 
-        #auth-checklist { display: block; margin-top: 20px; text-align: left; background: #f8fafc; padding: 12px; border-radius: 12px; position: relative; z-index: 5; border: 1px solid #f1f5f9; }
-        .check-item { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 800; color: #94a3b8; margin-bottom: 6px; text-transform: uppercase; transition: color 0.3s; }
+        #auth-checklist { display: block; margin-top: 15px; text-align: left; background: #f8fafc; padding: 10px; border-radius: 10px; position: relative; z-index: 5; border: 1px solid #f1f5f9; }
+        .check-item { display: flex; align-items: center; gap: 6px; font-size: 9px; font-weight: 800; color: #94a3b8; margin-bottom: 4px; text-transform: uppercase; transition: color 0.3s; }
         .check-item.active { color: var(--primary-blue); }
         .check-item.done { color: var(--success-green); }
 
@@ -129,19 +137,28 @@
         .inspiration-msg { font-size: 13px; color: #1e293b; font-weight: 600; margin: 0 1px 15px; display: block; line-height: 1.8; background-color: #ffffff; padding: 15px; border-radius: 12px; text-align: justify; border: 1px solid var(--border-color); }
         
         .item-row { display: flex; flex-direction: column; background: white; border: 1px solid var(--border-color); border-radius: 8px; margin: 0 1px 8px; overflow: hidden; height: auto; }
-        .item-top { display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; background: #fafafa; border-bottom: 1px solid #f1f5f9; gap: 10px; flex-wrap: wrap; }
+        .item-top { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: #fafafa; border-bottom: 1px solid #f1f5f9; gap: 10px; }
+        
+        @media (max-width: 600px) {
+            .item-top { flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+            .item-month { width: 100%; font-size: 12px; }
+            .item-meta { width: 100%; justify-content: center; flex-wrap: wrap; }
+            .item-scores { width: 100%; justify-content: center; }
+        }
+
         .item-month { font-size: 10px; font-weight: 900; color: var(--danger-red); width: 60px; flex-shrink: 0; }
         .item-meta { display: flex; gap: 10px; align-items: center; flex-grow: 1; justify-content: center; flex-wrap: wrap; }
         .item-meta div { display: flex; align-items: center; gap: 4px; font-size: 8.5px; font-weight: 800; color: var(--primary-blue); opacity: 0.8; }
         .item-scores { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
         .box-grid { display: flex; gap: 3px; }
         .box-unit { width: 28px; height: 20px; border: 1px solid var(--border-color); border-radius: 4px; font-size: 9px; font-weight: 900; display: flex; align-items: center; justify-content: center; background: white; color: var(--primary-blue); }
-        .item-bottom { padding: 6px 12px; display: flex; justify-content: space-between; align-items: center; background: #f0f9ff; }
-        .item-topic-wrap { display: flex; align-items: center; gap: 5px; }
+        
+        .item-bottom { padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; background: #f0f9ff; }
+        .item-topic-wrap { display: flex; align-items: center; gap: 5px; flex: 1; }
         .topic-lbl { color: #d97706; font-size: 9px; font-weight: 800; text-transform: uppercase; font-family: 'Roboto Slab', serif; }
         .item-topic-name { font-size: 10px; font-weight: 700; color: #1e293b; font-family: 'Roboto Slab', serif; }
-        .btn-take { background: var(--primary-blue); color: white; border: none; padding: 4px 15px; border-radius: 5px; font-weight: 900; cursor: pointer; font-size: 10px; text-transform: uppercase; transition: 0.3s; }
-        .btn-locked { color: #64748b; font-size: 16px; cursor: not-allowed; opacity: 0.6; }
+        .btn-take { background: var(--primary-blue); color: white; border: none; padding: 6px 18px; border-radius: 5px; font-weight: 900; cursor: pointer; font-size: 10px; text-transform: uppercase; transition: 0.3s; flex-shrink: 0; }
+        .btn-locked { color: #64748b; font-size: 16px; cursor: not-allowed; opacity: 0.6; flex-shrink: 0; }
 
         .status-panel { background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%) !important; }
         .status-header h2 { font-size: 18px; color: var(--primary-blue); margin: 0; text-transform: uppercase; }
@@ -223,20 +240,19 @@
         
         .exam-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 2px solid var(--border-color); margin-bottom: 20px; }
         .exam-timer-box { display: flex; align-items: center; gap: 10px; background: var(--danger-red); color: white; padding: 8px 15px; border-radius: 8px; font-weight: 900; font-size: 14px; }
-        .question-card { background: var(--bg-gray); padding: 20px; border-radius: 15px; border: 1px solid var(--border-color); margin-bottom: 20px; position: relative; }
         
-        .q-header-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
-        .q-id-box { background: #ffeb3b; color: #000; padding: 5px 15px; border-radius: 6px; font-weight: 900; font-size: 13px; border: 2px solid #fbc02d; font-family: 'Roboto Slab', serif; flex-shrink: 0; }
-        .question-text { font-size: 16px; font-weight: 700; color: var(--primary-blue); line-height: 1.6; margin: 0; flex: 1; min-width: 200px; }
+        .question-card { background: var(--bg-gray); padding: 20px; border-radius: 15px; border: 1px solid var(--border-color); margin-bottom: 20px; position: relative; overflow: hidden; }
+        .q-id-box { background: #ffeb3b; color: #000; padding: 5px 12px; border-radius: 6px; font-weight: 900; font-size: 13px; border: 2px solid #fbc02d; font-family: 'Roboto Slab', serif; float: left; margin-right: 12px; margin-bottom: 5px; }
+        .question-text { font-size: 16px; font-weight: 700; color: var(--primary-blue); line-height: 1.6; margin: 0; display: inline; }
         
-        .options-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .options-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; clear: both; }
         @media (max-width: 600px) { .options-list { grid-template-columns: 1fr; } }
 
         .option-item { background: white; padding: 12px 15px; border-radius: 10px; border: 2px solid var(--border-color); cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.2s; font-weight: 600; font-size: 14px; }
         .option-item:hover { border-color: var(--primary-blue); background: #f0f9ff; }
         .option-item.selected { border-color: var(--primary-blue); background: var(--primary-blue); color: white; }
         
-        .review-panel { display: none; background: #fff; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; }
+        .review-panel { display: none; background: #fff; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 20px; clear: both; }
         .rev-label { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 4px; }
         .rev-value { font-size: 14px; font-weight: 700; margin-bottom: 12px; padding: 10px; border-radius: 8px; border-left: 5px solid transparent; }
         .rev-correct-box { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; border-left-color: var(--success-green); }
@@ -275,7 +291,7 @@
         <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" alt="SV Logo" class="logo">
         <div>
             <div class="main-title">Sri Veda Talent Competition</div>
-            <div class="sub-title">3<sup>rd</sup> Class Students</div>
+            <div class="sub-title">9<sup>th</sup> Class Students</div>
         </div>
     </div>
     <div class="header-right">
@@ -291,19 +307,19 @@
     <div class="login-card">
         <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" class="login-logo">
         <h2>Student Login</h2>
-        <div class="login-class-label">(3<sup>rd</sup> Class)</div>
+        <div class="login-class-label">(9<sup>th</sup> Class)</div>
         <div class="input-group">
             <label>User ID</label>
             <div class="input-wrapper">
                 <div class="input-icon"><i class="fa-solid fa-user"></i></div>
-                <input type="text" id="username_input">
+                <input type="text" id="username_input" oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase()">
             </div>
         </div>
         <div class="input-group">
             <label>Password</label>
             <div class="input-wrapper">
                 <div class="input-icon"><i class="fa-solid fa-lock"></i></div>
-                <input type="password" id="password_input">
+                <input type="password" id="password_input" oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase()">
                 <i class="fa-solid fa-eye pass-toggle" onclick="togglePassVisibility()"></i>
             </div>
         </div>
@@ -313,16 +329,16 @@
             <div class="check-item" id="check-user"><i class="fa-solid fa-circle"></i> Username Verification</div>
             <div class="check-item" id="check-pass"><i class="fa-solid fa-circle"></i> Password Verification</div>
             <div class="check-item" id="check-class"><i class="fa-solid fa-circle"></i> Class Verification</div>
-            <div class="check-item" id="check-success"><i class="fa-solid fa-circle"></i> Login Verification Successful</div>
+            <div class="check-item" id="check-success"><i class="fa-solid fa-circle"></i> Status Verification</div>
         </div>
-        <div id="auth_error_display" style="display:none; color: red; font-size: 11px; font-weight: 800; margin-top: 10px;"></div>
+        <div id="auth_error_display" style="display:none; color: red; font-size: 11px; font-weight: 800; margin-top: 10px; line-height: 1.4;"></div>
     </div>
 </div>
 
 <div id="dashboard-main">
     <main>
         <div class="welcome-section">
-            <div class="welcome-text"><h1>Welcome, <span id="ui_full_name" class="student-name">Student Vision</span>!</h1></div>
+            <div class="welcome-text"><h1>Welcome, <span id="ui_full_name" class="student-name">Sri Veda</span>!</h1></div>
             <button class="logout-pill" onclick="logout()"><i class="fa-solid fa-power-off"></i> Logout</button>
         </div>
 
@@ -356,12 +372,12 @@
 
         <div class="premium-status-section">
             <div class="stamps-grid">
-                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">PREMIUM MEMBER</span></div></div>
-                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">TEACHER ASSIGNED</span></div></div>
-                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">ELIGIBLE FOR CERTIFICATE</span></div></div>
-                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">KEEP 80% SCORE ABOVE MAINTAIN</span></div></div>
-                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">COMPLETE ALL SUBJECTS AT LEAST FIRST ATTEMPT</span></div></div>
-                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">100+ EXAMS GETTING HIGH MARKS</span></div></div>
+                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">Unlock Your Superpowers</span></div></div>
+                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">Be a Junior Genius</span></div></div>
+                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">Dream Big, Aim High</span></div></div>
+                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">Master the Challenge</span></div></div>
+                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">Your Journey to Greatness</span></div></div>
+                <div class="stamp-unit"><div class="stamp-circle"><i class="fa-solid fa-check"></i></div><div class="stamp-box"><span class="stamp-text">Believe and Achieve</span></div></div>
             </div>
         </div>
 
@@ -437,7 +453,7 @@
                     <li><i class="fa-solid fa-circle-check"></i> High Value for school level interviews and admissions.</li>
                     <li><i class="fa-solid fa-circle-check"></i> Validates your strong subject grip and knowledge.</li>
                     <li><i class="fa-solid fa-circle-check"></i> Acts as a foundational pillar for future resume building.</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Recognized by the Student Vision Academic Council.</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Recognized by the Sri Veda Academic Council.</li>
                     <li><i class="fa-solid fa-circle-check"></i> Proof of disciplined preparation and consistent effort.</li>
                     <li><i class="fa-solid fa-circle-check"></i> Provides a significant edge in elite entrance benchmarks.</li>
                 </ul>
@@ -457,7 +473,7 @@
         </div>
 
         <div class="fame-box">
-            <div class="fame-title-wrap"><span style="font-size:16px; font-weight:900; color:var(--primary-blue); text-transform: uppercase;">State Level Toppers</span></div>
+            <div class="fame-title-wrap"><span style="font-size:16px; font-weight:900; color:var(--primary-blue); text-transform: uppercase;">Toppers & Achivers</span></div>
             <div class="fame-scroll-container">
                 <div class="fame-track" id="ui_toppers_track"></div>
             </div>
@@ -477,7 +493,7 @@
     </main>
 </div>
 
-<!-- Exam and Result Views (Hidden by default) -->
+<!-- Exam and Result Views -->
 <div id="exam-view">
     <div id="exam-loading-overlay">
         <i class="fa-solid fa-spinner loading-spinner"></i>
@@ -490,10 +506,8 @@
     </div>
     <div id="exam-content-area">
         <div class="question-card">
-            <div class="q-header-row">
-                <div id="q-id-display" class="q-id-box">FETCHING...</div>
-                <h3 class="question-text" id="q-text">Fetching questions, please wait...</h3>
-            </div>
+            <div id="q-id-display" class="q-id-box">Q1</div>
+            <h3 class="question-text" id="q-text">Fetching questions...</h3>
             <div class="options-list" id="q-options"></div>
             <div id="review-panel" class="review-panel">
                 <div class="rev-label">Correct Answer:</div>
@@ -554,16 +568,15 @@
 
 <script>
     // ================================================================================================
-    // CENTRALIZED LINKS AND ENDPOINTS START (లింక్స్ అన్నీ ఒకే చోట - ఇక్కడ మార్చుకోవచ్చు)
+    // CENTRALIZED LINKS AND ENDPOINTS
     // ------------------------------------------------------------------------------------------------
     const GLOBAL_LINKS = {
-        API_ENDPOINT: "https://script.google.com/macros/s/AKfycbzTgrwRfoJQq4HKVEGOkZ-SmxRgCC5PPswll2XWP_LIFdpWu2N9YHsUX7W-lhdLfDEE/exec",
+        // --- Updated API Endpoint ---
+        API_ENDPOINT: "https://script.google.com/macros/s/AKfycbwGgTzLBZlkL9-YRc_9xf51FMOnCJbXUycVV8JyNyh12GkrFpCpG7lqmtBdyXlUHOIn/exec",
         LOGO_CIRCLE: "https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png",
         HEADER_CORNER: "https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/Header%20corner%20logo.png",
         SAMPLE_CERT: "https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SAMPLE_CERTIFICATE.pdf",
         COMMENTS_BASE: "https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/",
-        
-        // Header & Footer Navigation Links (Example URLs)
         URL_HOME: "https://www.svtc.life/home",
         URL_REGISTER: "https://www.svtc.life/register",
         URL_LOGIN: "https://www.svtc.life/login",
@@ -573,48 +586,33 @@
         URL_DONORS: "https://www.svtc.life/doners",
         URL_MANAGEMENT: "https://www.svtc.life/management",
         URL_TERMS: "https://www.svtc.life/terms",
-        
-        // Social Media Links
         SOCIAL_WHATSAPP: "https://www.svtc.life/whatsapp",
         SOCIAL_INSTAGRAM: "https://www.svtc.life/instagram",
         SOCIAL_YOUTUBE: "https://www.svtc.life/youtube",
         SOCIAL_FACEBOOK: "https://www.svtc.life/facebook"
     };
 
-    // Apply links to DOM elements
     window.addEventListener('DOMContentLoaded', () => {
-        const setLink = (id, url) => {
-            const el = document.getElementById(id);
-            if (el) el.href = url;
-        };
-        
+        const setLink = (id, url) => { const el = document.getElementById(id); if (el) el.href = url; };
         setLink('link_home', GLOBAL_LINKS.URL_HOME);
         setLink('link_register', GLOBAL_LINKS.URL_REGISTER);
         setLink('link_login', GLOBAL_LINKS.URL_LOGIN);
         setLink('link_admin', GLOBAL_LINKS.URL_ADMIN);
         setLink('link_pricing', GLOBAL_LINKS.URL_PRICING);
-        
         setLink('footer_about', GLOBAL_LINKS.URL_ABOUT);
         setLink('footer_donors', GLOBAL_LINKS.URL_DONORS);
         setLink('footer_management', GLOBAL_LINKS.URL_MANAGEMENT);
         setLink('footer_terms', GLOBAL_LINKS.URL_TERMS);
-        
         setLink('social_whatsapp', GLOBAL_LINKS.SOCIAL_WHATSAPP);
         setLink('social_instagram', GLOBAL_LINKS.SOCIAL_INSTAGRAM);
         setLink('social_youtube', GLOBAL_LINKS.SOCIAL_YOUTUBE);
         setLink('social_facebook', GLOBAL_LINKS.SOCIAL_FACEBOOK);
     });
-    // ------------------------------------------------------------------------------------------------
-    // CENTRALIZED LINKS END
-    // ================================================================================================
 
-    // ================================================================================================
-    // CLASS LEVEL DATA START (మూడవ తరగతి సమాచారం)
-    // ------------------------------------------------------------------------------------------------
-    const STUDENT_CLASS_LEVEL = "3rd Class";
-    const STUDENT_CLASS_SUBTITLE = "3<sup>rd</sup> Class Students";
+    const STUDENT_CLASS_LEVEL = "9th Class"; 
+    const STUDENT_CLASS_SUBTITLE = "9<sup>th</sup> Class Students";
 
-    const universalSectionMessage = `The 10 sections offered by the Sri Veda Talent Competition (SVTC) are fundamental to a student's intellectual development. By mastering subjects such as Mathematics, Logical Reasoning, Language Skills, and General Knowledge, students prepare not only for their class exams but also for prestigious entrance exams like Navodaya and Sainik School. Each section is designed with a systematic plan to enhance concentration, speed, and accuracy. Completing these tests helps students identify their strengths and weaknesses, allowing them to achieve top results through continuous practice and potentially emerge as a State Level Topper.`;
+    const universalSectionMessage = `"Dear Students, we are excited to conduct a special exam with 10 fun sections covering 10 different topics just for you! This exam focuses on Maths, Science, and English, which are the building blocks that help you understand the world and communicate better every day. The syllabus is designed based on All India Entrance Exams, giving you a wonderful chance to practice and compete at a national level from a young age. Each section will help you think faster, solve problems easily, and build great confidence in your subjects. By taking this challenge, you are preparing yourself to stay ahead and succeed in big exams in the future. It is a fantastic way to discover your hidden talents while having fun with learning. Believe in yourself and give it your best shot—Good Luck!"`;
 
     const subjects = [
         { n: "MATHEMATICS", icon: "fa-calculator", duration: 30, m: universalSectionMessage },
@@ -641,14 +639,11 @@
         ["Good Habits", "Time Use", "Follow Rules", "Speak Truth", "Our Duties", "Help Others", "Lead Others", "Self Belief", "Right Choice", "Life Goals"],
         ["Easy Maths", "Easy Science", "Easy GK", "Easy Reasoning", "Speed Test", "Accuracy Test", "Mixed Test", "Practice Test", "Model Test", "Final Test"]
     ];
-    // ------------------------------------------------------------------------------------------------
-    // CLASS LEVEL DATA END
-    // ================================================================================================
 
-    let studentVisionGlobalAuthenticatedUsername = "";
-    let studentVisionGlobalServerUpdateIntervalObject = null;
-    let studentVisionGlobalSessionTimerIntervalObjectReference = null;
-    let studentVisionGlobalSessionTimerTotalSecondsCounterInteger = 0;
+    let sriVedaGlobalAuthenticatedUsername = "";
+    let sriVedaGlobalServerUpdateIntervalObject = null;
+    let sriVedaGlobalSessionTimerIntervalObjectReference = null;
+    let sriVedaGlobalSessionTimerTotalSecondsCounterInteger = 0;
     let examQuestions = [];
     let userAnswers = {}; 
     let currentQuestionIndex = 0;
@@ -659,6 +654,17 @@
     let studentAttemptData = {}; 
     let lastDashboardScrollY = 0;
     let totalFirstAttemptDoneCounter = 0;
+    let currentSessionUniqueId = Date.now().toString();
+
+    function enforceSingleSession() {
+        if (sriVedaGlobalAuthenticatedUsername) {
+            const lastSessionId = localStorage.getItem('sv_session_' + sriVedaGlobalAuthenticatedUsername);
+            if (lastSessionId && lastSessionId !== currentSessionUniqueId) {
+                logout(); 
+            }
+        }
+    }
+    setInterval(enforceSingleSession, 3000);
 
     function togglePassVisibility() {
         const p = document.getElementById('password_input');
@@ -701,34 +707,64 @@
 
         const updateItem = (id, state) => {
             const el = document.getElementById(id);
+            if (!el) return;
             if (state === 'active') { el.classList.add('active'); el.querySelector('i').className = 'fa-solid fa-circle-notch fa-spin'; } 
             else if (state === 'done') { el.classList.replace('active', 'done'); el.querySelector('i').className = 'fa-solid fa-circle-check'; }
+            else if (state === 'reset') { el.classList.remove('active', 'done'); el.querySelector('i').className = 'fa-solid fa-circle'; }
         };
 
         try {
             updateItem('check-user', 'active');
             const res = await fetch(`${GLOBAL_LINKS.API_ENDPOINT}?action=login&username=${u}&password=${p}`);
             const data = await res.json();
+            
             if (data.result === "success") {
+                // --- ROBUST CLASS VERIFICATION LOGIC ---
+                const rawClassVal = data.student_class || data.class || data.grade || data.level || "";
+                const rawServerClass = rawClassVal.toString().trim();
+                const serverClassLower = rawServerClass.toLowerCase();
+                
+                const isValidThirdClass = (
+                    serverClassLower === "9th class" || 
+                    serverClassLower === "9th" || 
+                    serverClassLower === "9" || 
+                    serverClassLower.includes("ఆరవ") || 
+                    serverClassLower.includes("SEVENTH")
+                );
+                
+                if (!isValidThirdClass) {
+                    btn.disabled = false;
+                    btn.innerHTML = 'LOGIN';
+                    const displayClass = rawServerClass || "Data Not Found";
+                    errorDisplay.innerHTML = `ACCESS DENIED: You are in <b>${displayClass}</b>. <br>This portal is specifically for <b>9th Class</b> students only.`;
+                    errorDisplay.style.display = 'block';
+                    
+                    ['check-user', 'check-pass', 'check-class', 'check-success'].forEach(id => updateItem(id, 'reset'));
+                    const classCheck = document.getElementById('check-class');
+                    classCheck.style.color = 'var(--danger-red)';
+                    classCheck.querySelector('i').className = 'fa-solid fa-circle-xmark';
+                    return;
+                }
+
+                localStorage.setItem('sv_session_' + u, currentSessionUniqueId);
+                
                 studentAttemptData = data.attempt_records || {};
                 setTimeout(() => { updateItem('check-user', 'done'); updateItem('check-pass', 'active'); }, 400);
                 setTimeout(() => { updateItem('check-pass', 'done'); updateItem('check-class', 'active'); }, 800);
-                setTimeout(() => { updateItem('check-class', 'done'); updateItem('check-success', 'active'); }, 1200);
+                setTimeout(() => { updateItem('check-pass', 'done'); updateItem('check-class', 'done'); updateItem('check-success', 'active'); }, 1200);
                 setTimeout(() => { updateItem('check-success', 'done'); }, 1500);
 
                 setTimeout(() => {
-                    studentVisionGlobalAuthenticatedUsername = u;
+                    sriVedaGlobalAuthenticatedUsername = u;
                     document.getElementById('login-overlay').style.display = 'none';
                     document.getElementById('dashboard-main').style.display = 'flex';
                     window.scrollTo(0, 0); 
                     document.getElementById('ui_full_name').textContent = data.full_name;
                     document.getElementById('ui_stat_logins').textContent = data.total_logins;
                     document.getElementById('ui_stat_total_time').textContent = cleanTotalTime(data.total_time);
-                    
                     const tcAcc = formatToPercent(data.tc_score);
                     document.getElementById('ui_stat_tc_score').textContent = tcAcc;
-                    document.getElementById('ui_header_accuracy').textContent = tcAcc; // Update header accuracy
-                    
+                    document.getElementById('ui_header_accuracy').textContent = tcAcc;
                     document.getElementById('ui_srm_name').textContent = data.manager_name || "Sri Veda TC";
                     document.getElementById('ui_srm_contact').textContent = data.direct_contact || "8985170500";
                     document.getElementById('ui_father_name').textContent = data.father_name;
@@ -742,7 +778,6 @@
                     document.getElementById('ui_current_rank').textContent = "#" + data.current_rank;
                     document.getElementById('ui_parent_accuracy').textContent = formatToPercent(data.average_accuracy);
                     document.getElementById('ui_parent_weekly_logins').textContent = data.weekly_logins;
-                    
                     const bCount = parseInt(data.mastery_badges) || 0;
                     for (let i = 1; i <= 5; i++) i <= bCount ? document.getElementById('badge_' + i).classList.add('active') : document.getElementById('badge_' + i).classList.remove('active');
                     renderStaticDashboard();
@@ -750,17 +785,26 @@
                     startServerTimeTrackingProcess();
                 }, 1800);
             } else {
-                errorDisplay.textContent = data.message; errorDisplay.style.display = 'block'; btn.disabled = false; btn.innerHTML = 'LOGIN';
+                errorDisplay.textContent = data.message; 
+                errorDisplay.style.display = 'block'; 
+                btn.disabled = false; 
+                btn.innerHTML = 'LOGIN';
+                ['check-user', 'check-pass', 'check-class', 'check-success'].forEach(id => updateItem(id, 'reset'));
             }
-        } catch (e) { btn.disabled = false; btn.innerHTML = 'LOGIN'; }
+        } catch (e) { 
+            btn.disabled = false; 
+            btn.innerHTML = 'LOGIN';
+            errorDisplay.textContent = "Connection Error. Please try again.";
+            errorDisplay.style.display = 'block';
+        }
     }
 
     function startServerTimeTrackingProcess() {
-        if (studentVisionGlobalServerUpdateIntervalObject) clearInterval(studentVisionGlobalServerUpdateIntervalObject);
-        studentVisionGlobalServerUpdateIntervalObject = setInterval(async () => {
-            if (studentVisionGlobalAuthenticatedUsername) {
+        if (sriVedaGlobalServerUpdateIntervalObject) clearInterval(sriVedaGlobalServerUpdateIntervalObject);
+        sriVedaGlobalServerUpdateIntervalObject = setInterval(async () => {
+            if (sriVedaGlobalAuthenticatedUsername) {
                 try {
-                    const res = await fetch(`${GLOBAL_LINKS.API_ENDPOINT}?action=updateSessionTime&username=${studentVisionGlobalAuthenticatedUsername}`);
+                    const res = await fetch(`${GLOBAL_LINKS.API_ENDPOINT}?action=updateSessionTime&username=${sriVedaGlobalAuthenticatedUsername}`);
                     const json = await res.json();
                     if (json.result === "done") document.getElementById('ui_stat_total_time').textContent = cleanTotalTime(json.status);
                 } catch (e) {}
@@ -799,7 +843,7 @@
                         </div>
                     </div>
                     <div class="item-bottom">
-                        <div class="item-topic-wrap"><div class="item-topic-name">${topic}</div></div>
+                        <div class="item-topic-wrap"><div class="item-topic-name">Topic ${si + 1}.${ti + 1} ${topic}</div></div>
                         ${actionHtml}
                     </div>
                 </div>`;
@@ -809,7 +853,7 @@
         cont.innerHTML = html;
         document.getElementById('ui_stat_tests_done').textContent = totalFirstAttemptDoneCounter;
         document.getElementById('ui_parent_tests').textContent = totalFirstAttemptDoneCounter;
-        document.getElementById('ui_parent_first_attempt').textContent = totalFirstAttemptDoneCounter; // Update Parent Portal Box
+        document.getElementById('ui_parent_first_attempt').textContent = totalFirstAttemptDoneCounter;
 
         document.getElementById('ui_progress_grid').innerHTML = subjects.map((s, si) => {
             let completed = 0;
@@ -824,7 +868,7 @@
         const toppersData = [
             { id: "SVKP098", name: "S. Rajesh", city: "Kurnool", school: "Ravindra Vidyaniketan", rank: "1st Rank" },
             { id: "SVHH234", name: "K. Lakshmi", city: "Nandyal", school: "St. Joseph's High School", rank: "2nd Rank" },
-            { id: "SVUI890", name: "M. Arjun", city: "Panyam, Nandyal", school: "Z.P. High School", rank: "3rd Rank" },
+            { id: "SVUI890", name: "M. Arjun", city: "Panyam, Nandyal", school: "Z.P. High School", rank: "4th Rank" },
             { id: "SVQQ125", name: "D. Bhavana", city: "Allagadda", school: "S.C.R. High School", rank: "4th Rank" },
             { id: "SVVV889", name: "T. Venkat", city: "Dhone, Kurnool", school: "Little Hearts School", rank: "5th Rank" },
             { id: "SVUE390", name: "P. Sahithi", city: "Banaganapalli", school: "Gowtham Model School", rank: "6th Rank" },
@@ -911,7 +955,7 @@
         document.getElementById('result-view').style.display = 'flex';
         document.getElementById('res-score').textContent = score.toString().padStart(2, '0');
         renderStaticDashboard();
-        if (studentVisionGlobalAuthenticatedUsername) { try { await fetch(`${GLOBAL_LINKS.API_ENDPOINT}?action=saveExamScore&username=${studentVisionGlobalAuthenticatedUsername}&sheetName=${currentExamSheetName}&score=${score}`); } catch (e) {} }
+        if (sriVedaGlobalAuthenticatedUsername) { try { await fetch(`${GLOBAL_LINKS.API_ENDPOINT}?action=saveExamScore&username=${sriVedaGlobalAuthenticatedUsername}&sheetName=${currentExamSheetName}&score=${score}`); } catch (e) {} }
     }
 
     function validateCertificateDownload() {
@@ -923,15 +967,26 @@
     function enterReviewMode() { isReviewMode = true; currentQuestionIndex = 0; document.getElementById('result-view').style.display = 'none'; document.getElementById('exam-view').style.display = 'flex'; renderQuestion(); }
     function returnToDashboard() { if (examCountdownInterval) clearInterval(examCountdownInterval); document.getElementById('result-view').style.display = 'none'; document.getElementById('exam-view').style.display = 'none'; document.getElementById('dashboard-main').style.opacity = '1'; window.scrollTo(0, lastDashboardScrollY); }
     function startSessionTimer() {
-        if (studentVisionGlobalSessionTimerIntervalObjectReference) clearInterval(studentVisionGlobalSessionTimerIntervalObjectReference);
-        studentVisionGlobalSessionTimerTotalSecondsCounterInteger = 0;
-        studentVisionGlobalSessionTimerIntervalObjectReference = setInterval(() => {
-            studentVisionGlobalSessionTimerTotalSecondsCounterInteger++;
-            const h = Math.floor(studentVisionGlobalSessionTimerTotalSecondsCounterInteger / 3600), m = Math.floor((studentVisionGlobalSessionTimerTotalSecondsCounterInteger % 3600) / 60), s = studentVisionGlobalSessionTimerTotalSecondsCounterInteger % 60;
+        if (sriVedaGlobalSessionTimerIntervalObjectReference) clearInterval(sriVedaGlobalSessionTimerIntervalObjectReference);
+        sriVedaGlobalSessionTimerTotalSecondsCounterInteger = 0;
+        sriVedaGlobalSessionTimerIntervalObjectReference = setInterval(() => {
+            sriVedaGlobalSessionTimerTotalSecondsCounterInteger++;
+            const h = Math.floor(sriVedaGlobalSessionTimerTotalSecondsCounterInteger / 3600), m = Math.floor((sriVedaGlobalSessionTimerTotalSecondsCounterInteger % 3600) / 60), s = sriVedaGlobalSessionTimerTotalSecondsCounterInteger % 60;
             document.getElementById('session_timer').textContent = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
         }, 1000);
     }
-    function logout() { location.reload(); }
+    function logout() { 
+        if (sriVedaGlobalAuthenticatedUsername) {
+            localStorage.removeItem('sv_session_' + sriVedaGlobalAuthenticatedUsername);
+        }
+        location.reload(); 
+    }
+
+    window.onbeforeunload = function() {
+        if (sriVedaGlobalAuthenticatedUsername) {
+            localStorage.removeItem('sv_session_' + sriVedaGlobalAuthenticatedUsername);
+        }
+    };
 </script>
 </body>
 </html>
