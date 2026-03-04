@@ -609,10 +609,10 @@
         setLink('social_facebook', GLOBAL_LINKS.SOCIAL_FACEBOOK);
     });
 
-    const STUDENT_CLASS_LEVEL = "3rd Class"; 
-    const STUDENT_CLASS_SUBTITLE = "3<sup>rd</sup> Class Students";
+    const STUDENT_CLASS_LEVEL = "4th Class"; 
+    const STUDENT_CLASS_SUBTITLE = "4<sup>th</sup> Class Students";
 
-    const universalSectionMessage = `The 10 sections offered by the SVTC are fundamental to a student's intellectual development. By mastering subjects such as Mathematics, Logical Reasoning, Language Skills, and General Knowledge, students prepare not only for their class exams but also for prestigious entrance exams like Navodaya and Sainik School. Each section is designed with a systematic plan to enhance concentration, speed, and accuracy. Completing these tests helps students identify their strengths and weaknesses, allowing them to achieve top results through continuous practice and potentially emerge as a State Level Topper.`;
+    const universalSectionMessage = `The 10 sections offered by the Sri Veda Talent Competition (SVTC) are fundamental to a student's intellectual development. By mastering subjects such as Mathematics, Logical Reasoning, Language Skills, and General Knowledge, students prepare not only for their class exams but also for prestigious entrance exams like Navodaya and Sainik School. Each section is designed with a systematic plan to enhance concentration, speed, and accuracy. Completing these tests helps students identify their strengths and weaknesses, allowing them to achieve top results through continuous practice and potentially emerge as a State Level Topper.`;
 
     const subjects = [
         { n: "MATHEMATICS", icon: "fa-calculator", duration: 30, m: universalSectionMessage },
@@ -640,10 +640,10 @@
         ["Easy Maths", "Easy Science", "Easy GK", "Easy Reasoning", "Speed Test", "Accuracy Test", "Mixed Test", "Practice Test", "Model Test", "Final Test"]
     ];
 
-    let studentVisionGlobalAuthenticatedUsername = "";
-    let studentVisionGlobalServerUpdateIntervalObject = null;
-    let studentVisionGlobalSessionTimerIntervalObjectReference = null;
-    let studentVisionGlobalSessionTimerTotalSecondsCounterInteger = 0;
+    let sriVedaGlobalAuthenticatedUsername = "";
+    let sriVedaGlobalServerUpdateIntervalObject = null;
+    let sriVedaGlobalSessionTimerIntervalObjectReference = null;
+    let sriVedaGlobalSessionTimerTotalSecondsCounterInteger = 0;
     let examQuestions = [];
     let userAnswers = {}; 
     let currentQuestionIndex = 0;
@@ -657,8 +657,8 @@
     let currentSessionUniqueId = Date.now().toString();
 
     function enforceSingleSession() {
-        if (studentVisionGlobalAuthenticatedUsername) {
-            const lastSessionId = localStorage.getItem('sv_session_' + studentVisionGlobalAuthenticatedUsername);
+        if (sriVedaGlobalAuthenticatedUsername) {
+            const lastSessionId = localStorage.getItem('sv_session_' + sriVedaGlobalAuthenticatedUsername);
             if (lastSessionId && lastSessionId !== currentSessionUniqueId) {
                 logout(); 
             }
@@ -725,11 +725,11 @@
                 const serverClassLower = rawServerClass.toLowerCase();
                 
                 const isValidThirdClass = (
-                    serverClassLower === "3rd class" || 
-                    serverClassLower === "3rd" || 
-                    serverClassLower === "3" || 
-                    serverClassLower.includes("మూడవ") || 
-                    serverClassLower.includes("third")
+                    serverClassLower === "4th class" || 
+                    serverClassLower === "4th" || 
+                    serverClassLower === "4" || 
+                    serverClassLower.includes("నాల్గవ") || 
+                    serverClassLower.includes("fourth")
                 );
                 
                 if (!isValidThirdClass) {
@@ -755,7 +755,7 @@
                 setTimeout(() => { updateItem('check-success', 'done'); }, 1500);
 
                 setTimeout(() => {
-                    studentVisionGlobalAuthenticatedUsername = u;
+                    sriVedaGlobalAuthenticatedUsername = u;
                     document.getElementById('login-overlay').style.display = 'none';
                     document.getElementById('dashboard-main').style.display = 'flex';
                     window.scrollTo(0, 0); 
@@ -800,11 +800,11 @@
     }
 
     function startServerTimeTrackingProcess() {
-        if (studentVisionGlobalServerUpdateIntervalObject) clearInterval(studentVisionGlobalServerUpdateIntervalObject);
-        studentVisionGlobalServerUpdateIntervalObject = setInterval(async () => {
-            if (studentVisionGlobalAuthenticatedUsername) {
+        if (sriVedaGlobalServerUpdateIntervalObject) clearInterval(sriVedaGlobalServerUpdateIntervalObject);
+        sriVedaGlobalServerUpdateIntervalObject = setInterval(async () => {
+            if (sriVedaGlobalAuthenticatedUsername) {
                 try {
-                    const res = await fetch(`${GLOBAL_LINKS.API_ENDPOINT}?action=updateSessionTime&username=${studentVisionGlobalAuthenticatedUsername}`);
+                    const res = await fetch(`${GLOBAL_LINKS.API_ENDPOINT}?action=updateSessionTime&username=${sriVedaGlobalAuthenticatedUsername}`);
                     const json = await res.json();
                     if (json.result === "done") document.getElementById('ui_stat_total_time').textContent = cleanTotalTime(json.status);
                 } catch (e) {}
@@ -955,7 +955,7 @@
         document.getElementById('result-view').style.display = 'flex';
         document.getElementById('res-score').textContent = score.toString().padStart(2, '0');
         renderStaticDashboard();
-        if (studentVisionGlobalAuthenticatedUsername) { try { await fetch(`${GLOBAL_LINKS.API_ENDPOINT}?action=saveExamScore&username=${studentVisionGlobalAuthenticatedUsername}&sheetName=${currentExamSheetName}&score=${score}`); } catch (e) {} }
+        if (sriVedaGlobalAuthenticatedUsername) { try { await fetch(`${GLOBAL_LINKS.API_ENDPOINT}?action=saveExamScore&username=${sriVedaGlobalAuthenticatedUsername}&sheetName=${currentExamSheetName}&score=${score}`); } catch (e) {} }
     }
 
     function validateCertificateDownload() {
@@ -967,24 +967,24 @@
     function enterReviewMode() { isReviewMode = true; currentQuestionIndex = 0; document.getElementById('result-view').style.display = 'none'; document.getElementById('exam-view').style.display = 'flex'; renderQuestion(); }
     function returnToDashboard() { if (examCountdownInterval) clearInterval(examCountdownInterval); document.getElementById('result-view').style.display = 'none'; document.getElementById('exam-view').style.display = 'none'; document.getElementById('dashboard-main').style.opacity = '1'; window.scrollTo(0, lastDashboardScrollY); }
     function startSessionTimer() {
-        if (studentVisionGlobalSessionTimerIntervalObjectReference) clearInterval(studentVisionGlobalSessionTimerIntervalObjectReference);
-        studentVisionGlobalSessionTimerTotalSecondsCounterInteger = 0;
-        studentVisionGlobalSessionTimerIntervalObjectReference = setInterval(() => {
-            studentVisionGlobalSessionTimerTotalSecondsCounterInteger++;
-            const h = Math.floor(studentVisionGlobalSessionTimerTotalSecondsCounterInteger / 3600), m = Math.floor((studentVisionGlobalSessionTimerTotalSecondsCounterInteger % 3600) / 60), s = studentVisionGlobalSessionTimerTotalSecondsCounterInteger % 60;
+        if (sriVedaGlobalSessionTimerIntervalObjectReference) clearInterval(sriVedaGlobalSessionTimerIntervalObjectReference);
+        sriVedaGlobalSessionTimerTotalSecondsCounterInteger = 0;
+        sriVedaGlobalSessionTimerIntervalObjectReference = setInterval(() => {
+            sriVedaGlobalSessionTimerTotalSecondsCounterInteger++;
+            const h = Math.floor(sriVedaGlobalSessionTimerTotalSecondsCounterInteger / 3600), m = Math.floor((sriVedaGlobalSessionTimerTotalSecondsCounterInteger % 3600) / 60), s = sriVedaGlobalSessionTimerTotalSecondsCounterInteger % 60;
             document.getElementById('session_timer').textContent = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
         }, 1000);
     }
     function logout() { 
-        if (studentVisionGlobalAuthenticatedUsername) {
-            localStorage.removeItem('sv_session_' + studentVisionGlobalAuthenticatedUsername);
+        if (sriVedaGlobalAuthenticatedUsername) {
+            localStorage.removeItem('sv_session_' + sriVedaGlobalAuthenticatedUsername);
         }
         location.reload(); 
     }
 
     window.onbeforeunload = function() {
-        if (studentVisionGlobalAuthenticatedUsername) {
-            localStorage.removeItem('sv_session_' + studentVisionGlobalAuthenticatedUsername);
+        if (sriVedaGlobalAuthenticatedUsername) {
+            localStorage.removeItem('sv_session_' + sriVedaGlobalAuthenticatedUsername);
         }
     };
 </script>
