@@ -3,532 +3,1163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sri Veda - AI Suite</title>
-    <!-- Favicon (Updated Logo) -->
     <link rel="icon" type="image/png" href="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png">
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Libraries -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    <title>Sri Veda - Home</title>
     <style>
         :root {
             --primary-blue: #00008B;
             --accent-yellow: #ffeb3b;
             --accent-orange: #ffa500;
+            --bg-gray: #f4f7f9;
+            --text-dark: #1e293b;
+            --border-color: #e2e8f0;
+            --white: #ffffff;
+            --success-green: #16a34a;
         }
 
-        body {
-            background-color: white;
-            font-family: 'Roboto Slab', serif !important;
-        }
+        * { font-family: 'Inter', sans-serif; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        h1, h2, h3, .main-title, .roboto-slab { font-family: 'Roboto Slab', serif; }
+        html, body { margin: 0; padding: 0; width: 100%; min-height: 100vh; overflow-x: hidden; scroll-behavior: smooth; }
+        body { background-color: var(--bg-gray); color: var(--text-dark); display: flex; flex-direction: column; }
 
-        h1, h2, h3, h4, p, span, button, select, textarea {
-            font-family: 'Roboto Slab', serif !important;
-        }
-
-        /* Header Styles */
+        /* HEADER STYLES */
         header { 
             background: var(--primary-blue); 
+            padding: 12px clamp(12px, 4vw, 30px); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            color: white; 
+            width: 100%; 
             position: relative; 
             overflow: hidden; 
             min-height: 75px; 
-            z-index: 100; 
+            z-index: 100;
+        }
+        .header-scroll-bg { 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 400%; height: 100%; 
+            background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 5%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1) 15%, transparent 20%); 
+            z-index: 1; 
+            animation: scrollGlow 25s linear infinite; 
+            opacity: 0.9; 
+        }
+        @keyframes scrollGlow { 0% { transform: translateX(-100%); } 100% { transform: translateX(25%); } }
+        
+        header .header-left, header .header-right, .header-corner, .header-corner-right { z-index: 10; }
+        header .header-left { display: flex; align-items: center; gap: 15px; }
+        header .logo { height: 46px; width: 46px; border-radius: 50%; border: 2px solid #ffffff; background: white; flex-shrink: 0; }
+        header .main-title { font-size: clamp(14px, 3vw, 20px); font-weight: 900; line-height: 1.1; }
+        header .sub-title { 
+            font-family: 'Roboto Slab', serif;
+            font-size: clamp(9px, 2vw, 13px); 
+            font-weight: 600; 
+            color: var(--accent-yellow); 
+            margin-top: 3px; 
+        }
+        
+        header .header-right { display: flex; gap: clamp(10px, 2.5vw, 25px); align-items: center; }
+        .menu-item a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; transition: transform 0.2s; position: relative; }
+        header .icon { font-size: clamp(14px, 2.5vw, 18px); color: var(--accent-orange); opacity: 0.9; }
+        .icon-label { font-size: 7.5px; margin-top: 5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.85; }
+        
+        .menu-item a.active-nav .icon { color: var(--accent-yellow); opacity: 1; transform: scale(1.1); }
+        .menu-item a.active-nav .icon-label { color: var(--accent-yellow); opacity: 1; font-weight: 900; }
+        .menu-item a.active-nav::after { content: ''; position: absolute; bottom: -8px; width: 5px; height: 5px; background-color: var(--accent-yellow); border-radius: 50%; }
+
+        .header-corner { position: absolute; top: 0; left: 0; height: 45px; opacity: 0.8; pointer-events: none; z-index: 15; }
+        .header-corner-right { position: absolute; top: 0; right: 0; height: 45px; opacity: 0.8; transform: scaleX(-1); pointer-events: none; z-index: 15; }
+
+.vision-banner {
+    width: 100%;
+    height: clamp(250px, 35vw, 420px);
+    background: linear-gradient(rgba(0,0,139,0.4),rgba(0,0,139,0.4)),
+    url('https://studentvisiontc.github.io/SVTC-Images/students-home-page%20students%20standup%20cups.png');
+    background-size: cover;
+    background-position: center 25%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-bottom:4px solid var(--accent-orange);
+}
+
+        /* PASSAGE SECTION */
+        .integrated-passage-section {
+            padding: 15px clamp(12px, 4vw, 30px);
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            text-align: justify;
+            width: 100%;
+        }
+        .integrated-passage-section p {
+            font-size: clamp(13px, 1.4vw, 15px);
+            line-height: 1.7;
+            color: #334155;
+            font-weight: 500;
+            margin-bottom: 12px;
+            width: 100%;
+        }
+        .integrated-passage-section p:last-child { margin-bottom: 0; }
+
+        /* CLASS OFFER SECTION */
+        .class-offer-section {
+            padding: 30px clamp(12px, 4vw, 30px);
+            background: #fff7ed;
+            border-bottom: 1px solid var(--border-color);
+            width: 100%;
+        }
+        .class-offer-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: clamp(20px, 4vw, 50px);
+        }
+        .class-badge-sidebar {
+            flex-shrink: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            width: 220px;
+        }
+        .class-badge-item {
+            background: var(--primary-blue);
             color: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 11px;
+            border: 1px solid var(--accent-orange);
+            text-transform: uppercase;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+        }
+        .class-badge-item:hover { transform: translateY(-3px); background: #0000cd; }
+        
+        .class-service-right { flex-grow: 1; }
+        .class-offer-title {
+            font-size: clamp(16px, 2.2vw, 20px);
+            font-weight: 900;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center; gap: 10px;
+        }
+        .class-offer-title::after { content: ''; flex-grow: 1; height: 2px; background: var(--accent-orange); }
+        .class-service-right p {
+            font-size: clamp(12px, 1.4vw, 14px);
+            color: #475569;
+            line-height: 1.6;
+            margin: 0;
+            font-weight: 600;
+            text-align: justify;
+        }
+
+        /* ENTRANCE EXAMS SECTION */
+        .entrance-exams-section {
+            padding: 30px clamp(12px, 4vw, 30px);
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            width: 100%;
+        }
+        .entrance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+        .entrance-card {
+            background: var(--bg-gray);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 6px solid var(--primary-blue);
+            transition: transform 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .entrance-card:hover { transform: translateY(-5px); }
+        .entrance-card h3 { color: var(--primary-blue); font-size: 17px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .entrance-card h3 i { color: var(--accent-orange); }
+        .exam-list { list-style: none; padding: 0; margin: 0; }
+        .exam-list li { font-size: 12px; padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between; font-weight: 600; }
+        .exam-list li span { color: var(--primary-blue); font-weight: 800; }
+        .syllabus-box { background: var(--primary-blue); color: white; border-radius: 15px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .syllabus-box h3 { color: var(--accent-yellow); font-size: 17px; margin-bottom: 12px; }
+        .subject-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .subject-item { background: rgba(255,255,255,0.1); padding: 8px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.05); }
+        .syllabus-points { margin-top: 15px; font-size: 11px; line-height: 1.5; color: rgba(255,255,255,0.8); }
+
+        /* EXAM & CERTIFICATE SECTION */
+        .exam-process-section {
+            padding: 30px clamp(12px, 4vw, 30px);
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            width: 100%;
+        }
+        .process-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+        }
+        .process-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .process-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid var(--primary-blue);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        .process-card:hover img { transform: scale(1.02); border-color: var(--accent-orange); }
+        .process-tag {
+            margin-top: 12px;
+            font-weight: 900;
+            color: var(--primary-blue);
+            font-size: clamp(12px, 1.5vw, 15px);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: #f1f5f9;
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: 1px solid var(--border-color);
             width: 100%;
         }
 
-        .header-corner { position: absolute; top: 0; left: 0; height: 38px; opacity: 0.8; pointer-events: none; z-index: 15; }
-        .header-corner-right { position: absolute; top: 0; right: 0; height: 38px; opacity: 0.8; transform: scaleX(-1); pointer-events: none; z-index: 15; }
-        .header-scroll-bg { 
-            position: absolute; top: 0; left: 0; width: 400%; height: 100%; 
-            background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 5%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1) 15%, transparent 20%); 
-            z-index: 1; animation: scrollGlow 25s linear infinite; opacity: 0.9; pointer-events: none; 
+        /* PERFORMANCE SECTION */
+        .performance-section {
+            padding: 40px clamp(12px, 4vw, 30px);
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            border-bottom: 1px solid var(--border-color);
+            width: 100%;
         }
-        @keyframes scrollGlow { 0% { transform: translateX(-100%); } 100% { transform: translateX(25%); } }
-        .icon-label { font-size: 7.5px; margin-top: 5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.85; }
+        .performance-container { display: flex; align-items: center; gap: 30px; width: 100%; }
+        .performance-info { flex: 1; }
+        .performance-info h2 { font-size: clamp(20px, 2.5vw, 24px); color: var(--primary-blue); margin-bottom: 10px; text-transform: uppercase; font-weight: 900; }
+        .performance-info p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.6; color: #475569; margin-bottom: 15px; font-weight: 600; text-align: justify; }
+        .skills-grid-compact { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+        .skill-item-mini { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 5px; background: white; padding: 12px 5px; border-radius: 8px; font-size: 9px; font-weight: 800; color: var(--primary-blue); box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-top: 3px solid var(--accent-orange); }
+        .skill-item-mini i { color: var(--accent-orange); font-size: 16px; }
+        .tc-score-meter { width: 280px; min-height: 280px; background: white; padding: 40px 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); text-align: center; border: 2px solid var(--border-color); flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .tc-score-meter h4 { margin: 0 0 10px; color: var(--primary-blue); font-size: 15px; font-weight: 900; text-transform: uppercase; }
+        .meter-fill-bg { height: 15px; width: 100%; background: #f1f5f9; border-radius: 20px; overflow: hidden; margin: 15px 0; border: 1px solid var(--border-color); }
+        .meter-fill-active { width: 100%; height: 100%; background: linear-gradient(to right, var(--accent-orange), var(--success-green)); border-radius: 20px; }
+        .tc-score-tag { font-size: 11px; font-weight: 800; color: var(--success-green); background: #f0fdf4; padding: 5px 12px; border-radius: 20px; display: inline-block; margin-top: 5px; }
 
-        /* Footer Styles */
-        footer { background: var(--primary-blue); color: white; border-top: 3px solid var(--accent-orange); width: 100%; }
-
-        /* 3D Title */
-        .title-3d {
-            font-weight: 900;
-            color: var(--primary-blue);
-            text-shadow: 1px 1px 0px #eee, 2px 2px 0px #ddd, 3px 3px 6px rgba(0,0,0,0.2);
-            text-transform: uppercase;
+        /* NAVODAYA SPECIAL FOCUS SECTION */
+        .navodaya-focus-section {
+            padding: 50px clamp(12px, 4vw, 30px);
+            background: #ffffff;
+            border-bottom: 5px solid var(--primary-blue);
+            width: 100%;
         }
-
-        /* Buttons & Inputs */
-        .btn-3d {
+        .navodaya-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .navodaya-content-left {
+            border-left: 8px solid var(--accent-orange);
+            padding-left: 25px;
             position: relative;
-            background: var(--primary-blue);
-            box-shadow: 0 6px 0 #000044;
-            transition: all 0.1s ease;
         }
-        .btn-3d:active {
-            box-shadow: 0 2px 0 #000044;
-            transform: translateY(4px);
-        }
-
-        .btn-download {
-            background: linear-gradient(135deg, #ffa500 0%, #ff4500 100%);
-            box-shadow: 0 6px 0 #8b4513;
-            color: white;
-            font-weight: 900;
-        }
-        .btn-download:active {
-            box-shadow: 0 2px 0 #8b4513;
-            transform: translateY(4px);
-        }
-
-        .section-box {
-            box-shadow: 10px 10px 30px rgba(0,0,0,0.08), inset 0 0 10px rgba(0,0,0,0.02);
-            border: 1px solid #f0f0f0;
-            transition: transform 0.3s ease;
-        }
-        .section-box:hover {
-            transform: translateY(-2px);
-        }
-
-        .input-3d {
-            box-shadow: inset 3px 3px 8px rgba(0,0,0,0.05);
-            border: 1px solid #e0e0e0;
-        }
-
-        .watermark-overlay {
+        .navodaya-style-circle {
             position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(0, 0, 139, 0.6);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 900;
-            backdrop-filter: blur(4px);
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        .loader-ring {
-            border: 4px solid rgba(255, 255, 255, 0.3);
+            right: 0;
+            top: -10px;
+            width: 70px;
+            height: 70px;
+            background: url('https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png');
+            background-size: cover;
             border-radius: 50%;
-            border-top: 4px solid white;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
+            border: 3px solid var(--accent-orange);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .navodaya-content-left h2 {
+            font-size: clamp(22px, 3vw, 32px);
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            font-weight: 950;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            padding-right: 80px;
+        }
+        .navodaya-content-left p {
+            font-size: clamp(14px, 1.5vw, 16px);
+            line-height: 1.8;
+            color: #334155;
+            font-weight: 600;
+            text-align: justify;
+        }
+        .navodaya-highlight {
+            color: var(--primary-blue);
+            font-weight: 900;
+            text-decoration: underline decoration-orange 3px;
+        }
+        .navodaya-list-right {
+            background: var(--bg-gray);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px dashed var(--primary-blue);
+            position: relative;
+        }
+        .navodaya-list-right h3 {
+            font-size: 18px;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .navodaya-list-right h3 i { color: var(--accent-orange); }
+        .preparing-also-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--accent-orange);
+            color: white;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 5px 15px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .all-exams-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        .exam-tag-item {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+        .exam-tag-item:hover { border-color: var(--primary-blue); transform: translateX(5px); }
+        .exam-name-txt { font-weight: 800; color: var(--text-dark); font-size: 13px; }
+        .exam-class-txt { font-size: 10px; font-weight: 900; color: var(--primary-blue); background: #eef2ff; padding: 4px 8px; border-radius: 5px; }
+
+        /* STATS SECTION */
+        .stats-section-compact { padding: 30px clamp(12px, 4vw, 30px); background: linear-gradient(to right, #00008B, #000044); border-bottom: 4px solid var(--accent-orange); display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap; gap: 30px; width: 100%; }
+        .stat-card-new { display: flex; align-items: center; gap: 15px; color: white; flex: 1 1 280px; max-width: 450px; }
+        .stat-num-box { background: white; color: var(--primary-blue); font-size: clamp(18px, 2vw, 22px); font-weight: 900; padding: 12px 18px; border-radius: 12px; border: 2px solid var(--accent-orange); box-shadow: 0 4px 15px rgba(0,0,0,0.3); min-width: 90px; text-align: center; }
+        .stat-txt-box h6 { margin: 0; font-size: 13px; text-transform: uppercase; color: var(--accent-yellow); font-weight: 800; letter-spacing: 0.5px; }
+        .stat-txt-box p { margin: 3px 0 0; font-size: 10px; font-weight: 600; opacity: 0.9; line-height: 1.4; }
+
+        /* --- UPDATED ZIGZAG SECTION: SPECIAL PARTNER SCHOOLS --- */
+        .district-schools-section {
+            padding: 20px clamp(12px, 4vw, 30px) 40px;
+            background: #ffffff;
+            width: 100%;
+            border-bottom: 2px solid var(--primary-blue);
+        }
+        .district-header { text-align: center; margin-bottom: 30px; }
+        .district-header h2 { font-size: clamp(20px, 2.5vw, 26px); color: var(--primary-blue); text-transform: uppercase; font-weight: 900; display: inline-block; border-bottom: 4px solid var(--accent-orange); padding-bottom: 8px; }
+        .district-header p { font-size: 12px; color: #64748b; font-weight: 700; margin-top: 10px; }
+        
+        .zigzag-container { display: flex; flex-direction: column; gap: 15px; width: 100%; }
+        .zigzag-row {
+            display: flex;
+            align-items: stretch;
+            min-height: 140px; /* Reduced Height */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+        }
+        .zigzag-row.reverse { flex-direction: row-reverse; }
+        
+        .school-banner-side {
+            flex: 1.5;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            color: white;
+            text-align: center;
+        }
+        .banner-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 139, 0.7); z-index: 1; }
+        .banner-info { position: relative; z-index: 2; }
+        .banner-info h3 { font-size: clamp(16px, 2vw, 22px); font-weight: 900; margin-bottom: 4px; text-shadow: 2px 2px 4px rgba(0,0,0,0.6); }
+        .banner-info p { font-size: 12px; font-weight: 800; color: var(--accent-yellow); text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* Live Scrolling Gradient Background */
+        .login-side {
+            flex: 1;
+            background: linear-gradient(-45deg, #f8fafc, #eef2ff, #f8fafc, #dcfce7);
+            background-size: 400% 400%;
+            animation: liveGradient 10s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            gap: 12px;
+        }
+        @keyframes liveGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
+        .login-side p { font-size: 10px; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; letter-spacing: 0.5px; }
+        .std-login-btn {
+            background: var(--primary-blue);
+            color: white;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,139,0.2);
+        }
+        .std-login-btn:hover { background: #0000cd; transform: scale(1.05); }
+
+        /* ACTION BUTTONS */
+        .action-buttons-section { padding: 60px clamp(12px, 4vw, 30px); background: #f1f5f9; border-bottom: 1px solid var(--border-color); width: 100%; }
+        .action-rows-container { display: flex; flex-direction: column; gap: 35px; width: 100%; }
+        .action-row { display: flex; align-items: center; gap: 40px; text-align: left; width: 100%; }
+        .action-row.reverse { flex-direction: row-reverse; text-align: right; }
+        .action-row p { font-size: 13.5px; line-height: 1.7; color: #475569; margin: 0; flex: 1; font-weight: 600; }
+        .compact-action-btn { width: 180px; padding: 12px 20px; border-radius: 30px; text-decoration: none; color: white; font-weight: 800; font-size: 12px; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; flex-shrink: 0; transition: all 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .compact-action-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
+        .reg-btn { background: linear-gradient(135deg, #ff9800, #f57c00); }
+        .log-btn { background: linear-gradient(135deg, #00008B, #0000cd); }
+        .pri-btn { background: linear-gradient(135deg, #2e7d32, #1b5e20); }
+
+        /* TOPPERS SECTION */
+        .fame-box { padding: 30px 0; background: white; width: 100%; border-bottom: 1px solid var(--border-color); position: relative; overflow: hidden; }
+        .fame-track { display: flex; gap: 20px; width: max-content; animation: liveScroll 85s linear infinite; padding: 10px 0; }
+        .topper-unit { background: white; border: 1px solid #bae6fd; width: 270px; min-height: 240px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; position: relative; overflow: hidden; border-radius: 12px; padding-top: 40px; padding-bottom: 10px; background-image: linear-gradient(135deg, #fff 0%, #fff 40%, rgba(255, 215, 0, 0.1) 50%, #fff 60%, #fff 100%); background-size: 200% 200%; animation: goldScrollBG 5s infinite linear; box-shadow: 0 4px 8px rgba(0,0,0,0.04); }
+        .topper-header-row { position: absolute; top: 0; left: 0; width: 100%; height: 35px; display: flex; justify-content: space-between; align-items: center; padding: 0 10px; background: rgba(255,255,255,0.5); z-index: 10; }
+        .rank-badge { background: linear-gradient(135deg, var(--primary-blue), #3b82f6); color: white; padding: 2px 8px; border-radius: 4px; font-size: 9px; font-weight: 900; text-transform: uppercase; }
+        .congrats-txt { font-size: 13px; font-weight: 900; font-family: 'Bebas Neue', cursive; letter-spacing: 0.5px; background: linear-gradient(135deg, #d00000 0%, #ffa500 50%, #d00000 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: congratsShine 3s linear infinite; }
+        .topper-photo { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--accent-orange); object-fit: cover; margin-bottom: 6px; z-index: 5; position: relative; }
+        .topper-score { font-size: 11px; font-weight: 900; color: var(--success-green); background: #f0fdf4; padding: 3px 12px; border-radius: 40px; margin-top: 5px; border: 1px solid var(--success-green); width: 80%; z-index: 5; position: relative; }
+
+        /* SCHOOL DEMO SECTION */
+        .school-demo-section { padding: 40px 0; background: #f8fafc; border-bottom: 1px solid var(--border-color); text-align: center; width: 100%; }
+        .school-demo-header { margin-bottom: 25px; border-left: 5px solid var(--accent-orange); padding: 0 clamp(12px, 4vw, 30px); text-align: left; width: 100%; }
+        .school-demo-header h2 { font-size: clamp(18px, 2.5vw, 22px); color: var(--primary-blue); text-transform: uppercase; margin: 0; font-weight: 900; }
+        
+        .school-list-container { width: 100%; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; padding: 0 clamp(12px, 4vw, 30px); text-align: left; }
+        .school-list-item { background: white; padding: 12px 15px; border-radius: 8px; border: 1px solid #e2e8f0; display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; color: #475569; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.2s; }
+        .school-list-item:hover { transform: translateX(5px); border-color: var(--primary-blue); }
+        .school-list-item i { color: var(--success-green); font-size: 14px; }
+
+        /* --- NEW SECTION: OUR COLLABORATED SCHOOLS --- */
+        .collab-schools-section {
+            padding: 50px clamp(12px, 4vw, 30px);
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            width: 100%;
+        }
+        .collab-header { margin-bottom: 30px; text-align: center; }
+        .collab-header h2 { font-size: clamp(18px, 2.5vw, 22px); color: var(--primary-blue); text-transform: uppercase; font-weight: 950; display: inline-block; position: relative; padding-bottom: 10px; }
+        .collab-header h2::after { content: ''; width: 60%; height: 3px; background: var(--accent-orange); position: absolute; bottom: 0; left: 20%; }
+        
+        .collab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; width: 100%; }
+        .collab-item { 
+            background: #f8fafc; 
+            padding: 15px; 
+            border-radius: 12px; 
+            border: 1px solid #e2e8f0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start; 
+            gap: 8px; 
+            transition: all 0.3s;
+            border-left: 5px solid var(--primary-blue);
+        }
+        .collab-item:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.05); border-left-color: var(--accent-orange); }
+        .collab-item .sch-name { font-size: 12px; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; }
+        .collab-item .sch-loc { font-size: 10px; font-weight: 700; color: #64748b; display: flex; align-items: center; gap: 5px; }
+        .collab-item .sch-loc i { color: var(--accent-orange); }
+
+
+
+
+
+        /* STUDENT COMMENTS SECTION */
+        .student-comments-section { padding: 40px clamp(12px, 4vw, 30px); background: #f8fafc; border-bottom: 1px solid var(--border-color); width: 100%; }
+        .comments-header { margin-bottom: 30px; border-left: 5px solid var(--accent-orange); padding-left: 15px; text-align: left; }
+        .comments-header h2 { font-size: clamp(18px, 2.5vw, 24px); color: var(--primary-blue); text-transform: uppercase; margin: 0; font-weight: 900; letter-spacing: 0.5px; }
+        .comments-header p { margin: 5px 0 0; font-size: 13px; color: #64748b; font-weight: 700; }
+        .comments-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; width: 100%; }
+        .comment-card { background: white; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .comment-img { width: 100%; height: auto; display: block; object-fit: contain; }
+
+        /* SOCIAL MEDIA SECTION */
+        .social-promo-section { padding: 25px 0; background: #ffffff; border-bottom: 1px solid var(--border-color); width: 100%; }
+        .social-flex-container { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding: 0 clamp(12px, 4vw, 30px); }
+        .social-promo-header-mini { border-left: 4px solid var(--accent-orange); padding-left: 15px; text-align: left; }
+        .social-promo-header-mini h2 { color: var(--primary-blue); font-size: 16px; text-transform: uppercase; margin: 0; font-weight: 900; }
+        .social-promo-header-mini p { margin: 3px 0 0; font-size: 11px; color: #64748b; font-weight: 700; }
+        
+        .social-links-row { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: nowrap !important; overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+        .social-links-row::-webkit-scrollbar { display: none; }
+        .social-pill { padding: 8px 12px; border-radius: 6px; color: white; text-decoration: none; font-weight: 800; font-size: 10px; display: flex; align-items: center; gap: 5px; min-width: 90px; justify-content: center; border: 1px solid rgba(0,0,0,0.05); flex-shrink: 0; transition: transform 0.2s; }
+        .social-pill:hover { transform: translateY(-3px); }
+        .social-pill.yt { background: #FF0000; }
+        .social-pill.fb { background: #1877F2; }
+        .social-pill.ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+
+        /* FOOTER STYLES */
+        footer { background: var(--primary-blue); color: white; padding: 30px 20px; border-top: 3px solid var(--accent-orange); margin-top: auto; width: 100%; }
+        .footer-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; width: 100%; padding: 0 clamp(12px, 4vw, 30px); text-align: left; }
+        .footer-column { display: flex; flex-direction: column; }
+        .footer-column h4 { color: var(--accent-yellow); border-bottom: 2px solid var(--accent-yellow); display: inline-block; margin-bottom: 15px; font-weight: 900; font-size: 13px; text-transform: uppercase; align-self: flex-start; padding-bottom: 4px; }
+        .footer-column p, .footer-column a { font-size: 11px; color: rgba(255,255,255,0.9); text-decoration: none; display: flex; align-items: center; gap: 10px; margin: 0; margin-bottom: 10px; line-height: 1.5; font-weight: 600; }
+        .social-icons { display: flex; gap: 15px; margin-top: 5px; }
+        .social-icons a { font-size: 20px; color: white; transition: all 0.3s; margin-bottom: 0; }
+        .social-icons a:hover { color: var(--accent-yellow); transform: scale(1.1); }
+
+        @media (max-width: 850px) {
+            header { flex-direction: column; height: auto; padding: 15px 10px; text-align: center; gap: 15px; }
+            header .header-left { flex-direction: column; align-items: center; width: 100%; gap: 10px; }
+            header .header-right { border-top: 1px solid rgba(255, 255, 255, 0.1); width: 100%; justify-content: center; padding-top: 15px; flex-wrap: wrap; }
+            .performance-container { flex-direction: column; }
+            .tc-score-meter { width: 100%; min-height: auto; }
+            .skills-grid-compact { grid-template-columns: repeat(3, 1fr); }
+            .class-offer-container { flex-direction: column; gap: 20px; }
+            .class-badge-sidebar { width: 100%; grid-template-columns: repeat(4, 1fr); }
+            .navodaya-container { grid-template-columns: 1fr; }
+            .zigzag-row { flex-direction: column !important; min-height: auto; }
+            .action-row { flex-direction: column !important; text-align: center !important; gap: 15px; }
+            .collab-grid { grid-template-columns: repeat(2, 1fr); }
+            .comments-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; gap: 25px; }
+        }
+		
+		
+		/* HELP SUPPORT SECTION */
+.help-support-section{
+    width:100%;
+    background:white;
+    padding:40px clamp(12px,4vw,30px);
+    border-bottom:1px solid #e2e8f0;
+    font-family:'Roboto Slab',serif;
+}
+
+.input-3d{
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+    border:1px solid #e2e8f0;
+    transition:all .2s ease;
+}
+
+.input-3d:focus{
+    background:white;
+    border-color:#4f46e5;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.03),0 0 0 3px rgba(79,70,229,.1);
+    outline:none;
+}
+
+.help-headline{
+    font-family:'Roboto Slab',serif;
+    font-size:clamp(18px,3vw,26px);
+    font-weight:900;
+    text-transform:uppercase;
+    background:linear-gradient(135deg,#1e1b4b,#4338ca,#9333ea,#db2777);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.live-dot{
+    width:6px;
+    height:6px;
+    background:#10b981;
+    border-radius:50%;
+    position:relative;
+}
+
+.live-dot::after{
+    content:'';
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:inherit;
+    border-radius:50%;
+    animation:ripple 2s infinite;
+}
+
+@keyframes ripple{
+0%{transform:scale(1);opacity:.8;}
+100%{transform:scale(3);opacity:0;}
+}
+
+
+/* VISION BANNER SECTION */
+.vision-banner {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(rgba(0,0,139,0.4),rgba(0,0,139,0.4)),
+    url('https://studentvisiontc.github.io/SVTC-Images/students-home-page%20students%20standup%20cups.png');
+    background-size: cover;
+    background-position: center 25%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-bottom:4px solid var(--accent-orange);
+}
+
+.vision-headline-container{
+ padding: 10px 1rem 5px 1rem;
+    text-align:center;
+    background:white;
+    display:flex;
+    justify-content:center;
+}
+
+.headline-wrapper{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    border-bottom:3px solid var(--accent-orange);
+    padding-bottom:6px;
+}
+
+.headline-text{
+    font-family:'Roboto Slab',serif;
+    font-size:clamp(1rem,3vw,1.5rem);
+    font-weight:900;
+    text-transform:uppercase;
+    background:linear-gradient(135deg,#1e1b4b,#4338ca,#9333ea,#db2777);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.design-arrow{
+    color:var(--primary-blue);
+    font-size:12px;
+    opacity:0.8;
+}
+
+.design-dot{
+    width:5px;
+    height:5px;
+    background:var(--accent-orange);
+    border-radius:50%;
+}
+
+.arrow-left{
+    transform:rotate(180deg);
+}
     </style>
 </head>
 <body>
-    <div id="root"></div>
 
-    <script type="text/babel">
-        const { useState, useEffect, useRef } = React;
+<header>
+    <div class="header-scroll-bg"></div>
+    <img src="https://studentvisiontc.github.io/SVTC-Images/hh%20logo.png" class="header-corner">
+    <img src="https://studentvisiontc.github.io/SVTC-Images/hh%20logo.png" class="header-corner-right">
+    <div class="header-left">
+        <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" alt="SV Logo" class="logo">
+        <div>
+            <div class="main-title">Sri Veda Talent Competition</div>
+            <div class="sub-title">“We See Your Success”</div>
+        </div>
+    </div>
+    <div class="header-right" id="navContainer"></div>
+</header>
 
-        const App = () => {
-            const [videoScript, setVideoScript] = useState('');
-            const [imageScript, setImageScript] = useState('');
-            const [audioScript, setAudioScript] = useState('');
+<main>
+	
+<!-- VISION BANNER -->
+<div class="vision-banner"></div>
 
-            const [videoSize, setVideoSize] = useState('YouTube (16:9)');
-            const [videoTimer, setVideoTimer] = useState('20 Seconds');
-            const [imageSize, setImageSize] = useState('Instagram Post (1:1)');
-            const [audioTimer, setAudioTimer] = useState('20 Seconds');
+<div class="vision-headline-container">
+    <div class="headline-wrapper">
 
-            const [loading, setLoading] = useState({ video: false, image: false, audio: false });
-            const [downloading, setDownloading] = useState({ video: false, image: false, audio: false });
-            const [results, setResults] = useState({ video: null, images: [], audio: null });
-            const [isPlaying, setIsPlaying] = useState(false);
-            const [progress, setProgress] = useState(0);
+        <i class="fa-solid fa-play design-arrow arrow-left"></i>
+        <div class="design-dot"></div>
 
-            const audioRef = useRef(null);
-            const apiKey = ""; 
+        <h2 class="headline-text">
+            Sri Veda Vision - Student Success
+        </h2>
 
-            const GLOBAL_LINKS = {
-                URL_HOME: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/",
-                URL_REGISTER: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Register",
-                URL_LOGIN: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Login",
-                URL_ADMIN: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Admin",
-                URL_PRICING: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Pricing",
-                URL_ABOUT: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/About",
-                URL_DONORS: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Doners",
-                URL_MANAGEMENT: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Management",
-                URL_TERMS: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/terms",
-                SOCIAL_WHATSAPP: "http://wa.me/919346119924",
-                SOCIAL_INSTAGRAM: "https://www.instagram.com/sriveda.tc",
-                SOCIAL_YOUTUBE: "https://www.youtube.com/channel/UC8uL4sqxqFs78OxNsSo6e2Q",
-                SOCIAL_FACEBOOK: "https://www.facebook.com/sriveda.tc"
-            };
+        <div class="design-dot"></div>
+        <i class="fa-solid fa-play design-arrow"></i>
 
-            const pcmToWav = (pcmBase64, sampleRate = 24000) => {
-                try {
-                    const binaryString = window.atob(pcmBase64);
-                    const len = binaryString.length;
-                    const bytes = new Uint8Array(len);
-                    for (let i = 0; i < len; i++) bytes[i] = binaryString.charCodeAt(i);
-                    const wavHeader = new ArrayBuffer(44);
-                    const view = new DataView(wavHeader);
-                    const writeString = (offset, string) => {
-                        for (let i = 0; i < string.length; i++) view.setUint8(offset + i, string.charCodeAt(i));
-                    };
-                    writeString(0, 'RIFF');
-                    view.setUint32(4, 32 + len, true);
-                    writeString(8, 'WAVE');
-                    writeString(12, 'fmt ');
-                    view.setUint32(16, 16, true);
-                    view.setUint16(20, 1, true);
-                    view.setUint16(22, 1, true);
-                    view.setUint32(24, sampleRate, true);
-                    view.setUint32(28, sampleRate * 2, true);
-                    view.setUint16(32, 2, true);
-                    view.setUint16(34, 16, true);
-                    writeString(36, 'data');
-                    view.setUint32(40, len, true);
-                    const blob = new Blob([wavHeader, bytes], { type: 'audio/wav' });
-                    return URL.createObjectURL(blob);
-                } catch (e) { return null; }
-            };
+    </div>
+</div>
 
-            const improveScript = async (original) => {
-                try {
-                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: `Refine this Telugu script for Jessica. Focus on realism and cinematic tone. Output only improved Telugu: ${original}` }] }]
-                        })
-                    });
-                    const data = await res.json();
-                    return data.candidates[0].content.parts[0].text;
-                } catch (e) { return original; }
-            };
+    <section class="integrated-passage-section">
+        <p>Learning is the ultimate key to unlocking a world of endless possibilities. In an ever-evolving era, knowledge empowers young minds to think critically, solve complex problems, and build a solid foundation for their future careers. It’s about more than just grades; it’s about nurturing curiosity and developing the wisdom to navigate the challenges of tomorrow with confidence. At Sri Veda, we go beyond traditional textbooks to provide a holistic competitive environment, bridging the gap between classroom learning and real-world intelligence.</p>
+        <p>We are dedicated to preparing students from Class 3 to Class 10 for All India level entrance exams by delivering a comprehensive syllabus specifically designed for competitive excellence. Our program goes beyond standard subjects, integrating intensive training in Logical Reasoning, Mental Ability, Computer Awareness, and General Knowledge. Our unique methodology involves students taking rigorous periodic tests, followed by complete, in-depth explanations to ensure every concept is thoroughly mastered. Through our proprietary TC Score and persistent skill mapping, we ensure that every student recognizes their true potential and achieves measurable, impressive success in their educational journey.</p>
+    </section>
 
-            const handleGenerateVideo = async () => {
-                if (!videoScript.trim()) return;
-                setLoading(prev => ({ ...prev, video: true }));
-                try {
-                    const refined = await improveScript(videoScript);
-                    const ratio = videoSize.includes('16:9') ? '16:9' : videoSize.includes('9:16') ? '9:16' : '1:1';
-                    
-                    const imgRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            instances: [{ prompt: `Hyper-realistic cinematic shot for ${videoSize}: ${refined}. 8k, professional. No text.` }],
-                            parameters: { sampleCount: 1 }
-                        })
-                    });
-                    const imgData = await imgRes.json();
-                    const imgUrl = `data:image/png;base64,${imgData.predictions[0].bytesBase64Encoded}`;
+    <section class="class-offer-section">
+        <div class="class-offer-container">
+            <div class="class-badge-sidebar">
+                <div class="class-badge-item">Class 10</div><div class="class-badge-item">Class 9</div>
+                <div class="class-badge-item">Class 8</div><div class="class-badge-item">Class 7</div>
+                <div class="class-badge-item">Class 6</div><div class="class-badge-item">Class 5</div>
+                <div class="class-badge-item">Class 4</div><div class="class-badge-item">Class 3</div>
+            </div>
+            <div class="class-service-right">
+                <div class="class-offer-title">Empowering Students Across All Grades</div>
+                <p>We provide comprehensive educational services and specialized coaching for students from <b>Class 3rd to 10th</b>. Our curriculum is designed to help students excel in their regular academic subjects while simultaneously preparing them for elite <b>All India Entrance Exams</b>, including <b>Jawahar Navodaya Vidyalaya (JNVST)</b>, Sainik Schools, and Olympiads. Students from all these classes are invited to join us to develop their skills, sharpen their intelligence, and secure their academic future through rigorous testing and thorough explanation sessions.</p>
+            </div>
+        </div>
+    </section>
 
-                    const ttsRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: `Speak naturally as Jessica in emotional Telugu: ${refined}` }] }],
-                            generationConfig: {
-                                responseModalities: ["AUDIO"],
-                                speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Kore" } } }
-                            }
-                        })
-                    });
-                    const ttsData = await ttsRes.json();
-                    const audioUrl = pcmToWav(ttsData.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data);
-
-                    setResults(prev => ({ ...prev, video: { imgUrl, audioUrl, ratio, script: refined } }));
-                } catch (e) { console.error(e); }
-                setLoading(prev => ({ ...prev, video: false }));
-            };
-
-            const handleGenerateImages = async () => {
-                if (!imageScript.trim()) return;
-                setLoading(prev => ({ ...prev, image: true }));
-                try {
-                    const ratio = imageSize.includes('Banner') ? '21:9' : '1:1';
-                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            instances: [{ prompt: `Realistic professional photography for ${imageSize}: ${imageScript}. Vivid, 8k. Aspect ratio ${ratio}.` }],
-                            parameters: { sampleCount: 3 }
-                        })
-                    });
-                    const data = await res.json();
-                    setResults(prev => ({ ...prev, images: data.predictions.map(p => `data:image/png;base64,${p.bytesBase64Encoded}`) }));
-                } catch (e) { console.error(e); }
-                setLoading(prev => ({ ...prev, image: false }));
-            };
-
-            const handleGenerateAudio = async () => {
-                if (!audioScript.trim()) return;
-                setLoading(prev => ({ ...prev, audio: true }));
-                try {
-                    const refined = await improveScript(audioScript);
-                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: `Speak naturally as Jessica in Telugu: ${refined}` }] }],
-                            generationConfig: {
-                                responseModalities: ["AUDIO"],
-                                speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Kore" } } }
-                            }
-                        })
-                    });
-                    const data = await res.json();
-                    const url = pcmToWav(data.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data);
-                    setResults(prev => ({ ...prev, audio: { url, script: refined } }));
-                } catch (e) { console.error(e); }
-                setLoading(prev => ({ ...prev, audio: false }));
-            };
-
-            const handleDownload = async (type, url) => {
-                setDownloading(prev => ({ ...prev, [type]: true }));
-                // Simulate HD Processing delay
-                await new Promise(r => setTimeout(r, 2000));
-                const link = document.createElement('a');
-                link.href = url;
-                link.download = `SriVeda_AI_${type}_${Date.now()}`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                setDownloading(prev => ({ ...prev, [type]: false }));
-            };
-
-            const togglePlay = () => {
-                if (audioRef.current) {
-                    if (isPlaying) audioRef.current.pause();
-                    else audioRef.current.play();
-                    setIsPlaying(!isPlaying);
-                }
-            };
-
-            useEffect(() => {
-                if (audioRef.current) {
-                    const up = () => setProgress((audioRef.current.currentTime / audioRef.current.duration) * 100);
-                    audioRef.current.addEventListener('timeupdate', up);
-                    audioRef.current.onended = () => setIsPlaying(false);
-                    return () => audioRef.current?.removeEventListener('timeupdate', up);
-                }
-            }, [results.video]);
-
-            return (
-                <div className="min-h-screen flex flex-col">
-                    {/* Header - UNTOUCHED LINKS */}
-                    <header className="px-4 py-3 md:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                        <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/Header%20corner%20logo.png" className="header-corner" />
-                        <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/Header%20corner%20logo.png" className="header-corner-right" />
-                        <div className="header-scroll-bg"></div>
-                        <div className="flex items-center gap-4 z-10">
-                            <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" className="w-12 h-12 rounded-full border-2 border-white bg-white" />
-                            <div className="text-left">
-                                <h1 className="text-sm md:text-xl font-black leading-tight uppercase tracking-tighter">Sri Veda Talent Competition</h1>
-                                <p className="text-[10px] md:text-xs font-bold text-[#ffeb3b] italic">"AI Corner"</p>
-                            </div>
-                        </div>
-                        <nav className="flex gap-4 md:gap-6 items-center z-10">
-                            {[
-                                { id: 'home', icon: 'fa-house', label: 'Home', url: GLOBAL_LINKS.URL_HOME },
-                                { id: 'register', icon: 'fa-user-plus', label: 'Register', url: GLOBAL_LINKS.URL_REGISTER },
-                                { id: 'login', icon: 'fa-right-to-bracket', label: 'Login', url: GLOBAL_LINKS.URL_LOGIN },
-                                { id: 'admin', icon: 'fa-user-tie', label: 'Admin', url: GLOBAL_LINKS.URL_ADMIN },
-                                { id: 'pricing', icon: 'fa-tags', label: 'Pricing', url: GLOBAL_LINKS.URL_PRICING },
-                            ].map((item) => (
-                                <a key={item.id} href={item.url} className="flex flex-col items-center no-underline">
-                                    <i className={`fa-solid ${item.icon} text-lg text-orange-400 opacity-80`}></i>
-                                    <span className="icon-label text-white uppercase">{item.label}</span>
-                                </a>
-                            ))}
-                        </nav>
-                    </header>
-
-                    {/* Main Content - Compact Body */}
-                    <main className="flex-1 w-full max-w-full flex flex-col items-center">
-                        <div className="w-full max-w-6xl px-4 py-6 text-center">
-                            <h2 className="title-3d text-3xl md:text-4xl mb-3">Sri Veda AI</h2>
-                            <div className="max-w-4xl mx-auto space-y-2">
-                                <p className="text-blue-900 font-black text-lg uppercase tracking-widest flex items-center justify-center gap-2">
-                                    <i className="fa-solid fa-rocket text-orange-500 animate-bounce"></i> Advanced Creative Suite
-                                </p>
-                                <p className="text-slate-500 text-sm leading-relaxed font-semibold">
-                                    Revolutionize your content with Jessica's emotional Telugu voice and 8K cinematic visuals. 
-                                    Tailored AI creation at your fingertips.
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Video Section */}
-                        <section className="w-full bg-[#fdf2ff] py-8 px-4 md:px-12 border-y border-purple-100 section-box mb-2">
-                            <div className="max-w-6xl mx-auto">
-                                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                                    <h3 className="text-2xl font-black text-purple-900 flex items-center gap-2 uppercase tracking-tighter">
-                                        <i className="fa-solid fa-film text-purple-600"></i> Text to Video
-                                    </h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        <select className="p-2 text-xs rounded-lg border border-purple-200 font-bold" value={videoSize} onChange={e => setVideoSize(e.target.value)}>
-                                            <option>YouTube (16:9)</option>
-                                            <option>Instagram Reel (9:16)</option>
-                                            <option>Facebook Post (1:1)</option>
-                                        </select>
-                                        <select className="p-2 text-xs rounded-lg border border-purple-200 font-bold" value={videoTimer} onChange={e => setVideoTimer(e.target.value)}>
-                                            <option>20 Seconds</option>
-                                            <option>1 Minute</option>
-                                            <option>1.5 Minutes</option>
-                                            <option>2 Minutes</option>
-                                        </select>
-                                        <button onClick={handleGenerateVideo} disabled={loading.video} className="btn-3d py-2 px-6 text-white rounded-lg font-black uppercase text-[10px] disabled:opacity-50">
-                                            {loading.video ? <i className="fa-solid fa-spinner animate-spin"></i> : "Generate Video"}
-                                        </button>
-                                    </div>
-                                </div>
-                                <textarea className="w-full h-24 p-4 rounded-xl input-3d outline-none focus:ring-2 focus:ring-purple-400 text-base font-bold" placeholder="Enter script here..." value={videoScript} onChange={e => setVideoScript(e.target.value)} />
-
-                                {results.video && (
-                                    <div className="mt-6 flex flex-col items-center">
-                                        <div className="relative bg-black rounded-2xl overflow-hidden shadow-xl border-4 border-white group" style={{ aspectRatio: results.video.ratio === '16:9' ? '16/9' : results.video.ratio === '9:16' ? '9/16' : '1/1', maxWidth: results.video.ratio === '9:16' ? '280px' : '700px' }}>
-                                            <img src={results.video.imgUrl} className={`w-full h-full object-cover transition-transform duration-[15000ms] ${isPlaying ? 'scale-125' : 'scale-100'}`} />
-                                            <div className="absolute inset-0 flex items-center justify-center cursor-pointer" onClick={togglePlay}>
-                                                {!isPlaying && <div className="p-6 bg-white/20 backdrop-blur-md rounded-full text-white border border-white/30"><i className="fa-solid fa-play text-2xl"></i></div>}
-                                            </div>
-                                            <div className="watermark-overlay">Sri Veda AI</div>
-                                        </div>
-                                        <div className="flex gap-4 mt-4 w-full max-w-xl">
-                                            <button onClick={togglePlay} className="flex-1 py-3 bg-slate-900 text-white rounded-lg font-black uppercase text-[10px] tracking-widest">{isPlaying ? "Pause" : "Play Preview"}</button>
-                                            <button onClick={() => handleDownload('Video', results.video.imgUrl)} className="btn-download flex-1 py-3 rounded-lg flex items-center justify-center gap-2 uppercase text-[10px]">
-                                                {downloading.video ? <div className="loader-ring"></div> : <><i className="fa-solid fa-download"></i> Download HD 3D</>}
-                                            </button>
-                                        </div>
-                                        <audio ref={audioRef} src={results.video.audioUrl} />
-                                    </div>
-                                )}
-                            </div>
-                        </section>
-
-                        {/* Image Section */}
-                        <section className="w-full bg-[#f0f9ff] py-8 px-4 md:px-12 border-y border-blue-100 section-box mb-2">
-                            <div className="max-w-6xl mx-auto">
-                                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                                    <h3 className="text-2xl font-black text-blue-900 flex items-center gap-2 uppercase tracking-tighter">
-                                        <i className="fa-solid fa-image text-blue-600"></i> Text to Image
-                                    </h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        <select className="p-2 text-xs rounded-lg border border-blue-200 font-bold" value={imageSize} onChange={e => setImageSize(e.target.value)}>
-                                            <option>Instagram Post (1:1)</option>
-                                            <option>YouTube Banner (21:9)</option>
-                                            <option>Facebook Post (16:9)</option>
-                                        </select>
-                                        <button onClick={handleGenerateImages} disabled={loading.image} className="btn-3d py-2 px-6 text-white rounded-lg font-black uppercase text-[10px] disabled:opacity-50">
-                                            {loading.image ? <i className="fa-solid fa-spinner animate-spin"></i> : "Get 3 Images"}
-                                        </button>
-                                    </div>
-                                </div>
-                                <textarea className="w-full h-24 p-4 rounded-xl input-3d outline-none focus:ring-2 focus:ring-blue-400 text-base font-bold" placeholder="Describe image here..." value={imageScript} onChange={e => setImageScript(e.target.value)} />
-
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                                    {results.images.map((url, i) => (
-                                        <div key={i} className="flex flex-col gap-2">
-                                            <div className="relative aspect-square rounded-2xl overflow-hidden shadow-lg border-4 border-white group">
-                                                <img src={url} className="w-full h-full object-cover" />
-                                                <div className="watermark-overlay">Sri Veda AI</div>
-                                            </div>
-                                            <button onClick={() => handleDownload('Image', url)} className="btn-download py-2 rounded-lg flex items-center justify-center gap-2 uppercase text-[9px]">
-                                                {downloading.image ? <div className="loader-ring"></div> : <><i className="fa-solid fa-download"></i> Download HD 3D</>}
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </section>
-
-                        {/* Audio Section */}
-                        <section className="w-full bg-[#f8fafc] py-8 px-4 md:px-12 border-y border-slate-200 section-box mb-4">
-                            <div className="max-w-6xl mx-auto">
-                                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                                    <h3 className="text-2xl font-black text-slate-900 flex items-center gap-2 uppercase tracking-tighter">
-                                        <i className="fa-solid fa-microphone-lines text-indigo-600"></i> Text to Audio
-                                    </h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        <select className="p-2 text-xs rounded-lg border border-slate-200 font-bold" value={audioTimer} onChange={e => setAudioTimer(e.target.value)}>
-                                            <option>20 Seconds</option>
-                                            <option>1 Minute</option>
-                                        </select>
-                                        <button onClick={handleGenerateAudio} disabled={loading.audio} className="btn-3d py-2 px-6 text-white rounded-lg font-black uppercase text-[10px] disabled:opacity-50">
-                                            {loading.audio ? <i className="fa-solid fa-spinner animate-spin"></i> : "Create Audio"}
-                                        </button>
-                                    </div>
-                                </div>
-                                <textarea className="w-full h-24 p-4 rounded-xl input-3d outline-none focus:ring-2 focus:ring-indigo-400 text-base font-bold" placeholder="Audio script here..." value={audioScript} onChange={e => setAudioScript(e.target.value)} />
-
-                                {results.audio && (
-                                    <div className="mt-6 p-4 bg-white rounded-2xl shadow-lg border border-slate-100 flex flex-col items-center gap-3">
-                                        <p className="text-[10px] font-black text-indigo-900 uppercase">Jessica's Audio Ready</p>
-                                        <audio controls src={results.audio.url} className="w-full max-w-md h-10" />
-                                        <button onClick={() => handleDownload('Audio', results.audio.url)} className="btn-download px-8 py-3 rounded-lg flex items-center justify-center gap-2 uppercase text-[10px]">
-                                            {downloading.audio ? <div className="loader-ring"></div> : <><i className="fa-solid fa-download"></i> Download HD 3D</>}
-                                        </button>
-                                    </div>
-                                )}
-                            </div>
-                        </section>
-                    </main>
-
-                    {/* Footer - UNTOUCHED LINKS */}
-                    <footer className="px-6 py-6 md:px-12 mt-auto">
-                        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-                            <div className="space-y-2">
-                                <h4 className="text-[#ffeb3b] border-b border-yellow-400 inline-block pb-0.5 font-black text-[13px] uppercase tracking-widest">
-                                    <i className="fa-solid fa-headset mr-2"></i> Support
-                                </h4>
-                                <div className="space-y-1 text-[12px] font-bold opacity-90">
-                                    <p><i className="fa-solid fa-phone mr-2 text-orange-500"></i> +91 9346119924</p>
-                                    <p><i className="fa-solid fa-envelope mr-2 text-orange-500"></i> contact.sriveda@gmail.com</p>
-                                    <a href={GLOBAL_LINKS.URL_ABOUT} className="flex items-center gap-2 text-white no-underline hover:text-yellow-300">
-                                        <i className="fa-solid fa-circle-info"></i> About Us
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="space-y-2">
-                                <h4 className="text-[#ffeb3b] border-b border-yellow-400 inline-block pb-0.5 font-black text-[13px] uppercase tracking-widest">
-                                    <i className="fa-solid fa-link mr-2"></i> Quick Links
-                                </h4>
-                                <div className="flex flex-col gap-1 text-[12px] font-bold opacity-90">
-                                    <a href={GLOBAL_LINKS.URL_DONORS} className="flex items-center gap-2 text-white no-underline hover:text-yellow-300"><i className="fa-solid fa-circle-info"></i> Doners</a>
-                                    <a href={GLOBAL_LINKS.URL_MANAGEMENT} className="flex items-center gap-2 text-white no-underline hover:text-yellow-300"><i className="fa-solid fa-shield-halved"></i> Management</a>
-                                    <a href={GLOBAL_LINKS.URL_TERMS} className="flex items-center gap-2 text-white no-underline hover:text-yellow-300"><i className="fa-solid fa-file-contract"></i> Terms & Condition</a>
-                                </div>
-                            </div>
-                            <div className="space-y-2">
-                                <h4 className="text-[#ffeb3b] border-b border-yellow-400 inline-block pb-0.5 font-black text-[13px] uppercase tracking-widest">
-                                    <i className="fa-solid fa-share-nodes mr-2"></i> Follow Us
-                                </h4>
-                                <div className="flex gap-5 text-xl">
-                                    <a href={GLOBAL_LINKS.SOCIAL_WHATSAPP} className="text-white hover:text-accent-yellow"><i className="fab fa-whatsapp"></i></a>
-                                    <a href={GLOBAL_LINKS.SOCIAL_INSTAGRAM} className="text-white hover:text-accent-yellow"><i className="fab fa-instagram"></i></a>
-                                    <a href={GLOBAL_LINKS.SOCIAL_YOUTUBE} className="text-white hover:text-accent-yellow"><i className="fab fa-youtube"></i></a>
-                                    <a href={GLOBAL_LINKS.SOCIAL_FACEBOOK} className="text-white hover:text-accent-yellow"><i className="fab fa-facebook"></i></a>
-                                </div>
-                                <p className="opacity-40 text-[11px] font-bold mt-3 uppercase tracking-tighter">
-                                    &copy; 2025 srivedatc. All rights reserved.
-                                </p>
-                            </div>
-                        </div>
-                    </footer>
+    <section class="entrance-exams-section">
+        <div class="entrance-grid">
+            <div class="entrance-card">
+                <h3><i class="fa-solid fa-school"></i> National Entrance Exams</h3>
+                <ul class="exam-list">
+                    <li>Sainik School Entrance (AISSEE) <span>Class 6 & 9</span></li>
+                    <li>Jawahar Navodaya Vidyalaya (JNVST) <span>Class 6 & 9</span></li>
+                    <li>Rashtriya Military School (RMS) <span>Class 6 & 9</span></li>
+                    <li>RIMC Dehradun Entrance <span>Class 8</span></li>
+                    <li>Olympiads (IMO, NSO, IEO) <span>Class 3-10</span></li>
+                    <li>NTSE & NMMS Exams <span>Class 8-10</span></li>
+                </ul>
+            </div>
+            <div class="syllabus-box">
+                <h3><i class="fa-solid fa-book-open"></i> Subjects & Syllabus Covered</h3>
+                <div class="subject-grid">
+                    <div class="subject-item"><i class="fa-solid fa-calculator"></i> Mathematics</div>
+                    <div class="subject-item"><i class="fa-solid fa-atom"></i> Science (P, C, B)</div>
+                    <div class="subject-item"><i class="fa-solid fa-brain"></i> Mental Ability</div>
+                    <div class="subject-item"><i class="fa-solid fa-language"></i> English Grammar</div>
+                    <div class="subject-item"><i class="fa-solid fa-earth-americas"></i> Social Studies</div>
+                    <div class="subject-item"><i class="fa-solid fa-lightbulb"></i> Gen. Knowledge</div>
                 </div>
-            );
-        };
+                <div class="syllabus-points">
+                    • Foundation & Concept building for all subjects.<br>
+                    • Intensive training for logical and verbal reasoning.<br>
+                    • Advanced problem-solving techniques for competitive speed.<br>
+                    • Detailed mock tests based on latest All India exam patterns.
+                </div>
+            </div>
+        </div>
+    </section>
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
-    </script>
+    <section class="exam-process-section">
+        <div class="process-grid">
+            <div class="process-card">
+                <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/exams%20written.png" alt="Exams Written">
+                <div class="process-tag">Standardized Exams Conducted Professionally</div>
+            </div>
+            <div class="process-card">
+                <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/certificate%20provide.png" alt="Certificate Providing">
+                <div class="process-tag">Official Certification Provided After Examination</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="performance-section">
+        <div class="performance-container">
+            <div class="performance-info">
+                <h2>Maintain Talent Record & Skills</h2>
+                <p>We access and track every academic point to empower students with data-driven growth. Our platform provides <b>100% accurate tracking</b> of every exam mark, ensuring persistent analytical recording for class-wide and school-wise student listings. We identify top performers and award them with <b>Verified Performance Certificates</b>, complemented by <b>Yearly Special Surprise Gifts</b> to celebrate academic excellence.</p>
+                <div class="skills-grid-compact">
+                    <div class="skill-item-mini"><i class="fa-solid fa-chart-line"></i> Precision Tracking</div>
+                    <div class="skill-item-mini"><i class="fa-solid fa-medal"></i> Academic Ranking</div>
+                    <div class="skill-item-mini"><i class="fa-solid fa-certificate"></i> Verified Certs</div>
+                    <div class="skill-item-mini"><i class="fa-solid fa-gift"></i> Surprise Gifts</div>
+                    <div class="skill-item-mini"><i class="fa-solid fa-users"></i> School-wise Lists</div>
+                    <div class="skill-item-mini"><i class="fa-solid fa-microscope"></i> Deep Analytics</div>
+                </div>
+            </div>
+            <div class="tc-score-meter">
+                <h4>Vision Intelligence Meter</h4>
+                <div class="meter-fill-bg"><div class="meter-fill-active"></div></div>
+                <div style="font-size: 16px; font-weight: 900; color: var(--primary-blue); margin-top: 10px;">TC SCORE: 100%</div>
+                <div class="tc-score-tag">Live Analytics Tracking</div>
+                <p style="font-size: 10.5px; margin-top: 15px; color: #64748b; font-weight: 700;">Complete performance calculation for every student.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="navodaya-focus-section">
+        <div class="navodaya-container">
+            <div class="navodaya-content-left">
+                <div class="navodaya-style-circle"></div>
+                <h2>Specialized Focus on Navodaya Entrance & Talent Mastery</h2>
+                <p>We place a dedicated and strategic focus on students in <span class="navodaya-highlight">Class 3rd, 4th, and 5th</span>, specifically preparing them for the prestigious <b>Jawahar Navodaya Vidyalaya Selection Test (JNVST)</b>. Our mission is to sharpen their innate talent and ensure they are fully equipped to clear government-competitive exams with high scores. <br><br>We provide comprehensive training that simplifies complex mental ability and arithmetic concepts. Many of our students have already transformed into high achievers through our rigorous methodology. Join us to unlock your potential and secure your place in India's top government schools!</p>
+            </div>
+            <div class="navodaya-list-right">
+                <div class="preparing-also-badge">We Are Preparing Also</div>
+                <h3><i class="fa-solid fa-trophy"></i> All India Entrance Exams</h3>
+                <div class="all-exams-list">
+                    <div class="exam-tag-item"><span class="exam-name-txt">AISSEE (Sainik Schools)</span><span class="exam-class-txt">Class 6 & 9</span></div>
+                    <div class="exam-tag-item"><span class="exam-name-txt">RMS (Military Schools)</span><span class="exam-class-txt">Class 6 & 9</span></div>
+                    <div class="exam-tag-item"><span class="exam-name-txt">RIMC Dehradun Entrance</span><span class="exam-class-txt">Class 8</span></div>
+                    <div class="exam-tag-item"><span class="exam-name-txt">National Talent Search (NTSE)</span><span class="exam-class-txt">Class 10</span></div>
+                    <div class="exam-tag-item"><span class="exam-name-txt">NMMS Scholarship Exam</span><span class="exam-class-txt">Class 8</span></div>
+                    <div class="exam-tag-item"><span class="exam-name-txt">International Olympiads</span><span class="exam-class-txt">Class 3 - 10</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section-compact">
+        <div class="stat-card-new">
+            <div class="stat-num-box">4800+</div>
+            <div class="stat-txt-box"><h6>Total Joined</h6><p>The total strength of our growing student community nationwide.</p></div>
+        </div>
+        <div class="stat-card-new">
+            <div class="stat-num-box">42+</div>
+            <div class="stat-txt-box"><h6>Monthly Joined</h6><p>Ambitious students who joined this month to start their journey.</p></div>
+        </div>
+        <div class="stat-card-new">
+            <div class="stat-num-box">8+</div>
+            <div class="stat-txt-box"><h6>Today Joined</h6><p>A new batch of students who enrolled today to see their success.</p></div>
+        </div>
+    </section>
+
+    <!-- UPDATED: SPECIAL PARTNER SCHOOLS (BULK LOGIN) -->
+    <section class="district-schools-section">
+        <div class="district-header">
+            <h2>Special Partner Schools - Student Portal</h2>
+            <p>Exclusive portal for schools partnered through bulk student enrollment packages.</p>
+        </div>
+        <div class="zigzag-container" id="zigzagContainer"></div>
+    </section>
+
+    <section class="action-buttons-section" id="actionBtnContainer"></section>
+
+    <div class="fame-box">
+        <div style="border-left: 5px solid var(--accent-orange); padding-left: 15px; margin-bottom: 10px; margin-left: clamp(12px, 4vw, 30px);">
+            <span style="font-size:16px; font-weight:900; color:var(--primary-blue); text-transform:uppercase; letter-spacing:1px;">SVTC State Level Toppers</span>
+        </div>
+        <div style="width: 100%; overflow: hidden;"><div class="fame-track" id="fameTrack"></div></div>
+    </div>
+
+    <section class="school-demo-section" id="schoolDemoSection">
+        <div class="school-demo-header"><h2>School Demo Program & Success Partners</h2></div>
+        <div class="school-list-container" id="schoolList"></div>
+        <div style="margin-top: 25px;"><a href="#" class="compact-action-btn pri-btn" style="margin: 0 auto; width: 250px;">Book Your School Demo Now</a></div>
+    </section>
+
+    <!-- NEW SECTION: OUR COLLABORATED SCHOOLS -->
+    <section class="collab-schools-section">
+        <div class="collab-header">
+            <h2>Our Collaborated Schools</h2>
+        </div>
+        <div class="collab-grid" id="collabGrid"></div>
+    </section>
+<section class="help-support-section">
+
+<div style="display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:25px;">
+<div style="display:flex;align-items:center;gap:12px;">
+<div class="live-dot"></div>
+<h2 class="help-headline">You May Need Any Help</h2>
+</div>
+
+<p style="font-size:10px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:3px;">
+Priority Support Gateway
+</p>
+</div>
+
+<form id="helpForm" style="display:grid;gap:20px;max-width:900px;margin:auto;">
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+<div>
+<label style="font-size:10px;font-weight:800;color:#64748b;text-transform:uppercase;">Full Name</label>
+<input type="text" id="ClientFullNameInput" required placeholder="Full Name"
+class="input-3d" style="width:100%;padding:12px;border-radius:10px;background:#f8fafc;">
+</div>
+
+<div>
+<label style="font-size:10px;font-weight:800;color:#64748b;text-transform:uppercase;">Whatsapp/contact Number</label>
+<input type="tel" id="ClientContactMobileInput" required placeholder="Phone Number"
+class="input-3d" style="width:100%;padding:12px;border-radius:10px;background:#f8fafc;">
+</div>
+</div>
+
+<div>
+<label style="font-size:10px;font-weight:800;color:#64748b;text-transform:uppercase;">Enquiry/Messagr Detailed Explanation</label>
+
+<textarea id="DetailedHelpRequestContentInput"
+required rows="4"
+placeholder="How can we assist you today?"
+class="input-3d"
+style="width:100%;padding:15px;border-radius:15px;background:#f8fafc;"></textarea>
+
+<button type="submit"
+id="HelpRequestSubmissionButton"
+style="margin-top:15px;background:#0f172a;color:white;padding:10px 25px;border-radius:8px;font-size:11px;font-weight:800;border:none;">
+SUBMIT REQUEST
+</button>
+
+</div>
+
+</form>
+
+<div id="submissionSuccessFeedback"
+style="display:none;margin-top:20px;background:#ecfdf5;padding:15px;border-radius:10px;text-align:center;font-size:12px;font-weight:700;color:#059669;">
+✔ Transmission received in Google Sheet
+</div>
+
+</section>
+
+
+    <section class="student-comments-section">
+        <div class="comments-header">
+            <h2>Voices of Success: Our Students & Achievers Comments</h2>
+            <p>Real feedback from our talented students across the nation</p>
+        </div>
+        <div class="comments-grid">
+            <div class="comment-card"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/commet%201.png" class="comment-img"></div>
+            <div class="comment-card"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/comment%202.png" class="comment-img"></div>
+            <div class="comment-card"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/comment%203.png" class="comment-img"></div>
+            <div class="comment-card"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/commet%204.png" class="comment-img"></div>
+            <div class="comment-card"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/comment%205.png" class="comment-img"></div>
+            <div class="comment-card"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/commnet%206.png" class="comment-img"></div>
+            <div class="comment-card"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/commnet%207.png" class="comment-img"></div>
+            <div class="comment-card"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/comment%208.png" class="comment-img"></div>
+        </div>
+    </section>
+
+    <section class="social-promo-section">
+        <div class="social-flex-container">
+            <div class="social-promo-header-mini">
+                <h2>Follow Our Social Media</h2>
+                <p>Stay connected for educational updates & class alerts</p>
+            </div>
+            <div class="social-links-row" id="socialPillContainer"></div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-content" id="footerContainer">
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-headset"></i> Support</h4>
+            <p id="footerPhone"></p><p id="footerEmail"></p>
+            <a href="#" id="footerAboutLink"><i class="fa-solid fa-circle-info"></i> About Us</a>
+        </div>
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-link"></i> Quick Links</h4>
+            <a href="#" id="footerDonorsLink"><i class="fa-solid fa-users-gear"></i> Donors</a>
+            <a href="#" id="footerMgmtLink"><i class="fa-solid fa-users-gear"></i> Management</a>
+            <a href="#" id="footerTermsLink"><i class="fa-solid fa-shield-halved"></i> Terms & Conditions</a>
+        </div>
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-share-nodes"></i> Follow Us</h4>
+            <div class="social-icons" id="footerSocialIcons"></div>
+            <p style="opacity: 0.7; font-size: 10px; margin-top: 15px;">&copy; 2025 Sri Veda TC. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const APP_LINKS = {
+        home: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/index.html",
+        register: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Register",
+        login: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Login",
+        admin: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Admin",
+        pricing: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Pricing",
+        about: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/About",
+        terms: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/terms",
+        donors: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Doners", 
+		mgmt: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Management",
+        youtube: "https://www.youtube.com/channel/UC8uL4sqxqFs78OxNsSo6e2Q",
+        facebook: "https://www.facebook.com/sriveda.tc",
+        instagram: "https://www.instagram.com/sriveda.tc",
+        whatsapp: "http://wa.me/919346119924",
+        phone: "+91 9346119924", 
+		email: "contact.sriveda@gmail.com"
+    };
+
+    document.getElementById('navContainer').innerHTML = `
+        <div class="menu-item"><a href="${APP_LINKS.home}" class="active-nav"><i class="fa-solid fa-house icon"></i><span class="icon-label">Home</span></a></div>
+        <div class="menu-item"><a href="${APP_LINKS.register}"><i class="fa-solid fa-user-plus icon"></i><span class="icon-label">Register</span></a></div>
+        <div class="menu-item"><a href="${APP_LINKS.login}"><i class="fa-solid fa-right-to-bracket icon"></i><span class="icon-label">Login</span></a></div>
+        <div class="menu-item"><a href="${APP_LINKS.admin}"><i class="fa-solid fa-user-tie icon"></i><span class="icon-label">Admin</span></a></div>
+        <div class="menu-item"><a href="${APP_LINKS.pricing}"><i class="fa-solid fa-tags icon"></i><span class="icon-label">Pricing</span></a></div>
+    `;
+
+    // --- UPDATED DISTRICT SCHOOLS DATA (ALL WITH HD IMAGES) ---
+    const districtSchools = [
+        { name: "Nandyala Modern High School", village: "Nandyala (Partner)", img: "https://images.unsplash.com/photo-1464938050520-ef2270bb8ce8?q=80&w=1474&auto=format&fit=crop" },
+        { name: "Chagalamarri Elite School", village: "Chagalamarri (Partner)", img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1470&auto=format&fit=crop" },
+        { name: "Allagadda Global EM School", village: "Allagadda (Partner)", img: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=1473&auto=format&fit=crop" },
+        { name: "Narasapuram Vidya Academy", village: "Narasapuram (Partner)", img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1470&auto=format&fit=crop" },
+        { name: "Krishnapuram Talent School", village: "Krishnapuram (Partner)", img: "https://images.unsplash.com/photo-1464938050520-ef2270bb8ce8?q=80&w=1474&auto=format&fit=crop" }
+    ];
+
+    document.getElementById('zigzagContainer').innerHTML = districtSchools.map((school, index) => `
+        <div class="zigzag-row ${index % 2 !== 0 ? 'reverse' : ''}">
+            <div class="school-banner-side" style="background-image: url('${school.img}')">
+                <div class="banner-overlay"></div>
+                <div class="banner-info">
+                    <h3>${school.name}</h3>
+                    <p>${school.village}</p>
+                </div>
+            </div>
+            <div class="login-side">
+                <p>Special Log this school</p>
+                <a href="${APP_LINKS.login}" class="std-login-btn"><i class="fa-solid fa-user-graduate"></i> Student Login</a>
+            </div>
+        </div>
+    `).join('');
+
+    // --- COLLABORATED SCHOOLS DATA ---
+    const collaboratedSchools = [
+        { name: "Z.P.H.S (High School)", loc: "Nandyala" },
+        { name: "Keshava Reddy EM School", loc: "Kurnool" },
+        { name: "Chagalamarri Govt School", loc: "Chagalamarri" },
+        { name: "Z.P.H.S Allagadda", loc: "Allagadda" },
+        { name: "Narayana Academy", loc: "Kadapa" },
+        { name: "Z.P.H.S Narasapuram", loc: "Narasapuram" },
+        { name: "G.H.S (Boys & Girls)", loc: "Anantapur" },
+        { name: "Sri Chaitanya School", loc: "Vijayawada" },
+        { name: "Z.P.H.S Allagadda", loc: "Allagadda" },
+        { name: "St. Joseph's Academy", loc: "Nandyala" }
+    ];
+    document.getElementById('collabGrid').innerHTML = collaboratedSchools.map(s => `
+        <div class="collab-item">
+            <span class="sch-name">${s.name}</span>
+            <span class="sch-loc"><i class="fa-solid fa-location-dot"></i> ${s.loc}</span>
+        </div>
+    `).join('');
+
+    document.getElementById('actionBtnContainer').innerHTML = `
+        <div class="action-rows-container">
+            <div class="action-row">
+                <p>Register now to join India's biggest talent hunt. Creating your student profile allows us to map your unique skills and evaluate your potential among thousands of peers nationwide.</p>
+                <a href="${APP_LINKS.register}" class="compact-action-btn reg-btn"><i class="fa-solid fa-user-plus"></i> Register Now</a>
+            </div>
+            <div class="action-row reverse">
+                <p>Access your personalized student dashboard anytime. Logging in gives you instant access to your Index Scores, proprietary TC mapping, and detailed test performance explanations.</p>
+                <a href="${APP_LINKS.login}" class="compact-action-btn log-btn"><i class="fa-solid fa-unlock-keyhole"></i> Student Login</a>
+            </div>
+            <div class="action-row">
+                <p>Invest in your future with our specialized plans. View our pricing to unlock premium All India mock tests, advanced analytics, and expert-curated syllabus materials for your success.</p>
+                <a href="${APP_LINKS.pricing}" class="compact-action-btn pri-btn"><i class="fa-solid fa-gem"></i> View Pricing</a>
+            </div>
+        </div>
+    `;
+
+    const schools = [
+        "Z.P.H.S (High School) - Nandyala", "Keshava Reddy EM School - Kurnool", "Narayana Olympiad Academy - Kadapa",
+        "G.H.S (Boys & Girls) - Anantapur", "Sri Chaitanya School - Vijayawada", "Chagalamarri Government High School",
+        "Z.P.H.S Chagalamarri", "Z.P.H.S Allagadda", "Z.P.H.S Government High School Narasapuram", "Z.P.H.S Krishnapuram"
+    ];
+    document.getElementById('schoolList').innerHTML = schools.map(s => `
+        <div class="school-list-item"><i class="fa-solid fa-circle-check"></i> ${s}</div>
+    `).join('');
+
+    document.getElementById('socialPillContainer').innerHTML = `
+        <a href="${APP_LINKS.youtube}" class="social-pill yt"><i class="fab fa-youtube"></i> YouTube</a>
+        <a href="${APP_LINKS.facebook}" class="social-pill fb"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="${APP_LINKS.instagram}" class="social-pill ig"><i class="fab fa-instagram"></i> Instagram</a>
+    `;
+
+    document.getElementById('footerPhone').innerHTML = `<i class="fa-solid fa-phone"></i> ${APP_LINKS.phone}`;
+    document.getElementById('footerEmail').innerHTML = `<i class="fa-solid fa-envelope"></i> ${APP_LINKS.email}`;
+    document.getElementById('footerAboutLink').href = APP_LINKS.about;
+    document.getElementById('footerDonorsLink').href = APP_LINKS.donors;
+    document.getElementById('footerMgmtLink').href = APP_LINKS.mgmt;
+    document.getElementById('footerTermsLink').href = APP_LINKS.terms;
+    document.getElementById('footerSocialIcons').innerHTML = `
+        <a href="${APP_LINKS.whatsapp}"><i class="fab fa-whatsapp"></i></a>
+        <a href="${APP_LINKS.instagram}"><i class="fab fa-instagram"></i></a>
+        <a href="${APP_LINKS.youtube}"><i class="fab fa-youtube"></i></a>
+        <a href="${APP_LINKS.facebook}"><i class="fab fa-facebook"></i></a>
+    `;
+
+    const topStars = [
+        { name: "Rohan Sharma", class: "3rd Class", school: "Holy Cross High School", city: "Hyderabad", uid: "SVTC_03_001", score: "99/100" },
+        { name: "Ananya Reddy", class: "4th Class", school: "Little Angels EM School", city: "Visakhapatnam", uid: "SVTC_04_023", score: "98/100" },
+        { name: "P. Karthik", class: "5th Class", school: "Sri Chaitanya School", city: "Vijayawada", uid: "SVTC_05_102", score: "97/100" },
+        { name: "Sneha Latha", class: "6th Class", school: "Narayana Olympiad", city: "Guntur", uid: "SVTC_06_056", score: "96/100" },
+        { name: "Vikas Kumar", class: "7th Class", school: "Government High School", city: "Tirupati", uid: "SVTC_07_089", score: "95/100" }
+    ];
+
+
+const DEPLOYED_GOOGLE_WEB_APP_URL_UNIQUE =
+"https://script.google.com/macros/s/AKfycbxJa-R6RS2nu7dydx_2dNn6sjpBGmdAJ-vJb0VXRKRmtLYQ7FwtGsp5cDC-rZK-Dpln/exec";
+
+const helpRequestForm = document.getElementById('helpForm');
+const submitBtn = document.getElementById('HelpRequestSubmissionButton');
+
+if(helpRequestForm){
+
+helpRequestForm.addEventListener('submit', async (e)=>{
+
+e.preventDefault();
+
+const payload = {
+ClientFullNameData: document.getElementById('ClientFullNameInput').value,
+ClientContactMobileNumberData: document.getElementById('ClientContactMobileInput').value,
+DetailedHelpRequestMessageContent: document.getElementById('DetailedHelpRequestContentInput').value
+};
+
+/* SHOW LOADING */
+submitBtn.innerHTML = "Sending...";
+submitBtn.disabled = true;
+
+try{
+
+await fetch(DEPLOYED_GOOGLE_WEB_APP_URL_UNIQUE,{
+method:'POST',
+mode:'no-cors',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify(payload)
+});
+
+/* SUCCESS MESSAGE */
+
+document.getElementById("submissionSuccessFeedback").style.display="block";
+helpRequestForm.reset();
+
+}catch(err){
+
+alert("Connection error. Please try again.");
+
+}
+
+/* RESET BUTTON */
+
+submitBtn.innerHTML = "SUBMIT REQUEST";
+submitBtn.disabled = false;
+
+});
+}
+    function renderStar(p) {
+        return `<div class="topper-unit">
+            <div class="topper-header-row"><div class="rank-badge">1st Rank</div><div class="congrats-txt">CONGRATS!</div></div>
+            <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="topper-photo">
+            <div style="font-size: 15px; font-weight: 900; color: var(--primary-blue); margin-bottom: 2px;">${p.name}</div>
+            <div style="font-size: 9px; font-weight: 800; color: var(--accent-orange); margin-bottom: 4px; text-transform: uppercase;">${p.uid}</div>
+            <div style="font-size: 11px; font-weight: 800; color: #475569; margin-bottom: 2px;">${p.class}</div>
+            <div style="font-size: 10px; font-weight: 700; color: #64748b; margin-bottom: 1px;">${p.school}</div>
+            <div style="font-size: 9px; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 6px;">${p.city}</div>
+            <div class="topper-score">Score: ${p.score}</div>
+        </div>`;
+    }
+    let fameHtml = topStars.map(p => renderStar(p)).join('');
+    document.getElementById('fameTrack').innerHTML = fameHtml + fameHtml + fameHtml;
+</script>
+
 </body>
 </html>
