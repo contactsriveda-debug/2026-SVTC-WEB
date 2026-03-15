@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Veda - AI Suite</title>
+    <!-- Favicon (Updated Logo) -->
+    <link rel="icon" type="image/png" href="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-blue: #00008B;
+            --accent-yellow: #ffeb3b;
+            --accent-orange: #ffa500;
+        }
+
+        body {
+            background-color: white;
+            font-family: 'Roboto Slab', serif !important;
+        }
+
+        h1, h2, h3, h4, p, span, button, select, textarea {
+            font-family: 'Roboto Slab', serif !important;
+        }
+
+        /* Header Styles */
+        header { 
+            background: var(--primary-blue); 
+            position: relative; 
+            overflow: hidden; 
+            min-height: 75px; 
+            z-index: 100; 
+            color: white;
+            width: 100%;
+        }
+
+        .header-corner { position: absolute; top: 0; left: 0; height: 38px; opacity: 0.8; pointer-events: none; z-index: 15; }
+        .header-corner-right { position: absolute; top: 0; right: 0; height: 38px; opacity: 0.8; transform: scaleX(-1); pointer-events: none; z-index: 15; }
+        .header-scroll-bg { 
+            position: absolute; top: 0; left: 0; width: 400%; height: 100%; 
+            background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 5%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1) 15%, transparent 20%); 
+            z-index: 1; animation: scrollGlow 25s linear infinite; opacity: 0.9; pointer-events: none; 
+        }
+        @keyframes scrollGlow { 0% { transform: translateX(-100%); } 100% { transform: translateX(25%); } }
+        .icon-label { font-size: 7.5px; margin-top: 5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.85; }
+
+        /* Footer Styles */
+        footer { background: var(--primary-blue); color: white; border-top: 3px solid var(--accent-orange); width: 100%; }
+
+        /* 3D Title */
+        .title-3d {
+            font-weight: 900;
+            color: var(--primary-blue);
+            text-shadow: 1px 1px 0px #eee, 2px 2px 0px #ddd, 3px 3px 6px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+        }
+
+        /* Buttons & Inputs */
+        .btn-3d {
+            position: relative;
+            background: var(--primary-blue);
+            box-shadow: 0 6px 0 #000044;
+            transition: all 0.1s ease;
+        }
+        .btn-3d:active {
+            box-shadow: 0 2px 0 #000044;
+            transform: translateY(4px);
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #ffa500 0%, #ff4500 100%);
+            box-shadow: 0 6px 0 #8b4513;
+            color: white;
+            font-weight: 900;
+        }
+        .btn-download:active {
+            box-shadow: 0 2px 0 #8b4513;
+            transform: translateY(4px);
+        }
+
+        .section-box {
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.08), inset 0 0 10px rgba(0,0,0,0.02);
+            border: 1px solid #f0f0f0;
+            transition: transform 0.3s ease;
+        }
+        .section-box:hover {
+            transform: translateY(-2px);
+        }
+
+        .input-3d {
+            box-shadow: inset 3px 3px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+        }
+
+        .watermark-overlay {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0, 0, 139, 0.6);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 900;
+            backdrop-filter: blur(4px);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .loader-ring {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid white;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        const App = () => {
+            const [videoScript, setVideoScript] = useState('');
+            const [imageScript, setImageScript] = useState('');
+            const [audioScript, setAudioScript] = useState('');
+
+            const [videoSize, setVideoSize] = useState('YouTube (16:9)');
+            const [videoTimer, setVideoTimer] = useState('20 Seconds');
+            const [imageSize, setImageSize] = useState('Instagram Post (1:1)');
+            const [audioTimer, setAudioTimer] = useState('20 Seconds');
+
+            const [loading, setLoading] = useState({ video: false, image: false, audio: false });
+            const [downloading, setDownloading] = useState({ video: false, image: false, audio: false });
+            const [results, setResults] = useState({ video: null, images: [], audio: null });
+            const [isPlaying, setIsPlaying] = useState(false);
+            const [progress, setProgress] = useState(0);
+
+            const audioRef = useRef(null);
+            const apiKey = ""; 
+
+            const GLOBAL_LINKS = {
+                URL_HOME: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/",
+                URL_REGISTER: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Register",
+                URL_LOGIN: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Login",
+                URL_ADMIN: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Admin",
+                URL_PRICING: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Pricing",
+                URL_ABOUT: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/About",
+                URL_DONORS: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Doners",
+                URL_MANAGEMENT: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Management",
+                URL_TERMS: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/terms",
+                SOCIAL_WHATSAPP: "http://wa.me/919346119924",
+                SOCIAL_INSTAGRAM: "https://www.instagram.com/sriveda.tc",
+                SOCIAL_YOUTUBE: "https://www.youtube.com/channel/UC8uL4sqxqFs78OxNsSo6e2Q",
+                SOCIAL_FACEBOOK: "https://www.facebook.com/sriveda.tc"
+            };
+
+            const pcmToWav = (pcmBase64, sampleRate = 24000) => {
+                try {
+                    const binaryString = window.atob(pcmBase64);
+                    const len = binaryString.length;
+                    const bytes = new Uint8Array(len);
+                    for (let i = 0; i < len; i++) bytes[i] = binaryString.charCodeAt(i);
+                    const wavHeader = new ArrayBuffer(44);
+                    const view = new DataView(wavHeader);
+                    const writeString = (offset, string) => {
+                        for (let i = 0; i < string.length; i++) view.setUint8(offset + i, string.charCodeAt(i));
+                    };
+                    writeString(0, 'RIFF');
+                    view.setUint32(4, 32 + len, true);
+                    writeString(8, 'WAVE');
+                    writeString(12, 'fmt ');
+                    view.setUint32(16, 16, true);
+                    view.setUint16(20, 1, true);
+                    view.setUint16(22, 1, true);
+                    view.setUint32(24, sampleRate, true);
+                    view.setUint32(28, sampleRate * 2, true);
+                    view.setUint16(32, 2, true);
+                    view.setUint16(34, 16, true);
+                    writeString(36, 'data');
+                    view.setUint32(40, len, true);
+                    const blob = new Blob([wavHeader, bytes], { type: 'audio/wav' });
+                    return URL.createObjectURL(blob);
+                } catch (e) { return null; }
+            };
+
+            const improveScript = async (original) => {
+                try {
+                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: `Refine this Telugu script for Jessica. Focus on realism and cinematic tone. Output only improved Telugu: ${original}` }] }]
+                        })
+                    });
+                    const data = await res.json();
+                    return data.candidates[0].content.parts[0].text;
+                } catch (e) { return original; }
+            };
+
+            const handleGenerateVideo = async () => {
+                if (!videoScript.trim()) return;
+                setLoading(prev => ({ ...prev, video: true }));
+                try {
+                    const refined = await improveScript(videoScript);
+                    const ratio = videoSize.includes('16:9') ? '16:9' : videoSize.includes('9:16') ? '9:16' : '1:1';
+                    
+                    const imgRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            instances: [{ prompt: `Hyper-realistic cinematic shot for ${videoSize}: ${refined}. 8k, professional. No text.` }],
+                            parameters: { sampleCount: 1 }
+                        })
+                    });
+                    const imgData = await imgRes.json();
+                    const imgUrl = `data:image/png;base64,${imgData.predictions[0].bytesBase64Encoded}`;
+
+                    const ttsRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: `Speak naturally as Jessica in emotional Telugu: ${refined}` }] }],
+                            generationConfig: {
+                                responseModalities: ["AUDIO"],
+                                speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Kore" } } }
+                            }
+                        })
+                    });
+                    const ttsData = await ttsRes.json();
+                    const audioUrl = pcmToWav(ttsData.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data);
+
+                    setResults(prev => ({ ...prev, video: { imgUrl, audioUrl, ratio, script: refined } }));
+                } catch (e) { console.error(e); }
+                setLoading(prev => ({ ...prev, video: false }));
+            };
+
+            const handleGenerateImages = async () => {
+                if (!imageScript.trim()) return;
+                setLoading(prev => ({ ...prev, image: true }));
+                try {
+                    const ratio = imageSize.includes('Banner') ? '21:9' : '1:1';
+                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            instances: [{ prompt: `Realistic professional photography for ${imageSize}: ${imageScript}. Vivid, 8k. Aspect ratio ${ratio}.` }],
+                            parameters: { sampleCount: 3 }
+                        })
+                    });
+                    const data = await res.json();
+                    setResults(prev => ({ ...prev, images: data.predictions.map(p => `data:image/png;base64,${p.bytesBase64Encoded}`) }));
+                } catch (e) { console.error(e); }
+                setLoading(prev => ({ ...prev, image: false }));
+            };
+
+            const handleGenerateAudio = async () => {
+                if (!audioScript.trim()) return;
+                setLoading(prev => ({ ...prev, audio: true }));
+                try {
+                    const refined = await improveScript(audioScript);
+                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: `Speak naturally as Jessica in Telugu: ${refined}` }] }],
+                            generationConfig: {
+                                responseModalities: ["AUDIO"],
+                                speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Kore" } } }
+                            }
+                        })
+                    });
+                    const data = await res.json();
+                    const url = pcmToWav(data.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data);
+                    setResults(prev => ({ ...prev, audio: { url, script: refined } }));
+                } catch (e) { console.error(e); }
+                setLoading(prev => ({ ...prev, audio: false }));
+            };
+
+            const handleDownload = async (type, url) => {
+                setDownloading(prev => ({ ...prev, [type]: true }));
+                // Simulate HD Processing delay
+                await new Promise(r => setTimeout(r, 2000));
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `SriVeda_AI_${type}_${Date.now()}`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                setDownloading(prev => ({ ...prev, [type]: false }));
+            };
+
+            const togglePlay = () => {
+                if (audioRef.current) {
+                    if (isPlaying) audioRef.current.pause();
+                    else audioRef.current.play();
+                    setIsPlaying(!isPlaying);
+                }
+            };
+
+            useEffect(() => {
+                if (audioRef.current) {
+                    const up = () => setProgress((audioRef.current.currentTime / audioRef.current.duration) * 100);
+                    audioRef.current.addEventListener('timeupdate', up);
+                    audioRef.current.onended = () => setIsPlaying(false);
+                    return () => audioRef.current?.removeEventListener('timeupdate', up);
+                }
+            }, [results.video]);
+
+            return (
+                <div className="min-h-screen flex flex-col">
+                    {/* Header - UNTOUCHED LINKS */}
+                    <header className="px-4 py-3 md:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/Header%20corner%20logo.png" className="header-corner" />
+                        <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/Header%20corner%20logo.png" className="header-corner-right" />
+                        <div className="header-scroll-bg"></div>
+                        <div className="flex items-center gap-4 z-10">
+                            <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" className="w-12 h-12 rounded-full border-2 border-white bg-white" />
+                            <div className="text-left">
+                                <h1 className="text-sm md:text-xl font-black leading-tight uppercase tracking-tighter">Sri Veda Talent Competition</h1>
+                                <p className="text-[10px] md:text-xs font-bold text-[#ffeb3b] italic">"AI Corner"</p>
+                            </div>
+                        </div>
+                        <nav className="flex gap-4 md:gap-6 items-center z-10">
+                            {[
+                                { id: 'home', icon: 'fa-house', label: 'Home', url: GLOBAL_LINKS.URL_HOME },
+                                { id: 'register', icon: 'fa-user-plus', label: 'Register', url: GLOBAL_LINKS.URL_REGISTER },
+                                { id: 'login', icon: 'fa-right-to-bracket', label: 'Login', url: GLOBAL_LINKS.URL_LOGIN },
+                                { id: 'admin', icon: 'fa-user-tie', label: 'Admin', url: GLOBAL_LINKS.URL_ADMIN },
+                                { id: 'pricing', icon: 'fa-tags', label: 'Pricing', url: GLOBAL_LINKS.URL_PRICING },
+                            ].map((item) => (
+                                <a key={item.id} href={item.url} className="flex flex-col items-center no-underline">
+                                    <i className={`fa-solid ${item.icon} text-lg text-orange-400 opacity-80`}></i>
+                                    <span className="icon-label text-white uppercase">{item.label}</span>
+                                </a>
+                            ))}
+                        </nav>
+                    </header>
+
+                    {/* Main Content - Compact Body */}
+                    <main className="flex-1 w-full max-w-full flex flex-col items-center">
+                        <div className="w-full max-w-6xl px-4 py-6 text-center">
+                            <h2 className="title-3d text-3xl md:text-4xl mb-3">Sri Veda AI</h2>
+                            <div className="max-w-4xl mx-auto space-y-2">
+                                <p className="text-blue-900 font-black text-lg uppercase tracking-widest flex items-center justify-center gap-2">
+                                    <i className="fa-solid fa-rocket text-orange-500 animate-bounce"></i> Advanced Creative Suite
+                                </p>
+                                <p className="text-slate-500 text-sm leading-relaxed font-semibold">
+                                    Revolutionize your content with Jessica's emotional Telugu voice and 8K cinematic visuals. 
+                                    Tailored AI creation at your fingertips.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Video Section */}
+                        <section className="w-full bg-[#fdf2ff] py-8 px-4 md:px-12 border-y border-purple-100 section-box mb-2">
+                            <div className="max-w-6xl mx-auto">
+                                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                                    <h3 className="text-2xl font-black text-purple-900 flex items-center gap-2 uppercase tracking-tighter">
+                                        <i className="fa-solid fa-film text-purple-600"></i> Text to Video
+                                    </h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        <select className="p-2 text-xs rounded-lg border border-purple-200 font-bold" value={videoSize} onChange={e => setVideoSize(e.target.value)}>
+                                            <option>YouTube (16:9)</option>
+                                            <option>Instagram Reel (9:16)</option>
+                                            <option>Facebook Post (1:1)</option>
+                                        </select>
+                                        <select className="p-2 text-xs rounded-lg border border-purple-200 font-bold" value={videoTimer} onChange={e => setVideoTimer(e.target.value)}>
+                                            <option>20 Seconds</option>
+                                            <option>1 Minute</option>
+                                            <option>1.5 Minutes</option>
+                                            <option>2 Minutes</option>
+                                        </select>
+                                        <button onClick={handleGenerateVideo} disabled={loading.video} className="btn-3d py-2 px-6 text-white rounded-lg font-black uppercase text-[10px] disabled:opacity-50">
+                                            {loading.video ? <i className="fa-solid fa-spinner animate-spin"></i> : "Generate Video"}
+                                        </button>
+                                    </div>
+                                </div>
+                                <textarea className="w-full h-24 p-4 rounded-xl input-3d outline-none focus:ring-2 focus:ring-purple-400 text-base font-bold" placeholder="Enter script here..." value={videoScript} onChange={e => setVideoScript(e.target.value)} />
+
+                                {results.video && (
+                                    <div className="mt-6 flex flex-col items-center">
+                                        <div className="relative bg-black rounded-2xl overflow-hidden shadow-xl border-4 border-white group" style={{ aspectRatio: results.video.ratio === '16:9' ? '16/9' : results.video.ratio === '9:16' ? '9/16' : '1/1', maxWidth: results.video.ratio === '9:16' ? '280px' : '700px' }}>
+                                            <img src={results.video.imgUrl} className={`w-full h-full object-cover transition-transform duration-[15000ms] ${isPlaying ? 'scale-125' : 'scale-100'}`} />
+                                            <div className="absolute inset-0 flex items-center justify-center cursor-pointer" onClick={togglePlay}>
+                                                {!isPlaying && <div className="p-6 bg-white/20 backdrop-blur-md rounded-full text-white border border-white/30"><i className="fa-solid fa-play text-2xl"></i></div>}
+                                            </div>
+                                            <div className="watermark-overlay">Sri Veda AI</div>
+                                        </div>
+                                        <div className="flex gap-4 mt-4 w-full max-w-xl">
+                                            <button onClick={togglePlay} className="flex-1 py-3 bg-slate-900 text-white rounded-lg font-black uppercase text-[10px] tracking-widest">{isPlaying ? "Pause" : "Play Preview"}</button>
+                                            <button onClick={() => handleDownload('Video', results.video.imgUrl)} className="btn-download flex-1 py-3 rounded-lg flex items-center justify-center gap-2 uppercase text-[10px]">
+                                                {downloading.video ? <div className="loader-ring"></div> : <><i className="fa-solid fa-download"></i> Download HD 3D</>}
+                                            </button>
+                                        </div>
+                                        <audio ref={audioRef} src={results.video.audioUrl} />
+                                    </div>
+                                )}
+                            </div>
+                        </section>
+
+                        {/* Image Section */}
+                        <section className="w-full bg-[#f0f9ff] py-8 px-4 md:px-12 border-y border-blue-100 section-box mb-2">
+                            <div className="max-w-6xl mx-auto">
+                                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                                    <h3 className="text-2xl font-black text-blue-900 flex items-center gap-2 uppercase tracking-tighter">
+                                        <i className="fa-solid fa-image text-blue-600"></i> Text to Image
+                                    </h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        <select className="p-2 text-xs rounded-lg border border-blue-200 font-bold" value={imageSize} onChange={e => setImageSize(e.target.value)}>
+                                            <option>Instagram Post (1:1)</option>
+                                            <option>YouTube Banner (21:9)</option>
+                                            <option>Facebook Post (16:9)</option>
+                                        </select>
+                                        <button onClick={handleGenerateImages} disabled={loading.image} className="btn-3d py-2 px-6 text-white rounded-lg font-black uppercase text-[10px] disabled:opacity-50">
+                                            {loading.image ? <i className="fa-solid fa-spinner animate-spin"></i> : "Get 3 Images"}
+                                        </button>
+                                    </div>
+                                </div>
+                                <textarea className="w-full h-24 p-4 rounded-xl input-3d outline-none focus:ring-2 focus:ring-blue-400 text-base font-bold" placeholder="Describe image here..." value={imageScript} onChange={e => setImageScript(e.target.value)} />
+
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                                    {results.images.map((url, i) => (
+                                        <div key={i} className="flex flex-col gap-2">
+                                            <div className="relative aspect-square rounded-2xl overflow-hidden shadow-lg border-4 border-white group">
+                                                <img src={url} className="w-full h-full object-cover" />
+                                                <div className="watermark-overlay">Sri Veda AI</div>
+                                            </div>
+                                            <button onClick={() => handleDownload('Image', url)} className="btn-download py-2 rounded-lg flex items-center justify-center gap-2 uppercase text-[9px]">
+                                                {downloading.image ? <div className="loader-ring"></div> : <><i className="fa-solid fa-download"></i> Download HD 3D</>}
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Audio Section */}
+                        <section className="w-full bg-[#f8fafc] py-8 px-4 md:px-12 border-y border-slate-200 section-box mb-4">
+                            <div className="max-w-6xl mx-auto">
+                                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                                    <h3 className="text-2xl font-black text-slate-900 flex items-center gap-2 uppercase tracking-tighter">
+                                        <i className="fa-solid fa-microphone-lines text-indigo-600"></i> Text to Audio
+                                    </h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        <select className="p-2 text-xs rounded-lg border border-slate-200 font-bold" value={audioTimer} onChange={e => setAudioTimer(e.target.value)}>
+                                            <option>20 Seconds</option>
+                                            <option>1 Minute</option>
+                                        </select>
+                                        <button onClick={handleGenerateAudio} disabled={loading.audio} className="btn-3d py-2 px-6 text-white rounded-lg font-black uppercase text-[10px] disabled:opacity-50">
+                                            {loading.audio ? <i className="fa-solid fa-spinner animate-spin"></i> : "Create Audio"}
+                                        </button>
+                                    </div>
+                                </div>
+                                <textarea className="w-full h-24 p-4 rounded-xl input-3d outline-none focus:ring-2 focus:ring-indigo-400 text-base font-bold" placeholder="Audio script here..." value={audioScript} onChange={e => setAudioScript(e.target.value)} />
+
+                                {results.audio && (
+                                    <div className="mt-6 p-4 bg-white rounded-2xl shadow-lg border border-slate-100 flex flex-col items-center gap-3">
+                                        <p className="text-[10px] font-black text-indigo-900 uppercase">Jessica's Audio Ready</p>
+                                        <audio controls src={results.audio.url} className="w-full max-w-md h-10" />
+                                        <button onClick={() => handleDownload('Audio', results.audio.url)} className="btn-download px-8 py-3 rounded-lg flex items-center justify-center gap-2 uppercase text-[10px]">
+                                            {downloading.audio ? <div className="loader-ring"></div> : <><i className="fa-solid fa-download"></i> Download HD 3D</>}
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        </section>
+                    </main>
+
+                    {/* Footer - UNTOUCHED LINKS */}
+                    <footer className="px-6 py-6 md:px-12 mt-auto">
+                        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                            <div className="space-y-2">
+                                <h4 className="text-[#ffeb3b] border-b border-yellow-400 inline-block pb-0.5 font-black text-[13px] uppercase tracking-widest">
+                                    <i className="fa-solid fa-headset mr-2"></i> Support
+                                </h4>
+                                <div className="space-y-1 text-[12px] font-bold opacity-90">
+                                    <p><i className="fa-solid fa-phone mr-2 text-orange-500"></i> +91 9346119924</p>
+                                    <p><i className="fa-solid fa-envelope mr-2 text-orange-500"></i> contact.sriveda@gmail.com</p>
+                                    <a href={GLOBAL_LINKS.URL_ABOUT} className="flex items-center gap-2 text-white no-underline hover:text-yellow-300">
+                                        <i className="fa-solid fa-circle-info"></i> About Us
+                                    </a>
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <h4 className="text-[#ffeb3b] border-b border-yellow-400 inline-block pb-0.5 font-black text-[13px] uppercase tracking-widest">
+                                    <i className="fa-solid fa-link mr-2"></i> Quick Links
+                                </h4>
+                                <div className="flex flex-col gap-1 text-[12px] font-bold opacity-90">
+                                    <a href={GLOBAL_LINKS.URL_DONORS} className="flex items-center gap-2 text-white no-underline hover:text-yellow-300"><i className="fa-solid fa-circle-info"></i> Doners</a>
+                                    <a href={GLOBAL_LINKS.URL_MANAGEMENT} className="flex items-center gap-2 text-white no-underline hover:text-yellow-300"><i className="fa-solid fa-shield-halved"></i> Management</a>
+                                    <a href={GLOBAL_LINKS.URL_TERMS} className="flex items-center gap-2 text-white no-underline hover:text-yellow-300"><i className="fa-solid fa-file-contract"></i> Terms & Condition</a>
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <h4 className="text-[#ffeb3b] border-b border-yellow-400 inline-block pb-0.5 font-black text-[13px] uppercase tracking-widest">
+                                    <i className="fa-solid fa-share-nodes mr-2"></i> Follow Us
+                                </h4>
+                                <div className="flex gap-5 text-xl">
+                                    <a href={GLOBAL_LINKS.SOCIAL_WHATSAPP} className="text-white hover:text-accent-yellow"><i className="fab fa-whatsapp"></i></a>
+                                    <a href={GLOBAL_LINKS.SOCIAL_INSTAGRAM} className="text-white hover:text-accent-yellow"><i className="fab fa-instagram"></i></a>
+                                    <a href={GLOBAL_LINKS.SOCIAL_YOUTUBE} className="text-white hover:text-accent-yellow"><i className="fab fa-youtube"></i></a>
+                                    <a href={GLOBAL_LINKS.SOCIAL_FACEBOOK} className="text-white hover:text-accent-yellow"><i className="fab fa-facebook"></i></a>
+                                </div>
+                                <p className="opacity-40 text-[11px] font-bold mt-3 uppercase tracking-tighter">
+                                    &copy; 2025 srivedatc. All rights reserved.
+                                </p>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
