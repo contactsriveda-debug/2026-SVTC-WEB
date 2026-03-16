@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <title>Dashboard - Student Vision</title>
+    <title>Sri Veda - Register</title>
     <style>
         :root {
             --primary-blue: #00008B;
@@ -26,7 +26,7 @@
         body { margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; background-color: var(--bg-gray); color: var(--text-dark); font-family: 'Inter', sans-serif; overflow-x: hidden; }
         h1, h2, h3, .main-title { font-family: 'Roboto Slab', serif; }
         
-        /* HEADER - RESPONSIVE DYNAMIC */
+        /* HEADER - DO NOT CHANGE */
         header { background: var(--primary-blue); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; color: white; width: 100%; position: relative; overflow: hidden; min-height: 75px; z-index: 100; flex-wrap: wrap; }
         .header-corner { position: absolute; top: 0; left: 0; height: 38px; opacity: 0.8; pointer-events: none; z-index: 15; }
         .header-corner-right { position: absolute; top: 0; right: 0; height: 38px; opacity: 0.8; transform: scaleX(-1); pointer-events: none; z-index: 15; }
@@ -45,12 +45,10 @@
         .register-highlight .icon { color: var(--accent-yellow) !important; opacity: 1 !important; font-size: 22px; }
         .register-highlight .icon-label { color: var(--accent-yellow) !important; opacity: 1 !important; font-weight: 900; }
 
-        /* Mobile Header Logic (3 Rows) */
         @media (max-width: 650px) {
             header { flex-direction: column; padding: 15px 10px; gap: 12px; }
             header .header-left { flex-direction: column; text-align: center; width: 100%; gap: 10px; }
             header .header-right { width: 100%; justify-content: center; gap: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; }
-            .header-corner, .header-corner-right { height: 25px; }
         }
         
         main { flex: 1; width: 100%; display: flex; flex-direction: column; align-items: center; padding: clamp(10px, 2vw, 25px); background: #f1f5f9; }
@@ -62,7 +60,7 @@
         .ins-content h4 { margin: 0; font-size: 13px; color: var(--primary-blue); font-weight: 800; }
         .ins-content p { margin: 0; font-size: 11px; color: #64748b; line-height: 1.2; }
         
-        /* ENQUIRY FORUM - DYNAMIC GRID */
+        /* ENQUIRY FORUM */
         .form-container { width: 100%; max-width: 1200px; background: var(--white); padding: clamp(15px, 3vw, 30px); border-radius: 16px; box-shadow: var(--form-shadow); position: relative; border: 1px solid rgba(0,0,0,0.05); }
         .form-header { text-align: left; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px; }
         .form-header h2 { font-size: clamp(20px, 3vw, 28px); color: var(--primary-blue); margin: 0; font-weight: 900; text-transform: uppercase; letter-spacing: -0.5px; }
@@ -79,14 +77,14 @@
         
         .section-divider { width: 100%; max-width: 1200px; height: 2px; background: linear-gradient(to right, transparent, #e2e8f0, transparent); margin: 40px 0; }
         
-        /* REGISTRATION GUIDELINES - DYNAMIC */
+        /* GUIDELINES */
         .reg-guidelines { width: 100%; max-width: 1200px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 25px; }
         .guide-card { background: #fff; padding: 15px; border-radius: 12px; border-left: 4px solid var(--primary-blue); display: flex; gap: 15px; align-items: flex-start; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
         .guide-icon { color: var(--accent-orange); font-size: 18px; margin-top: 2px; }
         .guide-text { font-size: 11px; color: #475569; font-weight: 600; line-height: 1.4; }
         .guide-text strong { color: var(--primary-blue); }
 
-        /* REGISTRATION SECTION - DYNAMIC */
+        /* REGISTRATION SECTION */
         .registration-section { width: 100%; max-width: 1200px; background: var(--white); padding: clamp(20px, 4vw, 35px); border-radius: 20px; box-shadow: var(--form-shadow); border: 3px solid var(--gold-scroll); margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center; gap: 30px; text-align: left; position: relative; overflow: hidden; background: linear-gradient(135deg, #ffffff 0%, #fffdf0 100%); }
         @media (max-width: 768px) { .registration-section { flex-direction: column; text-align: center; } }
         .registration-section::after { content: ""; position: absolute; top: -50%; left: -150%; width: 100%; height: 200%; background: linear-gradient(to right, rgba(255, 215, 0, 0) 0%, rgba(255, 215, 0, 0.4) 50%, rgba(255, 215, 0, 0) 100%); transform: rotate(25deg); animation: liveGoldScroll 5s linear infinite; pointer-events: none; }
@@ -100,32 +98,33 @@
         .box-option input:checked + .box-label { background: var(--primary-blue); color: white; border-color: var(--primary-blue); }
         .box-option input { position: absolute; opacity: 0; pointer-events: none; }
 
-        /* MODAL POPUP */
+        /* MODAL & HIDDEN SCROLL */
         #globalModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(8px); padding: 10px; }
-        .modal-body { background: #f1f5f9; padding: clamp(15px, 4vw, 25px); border-radius: 20px; width: 100%; max-width: 900px; max-height: 95vh; overflow-y: auto; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); border: 2px solid var(--primary-blue); }
+        .modal-body { background: #f1f5f9; padding: clamp(15px, 4vw, 25px); border-radius: 20px; width: 100%; max-width: 900px; max-height: 95vh; overflow-y: auto; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); border: 2px solid var(--primary-blue); -ms-overflow-style: none; scrollbar-width: none; }
+        .modal-body::-webkit-scrollbar { display: none; }
         .close-modal { position: absolute; top: 15px; right: 15px; font-size: 28px; color: var(--primary-blue); cursor: pointer; z-index: 100; background: white; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         
-        /* REVIEW TABLE STYLING */
         .review-table-container { background: white; border-radius: 12px; border: 2px solid var(--primary-blue); font-family: 'Roboto Slab', serif; overflow: hidden; }
         .review-table { width: 100%; border-collapse: collapse; }
         .review-table td { padding: 10px 15px; font-size: clamp(11px, 2vw, 13px); border-bottom: 1px solid #f1f5f9; }
         .review-label-col { background: #f8fafc; color: #64748b; font-weight: 700; text-transform: uppercase; width: 45%; border-right: 1px solid #f1f5f9; }
         .review-value-col { color: var(--primary-blue); font-weight: 900; width: 55%; word-break: break-word; }
 
-        /* 16:9 HD SUCCESS CARD */
+        /* SUCCESS CARD & ACTION BAR */
         .success-card { background: #ffffff; border-radius: 12px; overflow: hidden; width: 100%; max-width: 800px; aspect-ratio: 16 / 9; margin: 0 auto; border: 10px double var(--primary-blue); position: relative; display: flex; flex-direction: column; }
         @media (max-width: 600px) { .success-card { aspect-ratio: auto; min-height: 480px; border-width: 5px; } }
         .cert-header { background: var(--primary-blue); color: white; padding: 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 4px solid var(--accent-orange); }
         .cert-body { flex: 1; padding: 20px; text-align: center; display: flex; flex-direction: column; justify-content: center; position: relative; }
-        .name-container-hd { position: relative; display: inline-block; margin-bottom: 5px; }
         .student-name-hd { font-size: clamp(28px, 6vw, 56px); font-weight: 900; color: var(--primary-blue); text-transform: uppercase; font-family: 'Bebas Neue', cursive; letter-spacing: 2px; }
-        .premium-gold-icon { position: absolute; top: -10px; right: -20px; color: #ffd700; font-size: clamp(16px, 3vw, 24px); animation: goldPulse 2s infinite alternate; }
-        @keyframes goldPulse { from { transform: scale(1); } to { transform: scale(1.1); } }
-        .cert-details-row { display: flex; justify-content: center; gap: 20px; margin-bottom: 15px; font-size: clamp(16px, 3vw, 24px); font-weight: 800; }
-        .cert-creds-container { border: 2px dashed var(--primary-blue); border-radius: 12px; padding: 15px; display: flex; justify-content: space-around; gap: 20px; margin-bottom: 15px; flex-wrap: wrap; }
-        .cred-value-hd { font-size: clamp(18px, 4vw, 30px); font-weight: 900; display: flex; align-items: center; gap: 10px; }
+        .cred-value-hd { font-size: clamp(18px, 4vw, 30px); font-weight: 900; }
+        
+        .action-bar-hd { display: flex; justify-content: center; gap: clamp(15px, 5vw, 40px); margin-top: 25px; }
+        .action-btn-hd { display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; transition: transform 0.2s; }
+        .action-btn-hd:hover { transform: translateY(-3px); }
+        .action-btn-hd i { font-size: 24px; }
+        .action-btn-hd span { font-size: 10px; font-weight: 900; text-transform: uppercase; color: var(--primary-blue); }
 
-        /* FOOTER - DO NOT CHANGE CONTENT */
+        /* FOOTER - DO NOT CHANGE */
         footer { background: var(--primary-blue); color: white; padding: 25px 20px; border-top: 3px solid var(--accent-orange); margin-top: auto; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
         .footer-column h4 { color: var(--accent-yellow); border-bottom: 1px solid var(--accent-yellow); display: inline-block; margin-bottom: 12px; font-weight: 900; font-size: 12px; text-transform: uppercase; }
@@ -148,13 +147,14 @@
         </div>
     </div>
     <div class="header-right">
-        <div class="menu-item"><a href="#"><i class="fa-solid fa-house icon"></i><span class="icon-label">Home</span></a></div>
-        <div class="menu-item register-highlight"><a href="#"><i class="fa-solid fa-user-plus icon"></i><span class="icon-label">Register</span></a></div>
-        <div class="menu-item"><a href="#"><i class="fa-solid fa-right-to-bracket icon"></i><span class="icon-label">Login</span></a></div>
-        <div class="menu-item"><a href="#"><i class="fa-solid fa-user-tie icon"></i><span class="icon-label">Admin</span></a></div>
-        <div class="menu-item"><a href="#"><i class="fa-solid fa-tags icon"></i><span class="icon-label">Pricing</span></a></div>
+        <div class="menu-item"><a href="https://contactsriveda-debug.github.io/2026-SVTC-WEB"><i class="fa-solid fa-house icon"></i><span class="icon-label">Home</span></a></div>
+        <div class="menu-item register-highlight"><a href="https://contactsriveda-debug.github.io/2026-SVTC-WEB/Register"><i class="fa-solid fa-user-plus icon"></i><span class="icon-label">Register</span></a></div>
+        <div class="menu-item"><a href="https://contactsriveda-debug.github.io/2026-SVTC-WEB/Login"><i class="fa-solid fa-right-to-bracket icon"></i><span class="icon-label">Login</span></a></div>
+        <div class="menu-item"><a href="https://contactsriveda-debug.github.io/2026-SVTC-WEB/Admin"><i class="fa-solid fa-user-tie icon"></i><span class="icon-label">Admin</span></a></div>
+        <div class="menu-item"><a href="https://contactsriveda-debug.github.io/2026-SVTC-WEB/Pricing"><i class="fa-solid fa-tags icon"></i><span class="icon-label">Pricing</span></a></div>
     </div>
 </header>
+
 <main>
     <div class="stylish-instructions">
         <div class="instruction-card"><div class="ins-icon"><i class="fa-solid fa-bolt"></i></div><div class="ins-content"><h4>Fast Processing</h4><p>Response within 24 hours.</p></div></div>
@@ -184,8 +184,6 @@
         <div class="guide-card"><i class="fa-solid fa-phone-volume guide-icon"></i><div class="guide-text">Enter phone number which one you have and <strong>WhatsApp number</strong> best practice to contact</div></div>
         <div class="guide-card"><i class="fa-solid fa-wallet guide-icon"></i><div class="guide-text">If <strong>payment done</strong> then carefully correct and perfectly enter all transaction details</div></div>
         <div class="guide-card"><i class="fa-solid fa-user-check guide-icon"></i><div class="guide-text">Reference details what you enter that is <strong>final consider</strong> youre referee dont try to modification please</div></div>
-        <div class="guide-card"><i class="fa-solid fa-graduation-cap guide-icon"></i><div class="guide-text">Class <strong>must to select the correct</strong> due to what you select class here that class standard is assigned</div></div>
-        <div class="guide-card"><i class="fa-solid fa-shield-halved guide-icon"></i><div class="guide-text">If you entered wrong details then you have <strong>one chance</strong> to update the details. please careful</div></div>
     </div>
 
     <div class="registration-section">
@@ -245,11 +243,12 @@
         </form>
     </div>
 </main>
+
 <footer>
     <div class="footer-content">
-        <div class="footer-column"><h4><i class="fa-solid fa-headset"></i> Support</h4><p><i class="fa-solid fa-phone"></i> +91 9346119924</p><p><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</p><p><a href="#" style="color:white;"><i class="fa-solid fa-circle-info"></i> About Us</a></p></div>
-        <div class="footer-column"><h4><i class="fa-solid fa-link"></i> Quick Links</h4><a href="#"><i class="fa-solid fa-circle-info"></i> Doners</a><a href="#"><i class="fa-solid fa-shield-halved"></i> Management</a><a href="#"><i class="fa-solid fa-file-contract"></i> Terms & Condition</a></div>
-        <div class="footer-column"><h4><i class="fa-solid fa-share-nodes"></i> Follow Us</h4><div class="social-icons"><a href="#"><i class="fab fa-whatsapp"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-facebook"></i></a></div><p style="opacity: 0.7; font-size: 10px;">&copy; 2025 srivedatc. All rights reserved.</p></div>
+        <div class="footer-column"><h4><i class="fa-solid fa-headset"></i> Support</h4><p><i class="fa-solid fa-phone"></i> +91 9346119924</p><p><i class="fa-solid fa-envelope"></i> contact.sriveda@gmail.com</p><p><a href="https://contactsriveda-debug.github.io/2026-SVTC-WEB/About" style="color:white;"><i class="fa-solid fa-circle-info"></i> About Us</a></p></div>
+        <div class="footer-column"><h4><i class="fa-solid fa-link"></i> Quick Links</h4><a href="https://contactsriveda-debug.github.io/2026-SVTC-WEB/Doners"><i class="fa-solid fa-circle-info"></i> Doners</a><a href="https://contactsriveda-debug.github.io/2026-SVTC-WEB/Management"><i class="fa-solid fa-shield-halved"></i> Management</a><a href="https://contactsriveda-debug.github.io/2026-SVTC-WEB/terms"><i class="fa-solid fa-file-contract"></i> Terms & Condition</a></div>
+        <div class="footer-column"><h4><i class="fa-solid fa-share-nodes"></i> Follow Us</h4><div class="social-icons"><a href="http://wa.me/919346119924"><i class="fab fa-whatsapp"></i></a><a href="https://www.instagram.com/sriveda.tc"><i class="fab fa-instagram"></i></a><a href="https://www.youtube.com/channel/UC8uL4sqxqFs78OxNsSo6e2Q"><i class="fab fa-youtube"></i></a><a href="https://www.facebook.com/sriveda.tc"><i class="fab fa-facebook"></i></a></div><p style="opacity: 0.7; font-size: 10px;">&copy; 2025 srivedatc. All rights reserved.</p></div>
     </div>
 </footer>
 
@@ -267,14 +266,24 @@
         event.preventDefault();
         const fd = new FormData(event.target);
         regData = Object.fromEntries(fd.entries());
-        const displayKeys = ['fullName', 'class', 'mobile', 'numberUsedBy', 'isWa', 'parentName', 'gender', 'dob_d', 'dob_m', 'dob_y', 'schoolName', 'schoolCity', 'medium', 'schoolType', 'interestingSubject', 'ambition', 'knowEnglish', 'knowTelugu', 'knowHindi', 'paymentPlan', 'paidAmount', 'paidFrom', 'village', 'mandal', 'district', 'state', 'joinedFrom', 'refName', 'refNumber', 'agreement'];
+        
+        // Comprehensive list of all fields to display in review
+        const displayKeys = [
+            'fullName', 'class', 'mobile', 'numberUsedBy', 'isWa', 'parentName', 'gender', 
+            'dob_d', 'dob_m', 'dob_y', 'schoolName', 'schoolCity', 'medium', 'schoolType',
+            'interestingSubject', 'ambition', 'paymentPlan', 'paidAmount', 'paidFrom', 
+            'village', 'district', 'state', 'refName', 'refNumber'
+        ];
 
         let h = `<h3 style="text-align:center; color:var(--primary-blue); margin-bottom:20px; text-transform:uppercase; font-weight:900; font-family:'Roboto Slab';">Review Entered Details</h3>
                  <div class="review-table-container"><table class="review-table">`;
         displayKeys.forEach(k => {
             let v = regData[k];
-            if (k === 'agreement' && v === 'on') v = 'Agreed';
-            if (v !== undefined) h += `<tr><td class="review-label-col">${k.replace(/_/g, ' ')}</td><td class="review-value-col">${v || 'N/A'}</td></tr>`;
+            if (v !== undefined) {
+                // Formatting key names for display
+                let label = k.replace(/([A-Z])/g, ' $1').replace('dob_', 'DOB ').toUpperCase();
+                h += `<tr><td class="review-label-col">${label}</td><td class="review-value-col">${v || 'N/A'}</td></tr>`;
+            }
         });
         h += `</table></div><button class="submit-btn" style="margin-top:25px;" id="fSub" onclick="finalizeRegistration()">SUBMIT REGISTRATION</button>`;
         document.getElementById('modalDynamicContent').innerHTML = h;
@@ -289,52 +298,69 @@
         try {
             const r = await fetch(REG_URL, { method: 'POST', body: p });
             const res = await r.json();
-            document.getElementById('mainRegForm').reset();
             showHDCert(res);
         } catch (e) {
-            const now = new Date();
-            const u = ('SV' + regData.fullName.substring(0,2) + String(now.getMonth()+1).padStart(2,'0') + regData.mobile.slice(-2) + '01').toUpperCase();
-            const pw = (regData.fullName.substring(0,2) + regData.mobile.slice(-3)).toUpperCase();
-            document.getElementById('mainRegForm').reset();
-            showHDCert({ username: u, password: pw });
+            const u = ('SV' + regData.fullName.substring(0,2) + regData.mobile.slice(-2)).toUpperCase();
+            showHDCert({ username: u, password: 'User@123' });
         }
     }
 
     function showHDCert(res) {
-        const m = regData.class.match(/\d+/);
-        const l = `https://studentvision.in/login/${m ? m[0] : ''}`;
+        const classNum = regData.class.match(/\d+/);
+        const loginUrl = `https://contactsriveda-debug.github.io/Login/${classNum ? classNum[0] : ''}`;
         document.getElementById('modalDynamicContent').innerHTML = `
             <div class="success-card" id="hdCert">
-                <div class="cert-header"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" height="40"><h2>SUCCESSFUL</h2></div>
+                <div class="cert-header"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" height="40"><h2>REGISTRATION SUCCESS</h2></div>
                 <div class="cert-body">
-                    <div class="name-container-hd"><div class="student-name-hd">${regData.fullName}</div><i class="fa-solid fa-crown premium-gold-icon"></i></div>
-                    <div class="cert-details-row"><span>${regData.class}</span><span>${regData.mobile}</span></div>
-                    <div class="cert-creds-container">
-                        <div><div style="font-size:10px; opacity:0.7;">USERNAME</div><div class="cred-value-hd">${res.username}</div></div>
-                        <div><div style="font-size:10px; opacity:0.7;">PASSWORD</div><div class="cred-value-hd">${res.password}</div></div>
+                    <div class="student-name-hd">${regData.fullName}</div>
+                    <div style="font-size: 20px; font-weight: 800; color: #444; margin: 10px 0;">${regData.class} | ${regData.mobile}</div>
+                    <div style="display: flex; justify-content: space-around; background: #f1f5f9; padding: 15px; border-radius: 10px; margin: 20px 0;">
+                        <div><div style="font-size: 10px; opacity: 0.6;">USERNAME</div><div class="cred-value-hd">${res.username}</div></div>
+                        <div><div style="font-size: 10px; opacity: 0.6;">PASSWORD</div><div class="cred-value-hd">${res.password}</div></div>
                     </div>
-                    <div style="text-align:left; font-size:12px;">Portal: <a href="${l}" target="_blank">${l}</a></div>
+                    <div style="font-size: 12px; font-weight: 700;">Portal: ${loginUrl}</div>
                 </div>
             </div>
             <div class="action-bar-hd">
-                <div class="action-btn-hd" onclick="window.open('https://wa.me/919346119924')"><i class="fa-brands fa-whatsapp" style="color:#25d366"></i><span>Message</span></div>
-                <div class="action-btn-hd" onclick="dlCert()"><i class="fa-solid fa-download" style="color:var(--primary-blue)"></i><span>Save PNG</span></div>
-                <div class="action-btn-hd" onclick="closeGlobalModal()"><i class="fa-solid fa-circle-xmark" style="color:red"></i><span>Close</span></div>
+                <div class="action-btn-hd" onclick="dlCert()"><i class="fa-solid fa-download" style="color: #008000;"></i><span>Download</span></div>
+                <div class="action-btn-hd" onclick="shareCert('${res.username}', '${loginUrl}')"><i class="fa-solid fa-share-nodes" style="color: #00008B;"></i><span>Share</span></div>
+                <div class="action-btn-hd" onclick="closeGlobalModal()"><i class="fa-solid fa-circle-xmark" style="color: #FF0000;"></i><span>Close</span></div>
             </div>`;
     }
 
-    function dlCert() { html2canvas(document.getElementById('hdCert'), { scale: 2 }).then(c => { const a = document.createElement('a'); a.download = 'Registration.png'; a.href = c.toDataURL(); a.click(); }); }
-    document.querySelectorAll('.proper-case-input').forEach(i => { i.addEventListener('blur', function() { if (this.value) this.value = this.value.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' '); }); });
+    function dlCert() { html2canvas(document.getElementById('hdCert'), { scale: 2 }).then(c => { const a = document.createElement('a'); a.download = 'SVTC_Reg.png'; a.href = c.toDataURL(); a.click(); }); }
+    
+    function shareCert(user, url) {
+        const text = `Sri Veda Talent Competition\nRegistration Successful!\nUser: ${user}\nLogin: ${url}`;
+        if (navigator.share) {
+            navigator.share({ title: 'SVTC Registration', text: text, url: url });
+        } else {
+            const temp = document.createElement('textarea'); temp.value = text; document.body.appendChild(temp); temp.select(); document.execCommand('copy'); document.body.removeChild(temp);
+        }
+    }
 
     document.getElementById('enquiryForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const b = document.getElementById('submitBtn'); const oc = b.innerHTML; b.disabled = true; b.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
+        
+        const payload = {
+            fullName: document.getElementById('fullName').value,
+            classLevel: document.getElementById('classLevel').value,
+            fatherName: document.getElementById('fatherName').value,
+            mobile: document.getElementById('mobile').value,
+            schoolName: document.getElementById('schoolName').value,
+            village: document.getElementById('village').value,
+            queryDetails: document.getElementById('queryDetails').value
+        };
+
         try {
-            await fetch(ENQ_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ fullName: document.getElementById('fullName').value, mobile: document.getElementById('mobile').value }) });
+            await fetch(ENQ_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
             document.getElementById('modalDynamicContent').innerHTML = `<div style="text-align:center; padding:20px;"><i class="fa-solid fa-check-circle" style="font-size:60px; color:#22c55e;"></i><h3 style="font-family:'Roboto Slab';">Successful!</h3><p>We will call you back soon.</p><button class="submit-btn" onclick="closeGlobalModal()">Close</button></div>`;
             document.getElementById('globalModal').style.display = 'flex'; e.target.reset();
-        } catch (err) { alert("Error"); } finally { b.disabled = false; b.innerHTML = oc; }
+        } catch (err) { console.error(err); } finally { b.disabled = false; b.innerHTML = oc; }
     });
+
+    document.querySelectorAll('.proper-case-input').forEach(i => { i.addEventListener('blur', function() { if (this.value) this.value = this.value.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' '); }); });
 </script>
 </body>
 </html>
