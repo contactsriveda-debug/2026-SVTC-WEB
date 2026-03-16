@@ -290,20 +290,31 @@
         document.getElementById('globalModal').style.display = 'flex';
     }
 
-    async function finalizeRegistration() {
-        const btn = document.getElementById('fSub');
-        btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
-        const p = new URLSearchParams();
-        for (const [k, v] of Object.entries(regData)) p.append(k, v);
-        try {
-            const r = await fetch(REG_URL, { method: 'POST', body: p });
-            const res = await r.json();
-            showHDCert(res);
-        } catch (e) {
-            const u = ('SV' + regData.fullName.substring(0,2) + regData.mobile.slice(-2)).toUpperCase();
-            showHDCert({ username: u, password: 'User@123' });
-        }
+async function finalizeRegistration() {
+    const btn = document.getElementById('fSub');
+    btn.disabled = true; 
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
+    
+    const p = new URLSearchParams();
+    for (const [k, v] of Object.entries(regData)) p.append(k, v);
+    
+    try {
+        const r = await fetch(REG_URL, { method: 'POST', body: p });
+        const res = await r.json();
+        
+        // సక్సెస్ అయినప్పుడు ఫారమ్ రీసెట్ చేస్తుంది
+        document.getElementById('mainRegForm').reset(); 
+        
+        showHDCert(res);
+    } catch (e) {
+        const u = ('SV' + regData.fullName.substring(0,2) + regData.mobile.slice(-2)).toUpperCase();
+        
+        // ఎర్రర్ వచ్చినప్పుడు కూడా ఫారమ్ రీసెట్ చేయడానికి ఇక్కడ కూడా పెట్టవచ్చు
+        document.getElementById('mainRegForm').reset();
+        
+        showHDCert({ username: u, password: 'User@123' });
     }
+}
 
     function showHDCert(res) {
         const classNum = regData.class.match(/\d+/);
