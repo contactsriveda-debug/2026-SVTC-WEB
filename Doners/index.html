@@ -62,7 +62,7 @@
         /* --- CONTENT STYLES --- */
         .page-wrapper {
             width: 100%;
-            padding: 20px 20px 5px 20px;
+            padding: 40px 20px 10px 20px;
             display: flex;
             justify-content: center;
         }
@@ -74,40 +74,50 @@
             padding: 10px 20px;
             animation: fadeInScale 0.8s ease-out;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 40px;
             position: relative;
         }
 
         @keyframes fadeInScale { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
 
-        .left-side { flex: 1.6; text-align: center; padding-right: 40px; display: flex; flex-direction: column; align-items: center; border-right: 1px solid rgba(0, 0, 80, 0.08); }
-        .logo-top { height: 45px; width: auto; margin-bottom: 10px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.08)); }
-        .namaste-icon { color: var(--accent-gold); margin-right: 8px; font-size: 1.1rem; vertical-align: middle; }
-        h1, .content-h1 { font-family: 'Roboto Slab', serif; font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--primary-blue); margin: 0; font-weight: 900; letter-spacing: -0.2px; text-transform: uppercase; line-height: 1.2; display: flex; align-items: center; justify-content: center; }
-        .gold-line { width: 45px; height: 3px; background: var(--accent-gold); margin: 8px 0; border-radius: 5px; }
-        .sub-heading { font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #64748b; letter-spacing: 1.2px; font-weight: 600; text-transform: uppercase; }
-        .right-side { flex: 1; text-align: left; display: flex; flex-direction: column; justify-content: center; }
-        .inline-heart { color: #e11d48; margin-right: 6px; font-size: 1.1rem; vertical-align: middle; animation: heartBeat 2.5s infinite; }
-        @keyframes heartBeat { 0%, 100% { transform: scale(1); } 10% { transform: scale(1.2); } 20% { transform: scale(1); } }
-        h2.content-h2 { font-family: 'Roboto Slab', serif; font-size: 1rem; line-height: 1.5; color: var(--primary-blue); margin: 0; font-weight: 800; }
-        .support-message { font-family: 'Inter', sans-serif; font-size: 0.85rem; color: #64748b; margin-top: 6px; line-height: 1.6; }
+        .gold-line { width: 100px; height: 4px; background: var(--accent-gold); margin: 0 0 30px 0; border-radius: 5px; }
 
-        .section-divider { width: 100%; max-width: 1200px; display: flex; align-items: center; justify-content: center; margin: 10px 0 20px 0; position: relative; padding: 0 20px; }
+        .passage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .impressive-passage {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            line-height: 1.8;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .impressive-passage strong {
+            color: var(--primary-blue);
+            font-weight: 800;
+        }
+
+        .inline-heart { color: #e11d48; margin: 0 5px; font-size: 1.2rem; animation: heartBeat 2.5s infinite; vertical-align: middle; }
+        @keyframes heartBeat { 0%, 100% { transform: scale(1); } 10% { transform: scale(1.2); } 20% { transform: scale(1); } }
+
+        .section-divider { width: 100%; max-width: 1200px; display: flex; align-items: center; justify-content: center; margin: 20px 0 30px 0; position: relative; padding: 0 20px; }
         .divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--accent-gold), transparent); opacity: 0.4; }
         .divider-arrow { width: 32px; height: 32px; background: white; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-gold); font-size: 0.9rem; margin: 0 10px; animation: bounceSoft 2s infinite; z-index: 2; }
         @keyframes bounceSoft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 
+        /* --- DONATION SECTION --- */
         .donation-container-wrapper { width: 100%; max-width: 1150px; padding: 10px 20px 20px 20px; animation: fadeInUp 1s ease-out 0.5s both; margin: 0 auto; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
         .main-donation-box { background: white; border-radius: 35px; box-shadow: 0 25px 50px rgba(0, 0, 139, 0.06); border: 1.5px solid rgba(212, 175, 55, 0.18); display: flex; overflow: hidden; flex-wrap: wrap; position: relative; }
 
-        .box-ticker { position: absolute; top: 0; left: 0; right: 0; background: linear-gradient(to right, var(--accent-gold), #FFF8DC, var(--accent-gold)); padding: 6px 0; overflow: hidden; white-space: nowrap; z-index: 5; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .ticker-inner { display: inline-block; animation: scrollBoxText 20s linear infinite; }
-        .ticker-inner span { font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 800; color: var(--primary-blue); text-transform: uppercase; letter-spacing: 1.2px; margin-right: 60px; }
-        @keyframes scrollBoxText { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-        .donation-form-section { flex: 1.35; padding: 45px 35px 35px 35px; border-right: 1px solid #f1f5f9; position: relative; }
+        .donation-form-section { flex: 1.35; padding: 35px; border-right: 1px solid #f1f5f9; position: relative; }
         .donation-form-section h3 { font-family: 'Roboto Slab', serif; font-size: 1.25rem; color: var(--primary-blue); margin-top: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; font-weight: 800; }
         .form-group { margin-bottom: 20px; text-align: left; }
         .form-group label { display: block; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 800; color: #475569; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.8px; }
@@ -117,12 +127,13 @@
         
         .submit-btn { width: 100%; padding: 16px; border-radius: 14px; border: none; background: linear-gradient(135deg, var(--primary-blue), #0000CD); color: white; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 10px; box-shadow: 0 10px 20px rgba(0, 0, 139, 0.2), 0 2px 0 rgba(255, 255, 255, 0.2) inset; }
         .submit-btn:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0, 0, 139, 0.25); filter: brightness(1.1); }
-        .submit-btn:disabled { background: #94a3b8; cursor: not-allowed; transform: none; box-shadow: none; }
 
-        .donation-info-section { flex: 1; padding: 45px 35px 35px 35px; background: linear-gradient(to bottom, #fafcff, #f2f8ff); display: flex; flex-direction: column; justify-content: center; text-align: center; position: relative; }
+        /* --- DONATE NOW SECTION --- */
+        .donation-info-section { flex: 1; padding: 35px; background: linear-gradient(to bottom, #fafcff, #f2f8ff); display: flex; flex-direction: column; justify-content: center; text-align: center; position: relative; }
         .info-text { text-align: left; margin-top: 10px; margin-bottom: 25px; }
         .info-text h2 { font-family: 'Roboto Slab', serif; font-size: 1.35rem; color: var(--primary-blue); text-transform: uppercase; font-weight: 900; margin: 0 0 10px 0; display: flex; align-items: center; gap: 10px; }
         .info-text p { font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #64748b; line-height: 1.5; margin: 0; }
+        
         .qr-display-box { background: white; padding: 25px; border-radius: 30px; box-shadow: 0 12px 35px rgba(0, 0, 139, 0.04); border: 1px solid #e2e8f0; }
         .qr-branding-top { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px; }
         .mini-logo { height: 35px; width: auto; }
@@ -131,24 +142,32 @@
         .qr-image-wrapper img { width: 100%; height: auto; border-radius: 10px; display: block; }
         .upi-badge { background: #f1f5f9; border: 1.5px solid #e2e8f0; padding: 10px 14px; border-radius: 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 5px; }
         .upi-id-text { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--primary-blue); font-weight: 800; letter-spacing: 0.4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        
+        /* --- APP PAYMENT BUTTONS --- */
+        .payment-apps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 15px; }
+        .app-btn { background: white; border: 1.5px solid #e2e8f0; border-radius: 12px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); text-decoration: none; position: relative; }
+        .app-btn:hover { border-color: var(--primary-blue); background: #f0f7ff; transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0, 0, 139, 0.1); }
+        .app-btn:active { transform: scale(0.95); }
+        .app-btn img { height: 20px; width: auto; max-width: 80%; }
+        .app-btn i { font-size: 1.4rem; color: var(--primary-blue); }
+
         .copy-btn { background: white; border: 1px solid #cbd5e1; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #64748b; font-size: 0.85rem; transition: all 0.2s; flex-shrink: 0; position: relative; }
         .copy-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); background: #fffdf5; }
         .copy-btn.copied { background: #ecfdf5; border-color: #10b981; color: #10b981; }
         .toast-feedback { position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 4px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.2s; }
         .copy-btn.copied .toast-feedback { opacity: 1; visibility: visible; bottom: 140%; }
-        .scan-footer { margin-top: 15px; display: block; font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .scan-footer { margin-top: 12px; display: block; font-size: 0.75rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
+        /* --- STATS SECTION --- */
         .stats-full-width-section { width: 100%; padding: 15px 0; margin: 10px 0 30px 0; overflow: hidden; background: linear-gradient(90deg, #B8860B, #FFD700, #FFF8DC, #FFD700, #B8860B); background-size: 200% 100%; animation: goldScrollMove 8s linear infinite; display: flex; justify-content: center; border-top: 1px solid rgba(255, 255, 255, 0.4); border-bottom: 1px solid rgba(255, 255, 255, 0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         @keyframes goldScrollMove { 0% { background-position: 0% 0%; } 100% { background-position: -200% 0%; } }
         .stats-container { width: 100%; max-width: 1150px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 0 20px; z-index: 10; }
         .stat-box { background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(8px); border-radius: 15px; padding: 15px 10px; text-align: center; border: 1.5px solid rgba(255, 255, 255, 0.5); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .stat-box::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: radial-gradient(circle, #fff 10%, transparent 10.1%), radial-gradient(circle, #fff 10%, transparent 10.1%), radial-gradient(circle, #fff 10%, transparent 10.1%); background-repeat: no-repeat; background-size: 8px 8px; animation: crackersPop 1.5s infinite; pointer-events: none; opacity: 0; }
-        @keyframes crackersPop { 0% { opacity: 0; transform: scale(0.5); background-position: 20% 30%, 80% 20%, 50% 80%; } 50% { opacity: 0.8; transform: scale(1); background-position: 10% 10%, 90% 10%, 50% 90%; } 100% { opacity: 0; transform: scale(1.2); background-position: 0% 0%, 100% 0%, 50% 100%; } }
         .stat-icon { font-size: 1.2rem; margin-bottom: 5px; color: var(--primary-blue); filter: drop-shadow(0 0 5px rgba(255,255,255,0.8)); }
         .stat-label { font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 3px; color: #1e293b; }
         .stat-value { font-size: 1.4rem; font-weight: 900; color: var(--primary-blue); text-shadow: 0 1px 2px rgba(255,255,255,0.5); }
 
-        /* --- UPDATED KNOW YOUR DONATION SECTION --- */
+        /* --- KNOW YOUR DONATION BAR --- */
         .know-donation-wrapper { width: 100%; display: flex; flex-direction: column; align-items: center; padding: 10px 0; margin-bottom: 20px; }
         .know-donation-bar { width: 100%; max-width: 1110px; background: #ffffff; border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 20px; padding: 20px 30px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 10px 25px rgba(0, 0, 139, 0.05); gap: 20px; }
         .kb-brand { display: flex; align-items: center; gap: 15px; flex-shrink: 0; }
@@ -161,7 +180,6 @@
         .kb-btn { padding: 14px 30px; background: linear-gradient(135deg, var(--accent-gold), #B8860B); color: white; border-radius: 12px; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.95rem; text-transform: uppercase; border: none; cursor: pointer; box-shadow: 0 6px 0px #8B6914, 0 8px 15px rgba(184, 134, 11, 0.3); transition: all 0.2s; white-space: nowrap; }
         .kb-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 0px #8B6914, 0 10px 20px rgba(184, 134, 11, 0.4); }
 
-        /* Inline Results Container */
         #inlineResultsContainer { width: 100%; max-width: 1110px; margin-top: 15px; }
         .inline-record-card { background: white; border: 1px solid var(--accent-gold); border-radius: 15px; padding: 15px 25px; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); animation: fadeInDown 0.4s ease-out; }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
@@ -189,14 +207,14 @@
         @media (max-width: 900px) {
             .stats-container { grid-template-columns: 1fr; gap: 10px; }
             .points-grid { grid-template-columns: 1fr; }
-            .unified-card { flex-direction: column; text-align: center; }
-            .left-side { border-right: none; border-bottom: 1px solid rgba(0, 0, 80, 0.08); padding-right: 0; padding-bottom: 20px; }
-            .right-side { text-align: center; }
+            .passage-grid { grid-template-columns: 1fr; gap: 20px; }
+            .unified-card { text-align: center; }
             .know-donation-bar { flex-direction: column; gap: 15px; padding: 25px; }
             .kb-search { justify-content: center; width: 100%; flex-wrap: wrap; }
             .kb-input-group { width: 100%; max-width: none; }
             .main-donation-box { flex-direction: column; }
-            .donation-form-section { border-right: none; border-bottom: 1px solid #f1f5f9; }
+            .donation-form-section { border-right: none; border-bottom: 1px solid #f1f5f9; padding: 30px 20px; }
+            .donation-info-section { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -211,7 +229,7 @@
             <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" alt="SV Logo" class="logo">
             <div>
                 <div class="main-title">Sri Veda Talent Competition</div>
-                <div class="sub-title">"Donars Section"</div>
+                <div class="sub-title">"Donors Section"</div>
             </div>
         </div>
         <div class="header-right">
@@ -223,22 +241,17 @@
         </div>
     </header>
 
-    <!-- Welcome Section -->
+    <!-- Welcome Section (Two Column Layout) -->
     <div class="page-wrapper">
         <section class="unified-card">
-            <div class="left-side">
-                <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" alt="Sri Veda Logo" class="logo-top">
-                <h1 class="content-h1">
-                    <i class="fa-solid fa-hands-praying namaste-icon"></i>Welcome Sri Veda Community
-                </h1>
-                <div class="gold-line"></div>
-                <p class="sub-heading">Excellence in Talent & Education</p>
-            </div>
-            <div class="right-side">
-                <h2 class="content-h2">
-                    <i class="fa-solid fa-heart inline-heart"></i>
-                    Thank you for supporting our mission. All of you stand with us as we strive to uplift education and empower young talents in our community. Your generous heart is the driving force behind the success of countless students who dream of a brighter tomorrow. We are truly honored to have such a dedicated family of donors who believe in the power of knowledge and excellence.
-                </h2>
+            <div class="gold-line"></div>
+            <div class="passage-grid">
+                <div class="impressive-passage">
+                    At <strong>Sri Veda Talent Competition</strong>, we believe that education is the ultimate catalyst for change and the most powerful tool for human empowerment. Our community is built on a shared vision of nurturing raw potential, celebrating academic excellence, and bridging the gap between dreams and reality for students across all backgrounds.
+                </div>
+                <div class="impressive-passage">
+                    Thank you for standing with us as we strive to uplift young minds and create a sustainable ecosystem of knowledge. Your generous support is not just a contribution; it is the <strong>driving force</strong> behind the success of countless students who dream of a brighter tomorrow. We are honored to have a dedicated family of donors who share our passion for excellence.<i class="fa-solid fa-heart inline-heart"></i>
+                </div>
             </div>
         </section>
     </div>
@@ -256,17 +269,6 @@
             
             <!-- Donor Verification Form -->
             <section class="donation-form-section">
-                <div class="box-ticker">
-                    <div class="ticker-inner">
-                        <span>LIVE: Supporting Excellence</span>
-                        <span>SRI VEDA DONOR HUB</span>
-                        <span>LIVE: Join the Mission</span>
-                        <span>SECURE DONATION HUB</span>
-                        <span>LIVE: Supporting Excellence</span>
-                        <span>SRI VEDA DONOR HUB</span>
-                    </div>
-                </div>
-
                 <h3><i class="fa-solid fa-user-shield"></i> Donor Verification</h3>
                 <form id="donationForm">
                     <div class="form-group">
@@ -291,17 +293,6 @@
 
             <!-- Donate Now Section -->
             <section class="donation-info-section">
-                <div class="box-ticker">
-                    <div class="ticker-inner">
-                        <span>LIVE: Supporting Excellence</span>
-                        <span>SRI VEDA DONOR HUB</span>
-                        <span>LIVE: Join the Mission</span>
-                        <span>SECURE DONATION HUB</span>
-                        <span>LIVE: Supporting Excellence</span>
-                        <span>SRI VEDA DONOR HUB</span>
-                    </div>
-                </div>
-
                 <div class="info-text">
                     <h2 class="content-h2"><i class="fa-solid fa-hand-holding-dollar"></i> DONATE NOW</h2>
                     <p>Your contribution impacts the future of talented students.</p>
@@ -325,7 +316,23 @@
                         </button>
                     </div>
 
-                    <span class="scan-footer">Scan to Support Students</span>
+                    <span class="scan-footer">Scan or choose app below</span>
+
+                    <!-- App Payment Section Integrated inside Scanner Box (Icons Only) -->
+                    <div class="payment-apps-grid">
+                        <a href="javascript:void(0)" onclick="openUpiApp('gpay')" class="app-btn" title="Google Pay">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg" alt="GPay">
+                        </a>
+                        <a href="javascript:void(0)" onclick="openUpiApp('phonepe')" class="app-btn" title="PhonePe">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/PhonePe_Logo.svg" alt="PhonePe">
+                        </a>
+                        <a href="javascript:void(0)" onclick="openUpiApp('paytm')" class="app-btn" title="Paytm">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Paytm_Logo_%28standalone%29.svg" alt="Paytm">
+                        </a>
+                        <a href="javascript:void(0)" onclick="openUpiApp('upi')" class="app-btn" title="Other UPI">
+                            <i class="fa-solid fa-qrcode"></i>
+                        </a>
+                    </div>
                 </div>
             </section>
         </div>
@@ -448,7 +455,6 @@
     <script>
         const GOOGLE_APPS_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzDqH8Jn789lve4blNDlm_huRtvOA9MZb6_Z-rQ_TSah-ru5PPfjrq5Wt15R6EAXMLp/exec";
 
-        // GLOBAL LINKS
         const GLOBAL_LINKS = {
             URL_HOME: "https://www.svtc.life/home",
             URL_REGISTER: "https://www.svtc.life/register",
@@ -472,7 +478,7 @@
                 setLink(id, GLOBAL_LINKS[key]);
             });
 
-            // Submission Logic
+            // Form Logic
             const donationForm = document.getElementById('donationForm');
             const submitBtn = document.getElementById('submitDonorBtn');
 
@@ -493,7 +499,7 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(formDataObject)
                     });
-                    alert("Thank you! Your donor details have been submitted. Please complete the donation via the QR code.");
+                    alert("Thank you! Your donor details have been submitted. Please complete the donation via the QR code or payment buttons.");
                     donationForm.reset();
                 } catch (error) {
                     alert("There was an error submitting your details.");
@@ -503,7 +509,7 @@
                 }
             });
 
-            // Inline Lookup Logic
+            // Search Logic
             const getDetailsBtn = document.getElementById('getDetailsBtn');
             const userPhoneInput = document.getElementById('userPhoneInput');
 
@@ -531,7 +537,7 @@
                 }
             });
 
-            // Copy UPI logic
+            // Copy Logic
             const copyBtn = document.getElementById('copyBtn');
             const upiText = document.getElementById('upiText').innerText;
             copyBtn.addEventListener('click', () => {
@@ -553,7 +559,29 @@
             });
         });
 
-        // Date Formatter: dd Month yyyy
+        // UPI Intent Logic
+        function openUpiApp(type) {
+            const upiId = "9346119924@OKHDFCBANK";
+            const name = encodeURIComponent("Sri Veda Talent Competition");
+            const amount = document.getElementById('donor_amount').value;
+            const currency = "INR";
+            
+            // Standard UPI Payment URI
+            let upiUrl = `upi://pay?pa=${upiId}&pn=${name}&cu=${currency}`;
+            
+            if (amount && amount > 0) {
+                upiUrl += `&am=${amount}`;
+            }
+
+            // Mobile Deep Linking
+            if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                window.location.href = upiUrl; 
+            } else {
+                // Desktop - show message
+                alert("Mobile payment apps can only be opened on a smartphone or tablet. Please use the QR code scanner on your PC.");
+            }
+        }
+
         function formatDisplayDate(dateStr) {
             if(!dateStr) return "N/A";
             const dateObj = new Date(dateStr);
