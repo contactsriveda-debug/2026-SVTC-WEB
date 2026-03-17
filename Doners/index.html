@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Community Hub - Sri Veda</title>
     <style>
@@ -16,7 +16,6 @@
             --soft-gold: rgba(212, 175, 55, 0.1);
             --accent-yellow: #ffeb3b;
             --accent-orange: #ffa500;
-            --bg-gray: #f4f7f9;
             --bg-mesh: radial-gradient(at 0% 0%, rgba(0, 0, 139, 0.05) 0, transparent 50%), 
                        radial-gradient(at 100% 100%, rgba(212, 175, 55, 0.05) 0, transparent 50%);
         }
@@ -32,37 +31,43 @@
             background: #f8fafc;
             background-image: var(--bg-mesh);
             color: #1e293b; 
-            font-family: 'Inter', sans-serif; 
+            font-family: 'Roboto Slab', serif; 
         }
 
-        /* --- HEADER STYLES --- */
-        header { background: var(--primary-blue); padding: 12px clamp(12px, 4vw, 30px); display: flex; justify-content: space-between; align-items: center; color: white; width: 100%; position: relative; overflow: hidden; min-height: 75px; z-index: 100; }
+        /* --- HEADER (Original Size) --- */
+        header { 
+            background: var(--primary-blue); 
+            padding: 12px clamp(15px, 4vw, 30px); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            color: white; 
+            width: 100%; 
+            position: relative; 
+            overflow: hidden; 
+            min-height: 75px; 
+            z-index: 100; 
+        }
         
-        @media (max-width: 768px) {
-            header { flex-direction: column; text-align: center; padding: 20px 10px; gap: 15px; }
-            header .header-left { flex-direction: column; gap: 10px; }
-            header .header-right { width: 100%; justify-content: center; gap: 20px; }
-        }
-
         .header-corner { position: absolute; top: 0; left: 0; height: 38px; opacity: 0.8; pointer-events: none; z-index: 15; }
         .header-corner-right { position: absolute; top: 0; right: 0; height: 38px; opacity: 0.8; transform: scaleX(-1); pointer-events: none; z-index: 15; }
-        .header-scroll-bg { position: absolute; top: 0; left: 0; width: 400%; height: 100%; background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 5%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1) 15%, transparent 20%); z-index: 1; animation: scrollGlow 25s linear infinite; opacity: 0.9; pointer-events: none; }
+        .header-scroll-bg { position: absolute; top: 0; left: 0; width: 400%; height: 100%; background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.1) 10%, rgba(255, 255, 255, 0.4) 20%, rgba(255, 255, 255, 0.1) 30%, transparent 40%); z-index: 1; animation: scrollGlow 20s linear infinite; opacity: 0.6; pointer-events: none; }
         @keyframes scrollGlow { 0% { transform: translateX(-100%); } 100% { transform: translateX(25%); } }
         
         header .header-left { display: flex; align-items: center; gap: 15px; z-index: 10; }
         header .logo { height: 46px; width: 46px; border-radius: 50%; border: 2px solid #ffffff; background: white; flex-shrink: 0; }
-        header .main-title { font-family: 'Roboto Slab', serif; font-size: clamp(14px, 3vw, 20px); font-weight: 900; line-height: 1.1; }
-        header .sub-title { font-family: 'Roboto Slab', serif; font-size: clamp(9px, 2vw, 13px); font-weight: 600; color: var(--accent-yellow); margin-top: 3px; }
+        header .main-title { font-size: clamp(14px, 3vw, 20px); font-weight: 900; line-height: 1.1; }
+        header .sub-title { font-size: clamp(9px, 2vw, 13px); font-weight: 600; color: var(--accent-yellow); margin-top: 3px; }
         
         header .header-right { display: flex; gap: clamp(10px, 2.5vw, 25px); align-items: center; z-index: 10; }
         .menu-item a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; transition: transform 0.2s; position: relative; }
         header .icon { font-size: 18px; color: var(--accent-orange); opacity: 0.9; }
         .icon-label { font-size: 7.5px; margin-top: 5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.85; }
 
-        /* --- CONTENT STYLES --- */
+        /* --- REDUCED SIZE SECTIONS --- */
         .page-wrapper {
             width: 100%;
-            padding: 40px 20px 10px 20px;
+            padding: 10px 20px 5px 20px; /* Reduced padding */
             display: flex;
             justify-content: center;
         }
@@ -70,151 +75,94 @@
         .unified-card {
             width: 100%;
             max-width: 1200px;
-            background: transparent; 
-            padding: 10px 20px;
-            animation: fadeInScale 0.8s ease-out;
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative;
         }
 
-        @keyframes fadeInScale { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
-
-        .gold-line { width: 100px; height: 4px; background: var(--accent-gold); margin: 0 0 30px 0; border-radius: 5px; }
-
-        .passage-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            width: 100%;
-            text-align: left;
-        }
+        .gold-line { width: 60px; height: 3px; background: var(--accent-gold); margin-bottom: 10px; border-radius: 5px; }
 
         .impressive-passage {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(1rem, 2vw, 1.15rem);
-            line-height: 1.8;
+            font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+            line-height: 1.5;
             color: #475569;
+            text-align: center;
+            width: 100%;
             font-weight: 500;
         }
 
-        .impressive-passage strong {
-            color: var(--primary-blue);
-            font-weight: 800;
-        }
+        .section-divider { width: 100%; max-width: 1200px; display: flex; align-items: center; justify-content: center; margin: 5px auto; position: relative; }
+        .divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--accent-gold), transparent); opacity: 0.2; }
+        .divider-arrow { width: 24px; height: 24px; background: white; border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-gold); font-size: 0.7rem; margin: 0 5px; z-index: 2; }
 
-        .inline-heart { color: #e11d48; margin: 0 5px; font-size: 1.2rem; animation: heartBeat 2.5s infinite; vertical-align: middle; }
-        @keyframes heartBeat { 0%, 100% { transform: scale(1); } 10% { transform: scale(1.2); } 20% { transform: scale(1); } }
+        /* --- DONATION BOX (Reduced) --- */
+        .donation-container-wrapper { width: 100%; max-width: 1100px; padding: 5px 15px 15px 15px; margin: 0 auto; }
+        .main-donation-box { background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 139, 0.04); border: 1px solid rgba(212, 175, 55, 0.12); display: flex; overflow: hidden; flex-wrap: wrap; }
 
-        .section-divider { width: 100%; max-width: 1200px; display: flex; align-items: center; justify-content: center; margin: 20px 0 30px 0; position: relative; padding: 0 20px; }
-        .divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--accent-gold), transparent); opacity: 0.4; }
-        .divider-arrow { width: 32px; height: 32px; background: white; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-gold); font-size: 0.9rem; margin: 0 10px; animation: bounceSoft 2s infinite; z-index: 2; }
-        @keyframes bounceSoft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
-
-        /* --- DONATION SECTION --- */
-        .donation-container-wrapper { width: 100%; max-width: 1150px; padding: 10px 20px 20px 20px; animation: fadeInUp 1s ease-out 0.5s both; margin: 0 auto; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        .main-donation-box { background: white; border-radius: 35px; box-shadow: 0 25px 50px rgba(0, 0, 139, 0.06); border: 1.5px solid rgba(212, 175, 55, 0.18); display: flex; overflow: hidden; flex-wrap: wrap; position: relative; }
-
-        .donation-form-section { flex: 1.35; padding: 35px; border-right: 1px solid #f1f5f9; position: relative; }
-        .donation-form-section h3 { font-family: 'Roboto Slab', serif; font-size: 1.25rem; color: var(--primary-blue); margin-top: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; font-weight: 800; }
-        .form-group { margin-bottom: 20px; text-align: left; }
-        .form-group label { display: block; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 800; color: #475569; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.8px; }
+        .donation-form-section { flex: 1.2; padding: 20px; border-right: 1px solid #f1f5f9; }
+        .donation-form-section h3 { font-size: 1.1rem; color: var(--primary-blue); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; font-weight: 800; }
         
-        .form-group input, .form-group textarea { width: 100%; padding: 16px 20px; border-radius: 14px; border: 2px solid #cbd5e1; background: #ffffff; font-family: 'Inter', sans-serif; font-size: 1rem; color: #1e293b; font-weight: 600; outline: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.08), inset -2px -2px 4px rgba(255, 255, 255, 0.8), 1px 1px 0px rgba(212, 175, 55, 0.1); }
-        .form-group input:focus, .form-group textarea:focus { border-color: var(--primary-blue); background: #fff; box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 5px rgba(0, 0, 139, 0.08), 0 8px 15px rgba(0, 0, 0, 0.06); transform: translateY(-3px); }
+        .form-group { margin-bottom: 10px; }
+        .form-group label { display: block; font-size: 0.7rem; font-weight: 800; color: #64748b; margin-bottom: 4px; text-transform: uppercase; }
+        .form-group input, .form-group textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1.5px solid #e2e8f0; font-size: 0.9rem; font-weight: 500; outline: none; }
         
-        .submit-btn { width: 100%; padding: 16px; border-radius: 14px; border: none; background: linear-gradient(135deg, var(--primary-blue), #0000CD); color: white; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 10px; box-shadow: 0 10px 20px rgba(0, 0, 139, 0.2), 0 2px 0 rgba(255, 255, 255, 0.2) inset; }
-        .submit-btn:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0, 0, 139, 0.25); filter: brightness(1.1); }
+        .submit-btn { width: 100%; padding: 12px; border-radius: 8px; background: linear-gradient(135deg, var(--primary-blue), #0000CD); color: white; font-weight: 800; font-size: 0.95rem; cursor: pointer; border:none; }
 
-        /* --- DONATE NOW SECTION --- */
-        .donation-info-section { flex: 1; padding: 35px; background: linear-gradient(to bottom, #fafcff, #f2f8ff); display: flex; flex-direction: column; justify-content: center; text-align: center; position: relative; }
-        .info-text { text-align: left; margin-top: 10px; margin-bottom: 25px; }
-        .info-text h2 { font-family: 'Roboto Slab', serif; font-size: 1.35rem; color: var(--primary-blue); text-transform: uppercase; font-weight: 900; margin: 0 0 10px 0; display: flex; align-items: center; gap: 10px; }
-        .info-text p { font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #64748b; line-height: 1.5; margin: 0; }
+        .donation-info-section { flex: 1; padding: 20px; background: #f9fbff; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .info-text h2 { font-size: 1rem; color: var(--primary-blue); font-weight: 900; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
         
-        .qr-display-box { background: white; padding: 25px; border-radius: 30px; box-shadow: 0 12px 35px rgba(0, 0, 139, 0.04); border: 1px solid #e2e8f0; }
-        .qr-branding-top { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px; }
-        .mini-logo { height: 35px; width: auto; }
-        .brand-name-qr { font-size: 0.9rem; color: var(--primary-blue); font-weight: 900; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; }
-        .qr-image-wrapper { max-width: 170px; margin: 0 auto 15px; padding: 8px; background: white; border: 1px solid #f1f5f9; border-radius: 18px; }
-        .qr-image-wrapper img { width: 100%; height: auto; border-radius: 10px; display: block; }
-        .upi-badge { background: #f1f5f9; border: 1.5px solid #e2e8f0; padding: 10px 14px; border-radius: 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 5px; }
-        .upi-id-text { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--primary-blue); font-weight: 800; letter-spacing: 0.4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .qr-display-box { background: white; padding: 15px; border-radius: 20px; border: 1px solid #e2e8f0; width: 100%; max-width: 280px; text-align: center; }
+        .qr-branding-top { display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 10px; }
+        .mini-logo { height: 20px; width: auto; }
+        .brand-name-qr { font-size: 0.8rem; color: var(--primary-blue); font-weight: 900; text-transform: uppercase; }
         
-        /* --- APP PAYMENT BUTTONS --- */
-        .payment-apps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 15px; }
-        .app-btn { background: white; border: 1.5px solid #e2e8f0; border-radius: 12px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); text-decoration: none; position: relative; }
-        .app-btn:hover { border-color: var(--primary-blue); background: #f0f7ff; transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0, 0, 139, 0.1); }
-        .app-btn:active { transform: scale(0.95); }
-        .app-btn img { height: 20px; width: auto; max-width: 80%; }
-        .app-btn i { font-size: 1.4rem; color: var(--primary-blue); }
+        .qr-image-wrapper { width: 160px; margin: 0 auto 10px; padding: 5px; background: white; border: 1px solid #f1f5f9; border-radius: 10px; }
+        .qr-image-wrapper img { width: 100%; height: auto; border-radius: 5px; display: block; }
+        
+        .upi-badge { background: #f1f5f9; border: 1px solid #e2e8f0; padding: 6px 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+        .upi-id-text { font-size: 0.7rem; color: var(--primary-blue); font-weight: 800; }
+        
+        .payment-apps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%; }
+        .app-btn { background: white; border: 1px solid #e2e8f0; border-radius: 8px; height: 38px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .app-btn img { height: 16px; width: auto; }
 
-        .copy-btn { background: white; border: 1px solid #cbd5e1; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #64748b; font-size: 0.85rem; transition: all 0.2s; flex-shrink: 0; position: relative; }
-        .copy-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); background: #fffdf5; }
-        .copy-btn.copied { background: #ecfdf5; border-color: #10b981; color: #10b981; }
-        .toast-feedback { position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 4px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.2s; }
-        .copy-btn.copied .toast-feedback { opacity: 1; visibility: visible; bottom: 140%; }
-        .scan-footer { margin-top: 12px; display: block; font-size: 0.75rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        /* --- STATS & SEARCH (Reduced) --- */
+        .stats-full-width-section { width: 100%; padding: 8px 0; background: linear-gradient(90deg, #B8860B, #FFD700, #FFF8DC, #FFD700, #B8860B); background-size: 200% 100%; animation: goldScrollMove 10s linear infinite; }
+        .stats-container { max-width: 1000px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0 auto; padding: 0 15px; }
+        .stat-box { background: rgba(255, 255, 255, 0.3); border-radius: 10px; padding: 8px; text-align: center; }
+        .stat-label { font-size: 0.6rem; font-weight: 800; color: #1e293b; text-transform: uppercase; display: block; }
+        .stat-value { font-size: 1rem; font-weight: 900; color: var(--primary-blue); }
 
-        /* --- STATS SECTION --- */
-        .stats-full-width-section { width: 100%; padding: 15px 0; margin: 10px 0 30px 0; overflow: hidden; background: linear-gradient(90deg, #B8860B, #FFD700, #FFF8DC, #FFD700, #B8860B); background-size: 200% 100%; animation: goldScrollMove 8s linear infinite; display: flex; justify-content: center; border-top: 1px solid rgba(255, 255, 255, 0.4); border-bottom: 1px solid rgba(255, 255, 255, 0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        @keyframes goldScrollMove { 0% { background-position: 0% 0%; } 100% { background-position: -200% 0%; } }
-        .stats-container { width: 100%; max-width: 1150px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 0 20px; z-index: 10; }
-        .stat-box { background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(8px); border-radius: 15px; padding: 15px 10px; text-align: center; border: 1.5px solid rgba(255, 255, 255, 0.5); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .stat-icon { font-size: 1.2rem; margin-bottom: 5px; color: var(--primary-blue); filter: drop-shadow(0 0 5px rgba(255,255,255,0.8)); }
-        .stat-label { font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 3px; color: #1e293b; }
-        .stat-value { font-size: 1.4rem; font-weight: 900; color: var(--primary-blue); text-shadow: 0 1px 2px rgba(255,255,255,0.5); }
+        .know-donation-bar { width: calc(100% - 30px); max-width: 1000px; background: #fff; border: 1.5px solid rgba(212, 175, 55, 0.2); border-radius: 15px; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 15px auto; }
+        .kb-brand img { height: 30px; }
+        .kb-title { font-size: 0.85rem; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; }
+        .kb-input-group input { padding: 8px 12px; border-radius: 8px; border: 1.5px solid #cbd5e1; font-size: 0.85rem; }
+        .kb-btn { padding: 8px 20px; background: var(--accent-gold); color: white; border-radius: 8px; font-weight: 800; font-size: 0.8rem; border:none; cursor: pointer; }
 
-        /* --- KNOW YOUR DONATION BAR --- */
-        .know-donation-wrapper { width: 100%; display: flex; flex-direction: column; align-items: center; padding: 10px 0; margin-bottom: 20px; }
-        .know-donation-bar { width: 100%; max-width: 1110px; background: #ffffff; border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 20px; padding: 20px 30px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 10px 25px rgba(0, 0, 139, 0.05); gap: 20px; }
-        .kb-brand { display: flex; align-items: center; gap: 15px; flex-shrink: 0; }
-        .kb-brand img { height: 50px; width: auto; }
-        .kb-title { font-family: 'Roboto Slab', serif; font-size: 1.2rem; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
-        .kb-search { display: flex; align-items: center; gap: 20px; flex-grow: 1; justify-content: flex-end; }
-        .kb-phone-icon { font-size: 1.2rem; color: var(--accent-gold); flex-shrink: 0; }
-        .kb-input-group { position: relative; flex-grow: 0.5; max-width: 300px; }
-        .kb-input-group input { width: 100%; padding: 14px 20px; border-radius: 12px; border: 2px solid #cbd5e1; font-family: 'Inter', sans-serif; font-size: 0.95rem; outline: none; font-weight: 600; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.05); transition: all 0.3s; }
-        .kb-btn { padding: 14px 30px; background: linear-gradient(135deg, var(--accent-gold), #B8860B); color: white; border-radius: 12px; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.95rem; text-transform: uppercase; border: none; cursor: pointer; box-shadow: 0 6px 0px #8B6914, 0 8px 15px rgba(184, 134, 11, 0.3); transition: all 0.2s; white-space: nowrap; }
-        .kb-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 0px #8B6914, 0 10px 20px rgba(184, 134, 11, 0.4); }
+        /* --- WHY SUPPORT US SECTION --- */
+        .why-donate-section { width: 100%; max-width: 1100px; margin: 20px auto; padding: 20px; background: white; border-radius: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.02); }
+        .why-donate-section h2 { text-align: center; color: var(--primary-blue); font-size: 1.5rem; margin-bottom: 25px; position: relative; font-weight: 900; }
+        .why-donate-section h2::after { content: ''; display: block; width: 50px; height: 3px; background: var(--accent-gold); margin: 8px auto; border-radius: 5px; }
+        .points-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+        .point-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px; border-radius: 12px; transition: background 0.2s; }
+        .point-item:hover { background: #f8fafc; }
+        .point-icon { color: var(--accent-gold); font-size: 1.1rem; width: 30px; text-align: center; padding-top: 3px; }
+        .point-text { font-size: 0.9rem; color: #475569; line-height: 1.5; font-weight: 500; }
+        .thank-you-footer { margin-top: 25px; text-align: center; font-style: italic; font-weight: 600; color: var(--primary-blue); font-size: 0.95rem; border-top: 1px dashed #eee; padding-top: 15px; }
 
-        #inlineResultsContainer { width: 100%; max-width: 1110px; margin-top: 15px; }
-        .inline-record-card { background: white; border: 1px solid var(--accent-gold); border-radius: 15px; padding: 15px 25px; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); animation: fadeInDown 0.4s ease-out; }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        .inline-record-text { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #475569; line-height: 1.6; font-weight: 600; }
-        .inline-record-text strong { color: var(--primary-blue); font-weight: 800; text-transform: uppercase; font-size: 0.75rem; margin-right: 4px; }
-        .record-divider { color: var(--accent-gold); margin: 0 8px; font-weight: normal; }
-
-        .why-donate-section { width: 100%; max-width: 1000px; padding: 20px 20px 60px 20px; text-align: center; animation: fadeInUp 1s ease-out 0.8s both; margin: 0 auto; }
-        .why-donate-section h2 { font-size: 1.8rem; color: var(--primary-blue); text-transform: uppercase; font-weight: 900; margin-bottom: 30px; letter-spacing: 1px; display: inline-block; position: relative; }
-        .why-donate-section h2::after { content: ''; position: absolute; bottom: -8px; left: 20%; right: 20%; height: 4px; background: var(--accent-gold); border-radius: 10px; }
-        .points-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; text-align: left; margin-top: 20px; }
-        .point-item { display: flex; gap: 15px; align-items: flex-start; padding: 10px; transition: transform 0.3s ease; }
-        .point-item:hover { transform: translateX(5px); }
-        .point-icon { width: 32px; height: 32px; background: var(--soft-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--accent-gold); font-size: 1rem; border: 1px solid rgba(212, 175, 55, 0.3); }
-        .point-text { font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.6; color: #475569; font-weight: 600; }
-        .thank-you-footer { margin-top: 50px; font-size: 1.1rem; color: var(--primary-blue); font-weight: 800; font-style: italic; padding: 20px; border-top: 1px dashed var(--accent-gold); line-height: 1.5; }
-
-        footer { background: var(--primary-blue); color: white; padding: 30px 20px; border-top: 3px solid var(--accent-orange); margin-top: auto; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: left; max-width: 1200px; margin: 0 auto; }
-        .footer-column h4 { color: var(--accent-yellow); border-bottom: 1px solid var(--accent-yellow); display: inline-block; margin-bottom: 12px; font-weight: 900; font-size: 12px; text-transform: uppercase; font-family: 'Roboto Slab', serif; }
-        .footer-column p, .footer-column a { font-size: 10.5px; color: rgba(255,255,255,0.9); text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-family: 'Inter', sans-serif; }
-        .social-icons { display: flex; flex-direction: row; gap: 15px; margin-top: 10px; }
+        /* --- FOOTER (Original Size) --- */
+        footer { background: var(--primary-blue); color: white; padding: 40px 20px; border-top: 4px solid var(--accent-orange); margin-top: auto; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .footer-column h4 { color: var(--accent-yellow); font-size: 13px; text-transform: uppercase; border-bottom: 1.5px solid rgba(255,255,255,0.2); margin-bottom: 18px; padding-bottom: 8px; display: flex; align-items: center; gap: 10px; font-weight: 900; }
+        .footer-column p, .footer-column a { font-size: 11px; color: rgba(255,255,255,0.9); text-decoration: none; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; font-weight: 500; }
+        .social-icons { display: flex; gap: 15px; margin-top: 15px; }
         .social-icons a { font-size: 20px; color: white; }
 
-        @media (max-width: 900px) {
-            .stats-container { grid-template-columns: 1fr; gap: 10px; }
-            .points-grid { grid-template-columns: 1fr; }
-            .passage-grid { grid-template-columns: 1fr; gap: 20px; }
-            .unified-card { text-align: center; }
-            .know-donation-bar { flex-direction: column; gap: 15px; padding: 25px; }
-            .kb-search { justify-content: center; width: 100%; flex-wrap: wrap; }
-            .kb-input-group { width: 100%; max-width: none; }
+        @media (max-width: 768px) {
+            header { flex-direction: column; text-align: center; padding: 20px; }
             .main-donation-box { flex-direction: column; }
-            .donation-form-section { border-right: none; border-bottom: 1px solid #f1f5f9; padding: 30px 20px; }
-            .donation-info-section { padding: 30px 20px; }
+            .donation-form-section { border-right: none; border-bottom: 1px solid #eee; }
+            .know-donation-bar { flex-direction: column; padding: 20px; }
         }
     </style>
 </head>
@@ -241,142 +189,76 @@
         </div>
     </header>
 
-    <!-- Welcome Section (Two Column Layout) -->
+    <!-- Welcome Message (Full Width / Compact) -->
     <div class="page-wrapper">
         <section class="unified-card">
             <div class="gold-line"></div>
-            <div class="passage-grid">
-                <div class="impressive-passage">
-                    At <strong>Sri Veda Talent Competition</strong>, we believe that education is the ultimate catalyst for change and the most powerful tool for human empowerment. Our community is built on a shared vision of nurturing raw potential, celebrating academic excellence, and bridging the gap between dreams and reality for students across all backgrounds.
-                </div>
-                <div class="impressive-passage">
-                    Thank you for standing with us as we strive to uplift young minds and create a sustainable ecosystem of knowledge. Your generous support is not just a contribution; it is the <strong>driving force</strong> behind the success of countless students who dream of a brighter tomorrow. We are honored to have a dedicated family of donors who share our passion for excellence.<i class="fa-solid fa-heart inline-heart"></i>
-                </div>
+            <div class="impressive-passage">
+                At <strong>Sri Veda Talent Competition</strong>, we believe that education is the ultimate catalyst for change and the most powerful tool for human empowerment. Our community is built on a shared vision of nurturing raw potential, celebrating academic excellence, and bridging the gap between dreams and reality for students across all backgrounds. Thank you for standing with us as we strive to uplift young minds and create a sustainable ecosystem of knowledge. Your generous support is the <strong>driving force</strong> behind the success of countless students who dream of a brighter tomorrow. We are honored to have a dedicated family of donors who share our passion for excellence.<i class="fa-solid fa-heart inline-heart"></i>
             </div>
         </section>
     </div>
 
-    <!-- Divider -->
     <div class="section-divider">
         <div class="divider-line"></div>
         <div class="divider-arrow"><i class="fa-solid fa-chevron-down"></i></div>
         <div class="divider-line"></div>
     </div>
 
-    <!-- Unified Donation Section Box -->
+    <!-- Main Donation Section -->
     <div class="donation-container-wrapper">
         <div class="main-donation-box">
-            
-            <!-- Donor Verification Form -->
             <section class="donation-form-section">
                 <h3><i class="fa-solid fa-user-shield"></i> Donor Verification</h3>
                 <form id="donationForm">
-                    <div class="form-group">
-                        <label>Full Name (PhonePe Name)</label>
-                        <input type="text" id="donor_fullName" name="fullName" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone Number</label>
-                        <input type="tel" id="donor_phone" name="phone" placeholder="10-digit number" maxlength="10" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Amount (₹)</label>
-                        <input type="number" id="donor_amount" name="amount" placeholder="Enter amount" min="1" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Address</label>
-                        <textarea id="donor_address" name="address" rows="2" placeholder="Enter your city or full address"></textarea>
-                    </div>
+                    <div class="form-group"><label>Full Name (PhonePe Name)</label><input type="text" id="donor_fullName" required placeholder="Enter full name"></div>
+                    <div class="form-group"><label>Phone Number</label><input type="tel" id="donor_phone" maxlength="10" required placeholder="10-digit number"></div>
+                    <div class="form-group"><label>Amount (₹)</label><input type="number" id="donor_amount" min="1" required placeholder="Enter amount"></div>
+                    <div class="form-group"><label>Address</label><textarea id="donor_address" rows="1" placeholder="City/Address"></textarea></div>
                     <button type="submit" id="submitDonorBtn" class="submit-btn">Submit Details <i class="fa-solid fa-paper-plane"></i></button>
                 </form>
             </section>
 
-            <!-- Donate Now Section -->
             <section class="donation-info-section">
-                <div class="info-text">
-                    <h2 class="content-h2"><i class="fa-solid fa-hand-holding-dollar"></i> DONATE NOW</h2>
-                    <p>Your contribution impacts the future of talented students.</p>
-                </div>
-
+                <div class="info-text"><h2><i class="fa-solid fa-hand-holding-dollar"></i> DONATE NOW</h2></div>
                 <div class="qr-display-box">
                     <div class="qr-branding-top">
                         <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" alt="Logo" class="mini-logo">
-                        <span class="brand-name-qr">Sri Veda Talent Competition</span>
+                        <span class="brand-name-qr">Sri Veda TC</span>
                     </div>
-
-                    <div class="qr-image-wrapper">
-                        <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/PAYMENT%20SCANEER.jpeg" alt="Payment QR">
-                    </div>
-
+                    <div class="qr-image-wrapper"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/PAYMENT%20SCANEER.jpeg" alt="QR"></div>
                     <div class="upi-badge">
-                        <span class="upi-id-text" id="upiText">9346119924@OKHDFCBANK</span>
-                        <button class="copy-btn" id="copyBtn" title="Copy UPI ID">
-                            <i class="fa-regular fa-copy"></i>
-                            <div class="toast-feedback">Copied!</div>
-                        </button>
+                        <span class="upi-id-text">9346119924@ybl</span>
+                        <button class="copy-btn" id="copyBtn"><i class="fa-regular fa-copy"></i><div class="toast-feedback">Copied!</div></button>
                     </div>
-
-                    <span class="scan-footer">Scan or choose app below</span>
-
-                    <!-- App Payment Section Integrated inside Scanner Box (Icons Only) -->
                     <div class="payment-apps-grid">
-                        <a href="javascript:void(0)" onclick="openUpiApp('gpay')" class="app-btn" title="Google Pay">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg" alt="GPay">
-                        </a>
-                        <a href="javascript:void(0)" onclick="openUpiApp('phonepe')" class="app-btn" title="PhonePe">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/PhonePe_Logo.svg" alt="PhonePe">
-                        </a>
-                        <a href="javascript:void(0)" onclick="openUpiApp('paytm')" class="app-btn" title="Paytm">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Paytm_Logo_%28standalone%29.svg" alt="Paytm">
-                        </a>
-                        <a href="javascript:void(0)" onclick="openUpiApp('upi')" class="app-btn" title="Other UPI">
-                            <i class="fa-solid fa-qrcode"></i>
-                        </a>
+                        <a href="javascript:void(0)" onclick="openUpiApp('gpay')" class="app-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg" alt="GPay"></a>
+                        <a href="javascript:void(0)" onclick="openUpiApp('phonepe')" class="app-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/7/71/PhonePe_Logo.svg" alt="PhonePe"></a>
+                        <a href="javascript:void(0)" onclick="openUpiApp('paytm')" class="app-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Paytm_Logo_%28standalone%29.svg" alt="Paytm"></a>
+                        <a href="javascript:void(0)" onclick="openUpiApp('upi')" class="app-btn"><i class="fa-solid fa-qrcode"></i></a>
                     </div>
                 </div>
+                <span class="scan-footer">Support the Mission</span>
             </section>
         </div>
     </div>
 
-    <!-- Stats Section -->
+    <!-- Stats -->
     <section class="stats-full-width-section">
         <div class="stats-container">
-            <div class="stat-box">
-                <i class="fa-solid fa-hand-holding-dollar stat-icon"></i>
-                <span class="stat-label">Total Received</span>
-                <span class="stat-value">₹7,600</span>
-            </div>
-            <div class="stat-box">
-                <i class="fa-solid fa-users stat-icon"></i>
-                <span class="stat-label">Total Donors</span>
-                <span class="stat-value">21</span>
-            </div>
-            <div class="stat-box">
-                <i class="fa-solid fa-chart-line stat-icon"></i>
-                <span class="stat-label">Donation Range</span>
-                <span class="stat-value">₹10 - ₹2,000</span>
-            </div>
+            <div class="stat-box"><span class="stat-label">Received</span><span class="stat-value">₹7,600</span></div>
+            <div class="stat-box"><span class="stat-label">Donors</span><span class="stat-value">21</span></div>
+            <div class="stat-box"><span class="stat-label">Range</span><span class="stat-value">₹10 - ₹2,000</span></div>
         </div>
     </section>
 
-    <!-- Know Your Donation Bar -->
-    <div class="know-donation-wrapper">
-        <div class="know-donation-bar">
-            <div class="kb-brand">
-                <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" alt="Logo">
-                <span class="kb-title">Know Your Donation</span>
-            </div>
-            <div class="kb-search">
-                <i class="fa-solid fa-phone kb-phone-icon"></i>
-                <div class="kb-input-group">
-                    <input type="tel" id="userPhoneInput" placeholder="Enter your phone number" maxlength="10">
-                </div>
-                <button class="kb-btn" id="getDetailsBtn">Get Details</button>
-            </div>
-        </div>
-        <!-- Inline Results Container -->
-        <div id="inlineResultsContainer"></div>
+    <!-- Search -->
+    <div class="know-donation-bar">
+        <div class="kb-brand"><img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/SVTC%20CIRCLE%20LOGO.png" alt="Logo"><span class="kb-title">Search</span></div>
+        <div class="kb-input-group"><input type="tel" id="userPhoneInput" placeholder="Phone number" maxlength="10"></div>
+        <button class="kb-btn" id="getDetailsBtn">Get Details</button>
     </div>
+    <div id="inlineResultsContainer" style="max-width:1100px; margin:0 auto; padding:0 20px;"></div>
 
     <!-- Why Support Us Section -->
     <section class="why-donate-section">
@@ -447,7 +329,7 @@
                     <a id="social_youtube" href="#"><i class="fab fa-youtube"></i></a>
                     <a id="social_facebook" href="#"><i class="fab fa-facebook"></i></a>
                 </div>
-                <p style="opacity: 0.7; font-size: 10px; margin-top: 10px;">&copy; 2026 srivedatc. All rights reserved.</p>
+                <p style="opacity: 0.7; font-size: 10px; margin-top: 15px;">&copy; 2026 srivedatc. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -456,163 +338,100 @@
         const GOOGLE_APPS_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzDqH8Jn789lve4blNDlm_huRtvOA9MZb6_Z-rQ_TSah-ru5PPfjrq5Wt15R6EAXMLp/exec";
 
         const GLOBAL_LINKS = {
-            URL_HOME: "https://www.svtc.life/home",
-            URL_REGISTER: "https://www.svtc.life/register",
-            URL_LOGIN: "https://www.svtc.life/login",
-            URL_ADMIN: "https://www.svtc.life/admin",
-            URL_PRICING: "https://www.svtc.life/pricing",
-            URL_ABOUT: "https://www.svtc.life/about",
-            URL_DONORS: "https://www.svtc.life/doners",
-            URL_MANAGEMENT: "https://www.svtc.life/management",
-            URL_TERMS: "https://www.svtc.life/terms",
-            SOCIAL_WHATSAPP: "https://www.svtc.life/whatsapp",
-            SOCIAL_INSTAGRAM: "https://www.svtc.life/instagram",
-            SOCIAL_YOUTUBE: "https://www.svtc.life/youtube",
-            SOCIAL_FACEBOOK: "https://www.svtc.life/facebook"
+            URL_HOME: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/",
+            URL_REGISTER: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Register",
+            URL_LOGIN: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Login",
+            URL_ADMIN: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Admin",
+            URL_PRICING: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Pricing",
+            URL_ABOUT: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/About",
+            URL_DONORS: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Doners",
+            URL_MANAGEMENT: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/Management",
+            URL_TERMS: "https://contactsriveda-debug.github.io/2026-SVTC-WEB/terms",
+            SOCIAL_WHATSAPP: "http://wa.me/919346119924",
+            SOCIAL_INSTAGRAM: "https://www.instagram.com/sriveda.tc",
+            SOCIAL_YOUTUBE: "https://www.youtube.com/channel/UC8uL4sqxqFs78OxNsSo6e2Q",
+            SOCIAL_FACEBOOK: "https://www.facebook.com/sriveda.tc"
         };
 
         window.addEventListener('DOMContentLoaded', () => {
             const setLink = (id, url) => { const el = document.getElementById(id); if (el) el.href = url; };
-            Object.keys(GLOBAL_LINKS).forEach(key => {
-                const id = key.toLowerCase().replace('url_', 'link_').replace('social_', 'social_').replace('url_donors', 'footer_donors').replace('url_management', 'footer_management').replace('url_terms', 'footer_terms').replace('url_about', 'footer_about');
-                setLink(id, GLOBAL_LINKS[key]);
-            });
+            setLink('link_home', GLOBAL_LINKS.URL_HOME);
+            setLink('link_register', GLOBAL_LINKS.URL_REGISTER);
+            setLink('link_login', GLOBAL_LINKS.URL_LOGIN);
+            setLink('link_admin', GLOBAL_LINKS.URL_ADMIN);
+            setLink('link_pricing', GLOBAL_LINKS.URL_PRICING);
+            setLink('footer_about', GLOBAL_LINKS.URL_ABOUT);
+            setLink('footer_donors', GLOBAL_LINKS.URL_DONORS);
+            setLink('footer_management', GLOBAL_LINKS.URL_MANAGEMENT);
+            setLink('footer_terms', GLOBAL_LINKS.URL_TERMS);
+            setLink('social_whatsapp', GLOBAL_LINKS.SOCIAL_WHATSAPP);
+            setLink('social_instagram', GLOBAL_LINKS.SOCIAL_INSTAGRAM);
+            setLink('social_youtube', GLOBAL_LINKS.SOCIAL_YOUTUBE);
+            setLink('social_facebook', GLOBAL_LINKS.SOCIAL_FACEBOOK);
 
-            // Form Logic
-            const donationForm = document.getElementById('donationForm');
-            const submitBtn = document.getElementById('submitDonorBtn');
-
-            donationForm.addEventListener('submit', async (e) => {
+            document.getElementById('donationForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
-                const formDataObject = {
+                const submitBtn = document.getElementById('submitDonorBtn');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Sending...';
+                const data = {
                     fullName: document.getElementById('donor_fullName').value,
                     phone: document.getElementById('donor_phone').value,
                     amount: document.getElementById('donor_amount').value,
                     address: document.getElementById('donor_address').value
                 };
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = 'Submitting... <i class="fa-solid fa-spinner fa-spin"></i>';
                 try {
-                    await fetch(GOOGLE_APPS_SCRIPT_WEB_APP_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(formDataObject)
-                    });
-                    alert("Thank you! Your donor details have been submitted. Please complete the donation via the QR code or payment buttons.");
-                    donationForm.reset();
-                } catch (error) {
-                    alert("There was an error submitting your details.");
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = 'Submit Details <i class="fa-solid fa-paper-plane"></i>';
-                }
+                    await fetch(GOOGLE_APPS_SCRIPT_WEB_APP_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
+                    alert("Donor details submitted! Complete payment via QR or App below.");
+                } catch(err) { alert("Submission error."); }
+                finally { submitBtn.disabled = false; submitBtn.innerHTML = 'Submit Details'; }
             });
 
-            // Search Logic
-            const getDetailsBtn = document.getElementById('getDetailsBtn');
-            const userPhoneInput = document.getElementById('userPhoneInput');
-
-            getDetailsBtn.addEventListener('click', async () => {
-                const phoneValue = userPhoneInput.value;
-                if (!phoneValue || phoneValue.length < 10) {
-                    alert("Please enter a valid 10-digit phone number.");
-                    return;
-                }
-                getDetailsBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
-                getDetailsBtn.disabled = true;
+            document.getElementById('getDetailsBtn').addEventListener('click', async () => {
+                const phone = document.getElementById('userPhoneInput').value;
+                if(phone.length < 10) return alert("Valid number required.");
+                const btn = document.getElementById('getDetailsBtn');
+                btn.innerHTML = "...";
                 try {
-                    const response = await fetch(`${GOOGLE_APPS_SCRIPT_WEB_APP_URL}?phone=${phoneValue}`);
-                    const jsonResult = await response.json();
-                    if (jsonResult.status === "success") {
-                        displayInlineResults(jsonResult.payload);
-                    } else {
-                        document.getElementById('inlineResultsContainer').innerHTML = '<div class="inline-record-card" style="text-align:center; color:#64748b;">No records found.</div>';
-                    }
-                } catch (error) {
-                    alert("Error searching database.");
-                } finally {
-                    getDetailsBtn.innerHTML = 'Get Details';
-                    getDetailsBtn.disabled = false;
-                }
+                    const res = await fetch(`${GOOGLE_APPS_SCRIPT_WEB_APP_URL}?phone=${phone}`);
+                    const json = await res.json();
+                    displayResults(json.payload || []);
+                } catch(e) { alert("Search error."); }
+                finally { btn.innerHTML = "Get Details"; }
             });
 
-            // Copy Logic
-            const copyBtn = document.getElementById('copyBtn');
-            const upiText = document.getElementById('upiText').innerText;
-            copyBtn.addEventListener('click', () => {
-                const textArea = document.createElement("textarea");
-                textArea.value = upiText;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
+            document.getElementById('copyBtn').addEventListener('click', () => {
+                const el = document.createElement('textarea');
+                el.value = "9346119924@ybl";
+                document.body.appendChild(el); el.select(); document.execCommand('copy');
+                document.body.removeChild(el);
+                const copyBtn = document.getElementById('copyBtn');
                 copyBtn.classList.add('copied');
-                const icon = copyBtn.querySelector('i');
-                icon.classList.replace('fa-regular', 'fa-solid');
-                icon.classList.replace('fa-copy', 'fa-check');
-                setTimeout(() => {
-                    copyBtn.classList.remove('copied');
-                    icon.classList.replace('fa-solid', 'fa-regular');
-                    icon.classList.replace('fa-check', 'fa-copy');
-                }, 2000);
-                document.body.removeChild(textArea);
+                setTimeout(() => copyBtn.classList.remove('copied'), 2000);
             });
         });
 
-        // UPI Intent Logic
         function openUpiApp(type) {
-            const upiId = "9346119924@OKHDFCBANK";
+            const upiId = "9346119924@ybl";
             const name = encodeURIComponent("Sri Veda Talent Competition");
-            const amount = document.getElementById('donor_amount').value;
-            const currency = "INR";
-            
-            // Standard UPI Payment URI
-            let upiUrl = `upi://pay?pa=${upiId}&pn=${name}&cu=${currency}`;
-            
-            if (amount && amount > 0) {
-                upiUrl += `&am=${amount}`;
-            }
-
-            // Mobile Deep Linking
+            const note = encodeURIComponent("Sri Veda Talent Competition Donation");
+            const amount = document.getElementById('donor_amount').value || "";
+            let upiUrl = `upi://pay?pa=${upiId}&pn=${name}&tn=${note}&cu=INR`;
+            if(amount) upiUrl += `&am=${amount}`;
             if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                window.location.href = upiUrl; 
+                window.location.href = upiUrl;
             } else {
-                // Desktop - show message
-                alert("Mobile payment apps can only be opened on a smartphone or tablet. Please use the QR code scanner on your PC.");
+                alert("Mobile apps only. Please scan QR.");
             }
         }
 
-        function formatDisplayDate(dateStr) {
-            if(!dateStr) return "N/A";
-            const dateObj = new Date(dateStr);
-            if(isNaN(dateObj)) return dateStr; 
-            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            return `${dateObj.getDate()} ${months[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
-        }
-
-        function displayInlineResults(recordsArray) {
+        function displayResults(records) {
             const container = document.getElementById('inlineResultsContainer');
-            container.innerHTML = "";
-            if (!recordsArray || recordsArray.length === 0) {
-                container.innerHTML = '<div class="inline-record-card" style="text-align:center; color:#64748b;">No donation records found.</div>';
-                return;
-            }
-            recordsArray.forEach(record => {
+            container.innerHTML = records.length ? "" : "<p style='text-align:center; color:#64748b; font-size:12px;'>No records found.</p>";
+            records.forEach(r => {
                 const card = document.createElement('div');
-                card.className = 'inline-record-card';
-                card.innerHTML = `
-                    <div class="inline-record-text">
-                        <strong>Date:</strong> ${formatDisplayDate(record.transactionDate)}<span class="record-divider">|</span>
-                        <strong>Name:</strong> ${record.fullDonorName}<span class="record-divider">|</span>
-                        <strong>Profession:</strong> ${record.assignedProfession}<span class="record-divider">|</span>
-                        <strong>Amount:</strong> ₹${record.donationAmount}<span class="record-divider">|</span>
-                        <strong>Status:</strong> ${record.paymentStatus}<span class="record-divider">|</span>
-                        <strong>Care Of:</strong> ${record.careOfAddress || 'N/A'}<span class="record-divider">|</span>
-                        <strong>Village:</strong> ${record.villageName || 'N/A'}<span class="record-divider">|</span>
-                        <strong>Mandal:</strong> ${record.mandalName || 'N/A'}<span class="record-divider">|</span>
-                        <strong>District:</strong> ${record.districtName || 'N/A'}
-                    </div>
-                `;
+                card.style = "background:white; border:1px solid #D4AF37; border-radius:10px; padding:10px; margin-bottom:8px; font-size:12px; display:flex; justify-content:space-between; align-items:center; box-shadow: 0 2px 5px rgba(0,0,0,0.02);";
+                card.innerHTML = `<div><strong>${r.fullDonorName}</strong><br><small>${r.transactionDate || ''}</small></div><div style='text-align:right;'><strong>₹${r.donationAmount}</strong><br><small style='color:#10b981;'>${r.paymentStatus}</small></div>`;
                 container.appendChild(card);
             });
         }
