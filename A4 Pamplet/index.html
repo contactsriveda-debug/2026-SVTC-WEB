@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRI VEDA - SVTC Final Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts: Ponnala, Mandali, Roboto Slab, Great Vibes, and Sree Krushnadevaraya -->
+    <link href="https://fonts.googleapis.com/css2?family=Ponnala&family=Mandali&family=Roboto+Slab:wght@400;700&family=Great+Vibes&family=Sree+Krushnadevaraya&display=swap" rel="stylesheet">
+    <style>
+        /* Ensures only content is printed */
+        @page {
+            size: A4;
+            margin: 0mm;
+        }
+
+        body {
+            font-family: 'Mandali', sans-serif;
+            font-weight: bold;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .eng-font {
+            font-family: 'Roboto Slab', serif;
+        }
+
+        .cursive-font {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .krishna-font {
+            font-family: 'Sree Krushnadevaraya', serif;
+        }
+
+        /* A4 Container */
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            margin: 10mm auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        /* Double-Line Border with Corner Accents */
+        .page-border {
+            position: absolute;
+            top: 6mm;
+            left: 6mm;
+            right: 6mm;
+            bottom: 6mm;
+            border: 4px double #800000;
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        .corner-accent {
+            position: absolute;
+            width: 12mm;
+            height: 12mm;
+            z-index: 40;
+            pointer-events: none;
+            border-color: #800000;
+        }
+        .ca-top-left { top: 6mm; left: 6mm; border-top: 5px solid #800000; border-left: 5px solid #800000; }
+        .ca-top-right { top: 6mm; right: 6mm; border-top: 5px solid #800000; border-right: 5px solid #800000; }
+        .ca-bottom-left { bottom: 6mm; left: 6mm; border-bottom: 5px solid #800000; border-left: 5px solid #800000; }
+        .ca-bottom-right { bottom: 6mm; right: 6mm; border-bottom: 5px solid #800000; border-right: 5px solid #800000; }
+
+        /* Content Area */
+        .content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 10;
+            padding: 12mm 16mm;
+        }
+
+        /* Header Area */
+        .header-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2mm;
+        }
+
+        .header-banner {
+            width: 220px; 
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .header-title {
+            font-family: 'Ponnala', serif;
+            font-weight: normal;
+        }
+
+        .stylish-header-line {
+            height: 4px;
+            width: 100%;
+            background: linear-gradient(to right, #6366f1, #06b6d4, #10b981, #f59e0b, #ef4444);
+            border-radius: 10px;
+            margin-bottom: 3mm;
+        }
+
+        .passage-text {
+            line-height: 1.5;
+            text-align: justify;
+            color: #111827;
+            font-size: 13.5px;
+            margin-bottom: 6px;
+        }
+
+        /* Agenda Section */
+        .agenda-flex {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            margin: 6px 0;
+        }
+
+        .agenda-visuals {
+            flex: 0 0 52%;
+            position: relative;
+            padding: 2px 0 2px 40px;
+        }
+
+        .agenda-vertical-line {
+            position: absolute;
+            left: 20px; 
+            top: 5px;
+            bottom: 5px;
+            width: 5px;
+            background: linear-gradient(to bottom, #6366f1, #06b6d4, #10b981, #f59e0b, #ef4444);
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        .agenda-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #800000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Roboto Slab', serif;
+            font-size: 11px;
+            flex-shrink: 0;
+            z-index: 5;
+            margin-left: -33.5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .point-box-3d {
+            background: white;
+            border: 1px solid #e5e7eb;
+            padding: 4px 10px;
+            margin-left: 15px;
+            border-radius: 4px;
+            box-shadow: 2px 2px 0px rgba(128, 0, 0, 0.1);
+            flex-grow: 1;
+            text-align: center;
+            font-family: 'Roboto Slab', serif;
+        }
+
+        .point-text { font-size: 9.5px; letter-spacing: 0.2px; }
+
+        .step-1 .step-circle { border-color: #6366f1; color: #6366f1; }
+        .step-2 .step-circle { border-color: #06b6d4; color: #06b6d4; }
+        .step-3 .step-circle { border-color: #10b981; color: #10b981; }
+        .step-4 .step-circle { border-color: #f59e0b; color: #f59e0b; }
+        .step-5 .step-circle { border-color: #ef4444; color: #ef4444; }
+
+        .highlight-card {
+            background-color: #fffafb;
+            border-left: 5px solid #800000;
+            padding: 8px 12px;
+            margin: 6px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .icon-inline {
+            display: inline-flex;
+            vertical-align: middle;
+            margin-right: 8px;
+            color: #800000;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 110px;
+            color: rgba(128, 0, 0, 0.03);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @media print {
+            .no-print { display: none; }
+            .a4-page { margin: 0; box-shadow: none; border: none; }
+            /* Only show the content box */
+            body * { visibility: hidden; }
+            .a4-page, .a4-page * { visibility: visible; }
+            .a4-page { position: absolute; left: 0; top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print flex justify-center py-4">
+        <button onclick="window.print()" class="bg-red-800 text-white px-8 py-2 rounded shadow-lg hover:bg-red-900 transition font-sans font-bold">
+            Print Final Vision Document
+        </button>
+    </div>
+
+    <div class="a4-page">
+        <!-- Borders & Corners -->
+        <div class="page-border"></div>
+        <div class="corner-accent ca-top-left"></div>
+        <div class="corner-accent ca-top-right"></div>
+        <div class="corner-accent ca-bottom-left"></div>
+        <div class="corner-accent ca-bottom-right"></div>
+        
+        <div class="watermark">SRI VEDA</div>
+
+        <div class="content">
+            <!-- Header Section -->
+            <div class="header-section">
+                <img src="https://contactsriveda-debug.github.io/2026-SVTC-IMAGES/logo%20banner.jpeg" 
+                     alt="SVTC Banner" class="header-banner shadow-md border border-gray-200">
+                
+                <div class="text-right flex-1 pl-6">
+                    <h1 class="header-title text-2xl leading-tight underline decoration-red-800 decoration-2 underline-offset-4">
+                        శ్రీ వేద టాలెంట్ కాంపిటీషన్ (<span class="eng-font font-bold text-base">SVTC</span>)
+                    </h1>
+                    <p class="text-red-700 text-lg italic mt-1 eng-font">"we see student success"</p>
+                </div>
+            </div>
+
+            <div class="stylish-header-line"></div>
+
+            <div class="main-body">
+                <div class="passage-text">
+                    <!-- First Passage -->
+                    <p class="mb-4">
+                        <span class="icon-inline">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        </span>
+                        శ్రీ వేద టాలెంట్ కాంపిటీషన్ (<span class="eng-font">SVTC</span>) 3వ తరగతి నుండి 10వ తరగతి వరకు ఉన్న విద్యార్థులలో ఉన్న ప్రతిభను వెలికి తీసి, వారి విద్యా ప్రమాణాలను పెంచే లక్ష్యంతో ప్రారంభించబడిన ఒక ప్రత్యేక విద్యా కార్యక్రమం. “<span class="eng-font">Inspiring Intelligence</span>” అనే నినాదంతో, విద్యార్థులు కేవలం పరీక్షలు రాయడమే కాకుండా, వారి ఆలోచనా సామర్థ్యాన్ని పెంచడం, పోటీ ప్రపంచానికి సిద్ధం చేయడం మరియు వారి భవిష్యత్తుకు బలమైన పునాది వేయడం మా ప్రధాన ఉద్దేశ్యం. మా కార్యక్రమం కేవలం ఒకరోజు పరీక్ష నిర్వహించడం వరకు మాత్రమే పరిమితం కాదు. విద్యార్థులు సంవత్సరం పొడవునా చదువులో ముందుకు సాగేందుకు అవసరమైన మార్గదర్శకత్వం, ప్రోత్సాహం మరియు విద్యా సహకారం అందించడం మా ముఖ్య లక్ష్యం. అందుకోసం వ్యక్తిగత కాల్స్, ఆన్‌లైన్ మార్గదర్శక కార్యక్రమాలు మరియు ప్రత్యేక విద్యా సహాయ సేవల ద్వారా విద్యార్థులను నిరంతరం ప్రోత్సహిస్తున్నాము. చదువుపై నిజమైన ఆసక్తి ఉన్న విద్యార్థులను గుర్తించి వారిని ప్రత్యేకంగా అభివృద్ధి చెందేలా సహాయం చేయడం మా ముఖ్య బాధ్యతగా భావిస్తున్నాము.
+                    </p>
+
+                    <!-- Agenda Section -->
+                    <div class="agenda-flex">
+                        <div class="agenda-visuals">
+                            <div class="agenda-vertical-line"></div>
+                            <div class="agenda-row step-1"><div class="step-circle">01</div><div class="point-box-3d"><span class="point-text">SCHOOL CLASS VISITS</span></div></div>
+                            <div class="agenda-row step-2"><div class="step-circle">02</div><div class="point-box-3d"><span class="point-text">TALENT DISCOVERY</span></div></div>
+                            <div class="agenda-row step-3"><div class="step-circle">03</div><div class="point-box-3d"><span class="point-text">PORTAL GUIDANCE</span></div></div>
+                            <div class="agenda-row step-4"><div class="step-circle">04</div><div class="point-box-3d"><span class="point-text">ONLINE TEST ACCESS</span></div></div>
+                            <div class="agenda-row step-5"><div class="step-circle">05</div><div class="point-box-3d"><span class="point-text">AWARDS & MERIT GIFTS</span></div></div>
+                        </div>
+                        <div class="side-text-area text-[12.5px] leading-relaxed">
+                            <span class="icon-inline">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                            </span>
+                            ఈ విద్యా కార్యక్రమాన్ని సమర్థవంతంగా నిర్వహించడానికి మేము ఆధునిక సాంకేతిక సదుపాయాలను ఏర్పాటు చేసుకున్నాము. మా వెబ్‌సైట్ ద్వారా విద్యార్థుల వివరాలు, పరీక్షల ఫలితాలు, ప్రోగ్రెస్ రిపోర్టులు మరియు సందేహాలను భద్రపరచడానికి ఒక శక్తివంతమైన డేటాబేస్‌ను నిర్వహిస్తున్నాము. వేలాది ప్రశ్నలను సేకరించి వాటిని నిరంతరం అప్‌డేట్ చేస్తూ విద్యార్థులకు నాణ్యమైన ప్రాక్టీస్ అందించే విధంగా వెబ్‌సైట్‌ను నిర్వహిస్తున్నాము. అదనంగా, విద్యార్థులకు చదువులో వచ్చే సందేహాలను వెంటనే పరిష్కరించేందుకు ఒక ఆన్‌లైన్ అసిస్టెంట్‌ను నియమించి వారికి నిరంతర మార్గదర్శకత్వం అందిస్తున్నాము. 
+                        </div>
+                    </div>
+
+                    <!-- Third Passage (Fieldwork) -->
+                    <p class="mb-4">
+                        <span class="icon-inline">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-1.1 0-2 .9-2 2v7c0 1.1.9 2 2 2h10"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+                        </span>
+                        మా సేవలు కేవలం ఆన్‌లైన్‌కే పరిమితం కాకుండా క్షేత్రస్థాయిలో కూడా కొనసాగుతున్నాయి. నంద్యాల జిల్లాలోని పాఠశాలలను నేరుగా సందర్శిస్తూ విద్యార్థులకు వేదిక మ్యాథ్స్‌పై ప్రత్యేక శిక్షణ కార్యక్రమాలు నిర్వహిస్తున్నాము. గణితాన్ని సులభమైన పద్ధతుల్లో అర్థం చేసుకునే విధానాలను పరిచయం చేసి, విద్యార్థుల్లో గణితంపై ఉన్న భయాన్ని తగ్గించడానికి ప్రయత్నిస్తున్నాము. ఈ కార్యక్రమాల ద్వారా చదువుపై నిజమైన ఆసక్తి ఉన్న విద్యార్థులను గుర్తించి, వారిని మా ఆన్‌లైన్ పోర్టల్‌లో నమోదు చేసి నిరంతరం మార్గదర్శకత్వం అందిస్తున్నాము. మా ఆన్‌లైన్ పరీక్షా విధానం విద్యార్థుల్లో పోటీ భావనను పెంచి, సమయ నిర్వహణ, ఆలోచనా సామర్థ్యం మరియు ఆత్మవిశ్వాసాన్ని అభివృద్ధి చేయడానికి సహాయపడుతుంది. రెగ్యులర్‌గా పరీక్షలు రాయడం ద్వారా వారు తమ బలహీనతలను గుర్తించి వాటిని మెరుగుపరచుకునే అవకాశం పొందుతారు
+                    </p>
+
+                    <!-- Fourth Passage (Exams) -->
+                    <p class="mb-4">
+                        <span class="icon-inline">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        </span>
+                        ఈ పరీక్షలు భవిష్యత్తులో వారు రాయబోయే స్కాలర్‌షిప్, మెరిట్ ఆధారిత సీట్ల కోసం జరిగే పరీక్షలు మరియు దేశవ్యాప్తంగా నిర్వహించే వివిధ ఎంట్రన్స్ పరీక్షలకు చాలా ఉపయోగపడతాయి. నిరంతర ప్రాక్టీస్ ద్వారా విద్యార్థులు పెద్ద పరీక్షలను కూడా ధైర్యంగా ఎదుర్కొనే స్థాయికి చేరుకుంటారు. మా ఆన్‌లైన్ పోర్టల్‌లో ప్రతి తరగతికి ప్రత్యేకంగా రూపొందించిన పరీక్షా విధానం ఉంటుంది. 3వ మరియు 4వ తరగతి విద్యార్థుల కోసం జనరల్ నాలెడ్జ్ మరియు ప్రాథమిక మేధస్సు అభివృద్ధి కోసం 100కి పైగా పరీక్షలను రూపొందించాము. 5వ తరగతి నుండి 9వ తరగతి వరకు సబ్జెక్ట్ ఆధారిత పరీక్షలను రూపొందించి, దేశవ్యాప్తంగా జరిగే ఎంట్రన్స్ పరీక్షలను దృష్టిలో ఉంచుకుని ప్రత్యేక సిలబస్‌ను తయారు చేశాము. ఈ సిలబస్ మొత్తం సుమారు 200 పరీక్షల ద్వారా పూర్తిగా కవర్ అయ్యేలా రూపొందించబడింది. పదవ తరగతి విద్యార్థుల కోసం ప్రత్యేకంగా సబ్జెక్ట్ వైస్ పరీక్షలను రూపొందించాము. ఇవి వారి బోర్డు పరీక్షల్లో మంచి మార్కులు సాధించడానికి మాత్రమే కాకుండా, భవిష్యత్తులో వారు ఎంచుకునే విద్యా మార్గం మరియు పోటీ పరీక్షలకు కూడా బలమైన పునాది వేస్తాయి.
+                    </p>
+
+                    <!-- Final Appeal Box -->
+                    <div class="bg-red-50 p-3 rounded-lg border-l-4 border-red-800 italic mt-1.5">
+                        <p class="mb-1 text-[11.5px] leading-tight"><strong class="text-red-900">మీ సహకారం – ఒక విద్యార్థి భవిష్యత్తుకు బలం:</strong> ఈ విద్యా కార్యక్రమాన్ని నిరంతరం కొనసాగించడానికి వెబ్‌సైట్ నిర్వహణ, డేటాబేస్ నిర్వహణ, టీచర్ల వేతనాలు మరియు పాఠశాలల సందర్శనల కోసం అయ్యే ప్రయాణ ఖర్చులు వంటి అనేక వ్యయాలు ఉన్నాయి. విద్యార్థుల భవిష్యత్తు కోసం మేము చేస్తున్న ఈ ప్రయత్నం కొనసాగాలంటే మీలాంటి దాతల సహకారం ఎంతో అవసరం. మీరు అందించే ప్రతి సహాయం ఒక నిరుపేద విద్యార్థికి గొప్ప అవకాశం అవుతుంది. అది ఒక విద్యార్థిని రేపటి మేధావిగా తీర్చిదిద్దే మార్గంలో కీలక పాత్ర పోషిస్తుంది. మనమందరం కలిసి ఈ విద్యా యజ్ఞంలో భాగస్వాములు అయి, సమాజానికి ఉత్తమ పౌరులను అందిద్దాం.</p>
+                    </div>
+                </div>
+
+                <!-- Footer Section Updated -->
+                <div class="mt-auto border-t-4 border-red-100 pt-2 flex justify-between items-end pb-1">
+                    <div class="flex items-center gap-6">
+                        <!-- Left Side Details -->
+                        <div class="text-xs text-black font-black space-y-3 eng-font">
+                            <div>
+                                <span class="krishna-font text-sm">వెబ్‌సైట్:</span><br>
+                                <span class="text-xl">www.svtc.life</span>
+                            </div>
+                            <div>
+                                <span class="krishna-font text-sm">ఫోన్ నంబర్:</span><br>
+                                <span class="text-lg">+91 9346119924</span>
+                            </div>
+                        </div>
+
+                        <!-- Scanner Image -->
+                        <div>
+                            <img src="https://contactsriveda-debug.github.io/images/donation%20link%20qr%20code.png" 
+                                 alt="Donation Scanner" 
+                                 class="w-24 h-24 border border-gray-300 shadow-sm rounded-md">
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col items-center">
+                        <p class="text-red-800 text-base cursive-font mb-0 italic">ఇట్లు,</p>
+                        <p class="eng-font font-bold text-2xl text-red-900 mb-1 leading-tight">Management </p>
+                        <p class="krishna-font font-bold text-gray-700 text-lg">శ్రీ వేద టాలెంట్ కాంపిటీషన్ (SVTC)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
